@@ -23,9 +23,12 @@ public:
 
     void updateScreen();    //aggiorna lo schermo
 
-    void checkCollisions();
-
 private:
+    void checkCollisions();
+    void wallCollosions();
+    void doorCollisions();
+    void enemyColliosions();
+
     void moveToNorthRoom();
     void moveToSouthRoom();
     void moveToWestRoom();

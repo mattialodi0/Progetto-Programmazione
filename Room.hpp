@@ -1,13 +1,14 @@
 #pragma once 
 
-//#include "RoomTemplates.hpp"
+#include "RoomTemplates.hpp"
 #include <ncurses.h>
 
 
 class Room {
 private:
-    //int room_template_number;
-    //general_template room_template;
+    int room_template_number;
+    general_template room_template;
+    Drawable enemies[]; 
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
@@ -32,7 +33,7 @@ private:
 public:
     RoomIndex();
 
-    ~RoomINdex();
+    ~RoomIndex();
     
     void addRoomToIndex(prm room);
 
