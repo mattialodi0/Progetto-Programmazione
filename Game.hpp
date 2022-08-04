@@ -8,6 +8,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include "Hero.hpp"
+#include "Room.hpp"
 
 
 class Game
@@ -21,8 +22,8 @@ private:
 	//da implementare
 	Room* current_room;
    	Room** room_index;
-    	int index_dim;
-    	int current_index;
+    int index_dim;
+    int current_index;
 public:
 	Game(int height, int width, int speed)
 	{
@@ -131,15 +132,15 @@ public:
 	};
 private:
 	void moveToNorthRoom();
-    	void moveToSouthRoom();
+    void moveToSouthRoom();
  	void moveToWestRoom();
   	void moveToEstRoom();
 
-    	void makeNorthRoom();
-    	void makeSouthRoom();
-    	void makeWestRoom();
-    	void makeEstRoom();
+    void makeNorthRoom();
+    void makeSouthRoom();
+    void makeWestRoom();
+    void makeEstRoom();
 
-    	void addRoomToIndex(prm room);
-    	void updateIndex(prm room);
+    void addRoomToIndex(prm room);
+    void updateIndex(prm room);
 };

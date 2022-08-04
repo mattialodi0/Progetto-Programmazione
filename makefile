@@ -1,17 +1,14 @@
-game: main.o Game.o Board.o Room.o 
-	gcc -o game main.o Game.o Board.o Room.o -lncurses
+game: main.o Game.o Room.o 
+	g++ -o game main.o Game.o Room.o -lncurses
 
-main.o: main.cpp Game.hpp
-	gcc -c main.cpp -lncurses
+main.o: main.cpp Game.hpp Board.hpp Drawable.hpp
+	g++ -c main.cpp -lncurses
 
-Game.o: Game.cpp Game.hpp Room.hpp Board.hpp 
-	gcc -c Game.cpp -lncurses
+Game.o: Game.cpp Game.hpp Room.hpp Board.hpp Hero.hpp
+	g++ -c Game.cpp -lncurses
 
-Board.o: Board.cpp Board.hpp 
-	gcc -c Board.cpp -lncurses
-
-Room.o: Room.cpp Room.hpp RoomTemplates.hpp 
-	gcc -c Room.cpp -lncurses
+Room.o: Room.cpp Room.hpp  
+	g++ -c Room.cpp -lncurses
 
 clean:
 	rm *.o game
