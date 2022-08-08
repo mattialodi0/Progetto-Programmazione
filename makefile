@@ -1,5 +1,5 @@
 game: main.o Game.o Board.o Room.o 
-	gcc -o game main.o Game.o Board.o Room.o -lncurses
+	gcc -o game main.o Game.o Board.o Room.o -lncurses -lstdc++
 
 main.o: main.cpp Game.hpp
 	gcc -c main.cpp -lncurses

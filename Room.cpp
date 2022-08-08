@@ -1,5 +1,6 @@
 #include "Room.hpp"
 
+
 //fa il set up della stanza scegliendo un template, istanziando i nemici e gli artefatti
 //poi posiziona il giocatore 
 Room::Room() {
@@ -12,17 +13,16 @@ Room::Room() {
     //initializeRoomTemplate(0);
 }
 
-Room::Room(int y, int x, RoomIndex room_index) {//int room_template) {
+Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template) {
 
-    this->north = room_index.findRoom(y+1, x);
-	this->south = room_index.findRoom(y-1, x);
-	this->west = room_index.findRoom(y, x-1);
-	this->est = room_index.findRoom(y, x+1);
+    this->north = findRoom(room_index, index_dim, y+1, x);
+    this->south = findRoom(room_index, index_dim, y-1, x);
+    this->west = findRoom(room_index, index_dim, y, x-1);
+	this->est = findRoom(room_index, index_dim, y, x+1);
     //initializeRoomTemplate(room_template);
 }
 /*
 void Room::initializeRoomTemplate(int template_num) {
-
     this->room_template_number = template_num;
     switch (this->room_template_number)
     {
@@ -45,7 +45,6 @@ void Room::drawRoom(WINDOW* win) {
 }
 /*
 void Room::drawWalls(WINDOW* win) {
-
     for(int i = 0; i < this->room_template.walls_num ; i++) {
         mvwprintw(win, room_template.walls[i][0], room_template.walls[i][1], "X");
     }
@@ -61,25 +60,7 @@ void Room::multiarrcpy(int cpy[][2], int orgn[][2]) {
 }
 */
 
-//----------------------------------
-
-RoomIndex::RoomIndex() {
-    this->index_dim = 1;
-    this->room_index = new prm[index_dim];
-    this->current_index = 0;
-}
-
-RoomIndex::~RoomIndex() {
-    delete [] room_index;
-}
-
-void RoomIndex::addRoomToIndex(prm room) {
-    this->index_dim += 1;
-    this->room_index[current_index] = room;
-    this->current_index += 1;
-}
-
-Room* RoomIndex::findRoom(int y, int x) {
+Room* Room::findRoom(Room** room_index, int index_dim, int y, int x){
     int n = -1;
 		for(int i = 0; i < index_dim; i++)
 		{
@@ -91,19 +72,4 @@ Room* RoomIndex::findRoom(int y, int x) {
 		}
 	if(n < 0) return NULL;
 	else return room_index[n]; 
-}
-
-void RoomIndex::updateIndex(prm room) {
-
-    for(int i = 0; i < index_dim; i++)
-	{
-		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
-			room_index[i]->south = room;
-		if(room_index[i]->y== room->y-1 && room_index[i]->x == room->x)
-			room_index[i]->north = room;
-		if(room_index[i]->y == room->y && room_index[i]->x == room->x-1)
-			room_index[i]->est = room;
-		if(room_index[i]->y == room->y && room_index[i]->x== room->x+1)
-			room_index[i]->west = room;		
-	}
 }

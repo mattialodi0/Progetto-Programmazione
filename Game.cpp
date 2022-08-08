@@ -3,9 +3,11 @@
 Game::Game() {
     gameboard = Board();    //creazione della finestra di gioco
 
-    room_index = new RoomIndex;//creazione dell'indice delle stanze
-    current_room  = new Room;
-    room_index.addRoomToIndex(current_room);
+    index_dim = 1;
+	room_index = new prm[index_dim];
+	current_index = 0;
+	current_room  = new Room;
+	addRoomToIndex(current_room);
 }
 
 bool Game::isNotOver() {
@@ -23,28 +25,34 @@ void Game::processInput() {
         break;
     case 'w':
         //moveHeroNorth();
+        moveToNorthRoom();
         break;
     case 's':
         //moveHeroSouth();
+        moveToSouthRoom();
         break;
     case 'a':
         //moveHeroWest();
+        moveToEstRoom();
         break;
     case 'd':
         //moveHeroEst();
+        moveToWestRoom();
         break;
     }
 }
 
 void Game::updateState() {
     
-    checkCollisions()
+    //checkCollisions();
     
 }
 
-void Game::updateScreen() {}
+void Game::updateScreen() {
+    current_room->drawRoom(gameboard.game_win);
+}
 
-
+/*
 void Game::checkCollisions() {
     wallCollisions();
     doorCollisions();
@@ -75,7 +83,8 @@ void Game::enemyCollisions() {
     //cancella il movimento + eventuali danni al giocatore
 }
 
-//funzioni per cambiare stanza
+*/
+
 void Game::moveToNorthRoom() {
     current_room = current_room->north;
     //posiziona il giocatore in basso 
@@ -95,22 +104,46 @@ void Game::moveToEstRoom() {
 
 //funzioni per creare nuove stanze
 void Game::makeNorthRoom() {
-    current_room->north = new Room(current_room->y+1, current_room->x, room_index);
-    room_index.updateIndex(current_room->north);
+    current_room->north = new Room(current_room->y+1, current_room->x, room_index, index_dim);
+    updateIndex(current_room->north);
     moveToNorthRoom();
 }
 void Game::makeSouthRoom() {
-    current_room->south = new Room(current_room->y-1, current_room->x, room_index);
-    room_index.updateIndex(current_room->south);
+    current_room->south = new Room(current_room->y-1, current_room->x, room_index, index_dim);
+    updateIndex(current_room->south);
     moveToSouthRoom();  
 }
 void Game::makeWestRoom() {
-    current_room->west = new Room(current_room->y, current_room->x-1, room_index);
-    room_index.updateIndex(current_room->west);
+    current_room->west = new Room(current_room->y, current_room->x-1, room_index, index_dim);
+    updateIndex(current_room->west);
     moveToWestRoom();
 }
 void Game::makeEstRoom() {
-    current_room->est = new Room(current_room->y, current_room->x+1, room_index);
-    room_index.updateIndex(current_room->est);
+    current_room->est = new Room(current_room->y, current_room->x+1, room_index, index_dim);
+    updateIndex(current_room->est);
     moveToEstRoom();
+}
+
+
+void Game::addRoomToIndex(prm room) {
+    this->index_dim += 1;
+    this->room_index[current_index] = room;
+    this->current_index += 1;
+}
+
+
+
+void Game::updateIndex(prm room) {
+
+    for(int i = 0; i < index_dim; i++)
+	{
+		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
+			room_index[i]->south = room;
+		if(room_index[i]->y== room->y-1 && room_index[i]->x == room->x)
+			room_index[i]->north = room;
+		if(room_index[i]->y == room->y && room_index[i]->x == room->x-1)
+			room_index[i]->est = room;
+		if(room_index[i]->y == room->y && room_index[i]->x== room->x+1)
+			room_index[i]->west = room;		
+	}
 }
