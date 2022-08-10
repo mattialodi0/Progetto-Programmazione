@@ -1,5 +1,5 @@
 
-//#include "RoomTemplates.hpp"
+#include "RoomTemplates.hpp"
 #include <ncurses.h>
 #include <iostream>
 #include <stdio.h>
@@ -8,7 +8,7 @@
 class Room {
 private:
     int room_template_number;
-    //general_template room_template;
+    general_template room_template;
     //Drawable enemies[]; 
     int room_num;
 public:
@@ -23,5 +23,6 @@ public:
 
 private:
     Room* findRoom(Room** room_index, int index_dim, int y, int x);
+    void drawWalls(WINDOW* win);
 
 }; typedef Room* prm;

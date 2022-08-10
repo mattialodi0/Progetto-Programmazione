@@ -1,8 +1,10 @@
 #include "Game.hpp"
 
 Game::Game() {
-    gameboard = Board();    //creazione della finestra di gioco
-
+    this->gameboard = Board();    //creazione della finestra di gioco
+    
+    game_over = false;
+    
     index_dim = 1;
 	room_index = new prm[index_dim];
 	current_index = 0;

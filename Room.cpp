@@ -10,7 +10,6 @@ Room::Room() {
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    //initializeRoomTemplate(0);
 }
 
 Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template) {
@@ -40,17 +39,17 @@ void Room::drawRoom(WINDOW* win) {
     //drawPlayer();
     //drawEnemy();
 
-    //drawWalls(win);
+    drawWalls(win);
     //drawDors();
 }
-/*
+
 void Room::drawWalls(WINDOW* win) {
-    for(int i = 0; i < this->room_template.walls_num ; i++) {
-        mvwprintw(win, room_template.walls[i][0], room_template.walls[i][1], "X");
+    for(int i = 0; i < room_template.walls_num; i++) {    
+        mvwprintw(win, room_template.walls[i].gety(), room_template.walls[i].getx(), "X");
     }
     wrefresh(win);
 }
-*/
+
 /*
 void Room::multiarrcpy(int cpy[][2], int orgn[][2]) {
     for(int i = 0; i < this->room_template.walls_num ; i++) { 

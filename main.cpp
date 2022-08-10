@@ -17,9 +17,9 @@ int main()
 
         game.processInput();
 
-        //game.updateState();
+        game.updateState();
 
-        //game.updateScreen();
+        game.updateScreen();
 
     }
 
