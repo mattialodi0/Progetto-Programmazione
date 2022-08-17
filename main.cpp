@@ -17,8 +17,9 @@ int main()
 	refresh();
 	curs_set(0);
 
-	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed); 					 // inizializzazione oggetto di gioco
 
+	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed); 					 // inizializzazione oggetto di gioco
+	
 	while (game.isNotOver())
 	{ 																			 // ciclo pricipale
 		game.processInput();													 // input , direzione e rimozione di hero
