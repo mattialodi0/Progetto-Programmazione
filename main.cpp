@@ -5,8 +5,10 @@
 #include <ncurses.h>
 #include "Drawable.hpp"
 #include <iostream>
+
 using namespace std;
 extern const int refreshspeed = 300;
+
 int main()
 {																				 // da aggiungere scoreboard e un modo di fare gameover
 	initscr();

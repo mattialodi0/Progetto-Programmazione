@@ -1,5 +1,5 @@
 game: main.o Game.o Room.o 
-	g++ -o game main.o Game.o Room.o -lncurses
+	g++ -o game main.o Game.o Room.o -lncurses -lstdc++
 
 main.o: main.cpp Game.hpp Board.hpp Drawable.hpp
 	g++ -c main.cpp -lncurses

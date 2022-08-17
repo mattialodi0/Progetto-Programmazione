@@ -8,9 +8,9 @@
 #include <time.h>
 #include "Time.hpp"
 
-extern const int BOARD_DIM = 17;
-extern const int BOARD_ROWS = BOARD_DIM;
-extern const int BOARD_COLS = BOARD_DIM * 2.5;
+ const int BOARD_DIM = 17;				//con gli extern nella definizione non funzionava
+ const int BOARD_ROWS = BOARD_DIM;
+ const int BOARD_COLS = BOARD_DIM * 2.5;
 
 class Board
 {

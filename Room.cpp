@@ -61,7 +61,7 @@ void Room::multiarrcpy(int cpy[][2], int orgn[][2]) {
 }
 */
 
-Room* findRoom(Room** room_index, int index_dim, int x, int y){
+Room* Room::findRoom(Room** room_index, int index_dim, int x, int y){
     int n = -1;
 		for(int i = 0; i < index_dim; i++)
 		{
