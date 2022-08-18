@@ -14,8 +14,10 @@
 
 class Board
 {
+public: 
+	WINDOW *board_win; 	
 private:
-	WINDOW *board_win; 																			// tutto questo e' per init del board
+	//WINDOW *board_win;  //mi serve publica per disegnare muri e porte delle stanze provvisioriamente 																			// tutto questo e' per init del board
 	int timeout;
 	void construct(int height, int width, int speed)
 	{

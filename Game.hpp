@@ -123,6 +123,7 @@ public:
 	void redraw()																					// riaggiunge
 	{ 																							
 		game_board.add(hero);
+		current_room->drawRoom(game_board.board_win);
 	}
 
 	void updateScreen()
