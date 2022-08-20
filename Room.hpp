@@ -2,6 +2,7 @@
 
 #include "RoomTemplates.hpp"
 #include <ncurses.h>
+#include "Board.hpp"
 
 
 class Room {
@@ -20,15 +21,15 @@ public:
 
     ~Room();
 
-    void drawRoom(WINDOW* win);
+    void drawRoom(Board board);
 
 private:
     void initializeRoomTemplate(int template_num);
     
     Room* findRoom(Room** room_index, int index_dim, int y, int x);
     
-    void drawWalls(WINDOW* win);
+    void drawWalls(Board board);
 
-    void drawDoors(WINDOW* win);
+    void drawDoors(Board board);
 
 }; typedef Room* prm;

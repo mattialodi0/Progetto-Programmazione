@@ -109,6 +109,11 @@ public:
 		case ' ':
 			hero.moveHero(); 																		// se si puo' muovere si muove
 			hero.setDirection(def);
+		case 'O':
+			if(hero.getx() == 2 ) 
+			{
+				makeWestRoom();
+			}
 		default:
 			break;
 		}
@@ -123,13 +128,14 @@ public:
 	void redraw()																					// riaggiunge
 	{ 																							
 		game_board.add(hero);
-		current_room->drawRoom(game_board.board_win);
+		current_room->drawRoom(game_board);
 	}
 
 	void updateScreen()
 	{ 																								// riaggiunge e refresh
+		game_board.clear();
 		redraw();
-		refresh();
+		wrefresh(game_board.board_win);
 	};
 private:
 	void moveToNorthRoom();

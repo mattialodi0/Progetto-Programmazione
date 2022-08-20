@@ -18,7 +18,7 @@ Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template)
     this->south = findRoom(room_index, index_dim, y-1, x);
     this->west = findRoom(room_index, index_dim, y, x-1);
 	this->est = findRoom(room_index, index_dim, y, x+1);
-    //initializeRoomTemplate(room_template);
+    initializeRoomTemplate(1);   //room_template
 }
 
 Room::~Room() {
@@ -27,12 +27,15 @@ Room::~Room() {
 
 
 void Room::initializeRoomTemplate(int template_num) {
-    general_template T = template_0();
+    general_template T0 = template_0();
+    general_template T1 = template_1();
     switch (template_num)
     {
     case 0:
-        
-        this->room_template = T;
+        this->room_template = T0;
+        break;
+    case 1:
+        this->room_template = T1;
         break;
     default:
         break;
@@ -54,25 +57,21 @@ Room* Room::findRoom(Room** room_index, int index_dim, int x, int y){
 }
 
 
-void Room::drawRoom(WINDOW* win) {
+void Room::drawRoom(Board board) {
+    //drawEnemies();
 
-    //drawPlayer();
-    //drawEnemy();
-
-    drawWalls(win);
-    //drawDoors(win);
+    drawWalls(board);
+    drawDoors(board);
 }
 
-void Room::drawWalls(WINDOW* win) {
+void Room::drawWalls(Board board) {
     for(int i = 0; i < room_template.walls_num; i++) {    
-        mvwprintw(win, room_template.walls[i].gety(), room_template.walls[i].getx(), room_template.walls[i].getIcon());
+        board.add(room_template.walls[i]);
     }
-    wrefresh(win);
 }
 
-void Room::drawDoors(WINDOW* win) {
+void Room::drawDoors(Board board) {
     for(int i = 0; i < room_template.doors_num; i++) {    
-        mvwprintw(win, room_template.doors[i].gety(), room_template.doors[i].getx(), room_template.doors[i].getIcon());
+        board.add(room_template.doors[i]);
     }
-    wrefresh(win);
 }

@@ -2,6 +2,7 @@
 #pragma once
 #include <ncurses.h>
 
+
 class Drawable
 {
 public:
@@ -28,6 +29,11 @@ public:
 	{
 		return icon;
 	}
+	/*void draw(WINDOW* win)
+	{
+		//mvwadd_wch(win, y, x, icon);
+		mvwaddstr(win, y, x, icon);
+	}*/
 
 protected:
 	int y, x;
