@@ -20,6 +20,7 @@ private:
 	int herostartx = 3, herostarty = 3;
 	// Board score_board;
 	//da implementare
+
 	Room* current_room;
    	Room** room_index;
     int index_dim;
@@ -31,7 +32,7 @@ public:
 		hero = Hero(herostarty, herostartx);
 		initialize();
 		
-		index_dim = 1;
+		index_dim = 0;
     		room_index = new prm[index_dim];
     		current_index = 0;
     		current_room  = new Room;
@@ -97,20 +98,18 @@ public:
 		{ 																							// offset per row e col per collisione
 			offsety = hero.cur_direction / 2;
 		}
-		else
+		else if (hero.cur_direction == dx || hero.cur_direction == sx)
 		{
-			if (hero.cur_direction == dx || hero.cur_direction == sx)
-			{
 				offsetx = hero.cur_direction;
-			}
 		}
+
 		switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
 		{
 		case ' ':
 			hero.moveHero(); 																		// se si puo' muovere si muove
 			hero.setDirection(def);
 		case 'O':
-			if(hero.getx() == 2 ) 
+			if(hero.getx() == 2) 
 			{
 				makeWestRoom();
 			}

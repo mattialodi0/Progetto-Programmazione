@@ -56,7 +56,7 @@ void Game::updateIndex(prm room) {
 	{
 		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
 			room_index[i]->south = room;
-		if(room_index[i]->y== room->y-1 && room_index[i]->x == room->x)
+		if(room_index[i]->y == room->y-1 && room_index[i]->x == room->x)
 			room_index[i]->north = room;
 		if(room_index[i]->y == room->y && room_index[i]->x == room->x-1)
 			room_index[i]->est = room;
