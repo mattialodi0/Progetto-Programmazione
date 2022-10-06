@@ -3,7 +3,6 @@
 //fa il set up della stanza scegliendo un template, istanziando i nemici e gli artefatti
 //poi posiziona il giocatore 
 Room::Room() {
-
     this->y = 0; this->x = 0;
     this->north = NULL; 
     this->south = NULL; 
@@ -13,12 +12,11 @@ Room::Room() {
 }
 
 Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template) {
-
     this->north = findRoom(room_index, index_dim, y+1, x);
     this->south = findRoom(room_index, index_dim, y-1, x);
     this->west = findRoom(room_index, index_dim, y, x-1);
 	this->est = findRoom(room_index, index_dim, y, x+1);
-    initializeRoomTemplate(1);   //room_template
+    initializeRoomTemplate(rand()%2+1);   //room_template
 }
 
 Room::~Room() {
@@ -29,6 +27,7 @@ Room::~Room() {
 void Room::initializeRoomTemplate(int template_num) {
     general_template T0 = template_0();
     general_template T1 = template_1();
+    general_template T2 = template_2();
     switch (template_num)
     {
     case 0:
@@ -36,6 +35,9 @@ void Room::initializeRoomTemplate(int template_num) {
         break;
     case 1:
         this->room_template = T1;
+        break;
+    case 2:
+        this->room_template = T2;
         break;
     default:
         break;

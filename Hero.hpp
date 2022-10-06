@@ -42,6 +42,11 @@ public:
 		cur_direction = newdir;
 	}
 
+	void centerHero() {
+		this->y = BOARD_ROWS/2;
+		this->x = BOARD_COLS/2;
+	}
+
 	void moveHero()
 	{ 																							// movimento in se
 		int row = Drawable::gety();

@@ -1,15 +1,16 @@
 #pragma once 
 
 #include "RoomTemplates.hpp"
-#include <ncurses.h>
 #include "Board.hpp"
+#include <ncurses.h>
+#include <cstdlib>
+
 
 
 class Room {
 private:
     int room_template_number;
     general_template room_template;
-
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;

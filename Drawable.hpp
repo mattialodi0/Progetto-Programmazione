@@ -39,3 +39,17 @@ protected:
 	int y, x;
 	chtype icon;
 };
+
+class Door : public Drawable {
+public:
+	Door(int y, int x) : Drawable(y, x,'O')
+	{
+	}
+};
+
+class Wall : public Drawable {
+public:
+	Wall(int y, int x) : Drawable(y, x,'X')
+	{
+	}
+};

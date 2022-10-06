@@ -17,7 +17,7 @@ private:
 	bool game_over;
 	Board game_board; 																				// init di board e hero
 	Hero hero;
-	int herostartx = 3, herostarty = 3;
+	int herostartx = BOARD_COLS/2, herostarty = BOARD_ROWS/2;
 	// Board score_board;
 	//da implementare
 
@@ -33,10 +33,10 @@ public:
 		initialize();
 		
 		index_dim = 0;
-    		room_index = new prm[index_dim];
-    		current_index = 0;
-    		current_room  = new Room;
-    		addRoomToIndex(current_room);
+    	room_index = new prm[index_dim];
+    	current_index = 0;
+    	current_room  = new Room;
+    	addRoomToIndex(current_room);
 	}
 	
 	~Game()
@@ -108,10 +108,34 @@ public:
 		case ' ':
 			hero.moveHero(); 																		// se si puo' muovere si muove
 			hero.setDirection(def);
-		case 'O':
-			if(hero.getx() == 2) 
+		case 'O':							//cambia stanza
+			if(hero.gety() <= 2) 
 			{
-				makeWestRoom();
+				if(!searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
+					makeNorthRoom();
+				else	
+					moveToNorthRoom();
+			}
+			else if(hero.gety() >= 14) 
+			{
+				if(!searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
+					makeSouthRoom();
+				else	
+					moveToSouthRoom();
+			}
+			else if(hero.getx() <= 2) 
+			{
+				if(!searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
+					makeWestRoom();
+				else	
+					moveToWestRoom();
+			}
+			else if(hero.getx() >= 39) 
+			{
+				if(!searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
+					makeEstRoom();
+				else	
+					moveToEstRoom();
 			}
 		default:
 			break;
@@ -124,18 +148,19 @@ public:
 		checkCollision();
 	}
 
-	void redraw()																					// riaggiunge
-	{ 																							
-		game_board.add(hero);
-		current_room->drawRoom(game_board);
-	}
-
 	void updateScreen()
 	{ 																								// riaggiunge e refresh
 		game_board.clear();
 		redraw();
 		wrefresh(game_board.board_win);
 	};
+	
+	void redraw()																					// riaggiunge
+	{ 																							
+		game_board.add(hero);
+		current_room->drawRoom(game_board);
+	}
+
 private:
 	void moveToNorthRoom();
     void moveToSouthRoom();
@@ -147,6 +172,12 @@ private:
     void makeWestRoom();
     void makeEstRoom();
 
+	bool searchIndexNorth(prm room);
+	bool searchIndexSouth(prm room);
+	bool searchIndexWest(prm room);
+	bool searchIndexEst(prm room);
+
     void addRoomToIndex(prm room);
     void updateIndex(prm room);
 };
+
