@@ -20,9 +20,9 @@ Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template)
     initializeRoomTemplate(rand()%2+1);   //room_template
 }
 
-Room::~Room() {
+/*Room::~Room() {
     delete [] enemies;
-}
+}*/
 
 
 void Room::initializeRoomTemplate(int template_num) {
@@ -73,10 +73,16 @@ Room* findRoom1(Room** room_index, int index_dim, int x, int y){
 
 
 void Room::drawRoom(Board board) {
-    //drawEnemies();
+    drawEnemies(board);
 
     drawWalls(board);
     drawDoors(board);
+}
+
+void Room::drawEnemies(Board board) {
+    for(int i = 0; i < room_template.enemies_num; i++) {    
+        board.add(room_template.enemies[i]);
+    }
 }
 
 void Room::drawWalls(Board board) {

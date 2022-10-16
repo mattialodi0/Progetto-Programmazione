@@ -1,6 +1,10 @@
 #include "Drawable.hpp"
 #include "Board.hpp"
 
+//#include "Chaser.hpp"
+//#include "Coward.hpp"
+#include "DrunkenEnemy.hpp"
+
 /* !!!!!!!!!
 non si sa per quale assurdo motivo funziona tutto solo 
 se non vengono chiamati i delete nei distruttori
@@ -9,9 +13,9 @@ ma non può essere una buona soluzione
 
 class general_template {
 public:
-    Drawable* walls = new Drawable[1];
-    Drawable* doors = new Drawable[1];
-    Drawable* enemies = new Drawable[1];
+    Drawable* walls;
+    Drawable* doors;
+    Drawable* enemies;
     int walls_num; 
     int doors_num;
     int enemies_num;
@@ -62,9 +66,9 @@ public:
 
 class template_1 : public general_template {
 public:
-    template_1() : general_template(1,14,0)
+    template_1() : general_template(1,14,1)
     {
-        walls[0] = Wall(10,10);
+        walls[0] = Wall(10,15);
         
         doors[0] = Door(0,19);   //north doors
         doors[1] = Door(0,20);
@@ -80,6 +84,8 @@ public:
         doors[11] = Door(6,BOARD_COLS-1);   //est doors
         doors[12] = Door(7,BOARD_COLS-1);
         doors[13] = Door(8,BOARD_COLS-1);
+
+        enemies[0] = Drunk();
     }
 };
 
@@ -88,7 +94,7 @@ class template_2 : public general_template {
 public:
     template_2() : general_template(1,14,0)
     {
-        walls[0] = Wall(10,10);
+        walls[0] = Wall(13,30);
 
         doors[0] = Door(0,19);   //north doors
         doors[1] = Door(0,20);

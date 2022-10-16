@@ -14,13 +14,14 @@ private:
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
-    Drawable* enemies = new Drawable[1]; 
+    //Drawable* enemies = new Drawable[1]; 
+    //int enemies_num;
 
     Room();    //costrutture stanza di partenza
 
     Room(int y, int x, Room** room_index, int index_dim);   //costruttore stanza qualsiasi
 
-    ~Room();
+    //~Room();
 
     void drawRoom(Board board);
 
@@ -29,8 +30,8 @@ private:
     
     Room* findRoom(Room** room_index, int index_dim, int y, int x);
     
+    void drawEnemies(Board board);
     void drawWalls(Board board);
-
     void drawDoors(Board board);
 
 }; typedef Room* prm;

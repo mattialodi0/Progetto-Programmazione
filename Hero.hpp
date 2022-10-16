@@ -5,14 +5,7 @@
 #include "Drawable.hpp"
 #include "Board.hpp"
 
-enum Direction
-{ 																							// direzioni
-	up = -2,
-	down = 2,
-	sx = -1,
-	dx = 1,
-	def = 0
-};
+
 
 class Hero : public Drawable
 {

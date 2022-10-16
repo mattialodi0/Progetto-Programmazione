@@ -4,15 +4,7 @@
 #include "Board.hpp"
 #include <ncurses.h>
 
-// direzioni possibili
-enum Direction
-{
-	up = -2,
-	down = 2,
-	sx = -1,
-	dx = 1,
-	def = 0
-};
+
 
 class Characters : public Drawable
 {

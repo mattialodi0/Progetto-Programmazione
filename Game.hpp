@@ -122,7 +122,6 @@ public:
 					moveToSouthRoom();
 				else	
 					makeSouthRoom();
-				//current_room = findRoom1(room_index, index_dim, current_room->y-1, current_room->x);
 			}
 			else if(hero.getx() <= 1) 
 			{
@@ -146,7 +145,6 @@ public:
 	void updateState()
 	{ 																								// chiama solo collision
 		checkCollision();
-		if(current_index > 3) game_over = true;
 	}
 
 	void updateScreen()
