@@ -34,3 +34,5 @@ private:
     void drawDoors(Board board);
 
 }; typedef Room* prm;
+
+Room* findRoom1(Room** room_index, int index_dim, int y, int x);

@@ -109,33 +109,34 @@ public:
 			hero.moveHero(); 																		// se si puo' muovere si muove
 			hero.setDirection(def);
 		case 'O':							//cambia stanza
-			if(hero.gety() <= 2) 
+			if(hero.gety() <= 1) 
 			{
-				if(!searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
-					makeNorthRoom();
-				else	
+				if(searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
 					moveToNorthRoom();
-			}
-			else if(hero.gety() >= 14) 
-			{
-				if(!searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
-					makeSouthRoom();
 				else	
+					makeNorthRoom();
+			}
+			else if(hero.gety() >= 15) 
+			{
+				if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
 					moveToSouthRoom();
-			}
-			else if(hero.getx() <= 2) 
-			{
-				if(!searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
-					makeWestRoom();
 				else	
+					makeSouthRoom();
+				//current_room = findRoom1(room_index, index_dim, current_room->y-1, current_room->x);
+			}
+			else if(hero.getx() <= 1) 
+			{
+				if(searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
 					moveToWestRoom();
-			}
-			else if(hero.getx() >= 39) 
-			{
-				if(!searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
-					makeEstRoom();
 				else	
+					makeWestRoom();
+			}
+			else if(hero.getx() >= 40) 
+			{
+				if(searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
 					moveToEstRoom();
+				else	
+					makeEstRoom();
 			}
 		default:
 			break;
@@ -144,8 +145,8 @@ public:
 
 	void updateState()
 	{ 																								// chiama solo collision
-
 		checkCollision();
+		if(current_index > 3) game_over = true;
 	}
 
 	void updateScreen()

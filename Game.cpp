@@ -27,26 +27,26 @@ void Game::moveToEstRoom() {
 void Game::makeNorthRoom() {
     current_room->north = new Room(current_room->y+1, current_room->x, room_index, index_dim);
     updateIndex(current_room->north);
-    addRoomToIndex(current_room);       //******************
+    addRoomToIndex(current_room->north);       //******************
     moveToNorthRoom();
 
 }
 void Game::makeSouthRoom() {
     current_room->south = new Room(current_room->y-1, current_room->x, room_index, index_dim);
     updateIndex(current_room->south);
-    addRoomToIndex(current_room);       //******************
+    addRoomToIndex(current_room->south);       //******************
     moveToSouthRoom();  
 }
 void Game::makeWestRoom() {
     current_room->west = new Room(current_room->y, current_room->x-1, room_index, index_dim);
     updateIndex(current_room->west);
-    addRoomToIndex(current_room);       //******************
+    addRoomToIndex(current_room->west);       //******************
     moveToWestRoom();
 }
 void Game::makeEstRoom() {
     current_room->est = new Room(current_room->y, current_room->x+1, room_index, index_dim);
     updateIndex(current_room->est);
-    addRoomToIndex(current_room);       //******************
+    addRoomToIndex(current_room->est);       //******************
     moveToEstRoom();
 }
 
@@ -73,27 +73,29 @@ void Game::updateIndex(prm room) {
 	}
 }
 
-bool:: Game::searchIndexNorth(prm room) {
-    bool f = false;
+bool Game::searchIndexNorth(prm room) {
+    //bool f = false;
     for(int i = 0; i < index_dim; i++)
 	{
 		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
-            f  = true;
+            //f  = true;
+            return true;
 	}
-    return f;
+    return false;
 }
 
-bool:: Game::searchIndexSouth(prm room) {
-    bool f = false;
+bool Game::searchIndexSouth(prm room) {
+    //bool f = false;
     for(int i = 0; i < index_dim; i++)
 	{
 		if(room_index[i]->y == room->y-1 && room_index[i]->x == room->x)
-            f  = true;
+            //f  = true;
+            return true;
 	}
-    return f;
+    return false;
 }
 
-bool:: Game::searchIndexWest(prm room) {
+bool Game::searchIndexWest(prm room) {
     bool f = false;
     for(int i = 0; i < index_dim; i++)
 	{
@@ -103,7 +105,7 @@ bool:: Game::searchIndexWest(prm room) {
     return f;
 }
 
-bool:: Game::searchIndexEst(prm room) {
+bool Game::searchIndexEst(prm room) {
     bool f = false;
     for(int i = 0; i < index_dim; i++)
 	{

@@ -25,26 +25,38 @@ Room::~Room() {
 
 
 void Room::initializeRoomTemplate(int template_num) {
-    general_template T0 = template_0();
-    general_template T1 = template_1();
-    general_template T2 = template_2();
     switch (template_num)
     {
     case 0:
-        this->room_template = T0;
+        this->room_template = template_0();
         break;
     case 1:
-        this->room_template = T1;
+        this->room_template = template_1();
         break;
     case 2:
-        this->room_template = T2;
+        this->room_template = template_2();
         break;
     default:
+        this->room_template = template_0();
         break;
     }
 }
 
 Room* Room::findRoom(Room** room_index, int index_dim, int x, int y){
+    int n = -1;
+		for(int i = 0; i < index_dim; i++)
+		{
+			if(room_index[i]->y == y && room_index[i]->x == x)
+			{
+				n = i; 
+				break;	
+			}
+		}
+	if(n < 0) return NULL;
+	else return room_index[n]; 
+}
+
+Room* findRoom1(Room** room_index, int index_dim, int x, int y){
     int n = -1;
 		for(int i = 0; i < index_dim; i++)
 		{

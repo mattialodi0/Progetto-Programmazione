@@ -7,7 +7,7 @@
 #include <iostream>
 
 using namespace std;
-extern const int refreshspeed = 300;
+extern const int refreshspeed = 100;
 
 int main()
 {																				 // da aggiungere scoreboard e un modo di fare gameover
@@ -28,9 +28,10 @@ int main()
 
 		game.updateScreen();													 // refresh e add di hero
 	}
-	cout << "game over";
 	getch();
 	endwin();
+	
+	cout << "game over\n";
 
 	return 0;
 }
