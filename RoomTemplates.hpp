@@ -5,6 +5,9 @@
 //#include "Coward.hpp"
 #include "DrunkenEnemy.hpp"
 
+#define HALF_COLS BOARD_COLS/2
+#define HALF_ROWS BOARD_ROWS/2
+
 /* !!!!!!!!!
 non si sa per quale assurdo motivo funziona tutto solo 
 se non vengono chiamati i delete nei distruttori
@@ -38,7 +41,7 @@ public:
 
 class template_0 : public general_template {
 public:
-    template_0() : general_template(5,14,0)
+    template_0() : general_template(5,16,0)
     {
         walls[0] = Wall(6,6);
         walls[1] = Wall(10,19); 
@@ -46,20 +49,22 @@ public:
         walls[3] = Wall(3,25); 
         walls[4] = Wall(8,30); 
 
-        doors[0] = Door(0,19);   //north doors
-        doors[1] = Door(0,20);
-        doors[2] = Door(0,21);
-        doors[3] = Door(0,22);
-        doors[4] = Door(BOARD_ROWS-1,19);   //south doors
-        doors[5] = Door(BOARD_ROWS-1,20);
-        doors[6] = Door(BOARD_ROWS-1,21);
-        doors[7] = Door(BOARD_ROWS-1,22);
-        doors[8] = Door(6,0);   //west doors
-        doors[9] = Door(7,0);
-        doors[10] = Door(8,0);
-        doors[11] = Door(6,BOARD_COLS-1);   //est doors
-        doors[12] = Door(7,BOARD_COLS-1);
-        doors[13] = Door(8,BOARD_COLS-1);
+        doors[0] = Door(0,HALF_COLS-2);   //north doors
+        doors[1] = Door(0,HALF_COLS-1);
+        doors[2] = Door(0,HALF_COLS);
+        doors[3] = Door(0,HALF_COLS+1);
+        doors[4] = Door(0,HALF_COLS+2);
+        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+        doors[10] = Door(HALF_ROWS-1,0);   //west doors
+        doors[11] = Door(HALF_ROWS,0);
+        doors[12] = Door(HALF_ROWS+1,0);
+        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
     }
 };
 
@@ -70,20 +75,22 @@ public:
     {
         walls[0] = Wall(10,15);
         
-        doors[0] = Door(0,19);   //north doors
-        doors[1] = Door(0,20);
-        doors[2] = Door(0,21);
-        doors[3] = Door(0,22);
-        doors[4] = Door(BOARD_ROWS-1,19);   //south doors
-        doors[5] = Door(BOARD_ROWS-1,20);
-        doors[6] = Door(BOARD_ROWS-1,21);
-        doors[7] = Door(BOARD_ROWS-1,22);
-        doors[8] = Door(6,0);   //west doors
-        doors[9] = Door(7,0);
-        doors[10] = Door(8,0);
-        doors[11] = Door(6,BOARD_COLS-1);   //est doors
-        doors[12] = Door(7,BOARD_COLS-1);
-        doors[13] = Door(8,BOARD_COLS-1);
+        doors[0] = Door(0,HALF_COLS-2);   //north doors
+        doors[1] = Door(0,HALF_COLS-1);
+        doors[2] = Door(0,HALF_COLS);
+        doors[3] = Door(0,HALF_COLS+1);
+        doors[4] = Door(0,HALF_COLS+2);
+        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+        doors[10] = Door(HALF_ROWS-1,0);   //west doors
+        doors[11] = Door(HALF_ROWS,0);
+        doors[12] = Door(HALF_ROWS+1,0);
+        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
         enemies[0] = Drunk();
     }
@@ -96,19 +103,21 @@ public:
     {
         walls[0] = Wall(13,30);
 
-        doors[0] = Door(0,19);   //north doors
-        doors[1] = Door(0,20);
-        doors[2] = Door(0,21);
-        doors[3] = Door(0,22);
-        doors[4] = Door(BOARD_ROWS-1,19);   //south doors
-        doors[5] = Door(BOARD_ROWS-1,20);
-        doors[6] = Door(BOARD_ROWS-1,21);
-        doors[7] = Door(BOARD_ROWS-1,22);
-        doors[8] = Door(6,0);   //west doors
-        doors[9] = Door(7,0);
-        doors[10] = Door(8,0);
-        doors[11] = Door(6,BOARD_COLS-1);   //est doors
-        doors[12] = Door(7,BOARD_COLS-1);
-        doors[13] = Door(8,BOARD_COLS-1);
+        doors[0] = Door(0,HALF_COLS-2);   //north doors
+        doors[1] = Door(0,HALF_COLS-1);
+        doors[2] = Door(0,HALF_COLS);
+        doors[3] = Door(0,HALF_COLS+1);
+        doors[4] = Door(0,HALF_COLS+2);
+        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+        doors[10] = Door(HALF_ROWS-1,0);   //west doors
+        doors[11] = Door(HALF_ROWS,0);
+        doors[12] = Door(HALF_ROWS+1,0);
+        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
     }
 };
