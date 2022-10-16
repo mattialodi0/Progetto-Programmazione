@@ -12,6 +12,7 @@ Room::Room() {
 }
 
 Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template) {
+    this->y = y; this->x = x;
     this->north = findRoom(room_index, index_dim, y+1, x);
     this->south = findRoom(room_index, index_dim, y-1, x);
     this->west = findRoom(room_index, index_dim, y, x-1);

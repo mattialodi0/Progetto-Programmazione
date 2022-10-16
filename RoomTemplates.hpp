@@ -25,11 +25,11 @@ public:
         doors = new Drawable[doors_num];
         enemies = new Drawable[enemies_num];
     }
-    ~general_template() {
+    /*~general_template() {
         delete [] walls;
         delete [] doors;
         delete [] enemies;
-    }
+    }*/
 };
 
 class template_0 : public general_template {
