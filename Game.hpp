@@ -84,6 +84,10 @@ public:
 			while (game_board.getInput() != 'p')
 				;
 			game_board.setTimeout(old_timeout);
+		case 'o':
+			game_over = true;
+			//Destructor();
+			break;
 		default:
 			hero.setDirection(def); 																// per non forzare movimento
 			break;
@@ -116,7 +120,7 @@ public:
 				else	
 					makeNorthRoom();
 			}
-			else if(hero.gety() >= 15) 
+			else if(hero.gety() >= BOARD_ROWS-2) 
 			{
 				if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
 					moveToSouthRoom();
@@ -130,7 +134,7 @@ public:
 				else	
 					makeWestRoom();
 			}
-			else if(hero.getx() >= 40) 
+			else if(hero.getx() >= BOARD_COLS-2) 
 			{
 				if(searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
 					moveToEstRoom();
@@ -159,6 +163,8 @@ public:
 		game_board.add(hero);
 		current_room->drawRoom(game_board);
 	}
+
+	void Destructor();
 
 private:
 	void moveToNorthRoom();

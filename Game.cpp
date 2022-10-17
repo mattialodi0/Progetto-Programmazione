@@ -1,6 +1,14 @@
 #include "Game.hpp"
 
 
+//distruttore manuale
+void Game::Destructor() {
+    for(int i=0; i < index_dim; i++) {
+        room_index[i]->Destructor();
+    }
+}
+
+
 //funzioni per cambiare stanza
 void Game::moveToNorthRoom() {
     current_room = current_room->north;

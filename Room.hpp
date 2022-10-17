@@ -25,6 +25,8 @@ public:
 
     void drawRoom(Board board);
 
+    void Destructor();
+
 private:
     void initializeRoomTemplate(int template_num);
     

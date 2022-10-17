@@ -31,6 +31,7 @@ int main()
 	getch();
 	endwin();
 	
+	game.Destructor();
 	cout << "game over\n";
 
 	return 0;

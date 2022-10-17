@@ -1,5 +1,6 @@
 #include "Drawable.hpp"
 #include "Board.hpp"
+#include <iostream>
 
 //#include "Chaser.hpp"
 //#include "Coward.hpp"
@@ -37,6 +38,12 @@ public:
         delete [] doors;
         delete [] enemies;
     }*/
+    void Destructor() {
+        delete [] walls;
+        delete [] doors;
+        delete [] enemies;
+        std::cout << "D\n";
+    }
 };
 
 class template_0 : public general_template {
@@ -71,7 +78,7 @@ public:
 
 class template_1 : public general_template {
 public:
-    template_1() : general_template(1,14,1)
+    template_1() : general_template(1,16,1)
     {
         walls[0] = Wall(10,15);
         
@@ -99,9 +106,17 @@ public:
 
 class template_2 : public general_template {
 public:
-    template_2() : general_template(1,14,0)
+    template_2() : general_template(8,16,0)
     {
-        walls[0] = Wall(13,30);
+        walls[0] = Wall(BOARD_ROWS/3*2,1);
+        walls[1] = Wall(BOARD_ROWS/3*2,2);
+        walls[2] = Wall(BOARD_ROWS/3*2,3);
+        walls[3] = Wall(BOARD_ROWS/3*2,4);
+        walls[4] = Wall(BOARD_ROWS/3*2,5);
+        walls[5] = Wall(BOARD_ROWS/3*2,6);
+        walls[6] = Wall(BOARD_ROWS/3*2,7);
+        walls[7] = Wall(BOARD_ROWS/3*2,8);
+
 
         doors[0] = Door(0,HALF_COLS-2);   //north doors
         doors[1] = Door(0,HALF_COLS-1);

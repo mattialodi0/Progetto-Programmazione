@@ -79,6 +79,10 @@ void Room::drawRoom(Board board) {
     drawDoors(board);
 }
 
+void Room::Destructor() {
+    this->room_template.Destructor();
+}
+
 void Room::drawEnemies(Board board) {
     for(int i = 0; i < room_template.enemies_num; i++) {    
         board.add(room_template.enemies[i]);
