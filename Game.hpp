@@ -95,7 +95,13 @@ public:
 		hero.removeHero(game_board); 																// per non duplicare
 	}
 
-	void checkCollision()
+	void updateState()
+	{ 																								// chiama solo collision
+		checkCollision();
+		current_room->moveEnemies(game_board, hero);
+	}
+
+void checkCollision()
 	{ 																								// collisione
 		int offsety = 0, offsetx = 0;
 		if (hero.cur_direction == up || hero.cur_direction == down)
@@ -113,42 +119,16 @@ public:
 			hero.moveHero(); 																		// se si puo' muovere si muove
 			hero.setDirection(def);
 		case 'O':							//cambia stanza
-			if(hero.gety() <= 1) 
-			{
-				if(searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
-					moveToNorthRoom();
-				else	
-					makeNorthRoom();
-			}
-			else if(hero.gety() >= BOARD_ROWS-2) 
-			{
-				if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
-					moveToSouthRoom();
-				else	
-					makeSouthRoom();
-			}
-			else if(hero.getx() <= 1) 
-			{
-				if(searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
-					moveToWestRoom();
-				else	
-					makeWestRoom();
-			}
-			else if(hero.getx() >= BOARD_COLS-2) 
-			{
-				if(searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
-					moveToEstRoom();
-				else	
-					makeEstRoom();
-			}
+			manageDoor();
+		case 'Q':
+			// porta chiuisa:
+			// controlla se il giocatore ha una chiave
+			// se ne ha, ne toglie una e cambia il carattere di tutta la porta
+			// e fa manageDoor();
+			break;
 		default:
 			break;
 		}
-	}
-
-	void updateState()
-	{ 																								// chiama solo collision
-		checkCollision();
 	}
 
 	void updateScreen()
@@ -167,6 +147,8 @@ public:
 	void Destructor();
 
 private:
+	void manageDoor();
+
 	void moveToNorthRoom();
     void moveToSouthRoom();
  	void moveToWestRoom();

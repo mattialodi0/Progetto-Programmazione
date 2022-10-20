@@ -2,7 +2,9 @@
 #pragma once
 #include "Drawable.hpp"
 #include "Board.hpp"
+#include "Hero.hpp"
 #include <ncurses.h>
+#include <iostream>
 
 
 
@@ -80,7 +82,7 @@ public:
 		}
 	}
 	// metodo astratto per scelta automatica di direzione dei nemici
-	virtual void ChooseDirection(Board board_win, Characters &hero)
+	virtual void ChooseDirection(Board board_win, Hero hero)
 	{
 	}
 };

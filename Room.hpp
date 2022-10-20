@@ -2,6 +2,7 @@
 
 #include "RoomTemplates.hpp"
 #include "Board.hpp"
+#include "Hero.hpp"
 #include <ncurses.h>
 #include <cstdlib>
 
@@ -25,6 +26,8 @@ public:
 
     void drawRoom(Board board);
 
+    void moveEnemies(Board board, Hero hero);
+
     void Destructor();
 
 private:
@@ -38,4 +41,3 @@ private:
 
 }; typedef Room* prm;
 
-Room* findRoom1(Room** room_index, int index_dim, int y, int x);

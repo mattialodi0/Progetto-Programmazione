@@ -15,12 +15,12 @@ public:
         this->y = 10;
     }
     // override di characters
-    void ChooseDirection(Board board_win, Characters &hero) override
+    void ChooseDirection(Board board_win, Hero hero) override
     {
         int i = 0;
         int distancex, distancey;
-        distancex = this->x - hero.x;
-        distancey = this->y - hero.y;
+        distancex = this->x - hero.getx();
+        distancey = this->y - hero.gety();
         // se sei vicino
         if (abs(distancex) < 10 || abs(distancey) < 10)
         {

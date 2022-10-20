@@ -3,7 +3,7 @@
 #include <iostream>
 
 //#include "Chaser.hpp"
-//#include "Coward.hpp"
+#include "Coward.hpp"
 #include "DrunkenEnemy.hpp"
 
 #define HALF_COLS BOARD_COLS/2
@@ -19,7 +19,7 @@ class general_template {
 public:
     Drawable* walls;
     Drawable* doors;
-    Drawable* enemies;
+    Characters* enemies;
     int walls_num; 
     int doors_num;
     int enemies_num;
@@ -31,7 +31,7 @@ public:
         this->enemies_num = e;
         walls = new Drawable[walls_num];
         doors = new Drawable[doors_num];
-        enemies = new Drawable[enemies_num];
+        enemies = new Characters[enemies_num];
     }
     /*~general_template() {
         delete [] walls;
@@ -100,13 +100,14 @@ public:
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
         enemies[0] = Drunk();
+        enemies[0].setDirection(def);
     }
 };
 
 
 class template_2 : public general_template {
 public:
-    template_2() : general_template(8,16,0)
+    template_2() : general_template(8,16,1)
     {
         walls[0] = Wall(BOARD_ROWS/3*2,1);
         walls[1] = Wall(BOARD_ROWS/3*2,2);
@@ -134,5 +135,8 @@ public:
         doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+
+        enemies[0] = Coward();
+        enemies[0].setDirection(def);
     }
 };

@@ -7,7 +7,7 @@ main.o: main.cpp Game.hpp Board.hpp Drawable.hpp
 Game.o: Game.cpp Game.hpp Room.hpp Board.hpp Hero.hpp
 	g++ -c Game.cpp -lncurses
 
-Room.o: Room.cpp Room.hpp RoomTemplates.hpp
+Room.o: Room.cpp Room.hpp RoomTemplates.hpp Hero.hpp Board.hpp
 	g++ -c Room.cpp -lncurses
 
 clean:

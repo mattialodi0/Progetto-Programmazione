@@ -3,6 +3,7 @@
 
 #pragma once
 #include "characters.hpp"
+#include "Hero.hpp"
 #include <ncurses.h>
 
 class Drunk : public Characters
@@ -16,7 +17,7 @@ public:
 		this->y = 10;
 	}
 	// override di characters
-	void ChooseDirection(Board board_win, Characters &hero) override
+	void ChooseDirection(Board board_win, Hero hero) override
 	{
 		do
 		{
