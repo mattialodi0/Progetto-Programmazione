@@ -19,7 +19,7 @@ public:
 
 	void setDirection(Direction newdir)
 	{
-		cur_direction = newdir;
+		this->cur_direction = newdir;
 	}
 	// move
 	Direction getDirection()
@@ -67,17 +67,8 @@ public:
 		case ' ':
 			return true;
 			break;
-		case 'F':
-			return true;
-			break;
-		case 'H':
-			return true;
-			break;
-		case 'S':
-			return true;
-			break;
 		default:
-			return false;
+			return false; //cambiato attenzione
 			break;
 		}
 	}

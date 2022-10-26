@@ -10,6 +10,7 @@
 #include "Hero.hpp"
 #include "Room.hpp"
 
+const int GameSpeed = 2;
 
 class Game
 {
@@ -25,6 +26,7 @@ private:
    	Room** room_index;
     int index_dim;
     int current_index;
+	int canMove = 0;
 public:
 	Game(int height, int width, int speed)
 	{
@@ -98,7 +100,10 @@ public:
 	void updateState()
 	{ 																								// chiama solo collision
 		checkCollision();
-		current_room->moveEnemies(game_board, hero);
+		current_room->moveEnemies(game_board, hero, canMove);
+
+		if(canMove>1) canMove--;
+		else canMove = GameSpeed;
 	}
 
 void checkCollision()

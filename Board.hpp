@@ -57,6 +57,10 @@ public:
 	{
 		addAt(drawable.gety(), drawable.getx(), drawable.getIcon()); 									// add per general use
 	}
+	void addC(int y, int x, chtype ch)
+	{
+		addAt(y,x,ch); 									// add per general use
+	}
 
 	void addAt(int y, int x, chtype ch)
 	{ 																									// add per init

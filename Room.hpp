@@ -10,6 +10,7 @@
 
 class Room {
 private:
+//public:
     int room_template_number;
     general_template room_template;
 public:
@@ -26,7 +27,7 @@ public:
 
     void drawRoom(Board board);
 
-    void moveEnemies(Board board, Hero hero);
+    void moveEnemies(Board board, Hero hero, int canMove);
 
     void Destructor();
 

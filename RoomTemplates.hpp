@@ -5,6 +5,7 @@
 //#include "Chaser.hpp"
 #include "Coward.hpp"
 #include "DrunkenEnemy.hpp"
+#include "Dumb.hpp"
 
 #define HALF_COLS BOARD_COLS/2
 #define HALF_ROWS BOARD_ROWS/2
@@ -14,12 +15,13 @@ non si sa per quale assurdo motivo funziona tutto solo
 se non vengono chiamati i delete nei distruttori
 ma non può essere una buona soluzione
 */
+typedef Characters * pChar;
 
 class general_template {
 public:
     Drawable* walls;
     Drawable* doors;
-    Characters* enemies;
+    pChar* enemies;
     int walls_num; 
     int doors_num;
     int enemies_num;
@@ -31,7 +33,7 @@ public:
         this->enemies_num = e;
         walls = new Drawable[walls_num];
         doors = new Drawable[doors_num];
-        enemies = new Characters[enemies_num];
+        enemies = new pChar[enemies_num];
     }
     /*~general_template() {
         delete [] walls;
@@ -99,8 +101,8 @@ public:
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
-        enemies[0] = Drunk();
-        enemies[0].setDirection(def);
+        enemies[0] = new Drunk();
+        enemies[0]->setDirection(def);
     }
 };
 
@@ -136,7 +138,7 @@ public:
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
-        enemies[0] = Coward();
-        enemies[0].setDirection(def);
+        enemies[0] = new Coward();
+        enemies[0]->setDirection(def);
     }
 };
