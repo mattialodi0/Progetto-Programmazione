@@ -2,7 +2,7 @@
 // puo' essere che lo cambio in un 2x2
 
 #pragma once
-#include "characters.hpp"
+#include "Characters.hpp"
 #include "Hero.hpp"
 #include <ncurses.h>
 
