@@ -27,5 +27,6 @@ class Enemy:public Characters{
 	{
 	}
     virtual bool hasLos(Board board_win, Characters hero, int y, int x){
+        return false;
     }
 };
