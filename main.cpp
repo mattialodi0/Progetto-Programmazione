@@ -28,10 +28,11 @@ int main()
 		game.updateScreen();
 		// refresh
 	}
-	cout << "game over";
+	
 	getch();
 	endwin();
-
+	game.Destructor();
+	cout << "game over";
 	return 0;
 }
 /*ci potrebbero e ci sono alcune cose ridondanti ma scio'

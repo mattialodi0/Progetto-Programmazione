@@ -1,7 +1,7 @@
 //nemico che spara
 #pragma once
-#include "enemy.hpp"
-#include "projectile.hpp"
+#include "Enemy.hpp"
+#include "Projectile.hpp"
 class Shooter : public Enemy
 {
 public:

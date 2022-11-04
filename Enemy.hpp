@@ -1,9 +1,9 @@
 //classe base nemico con stat dei nemici
 #pragma once
-#include "characters.hpp"
+#include "Characters.hpp"
 #include <vector>
 #include "Hero.hpp"
-#include "projectile.hpp"
+#include "Projectile.hpp"
 using namespace std;
 const int EnemyReload=8;
 extern const int EnemyMemory=7;

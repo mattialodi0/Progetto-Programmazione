@@ -5,12 +5,13 @@
 #include <time.h>
 #include <stdlib.h>
 #include "Hero.hpp"
-#include "drunkenemy.hpp"
-#include "chaser.hpp"
-#include "coward.hpp"
+#include "Drunkenemy.hpp"
+#include "Chaser.hpp"
+#include "Coward.hpp"
 #include "Artifacts.hpp"
 #include <vector>
-#include "shooter.hpp"
+#include "Shooter.hpp"
+#include "Room.hpp"
 #pragma once
 extern const int GameSpeed=2;
 using namespace std;
@@ -22,27 +23,31 @@ protected:
 	Hero hero;
 	Artifacts artifacts;
 	// init di board e hero
-	int herostartx = 15, herostarty = 15;
+	int herostartx = BOARD_COLS/2;
+	int herostarty= BOARD_ROWS/2;
 	int canMove = 0;
 	// Board score_board;
 	// da implementare
-	vector<Enemy *> enemy;
+	Room* current_room;
+   	Room** room_index;
+    int index_dim;
+    int current_index;
 public:
 	Game(int height, int width, int speed)
 	{
 
 		game_board = Board(height, width, speed);
-		hero.y = herostartx;
-		hero.x = herostartx;
-		// listanemici
-		Coward *firstenemy = new Coward();
-		enemy.push_back(firstenemy);
-		Chaser *secondenemy = new Chaser();
-		enemy.push_back(secondenemy);
-		Shooter *thirdenemy = new Shooter();
-		enemy.push_back(thirdenemy);
-		artifacts = Artifacts();
+		hero = Hero(herostarty, herostartx);
 		initialize();
+		index_dim = 0;
+    	room_index = new prm[index_dim];
+    	current_index = 0;
+    	current_room  = new Room;
+    	addRoomToIndex(current_room);
+	}
+		~Game()
+	{
+ 		delete [] room_index;
 	}
 	// inizialize
 	void initialize()
@@ -51,31 +56,14 @@ public:
 		game_over = false;
 		game_board.add(hero);
 		hero.setDirection(def);
-		initializeEnemies();
-		initializeArtifacts();
 	}
-	void initializeEnemies()
-	{
-		int i;
-		for (i = 0; i < enemy.size(); i++)
-		{
-			if (enemy[i] != nullptr)
-			{
-				startdraw(*enemy[i]);
-				enemy[i]->setDirection(def);
-			}
-		}
-	}
-	void initializeArtifacts()
-	{
-		startdraw(artifacts);
-	}
-	// draw initialize
-	void startdraw(Drawable &drawable)
+	
+	/*void startdraw(Drawable &drawable)
 	{
 		game_board.getEmptyCoordinates(drawable);
 		game_board.addAt(drawable.y, drawable.x, drawable.icon);
 	}
+	*/
 	bool isNotOver()
 	{
 		return !game_over;
@@ -83,6 +71,8 @@ public:
 	// input
 	void processInput()
 	{ // input e direction
+	chtype input = game_board.getInput();
+		int old_timeout = game_board.getTimeout();
 		hero.takeDirection(game_board);
 		// per non duplicare
 	}
@@ -95,30 +85,12 @@ public:
 		if (hero.checkCollision(game_board))
 		{
 			hero.moveCharacter();
+				manageDoor();
 		}
 		hero.setDirection(def);
 		game_board.add(hero);
-		// enemies
-		int i;
-		for (i = 0; i < enemy.size(); i++)
-		{
-			if (enemy[i] != NULL)
-			{ 
-				enemy[i]->ChooseDirection(game_board, hero);
-				game_board.remove(*enemy[i]);
-				if (enemy[i]->checkCollision(game_board) && canMove<=1)
-				{
-					
-					enemy[i]->moveCharacter();
-				}
-				enemy[i]->checkProjectile(game_board, hero);
-				game_board.add(*enemy[i]);
-				enemy[i]->setDirection(def);
-			}
-		}
-
-		// % velocita'
-		if(canMove>1){
+		if(canMove<=0){
+		current_room->moveEnemies(game_board, hero);
 		canMove--;
 		}
 		else{
@@ -134,14 +106,30 @@ public:
 
 	void redraw() // riaggiunge
 	{
-		game_board.add(hero);
-		int i;
-		for (i = 0; i < enemy.size(); i++)
-		{
-			if (enemy[i] != NULL)
-			{
-				game_board.add(*enemy[i]);
-			}
-		}
+			game_board.add(hero);
+		current_room->drawRoom(game_board);
 	}
+void Destructor();
+
+private:
+	void manageDoor();
+
+	void moveToNorthRoom();
+    void moveToSouthRoom();
+ 	void moveToWestRoom();
+  	void moveToEstRoom();
+
+    void makeNorthRoom();
+    void makeSouthRoom();
+    void makeWestRoom();
+    void makeEstRoom();
+
+	bool searchIndexNorth(prm room);
+	bool searchIndexSouth(prm room);
+	bool searchIndexWest(prm room);
+	bool searchIndexEst(prm room);
+
+    void addRoomToIndex(prm room);
+    void updateIndex(prm room);
 };
+

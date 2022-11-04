@@ -1,8 +1,8 @@
 // nemico che scappa
 // probabilmente da implementare loot come artifatti e chiavi
 #pragma once
-#include "enemy.hpp"
-#include "projectile.hpp"
+#include "Enemy.hpp"
+#include "Projectile.hpp"
 class Coward : public Enemy
 {
 public:

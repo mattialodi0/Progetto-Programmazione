@@ -25,7 +25,6 @@ public:
 						   (xMax / 2) - (width / 2));
 		setTimeout(speed);
 		keypad(board_win, true);
-		initialize();
 	}
 
 	Board()
@@ -35,6 +34,7 @@ public:
 
 	Board(int height, int width, int speed)
 	{
+		srand(time(0));
 		construct(height, width, speed);
 	}
 
@@ -51,10 +51,6 @@ public:
 	void addBorder()
 	{
 		box(board_win, 0, 0);
-		//linea in mezzo per testing
-		for(int i=1;i<30;i++){
-			addAt(8,i, '-');
-		}
 	}
 	// tutto questo sopra e' per init del board
 	void add(Drawable &drawable)
@@ -92,14 +88,12 @@ public:
 		return input;
 	}
 
-	void getEmptyCoordinates(Drawable &drawable)
-	{
+	void getEmptyCoordinates(int &y, int &x)
+	{																									// for future use
 		srand(time(NULL));
-		do
+		while ((mvwinch(board_win, y = rand() % BOARD_ROWS, x = rand() % BOARD_COLS)) != ' ')
 		{
-			drawable.y = rand() % BOARD_ROWS;
-			drawable.x = rand() % BOARD_COLS;
-		} while ((mvwinch(board_win, drawable.y, drawable.x)) != ' ');
+		}
 	}
 
 	chtype getCharAt(int y, int x)
@@ -110,5 +104,9 @@ public:
 	void setTimeout(int timeout)
 	{
 		wtimeout(board_win, timeout);
+	}
+	int getTimeout()
+	{
+		return timeout;
 	}
 };

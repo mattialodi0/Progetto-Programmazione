@@ -71,21 +71,27 @@ Direction cur_direction;
 		switch (board_win.getCharAt(y + offsety, x + offsetx))
 		{
 		case ' ':
-			return true;
-			break;
 		case 'F':
-			return true;
-			break;
 		case 'H':
+		case 'O':		//cambia stanza
 			return true;
 			break;
-		case 'S':
-			return true;
+		case 'Q':
+			// porta chiuisa:
+			// controlla se il giocatore ha una chiave
+			// se ne ha, ne toglie una e cambia il carattere di tutta la porta
+			// e fa manageDoor();
 			break;
+
 		default:
 			return false;
 			break;
 		}
+		return false;
+	}
+		// metodo astratto per scelta automatica di direzione dei nemici
+	virtual void ChooseDirection(Board board_win, Characters hero)
+	{
 	}
 
 };

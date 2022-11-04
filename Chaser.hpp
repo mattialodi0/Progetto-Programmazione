@@ -1,7 +1,7 @@
 // nemico che ti segue
 #pragma once
-#include "enemy.hpp"
-#include "projectile.hpp"
+#include "Enemy.hpp"
+#include "Projectile.hpp"
 class Chaser : public Enemy
 {
 public:

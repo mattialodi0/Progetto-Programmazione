@@ -1,6 +1,6 @@
 // file che si occupa del personaggio
 #pragma once
-#include "characters.hpp"
+#include "Characters.hpp"
 #include <ncurses.h>
 
 class Hero : public Characters
@@ -12,6 +12,12 @@ public:
 		this->icon = 'P';
 		this->x = 3;
 		this->y = 3;
+	}
+		Hero(int y, int x)
+	{
+		this->y = y;
+		this->x = x;
+		this->icon = 'P';
 	}
 
 	// input
@@ -46,5 +52,21 @@ public:
 			setDirection(def); // per non forzare movimento
 			break;
 		}
+	}
+	int getx()
+	{
+		return Drawable::getx();
+	}
+	int gety()
+	{
+		return Drawable::gety();
+	}
+	int getIcon()
+	{
+		return Drawable::getIcon();
+	}
+		void centerHero() {
+		this->y = BOARD_ROWS/2;
+		this->x = BOARD_COLS/2;
 	}
 };

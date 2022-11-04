@@ -1,6 +1,6 @@
 // nemico che va a caso
 #pragma once
-#include "enemy.hpp"
+#include "Enemy.hpp"
 #include <ncurses.h>
 class Drunk : public Enemy
 {
