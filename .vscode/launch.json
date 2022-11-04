@@ -5,7 +5,7 @@
             "name": "g++ build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "$/home/fri3erg/Progetto/main",
+            "program": "$/home/fri3erg/ProgettoDev/Progetto/main",
             "args": [
                 "-lncurses"
             ],
