@@ -16,17 +16,13 @@ public:
     }
     //sprite diverso ma uguale
         void createProjectile(Direction dir)override {
-           if(this->Reload<=0){
-            this->Reload=EnemyReload;
-        Projectile *new_proj = new Projectile();
-        new_proj->cur_direction=dir;
-            new_proj->x=this->x;
-            new_proj->y=this->y;
-        new_proj->icon='O';
+           if(this->reload<=0){
+            this->reload=enemy_reload;
+        Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'O');
         projectile.push_back(new_proj); 
     }
     else{
-        this->Reload--;
+        this->reload--;
     }
         }
         //uguale a shooter ma meno range
@@ -36,16 +32,16 @@ public:
 			if (projectile[i] != NULL){
                 projectile[i]->uptime++;
             board_win.remove(*projectile[i]);
-        if(!projectile[i]->checkCollision(board_win)|| projectile[i]->uptime>MeleeRange){
+        if(!projectile[i]->checkCollision(board_win)|| projectile[i]->uptime>melee_range){
         projectile[i]->moveCharacter();
-        if(projectile[i]->x=hero.x && projectile[i]->y==hero.y){
+        if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             //diminuisci vita player
         } 
         projectile.erase(projectile.begin()+i);
         }
         else{
           projectile[i]->moveCharacter();
-          if(board_win.getCharAt(projectile[i]->y,projectile[i]->x)){
+          if(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())){
           board_win.add(*projectile[i]);
           }
         }
@@ -56,17 +52,17 @@ public:
     //ti viene vicino e spara un piccolo proiettile e viene stunnato
     void ChooseDirection(Board board_win, Characters &hero) override
     {
-        if(this->Reload<=0){
+        if(this->reload<=0){
         int distancex, distancey;
-        distancex = this->x - hero.x;
-        distancey = this->y - hero.y;
+        distancex = this->x - hero.getx();
+        distancey = this->y - hero.gety();
         //se sei vicino
-         if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < 10 && abs(distancey) < 10){
-            this->mem=EnemyMemory;
+         if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < sight_range && abs(distancey) < sight_range){
+            this->mem=enemy_memory;
             }
         if (this->mem>0)
         {
-            if(abs(distancex) < MeleeRange && abs(distancey) < MeleeRange){
+            if(abs(distancex) < melee_range && abs(distancey) < melee_range){
                  if(distancey==0){
             if(distancex>0){
                 createProjectile(sx);
@@ -74,7 +70,7 @@ public:
             else{
                 createProjectile(dx);
             }
-            this->Reload=MeleeEnemyReload;
+            this->reload=melee_enemy_reload;
         }
         else{
             if(distancex==0){
@@ -84,7 +80,7 @@ public:
                 else{
                     createProjectile(down);
                 }
-                this->Reload=MeleeEnemyReload;
+                this->reload=melee_enemy_reload;
             }
             }
             }
@@ -116,51 +112,6 @@ public:
         }
         }
         this->mem--;
-        this->Reload--;   
-    }
-    //solito los
-    bool hasLos(Board board_win, Characters hero, int y, int x) override
-    {
-            int i=0,k=0;
-              int distancex, distancey;
-        distancex = x - hero.x;
-        distancey = y - hero.y;
-            if (abs(distancex) > abs(distancey))
-            {
-                if (distancex < 0)
-                {
-                    k++;
-                }
-                else
-                {
-                    k--;
-                }
-            }
-            else
-            {
-                if (abs(distancex) <= abs(distancey))
-                {
-                    if (distancey < 0)
-                    {
-                        i++;
-                    }
-                    else
-                    {
-                        i--;
-                    }
-                }
-            }
-        chtype f =board_win.getCharAt(y+i,x+k);
-            if(f==hero.icon){
-                return true;
-            }
-            else{
-                if(f!=' '){
-                    return false;
-                }
-                else{
-                    return hasLos(board_win, hero, y+i,x+k);
-                }
-            }
+        this->reload--;   
     }
 };

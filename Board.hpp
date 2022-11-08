@@ -63,12 +63,12 @@ public:
 	// tutto questo sopra e' per init del board
 	void add(Drawable &drawable)
 	{
-		addAt(drawable.y, drawable.x, drawable.icon);
+		addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
 		// add per general use
 	}
 	void remove(Drawable &drawable)
 	{
-		addAt(drawable.y, drawable.x, ' ');
+		addAt(drawable.gety(), drawable.getx(), ' ');
 	}
 
 	void addAt(int y, int x, chtype ch)

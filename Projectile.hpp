@@ -10,5 +10,7 @@ class Projectile: public Characters{
     Projectile(){
         Characters();
     }
-
+    Projectile(Direction dir, int x, int y, chtype ch){
+        Characters(dir,x,y,ch);
+    }
 };

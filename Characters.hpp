@@ -17,14 +17,18 @@ enum Direction
 class Characters : public Drawable
 {	
 	protected:
-	
+	Direction cur_direction;
 public:
-Direction cur_direction;
+
 	Characters()
 	{
 		Drawable();
 	}
-
+	Characters(Direction dir, int x, int y, chtype ch)
+	{
+		setDirection(dir);
+		Drawable(x,y,ch);
+	}
 	void setDirection(Direction newdir)
 	{
 		cur_direction = newdir;
@@ -91,9 +95,4 @@ Direction cur_direction;
 		}
 		return false;
 	}
-		// metodo astratto per scelta automatica di direzione dei nemici
-	virtual void ChooseDirection(Board board_win, Characters hero)
-	{
-	}
-
 };
