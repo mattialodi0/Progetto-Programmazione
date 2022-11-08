@@ -1,17 +1,25 @@
 // classe che si occupa dei drawable con direzione e movimento
 #pragma once
-#include "Drawable.hpp"
+
 #include "Board.hpp"
-#include "Hero.hpp"
 #include <ncurses.h>
-#include <iostream>
 
 
-
-class Characters : public Drawable
+// direzioni possibili
+enum Direction
 {
+	up = -2,
+	down = 2,
+	sx = -1,
+	dx = 1,
+	def = 0
+};
+class Characters : public Drawable
+{	
+	protected:
+	
 public:
-	Direction cur_direction;
+Direction cur_direction;
 	Characters()
 	{
 		Drawable();
@@ -19,7 +27,7 @@ public:
 
 	void setDirection(Direction newdir)
 	{
-		this->cur_direction = newdir;
+		cur_direction = newdir;
 	}
 	// move
 	Direction getDirection()
@@ -65,15 +73,27 @@ public:
 		switch (board_win.getCharAt(y + offsety, x + offsetx))
 		{
 		case ' ':
+		case 'F':
+		case 'H':
+		case 'O':		//cambia stanza
 			return true;
 			break;
+		case 'Q':
+			// porta chiuisa:
+			// controlla se il giocatore ha una chiave
+			// se ne ha, ne toglie una e cambia il carattere di tutta la porta
+			// e fa manageDoor();
+			break;
+
 		default:
-			return false; //cambiato attenzione
+			return false;
 			break;
 		}
+		return false;
 	}
-	// metodo astratto per scelta automatica di direzione dei nemici
-	virtual void ChooseDirection(Board board_win, Hero hero)
+		// metodo astratto per scelta automatica di direzione dei nemici
+	virtual void ChooseDirection(Board board_win, Characters hero)
 	{
 	}
+
 };

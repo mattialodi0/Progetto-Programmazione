@@ -1,24 +1,22 @@
-//file che si occupa dei drawables
 #pragma once
+
+// file che si occupa dei drawables
+// base disegnabile senza direzione
+
 #include <ncurses.h>
 
-// direzioni possibili
-enum Direction
-{
-	up = -2,
-	down = 2,
-	sx = -1,
-	dx = 1,
-	def = 0
-};
 
 class Drawable
 {
 public:
-	Drawable()																				// parent di hero
-	{ 
-		int y = x = 0;
-		chtype icon = ' ';
+	int y;
+	int x;
+	chtype icon;
+
+	Drawable() // parent di hero
+	{
+		this->y = this->x =0;
+		this->icon = ' ';
 	}
 	Drawable(int y, int x, chtype ch)
 	{
@@ -37,19 +35,9 @@ public:
 	chtype getIcon()
 	{
 		return icon;
-	}
-	/*void draw(WINDOW* win)
-	{
-		//mvwadd_wch(win, y, x, icon);
-		mvwaddstr(win, y, x, icon);
-	}*/
-
-protected:
-	int y, x;
-	chtype icon;
-};
-
-class Door : public Drawable {
+		}
+		};
+		class Door : public Drawable {
 public:
 	Door(int y, int x) : Drawable(y, x,'O')
 	{
@@ -62,3 +50,4 @@ public:
 	{
 	}
 };
+

@@ -1,70 +1,58 @@
-//file che si occupa del personaggio
-
+// file che si occupa del personaggio
 #pragma once
-#include <ncurses.h>
-#include "Drawable.hpp"
-#include "Board.hpp"
 
+#include "Characters.hpp"
 
-
-class Hero : public Drawable
+class Hero : public Characters
 {
 public:
-	Direction cur_direction;
-
 	Hero()
 	{
-		this->y = this->x = 0;
+		Characters();
 		this->icon = 'P';
+		this->x = 3;
+		this->y = 3;
 	}
-
-	Hero(int y, int x)
+		Hero(int y, int x)
 	{
 		this->y = y;
 		this->x = x;
 		this->icon = 'P';
 	}
 
-	Direction getDirection()
+	// input
+	void takeDirection(Board game_board)
 	{
-		return cur_direction;
-	}
-
-	void setDirection(Direction newdir)
-	{
-		cur_direction = newdir;
-	}
-
-	void centerHero() {
-		this->y = BOARD_ROWS/2;
-		this->x = BOARD_COLS/2;
-	}
-
-	void moveHero()
-	{ 																							// movimento in se
-		int row = Drawable::gety();
-		int col = Drawable::getx();
-		switch (cur_direction)
+		chtype input = game_board.getInput();
+		int old_timeout = game_board.timeout;
+		switch (input)
 		{
-		case down:
-			row++;
+		case KEY_UP:
+		case 'w':
+			setDirection(up);
 			break;
-		case up:
-			row--;
+		case KEY_DOWN:
+		case 's':
+			setDirection(down);
 			break;
-		case sx:
-			col--;
+		case KEY_RIGHT:
+		case 'd':
+			setDirection(dx);
 			break;
-		case dx:
-			col++;
+		case KEY_LEFT:
+		case 'a':
+			setDirection(sx);
 			break;
+		case 'p':
+			game_board.setTimeout(-1);
+			while (game_board.getInput() != 'p')
+				;
+			game_board.setTimeout(old_timeout);
 		default:
+			setDirection(def); // per non forzare movimento
 			break;
 		}
-		this->y = row;
-		this->x = col;
 	}
-
 	int getx()
 	{
 		return Drawable::getx();
@@ -77,13 +65,8 @@ public:
 	{
 		return Drawable::getIcon();
 	}
-	void addHero(int y, int x, Board game_board)
-	{ 																								// add e remove
-		game_board.addAt(y, x, 'P');
-	}
-
-	void removeHero(Board game_board)
-	{
-		game_board.addAt(gety(), getx(), ' ');
+		void centerHero() {
+		this->y = BOARD_ROWS/2;
+		this->x = BOARD_COLS/2;
 	}
 };

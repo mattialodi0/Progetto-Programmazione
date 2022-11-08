@@ -1,6 +1,5 @@
 #pragma once
-#include <ncurses.h>
-#include "Drawable.hpp"
+
 #include "Board.hpp"
 
 class Artifacts : public Drawable

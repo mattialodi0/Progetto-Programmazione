@@ -15,23 +15,13 @@ Grafica:
 Schermo principale diviso tra quello di gioco e quello per il punteggio e le stat, eventuali colori ...
 Da aggiornare ogni tot secondi per non renderlo dipendente dal framerate
 
-Personaggio:
-Classe per le statistiche e funzioni per il movimento e gli oggetti
+Da aggiungere:
+- menu
+- inventario (struttura di Hero) per chiavi, aritfatti, ...
+- nuovi nemici
 
-Nemici:
-uguale
-
-Artefatti e Poteri:
-uguale
-più proprietà speciali (es. chiavi per aprire le porte)
-
-Mappa:
-classi per le stanze che generano anche il contenuto
-struttura dinamica per gestire gli oggetti stanze 
 
 Da decidere:
-- clock
-- collegamento stanze puntatori e indice (array dinamico)
 - metodi di combattimento (distanza, contatto, …)
 - statistiche per personaggio e nemici
 - come risolvere le proprietà degli artefatti

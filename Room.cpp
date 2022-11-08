@@ -78,10 +78,10 @@ void Room::drawRoom(Board board) {
     drawDoors(board);
 }
 
-void Room::moveEnemies(Board board, Hero hero, int canMove) {
-    for(int i = 0; i < room_template.enemies_num; i++) { 
+void Room::moveEnemies(Board board, Hero hero) {
+    for(int i = 0; i < room_template.enemies_num; i++) {    
         this->room_template.enemies[i]->ChooseDirection(board, hero);
-        if(this->room_template.enemies[i]->checkCollision(board) && canMove <= 1) {
+        if(this->room_template.enemies[i]->checkCollision(board)) {
             this->room_template.enemies[i]->moveCharacter();
         }
     }
@@ -96,8 +96,10 @@ void Room::Destructor() {
 
 void Room::drawEnemies(Board board) {
     for(int i = 0; i < room_template.enemies_num; i++) {    
-        board.addC(room_template.enemies[i]->gety(), room_template.enemies[i]->gety(), room_template.enemies[i]->getIcon());
+        //board.add(room_template->enemies[i]);
+        board.addAt(room_template.enemies[i]->gety(), room_template.enemies[i]->gety(), room_template.enemies[i]->getIcon());
     }
+   // wrefresh(board);
 }
 
 void Room::drawWalls(Board board) {
@@ -110,4 +112,17 @@ void Room::drawDoors(Board board) {
     for(int i = 0; i < room_template.doors_num; i++) {    
         board.add(room_template.doors[i]);
     }
+}
+
+
+void Room::removeEnemy(int pos) {
+    pEne temp = room_template.enemies[pos];
+    room_template.enemies[pos] = room_template.enemies[room_template.enemies_num-1];
+    room_template.enemies[room_template.enemies_num-1] = temp;
+    room_template.enemies_num--;
+}
+
+void Room::addEnemy(pEne enemy) {
+    room_template.enemies_num++;
+    room_template.enemies[room_template.enemies_num-1] = enemy;
 }

@@ -1,23 +1,22 @@
 // nemico che va a caso
-// puo' essere che lo cambio in un 2x2
-
 #pragma once
-#include "characters.hpp"
-#include "Hero.hpp"
-#include <ncurses.h>
 
-class Drunk : public Characters
+#include "Enemy.hpp"
+
+class Drunk : public Enemy
 {
 public:
 	Drunk()
 	{
-		Characters();
+		Enemy();
 		this->icon = 'D';
 		this->x = 10;
 		this->y = 10;
 	}
+	 void checkProjectile(Board board_win, Characters hero){
+     }
 	// override di characters
-	void ChooseDirection(Board board_win, Hero hero) override
+	void ChooseDirection(Board board_win, Characters &hero) override
 	{
 		do
 		{

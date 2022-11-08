@@ -1,16 +1,11 @@
 #pragma once 
 
 #include "RoomTemplates.hpp"
-#include "Board.hpp"
 #include "Hero.hpp"
-#include <ncurses.h>
 #include <cstdlib>
-
-
 
 class Room {
 private:
-//public:
     int room_template_number;
     general_template room_template;
 public:
@@ -27,18 +22,21 @@ public:
 
     void drawRoom(Board board);
 
-    void moveEnemies(Board board, Hero hero, int canMove);
+    void moveEnemies(Board board, Hero hero);
 
     void Destructor();
 
 private:
     void initializeRoomTemplate(int template_num);
-    
     Room* findRoom(Room** room_index, int index_dim, int y, int x);
     
     void drawEnemies(Board board);
     void drawWalls(Board board);
     void drawDoors(Board board);
+
+    //funzioni per i nemici
+    void removeEnemy(int pos);
+    void addEnemy(pEne enemy);
 
 }; typedef Room* prm;
 

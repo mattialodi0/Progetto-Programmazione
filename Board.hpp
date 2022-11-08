@@ -1,23 +1,24 @@
-//file che si occupa del view e del board
+//#pragma once
+#ifndef BOARD_HPP
+#define BOARD_HPP
+// file che si occupa del view e del board
 
-#pragma once
 #include "Drawable.hpp"
 #include <cstdlib>
-#include <ncurses.h>
 //#include "window.h"
 #include <time.h>
 #include "Time.hpp"
 
-const int BOARD_DIM = 17;				//con gli extern nella definizione non funzionava
+const int BOARD_DIM = 17;					//ho tolto extern
 const int BOARD_ROWS = BOARD_DIM;
 const int BOARD_COLS = BOARD_DIM * 2.5;
 
 class Board
 {
-public: 
-	WINDOW *board_win; 	
-private:
-	//WINDOW *board_win;  //mi serve publica per disegnare muri e porte delle stanze provvisioriamente 																			// tutto questo e' per init del board
+protected:
+	WINDOW *board_win;
+
+public:
 	int timeout;
 	void construct(int height, int width, int speed)
 	{
@@ -30,7 +31,6 @@ private:
 		keypad(board_win, true);
 	}
 
-public:
 	Board()
 	{
 		construct(0, 0, 300);
@@ -47,27 +47,38 @@ public:
 		clear();
 		refresh();
 	}
-
+	void clear()
+	{
+		wclear(board_win);
+		addBorder();
+	}
+	void refreshBoard()
+	{
+		wrefresh(board_win);
+	}
 	void addBorder()
 	{
 		box(board_win, 0, 0);
 	}
-
-	void add(Drawable drawable)
+	// tutto questo sopra e' per init del board
+	void add(Drawable &drawable)
 	{
-		addAt(drawable.gety(), drawable.getx(), drawable.getIcon()); 									// add per general use
+		addAt(drawable.y, drawable.x, drawable.icon);
+		// add per general use
 	}
-	void addC(int y, int x, chtype ch)
+	void remove(Drawable &drawable)
 	{
-		addAt(y,x,ch); 									// add per general use
+		addAt(drawable.y, drawable.x, ' ');
 	}
 
 	void addAt(int y, int x, chtype ch)
-	{ 																									// add per init
+	{
+		// add
 		mvwaddch(board_win, y, x, ch);
 	}
 
-	chtype getInput()																					//input e fixed time
+	chtype getInput()
+	// input e fixed time
 	{
 		time_t time_last_input = Time::milliseconds();
 		chtype input = wgetch(board_win);
@@ -77,7 +88,7 @@ public:
 		{
 			new_input = wgetch(board_win);
 		};
-		setTimeout(timeout); 																			// input da sistemare noecho
+		setTimeout(timeout);
 		if (new_input != ERR)
 		{
 			input = new_input;
@@ -98,19 +109,14 @@ public:
 		return mvwinch(board_win, y, x);
 	}
 
-	void clear()
-	{ 																									// non usato for future use
-		wclear(board_win);
-		addBorder();
+	void setTimeout(int timeout)
+	{
+		wtimeout(board_win, timeout);
 	}
 	int getTimeout()
 	{
 		return timeout;
 	}
-
-	void setTimeout(int timeout)
-	{ 																									// timeout
-		wtimeout(board_win, timeout);
-	}
-
 };
+
+#endif

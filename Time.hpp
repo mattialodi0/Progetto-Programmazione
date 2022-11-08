@@ -9,7 +9,7 @@ class Time                                                                      
 public:
     static time_t milliseconds()
     {
-        struct timeval time_now
+        struct timeval time_now;
         {
         };
         gettimeofday(&time_now, nullptr);

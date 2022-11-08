@@ -1,42 +1,49 @@
-// nemico che ti segue
 #pragma once
 
+//nemico che spara
+
 #include "Enemy.hpp"
+#include "Projectile.hpp"
 
 
-class Chaser : public Enemy
+class Shooter : public Enemy
 {
 public:
-    Chaser()
+    Shooter()
     {
         Enemy();
-        this->icon = 'C';
+        this->icon = 'S';
         this->x = 10;
         this->y = 10;
     }
-    //sprite diverso ma uguale
-        void createProjectile(Direction dir)override {
-           if(this->Reload<=0){
+    //per creare proiettili
+     void createProjectile(Direction dir)override {
+                if(this->Reload<=0){
             this->Reload=EnemyReload;
         Projectile *new_proj = new Projectile();
         new_proj->cur_direction=dir;
+        if(dir%2==0){
+            new_proj->icon='|';
+        }
+        else{
+            new_proj->icon='-';
+        }
             new_proj->x=this->x;
             new_proj->y=this->y;
-        new_proj->icon='O';
         projectile.push_back(new_proj); 
     }
     else{
         this->Reload--;
     }
-        }
-        //uguale a shooter ma meno range
+     }
+     //per movimento proiettili e check di colpito o out of range
      void checkProjectile(Board board_win, Characters hero){
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
                 projectile[i]->uptime++;
             board_win.remove(*projectile[i]);
-        if(!projectile[i]->checkCollision(board_win)|| projectile[i]->uptime>MeleeRange){
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->uptime>Range){
         projectile[i]->moveCharacter();
         if(projectile[i]->x=hero.x && projectile[i]->y==hero.y){
             //diminuisci vita player
@@ -49,32 +56,27 @@ public:
           board_win.add(*projectile[i]);
           }
         }
-        
     }
         }
      }
-    //ti viene vicino e spara un piccolo proiettile e viene stunnato
+     //va a una tua stessa linea o colonna per spararti e spara
     void ChooseDirection(Board board_win, Characters &hero) override
     {
-        if(this->Reload<=0){
-        int distancex, distancey;
+         int distancex, distancey;
         distancex = this->x - hero.x;
         distancey = this->y - hero.y;
-        //se sei vicino
          if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < 10 && abs(distancey) < 10){
             this->mem=EnemyMemory;
             }
         if (this->mem>0)
         {
-            if(abs(distancex) < MeleeRange && abs(distancey) < MeleeRange){
-                 if(distancey==0){
+        if(distancey==0){
             if(distancex>0){
                 createProjectile(sx);
             }
             else{
                 createProjectile(dx);
             }
-            this->Reload=MeleeEnemyReload;
         }
         else{
             if(distancex==0){
@@ -84,11 +86,10 @@ public:
                 else{
                     createProjectile(down);
                 }
-                this->Reload=MeleeEnemyReload;
             }
-            }
-            }
-            if (abs(distancex) > abs(distancey))
+            else{
+
+            if (abs(distancex) < abs(distancey))
             {
                 if (distancex < 0)
                 {
@@ -101,7 +102,7 @@ public:
             }
             else
             {
-                if (abs(distancex) <= abs(distancey))
+                if (abs(distancex) > abs(distancey))
                 {
                     if (distancey < 0)
                     {
@@ -114,12 +115,12 @@ public:
                 }
             }
         }
+            }
         }
-        this->mem--;
-        this->Reload--;   
+         this->mem--;
     }
-    //solito los
-    bool hasLos(Board board_win, Characters hero, int y, int x) override
+    //controlla se ti vede tramite chaser ricorsivo
+     bool hasLos(Board board_win, Characters hero, int y, int x) override
     {
             int i=0,k=0;
               int distancex, distancey;
