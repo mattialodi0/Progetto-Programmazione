@@ -11,6 +11,9 @@
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-lncurses",
+                "-lstdc++",
+                "Game.cpp",
+                "Room.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"
