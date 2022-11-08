@@ -1,8 +1,10 @@
 // classe che si occupa dei drawable con direzione e movimento
 #pragma once
-#include "Drawable.hpp"
+
 #include "Board.hpp"
 #include <ncurses.h>
+
+
 // direzioni possibili
 enum Direction
 {
@@ -89,9 +91,4 @@ Direction cur_direction;
 		}
 		return false;
 	}
-		// metodo astratto per scelta automatica di direzione dei nemici
-	virtual void ChooseDirection(Board board_win, Characters hero)
-	{
-	}
-
 };

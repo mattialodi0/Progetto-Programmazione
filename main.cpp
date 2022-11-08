@@ -1,9 +1,9 @@
 // file principale con il main che crea l'oggetto di gioco
-
 #include "Game.hpp"
-#include "Board.hpp"
+
 using namespace std;
-extern const int refreshspeed = 250;
+extern const int refreshspeed = 100;
+
 int main()
 {
 	// da aggiungere scoreboard e un modo di fare gameover

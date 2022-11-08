@@ -1,19 +1,16 @@
+#pragma once
+
 // file controller di funzioni e del gioco
 #include <iostream>
 //#include <windows.h>
 // vedete voi se metterlo da me da errori e non mi serve
 #include <time.h>
 #include <stdlib.h>
-#include "Hero.hpp"
-#include "Drunkenemy.hpp"
-#include "Chaser.hpp"
-#include "Coward.hpp"
-#include "Artifacts.hpp"
-#include <vector>
-#include "Shooter.hpp"
 #include "Room.hpp"
-#pragma once
-extern const int GameSpeed=2;
+#include "Artifacts.hpp"
+#include <cassert>
+
+const int GameSpeed=2;
 using namespace std;
 class Game
 {
@@ -101,12 +98,14 @@ public:
 	// refresh
 	void updateScreen()
 	{ // riaggiunge e refresh
-		refresh();
+		game_board.clear();
+		redraw();
+		game_board.refreshBoard();
 	}
 
 	void redraw() // riaggiunge
 	{
-			game_board.add(hero);
+		game_board.add(hero);
 		current_room->drawRoom(game_board);
 	}
 void Destructor();

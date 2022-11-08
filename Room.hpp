@@ -1,12 +1,8 @@
 #pragma once 
 
 #include "RoomTemplates.hpp"
-#include "Board.hpp"
 #include "Hero.hpp"
-#include <ncurses.h>
 #include <cstdlib>
-
-
 
 class Room {
 private:

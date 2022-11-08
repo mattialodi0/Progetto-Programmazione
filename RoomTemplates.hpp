@@ -1,10 +1,12 @@
-#include "Drawable.hpp"
+#pragma once
+
 #include "Board.hpp"
 #include <iostream>
-
-//#include "Chaser.hpp"
+#include "Chaser.hpp"
 #include "Coward.hpp"
 #include "Drunkenemy.hpp"
+#include "Shooter.hpp"
+
 
 #define HALF_COLS BOARD_COLS/2
 #define HALF_ROWS BOARD_ROWS/2
@@ -19,7 +21,7 @@ class general_template {
 public:
     Drawable* walls;
     Drawable* doors;
-    Characters* enemies;
+    Enemy* enemies;
     int walls_num; 
     int doors_num;
     int enemies_num;
@@ -31,7 +33,7 @@ public:
         this->enemies_num = e;
         walls = new Drawable[walls_num];
         doors = new Drawable[doors_num];
-        enemies = new Characters[enemies_num];
+        enemies = new Enemy[enemies_num];
     }
     /*~general_template() {
         delete [] walls;
@@ -48,7 +50,7 @@ public:
 
 class template_0 : public general_template {
 public:
-    template_0() : general_template(5,16,0)
+    template_0() : general_template(5,16,1)
     {
         walls[0] = Wall(6,6);
         walls[1] = Wall(10,19); 
@@ -72,6 +74,9 @@ public:
         doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+
+        enemies[0] = Chaser();
+        enemies[0].setDirection(def);
     }
 };
 

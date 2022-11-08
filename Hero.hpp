@@ -1,7 +1,7 @@
 // file che si occupa del personaggio
 #pragma once
+
 #include "Characters.hpp"
-#include <ncurses.h>
 
 class Hero : public Characters
 {

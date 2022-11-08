@@ -11,6 +11,10 @@
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-lncurses",
+                "-lstdc++",
+                "Game.cpp",
+                "Room.cpp",
+                "Chaser.hpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"

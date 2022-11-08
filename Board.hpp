@@ -1,14 +1,18 @@
+//#pragma once
+#ifndef BOARD_HPP
+#define BOARD_HPP
 // file che si occupa del view e del board
-#pragma once
+
 #include "Drawable.hpp"
 #include <cstdlib>
-#include <ncurses.h>
 //#include "window.h"
 #include <time.h>
 #include "Time.hpp"
-extern const int BOARD_DIM = 17;
-extern const int BOARD_ROWS = BOARD_DIM;
-extern const int BOARD_COLS = BOARD_DIM * 2.5;
+
+const int BOARD_DIM = 17;					//ho tolto extern
+const int BOARD_ROWS = BOARD_DIM;
+const int BOARD_COLS = BOARD_DIM * 2.5;
+
 class Board
 {
 protected:
@@ -47,6 +51,10 @@ public:
 	{
 		wclear(board_win);
 		addBorder();
+	}
+	void refreshBoard()
+	{
+		wrefresh(board_win);
 	}
 	void addBorder()
 	{
@@ -110,3 +118,5 @@ public:
 		return timeout;
 	}
 };
+
+#endif

@@ -1,7 +1,11 @@
+#pragma once
+
 // file che si occupa dei drawables
 // base disegnabile senza direzione
-#pragma once
+
 #include <ncurses.h>
+
+
 class Drawable
 {
 public:

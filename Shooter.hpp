@@ -1,7 +1,11 @@
-//nemico che spara
 #pragma once
+
+//nemico che spara
+
 #include "Enemy.hpp"
 #include "Projectile.hpp"
+
+
 class Shooter : public Enemy
 {
 public:

@@ -1,7 +1,8 @@
 // nemico che ti segue
-#pragma once
+
 #include "Enemy.hpp"
-#include "Projectile.hpp"
+
+
 class Chaser : public Enemy
 {
 public:
@@ -9,8 +10,8 @@ public:
     {
         Enemy();
         this->icon = 'C';
-        this->x = 10;
-        this->y = 10;
+        this->x = 12;
+        this->y = 7;
     }
     //sprite diverso ma uguale
         void createProjectile(Direction dir)override {
