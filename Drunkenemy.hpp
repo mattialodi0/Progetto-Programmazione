@@ -1,5 +1,11 @@
 // nemico che va a caso
 #pragma once
+<<<<<<< HEAD:Drunkenemy.hpp
+=======
+#include "Characters.hpp"
+#include "Hero.hpp"
+#include <ncurses.h>
+>>>>>>> 13ed699ba366b9c647345c8f67fc12ba56e29b79:DrunkenEnemy.hpp
 
 #include "Enemy.hpp"
 
