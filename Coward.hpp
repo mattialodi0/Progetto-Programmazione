@@ -9,10 +9,7 @@ class Coward : public Enemy
 public:
     Coward()
     {
-        Enemy();
-        this->icon = 'W';
-        this->x = 10;
-        this->y = 10;
+        Enemy(def,default_coord_x,default_coord_y,'W');
     }
         void createProjectile(Direction dir)override {}
      void checkProjectile(Board board_win, Characters hero){

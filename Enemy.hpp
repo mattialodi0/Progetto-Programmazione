@@ -13,7 +13,8 @@ const int range=11;
 const int melee_range=2;
 const int melee_enemy_reload=5;
 const int sight_range= 100;
-
+const int default_coord_x= 10;
+const int default_coord_y=10;
 class Enemy:public Characters{
     protected: 
     int mem=0;
@@ -24,7 +25,8 @@ class Enemy:public Characters{
     	Enemy(Direction dir, int x, int y, chtype ch){
             Characters(dir,x,y,ch);
         }
-    virtual void createProjectile(Direction dir){
+    virtual void createProjectile(Direction dir)
+    {
     }
     virtual void checkProjectile(Board board_win, Characters hero)
     {

@@ -8,10 +8,7 @@ protected:
     
 public:
     Artifacts(){
-        Drawable();
-        this->y=y;
-        this->x=x;
-        this->icon=RandomArtifact();
+        Drawable(x,y,RandomArtifact());
     }
     chtype RandomArtifact(){
         srand(time(NULL));

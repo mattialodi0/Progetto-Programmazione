@@ -17,9 +17,9 @@ class Board
 {
 protected:
 	WINDOW *board_win;
-
-public:
 	int timeout;
+public:
+	
 	void construct(int height, int width, int speed)
 	{
 		int yMax, xMax;
@@ -113,9 +113,10 @@ public:
 	{
 		wtimeout(board_win, timeout);
 	}
+
 	int getTimeout()
 	{
-		return timeout;
+		return this->timeout;
 	}
 };
 

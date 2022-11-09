@@ -27,7 +27,7 @@ public:
 	Characters(Direction dir, int x, int y, chtype ch)
 	{
 		setDirection(dir);
-		Drawable(x,y,ch);
+		Drawable(y,x,ch);
 	}
 	void setDirection(Direction newdir)
 	{
@@ -83,6 +83,7 @@ public:
 			return true;
 			break;
 		case 'Q':
+		return false;
 			// porta chiuisa:
 			// controlla se il giocatore ha una chiave
 			// se ne ha, ne toglie una e cambia il carattere di tutta la porta

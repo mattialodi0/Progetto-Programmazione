@@ -11,10 +11,7 @@ class Shooter : public Enemy
 public:
     Shooter()
     {
-        Enemy();
-        this->icon = 'S';
-        this->x = 10;
-        this->y = 10;
+        Enemy(def,default_coord_x,default_coord_y,'S');
     }
     //per creare proiettili
  void createProjectile(Direction dir)override { 
@@ -39,9 +36,9 @@ public:
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
-                projectile[i]->uptime++;
+                projectile[i]->setUptime((projectile[i]->getUptime())+1);
             board_win.remove(*projectile[i]);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->uptime>range){
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
         projectile[i]->moveCharacter();
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             //diminuisci vita player
