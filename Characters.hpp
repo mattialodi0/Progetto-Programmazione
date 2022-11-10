@@ -20,14 +20,8 @@ class Characters : public Drawable
 	Direction cur_direction;
 public:
 
-	Characters()
-	{
-		Drawable();
-	}
-	Characters(Direction dir, int x, int y, chtype ch)
-	{
-		setDirection(dir);
-		Drawable(y,x,ch);
+	Characters(int y, int x, chtype ch):Drawable(y,x,ch){
+		setDirection(def);
 	}
 	void setDirection(Direction newdir)
 	{

@@ -7,9 +7,9 @@
 class Coward : public Enemy
 {
 public:
-    Coward()
+    Coward(int y, int x): Enemy(y,x,'C')
     {
-        Enemy(def,default_coord_x,default_coord_y,'W');
+      
     }
         void createProjectile(Direction dir)override {}
      void checkProjectile(Board board_win, Characters hero){

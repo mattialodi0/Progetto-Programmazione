@@ -9,12 +9,9 @@
 class Drunk : public Enemy
 {
 public:
-	Drunk()
-	{
-		Enemy(def,default_coord_x,default_coord_y,'D');
-	}
-	 void checkProjectile(Board board_win, Characters hero){
-     }
+	Drunk(int y, int x);
+
+	 void checkProjectile(Board board_win, Characters hero);
 	// override di characters
 	void ChooseDirection(Board board_win, Characters &hero) override
 	{
@@ -40,4 +37,5 @@ public:
 			}
 		} while (!checkCollision(board_win));
 	}
+	
 };

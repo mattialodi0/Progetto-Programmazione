@@ -9,6 +9,8 @@
 
 #define HALF_COLS BOARD_COLS/2
 #define HALF_ROWS BOARD_ROWS/2
+const int default_coord_x= 10;
+const int default_coord_y=10;
 
 /* !!!!!!!!!
 non si sa per quale assurdo motivo funziona tutto solo 
@@ -35,11 +37,11 @@ public:
         doors = new Drawable[doors_num];
         enemies = new pEne[enemies_num];
     }
-    /*~general_template() {
+    ~general_template() {
         delete [] walls;
         delete [] doors;
         delete [] enemies;
-    }*/
+    }
     void Destructor() {
         delete [] walls;
         delete [] doors;
@@ -101,7 +103,7 @@ public:
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
-        enemies[0] = new Drunk();
+        enemies[0] = new Drunk(default_coord_y,default_coord_x);
         enemies[0]->setDirection(def);
     }
 };
@@ -138,7 +140,7 @@ public:
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
-        enemies[0] = new Coward();
+        enemies[0] = new Coward(default_coord_y,default_coord_x);
         enemies[0]->setDirection(def);
     }
 };

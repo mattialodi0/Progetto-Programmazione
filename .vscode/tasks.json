@@ -14,6 +14,13 @@
                 "-lstdc++",
                 "Game.cpp",
                 "Room.cpp",
+                "Hero.cpp",
+                "Enemy.cpp",
+                "Drunkenemy.cpp",
+                "Board.cpp",
+                "Coward.cpp",
+                "Shooter.cpp",
+                "Projectile.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"
