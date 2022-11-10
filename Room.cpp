@@ -9,6 +9,7 @@ Room::Room() {
     this->west = NULL; 
     this->est = NULL; 
     initializeRoomTemplate(0);
+    this->room_template_number = 0;
 }
 
 Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template) {
@@ -17,7 +18,9 @@ Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template)
     this->south = findRoom(room_index, index_dim, y-1, x);
     this->west = findRoom(room_index, index_dim, y, x-1);
 	this->est = findRoom(room_index, index_dim, y, x+1);
-    initializeRoomTemplate(rand()%2+1);   //room_template
+    int n = rand()%3+1;
+    this->room_template_number = n;
+    initializeRoomTemplate(n);   //room_template
 }
 
 /*Room::~Room() {
@@ -36,6 +39,9 @@ void Room::initializeRoomTemplate(int template_num) {
         break;
     case 2:
         this->room_template = template_2();
+        break;
+    case 3:
+        this->room_template = template_3();
         break;
     default:
         this->room_template = template_0();
@@ -79,12 +85,12 @@ void Room::drawRoom(Board board) {
 }
 
 void Room::moveEnemies(Board board, Hero hero) {
-    for(int i = 0; i < room_template.enemies_num; i++) {    
+    /*for(int i = 0; i < room_template.enemies_num; i++) {    
         this->room_template.enemies[i]->ChooseDirection(board, hero);
         if(this->room_template.enemies[i]->checkCollision(board)) {
             this->room_template.enemies[i]->moveCharacter();
         }
-    }
+    }*/
 }
 
 void Room::Destructor() {

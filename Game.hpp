@@ -42,7 +42,7 @@ public:
     	current_room  = new Room;
     	addRoomToIndex(current_room);
 	}
-		~Game()
+	~Game()
 	{
  		delete [] room_index;
 	}
@@ -105,8 +105,8 @@ public:
 
 	void redraw() // riaggiunge
 	{
-		game_board.add(hero);
 		current_room->drawRoom(game_board);
+		game_board.add(hero);
 	}
 void Destructor();
 

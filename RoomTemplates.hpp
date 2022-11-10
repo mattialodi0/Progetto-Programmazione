@@ -2,7 +2,7 @@
 
 #include "Board.hpp"
 #include <iostream>
-//#include "Chaser.hpp"
+#include "Chaser.hpp"
 #include "Coward.hpp"
 #include "Drunkenemy.hpp"
 #include "Shooter.hpp"
@@ -35,11 +35,11 @@ public:
         doors = new Drawable[doors_num];
         enemies = new pEne[enemies_num];
     }
-    /*~general_template() {
+    ~general_template() {
         delete [] walls;
         delete [] doors;
         delete [] enemies;
-    }*/
+    }
     void Destructor() {
         delete [] walls;
         delete [] doors;
@@ -139,6 +139,42 @@ public:
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
         enemies[0] = new Coward();
+        enemies[0]->setDirection(def);
+    }
+};
+
+
+class template_3 : public general_template {
+public:
+    template_3() : general_template(7,16,1)
+    {
+        walls[0] = Wall(1,(BOARD_ROWS/3+2)*2);
+        walls[1] = Wall(2,(BOARD_ROWS/3+2)*2);
+        walls[2] = Wall(3,(BOARD_ROWS/3+2)*2);
+        walls[3] = Wall(4,(BOARD_ROWS/3+2)*2);
+        walls[4] = Wall(5,(BOARD_ROWS/3+2)*2);
+        walls[5] = Wall(6,(BOARD_ROWS/3+2)*2);
+        walls[6] = Wall(7,(BOARD_ROWS/3+2)*2);
+
+
+        doors[0] = Door(0,HALF_COLS-2);   //north doors
+        doors[1] = Door(0,HALF_COLS-1);
+        doors[2] = Door(0,HALF_COLS);
+        doors[3] = Door(0,HALF_COLS+1);
+        doors[4] = Door(0,HALF_COLS+2);
+        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+        doors[10] = Door(HALF_ROWS-1,0);   //west doors
+        doors[11] = Door(HALF_ROWS,0);
+        doors[12] = Door(HALF_ROWS+1,0);
+        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+
+        enemies[0] = new Chaser();
         enemies[0]->setDirection(def);
     }
 };

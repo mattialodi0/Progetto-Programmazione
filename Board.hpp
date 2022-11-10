@@ -117,6 +117,27 @@ public:
 	{
 		return timeout;
 	}
+
+	void blink() 
+	{
+		start_color();
+		init_pair(1, COLOR_BLACK, COLOR_RED);
+		attron(COLOR_PAIR(1));
+		//mvwaddch(board_win, 2, 2, '1');
+		wbkgd(board_win, COLOR_PAIR(1));
+		attroff(COLOR_PAIR(1));
+		wrefresh(board_win);
+	}
+	void nblink() 
+	{
+		start_color();
+		init_pair(1, COLOR_WHITE, COLOR_BLACK);
+		attron(COLOR_PAIR(1));
+		//mvwaddch(board_win, 2, 2, '1');
+		wbkgd(board_win, COLOR_PAIR(1));
+		attroff(COLOR_PAIR(1));
+		wrefresh(board_win);
+	}
 };
 
 #endif

@@ -13,7 +13,7 @@ public:
     Room* north; Room* south; Room* west; Room* est;
     //Drawable* enemies = new Drawable[1]; 
     //int enemies_num;
-
+public: 
     Room();    //costrutture stanza di partenza
 
     Room(int y, int x, Room** room_index, int index_dim);   //costruttore stanza qualsiasi
@@ -37,6 +37,8 @@ private:
     //funzioni per i nemici
     void removeEnemy(int pos);
     void addEnemy(pEne enemy);
+    //void damageEnemy(int damage);
+    //void healEnemy(int healing);
 
 }; typedef Room* prm;
 
