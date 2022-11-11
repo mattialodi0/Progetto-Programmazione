@@ -21,6 +21,10 @@
                 "Coward.cpp",
                 "Shooter.cpp",
                 "Projectile.cpp",
+                "Drawable.cpp",
+                "Characters.cpp",
+                "Chaser.cpp",
+                "Artifacts.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"

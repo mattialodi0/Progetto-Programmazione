@@ -13,26 +13,12 @@ protected:
 	int x;
 	chtype icon;
 public:
-	Drawable(){}
+	Drawable();
 		Drawable(int y, int x, chtype ch) // parent di hero
-	{
-		this->y =y;
-		this->x =x;
-		this->icon = ch;
-	}
-	
-	int gety()
-	{
-		return this->y;
-	}
-	int getx()
-	{
-		return this->x;
-	}
-	chtype getIcon()
-	{
-		return this->icon;
-		}
+	;
+	int gety();
+	int getx();
+	chtype getIcon();
 		};
 		class Door : public Drawable {
 public:
