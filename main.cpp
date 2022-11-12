@@ -2,7 +2,7 @@
 #include "Game.hpp"
 
 using namespace std;
-extern const int refreshspeed = 50;
+const int refreshspeed = 100;
 
 int main()
 {

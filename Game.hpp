@@ -20,8 +20,6 @@ protected:
 	Hero hero;
 	Artifacts artifacts;
 	// init di board e hero
-	int herostartx = BOARD_COLS/2;
-	int herostarty= BOARD_ROWS/2;
 	int canMove = 0;
 	// Board score_board;
 	// da implementare
@@ -30,85 +28,24 @@ protected:
     int index_dim;
     int current_index;
 public:
-	Game(int height, int width, int speed)
-	{
-
-		game_board = Board(height, width, speed);
-		hero = Hero(herostarty, herostartx);
-		initialize();
-		index_dim = 0;
-    	room_index = new prm[index_dim];
-    	current_index = 0;
-    	current_room  = new Room;
-    	addRoomToIndex(current_room);
-	}
-	~Game()
-	{
- 		delete [] room_index;
-	}
+	Game(int height, int width, int speed);
+		~Game();
 	// inizialize
-	void initialize()
-	{
-		game_board.initialize();
-		game_over = false;
-		game_board.add(hero);
-		hero.setDirection(def);
-	}
+	void initialize();
 	
 	/*void startdraw(Drawable &drawable)
-	{
-		game_board.getEmptyCoordinates(drawable);
-		game_board.addAt(drawable.y, drawable.x, drawable.icon);
-	}
 	*/
-	bool isNotOver()
-	{
-		return !game_over;
-	}
+	bool isNotOver();
 	// input
-	void processInput()
-	{ // input e direction
-	chtype input = game_board.getInput();
-		int old_timeout = game_board.getTimeout();
-		hero.takeDirection(game_board);
-		// per non duplicare
-	}
-
+	void processInput();
 	// movimenti
-	void updateState()
-	{
-		// hero
-		game_board.remove(hero);
-		if (hero.checkCollision(game_board))
-		{
-			hero.moveCharacter();
-				manageDoor();
-		}
-		hero.setDirection(def);
-		game_board.add(hero);
-		if(canMove<=0){
-		current_room->moveEnemies(game_board, hero);
-		canMove--;
-		}
-		else{
-		canMove=GameSpeed;
-		}
-	}
+	void updateState();
 
 	// refresh
-	void updateScreen()
-	{ // riaggiunge e refresh
-		game_board.clear();
-		redraw();
-		game_board.refreshBoard();
-	}
+	void updateScreen();
 
-	void redraw() // riaggiunge
-	{
-		current_room->drawRoom(game_board);
-		game_board.add(hero);
-	}
-void Destructor();
+	void redraw(); // riaggiunge
+	void Destructor();
 
 private:
 	void manageDoor();
@@ -117,7 +54,7 @@ private:
     void moveToSouthRoom();
  	void moveToWestRoom();
   	void moveToEstRoom();
-
+	
     void makeNorthRoom();
     void makeSouthRoom();
     void makeWestRoom();

@@ -1,4 +1,4 @@
-//#pragma once
+#pragma once
 #ifndef BOARD_HPP
 #define BOARD_HPP
 // file che si occupa del view e del board
@@ -20,120 +20,30 @@ protected:
 	int timeout;
 public:
 	
-	void construct(int height, int width, int speed)
-	{
-		int yMax, xMax;
-		getmaxyx(stdscr, yMax, xMax);
-		timeout = speed;
-		board_win = newwin(height, width, (yMax / 2) - (height / 2),
-						   (xMax / 2) - (width / 2));
-		setTimeout(speed);
-		keypad(board_win, true);
-	}
+	void construct(int height, int width, int speed);
 
-	Board()
-	{
-		construct(0, 0, 300);
-	}
+	Board();
 
-	Board(int height, int width, int speed)
-	{
-		srand(time(0));
-		construct(height, width, speed);
-	}
+	Board(int height, int width, int speed);
 
-	void initialize()
-	{
-		clear();
-		refresh();
-	}
-	void clear()
-	{
-		wclear(board_win);
-		addBorder();
-	}
-	void refreshBoard()
-	{
-		wrefresh(board_win);
-	}
-	void addBorder()
-	{
-		box(board_win, 0, 0);
-	}
-	// tutto questo sopra e' per init del board
-	void add(Drawable &drawable)
-	{
-		addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
-		// add per general use
-	}
-	void remove(Drawable &drawable)
-	{
-		addAt(drawable.gety(), drawable.getx(), ' ');
-	}
+	void initialize();
+	void clear();
+	void refreshBoard();
+	void addBorder();
+	void add(Drawable &drawable);
+	void remove(Drawable &drawable);
 
-	void addAt(int y, int x, chtype ch)
-	{
-		// add
-		mvwaddch(board_win, y, x, ch);
-	}
+	void addAt(int y, int x, chtype ch);
 
-	chtype getInput()
-	// input e fixed time
-	{
-		time_t time_last_input = Time::milliseconds();
-		chtype input = wgetch(board_win);
-		chtype new_input = ERR;
-		setTimeout(0);
-		while (time_last_input + timeout >= Time::milliseconds())
-		{
-			new_input = wgetch(board_win);
-		};
-		setTimeout(timeout);
-		if (new_input != ERR)
-		{
-			input = new_input;
-		};
-		return input;
-	}
+	chtype getInput();
 
-	void getEmptyCoordinates(int &y, int &x)
-	{																									// for future use
-		srand(time(NULL));
-		while ((mvwinch(board_win, y = rand() % BOARD_ROWS, x = rand() % BOARD_COLS)) != ' ')
-		{
-		}
-	}
+	void getEmptyCoordinates(int &y, int &x);
 
-	void setTimeout(int timeout)
-	{
-		wtimeout(board_win, timeout);
-	}
+	chtype getCharAt(int y, int x);
 
-	int getTimeout()
-	{
-		return this->timeout;
-	}
+	void setTimeout(int timeout);
 
-	void blink() 
-	{
-		start_color();
-		init_pair(1, COLOR_BLACK, COLOR_RED);
-		attron(COLOR_PAIR(1));
-		//mvwaddch(board_win, 2, 2, '1');
-		wbkgd(board_win, COLOR_PAIR(1));
-		attroff(COLOR_PAIR(1));
-		wrefresh(board_win);
-	}
-	void nblink() 
-	{
-		start_color();
-		init_pair(1, COLOR_WHITE, COLOR_BLACK);
-		attron(COLOR_PAIR(1));
-		//mvwaddch(board_win, 2, 2, '1');
-		wbkgd(board_win, COLOR_PAIR(1));
-		attroff(COLOR_PAIR(1));
-		wrefresh(board_win);
-	}
+	int getTimeout();
 };
 
 #endif

@@ -7,10 +7,7 @@
 class Chaser : public Enemy
 {
 public:
-    Chaser()
-    {
-        Enemy(def,10,10,'C');
-    }
+    Chaser(int y, int x);
     //sprite diverso ma uguale
         void createProjectile(Direction dir)override {
            if(this->reload<=0){
@@ -23,29 +20,7 @@ public:
     }
         }
         //uguale a shooter ma meno range
-     void checkProjectile(Board board_win, Characters hero){
-        for (int i = 0; i < projectile.size(); i++)
-		{
-			if (projectile[i] != NULL){
-                projectile[i]->setUptime((projectile[i]->getUptime())+1);
-            board_win.remove(*projectile[i]);
-        if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range){
-        projectile[i]->moveCharacter();
-        if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            //diminuisci vita player
-        } 
-        projectile.erase(projectile.begin()+i);
-        }
-        else{
-          projectile[i]->moveCharacter();
-          if(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())){
-          board_win.add(*projectile[i]);
-          }
-        }
-        
-    }
-        }
-     }
+     void checkProjectile(Board board_win, Characters hero);
     //ti viene vicino e spara un piccolo proiettile e viene stunnato
     void ChooseDirection(Board board_win, Characters &hero) override
     {

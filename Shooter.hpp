@@ -9,10 +9,7 @@
 class Shooter : public Enemy
 {
 public:
-    Shooter()
-    {
-        Enemy(def,default_coord_x,default_coord_y,'S');
-    }
+    Shooter(int y, int x);
     //per creare proiettili
  void createProjectile(Direction dir)override { 
       chtype bullet_icon;
@@ -32,28 +29,7 @@ public:
     }
      }
      //per movimento proiettili e check di colpito o out of range
-     void checkProjectile(Board board_win, Characters hero){
-        for (int i = 0; i < projectile.size(); i++)
-		{
-			if (projectile[i] != NULL){
-                projectile[i]->setUptime((projectile[i]->getUptime())+1);
-            board_win.remove(*projectile[i]);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
-        projectile[i]->moveCharacter();
-        if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            //diminuisci vita player
-        } 
-        projectile.erase(projectile.begin()+i);
-        }
-        else{
-          projectile[i]->moveCharacter();
-          if(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())){
-          board_win.add(*projectile[i]);
-          }
-        }
-    }
-        }
-     }
+     void checkProjectile(Board board_win, Characters hero);
      //va a una tua stessa linea o colonna per spararti e spara
     void ChooseDirection(Board board_win, Characters &hero) override
     {

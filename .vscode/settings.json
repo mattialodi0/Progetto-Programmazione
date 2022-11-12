@@ -22,5 +22,12 @@
         "string_view": "cpp",
         "initializer_list": "cpp",
         "utility": "cpp"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/fri3erg/Progetto",
+            "binaryPath": "/home/fri3erg/Progetto/game",
+            "binaryArgs": []
+        }
+    ]
 }

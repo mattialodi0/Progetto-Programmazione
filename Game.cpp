@@ -1,5 +1,79 @@
 #include "Game.hpp"
 
+Game::Game(int height, int width, int speed)
+	{
+		hero= Hero();
+		game_board = Board(height, width, speed);
+		initialize();
+		index_dim = 0;
+    	room_index = new prm[index_dim];
+    	current_index = 0;
+    	current_room  = new Room;
+    	addRoomToIndex(current_room);
+	}
+
+		Game::~Game()
+	{
+ 		delete [] room_index;
+	}
+    	void Game::initialize()
+	{
+		game_board.initialize();
+		game_over = false;
+		game_board.add(hero);
+		hero.setDirection(def);
+	}
+    	/*void Game::startdraw(Drawable &drawable)
+	{
+		game_board.getEmptyCoordinates(drawable);
+		game_board.addAt(drawable.y, drawable.x, drawable.icon);
+	}
+	*/
+	bool Game::isNotOver()
+	{
+		return !game_over;
+	}
+    void Game::processInput()
+	{ // input e direction
+	chtype input = game_board.getInput();
+		int old_timeout = game_board.getTimeout();
+		hero.takeDirection(game_board);
+		// per non duplicare
+	}
+	// movimenti
+	void Game::updateState()
+	{
+		// hero
+		game_board.remove(hero);
+		if (hero.checkCollision(game_board))
+		{
+			hero.moveCharacter();
+				manageDoor();
+		}
+		hero.setDirection(def);
+		game_board.add(hero);
+		if(canMove<=0){
+		current_room->moveEnemies(game_board, hero);
+		canMove--;
+		}
+		else{
+		canMove=GameSpeed;
+		}
+	}
+// refresh
+	void Game::updateScreen()
+	{ // riaggiunge e refresh
+		game_board.clear();
+		redraw();
+		game_board.refreshBoard();
+	}
+    void Game::redraw() // riaggiunge
+	{
+		game_board.add(hero);
+		current_room->drawRoom(game_board);
+	}
+
+
 
 //distruttore manuale
 void Game::Destructor() {
@@ -43,22 +117,22 @@ void Game::manageDoor() {
 void Game::moveToNorthRoom() {
     current_room = current_room->north;
     //posiziona il giocatore in basso 
-    hero.centerHero(up);
+    hero.centerHero(down);
 }
 void Game::moveToSouthRoom() {
     current_room = current_room->south;
     //posiziona il giocatore in alto 
-    hero.centerHero(down);
+    hero.centerHero(up);
 }
 void Game::moveToWestRoom() {
     current_room = current_room->west;
     //posiziona il giocatore a destra
-    hero.centerHero(sx);
+    hero.centerHero(dx);
 }
 void Game::moveToEstRoom() {
     current_room = current_room->est;
     //posiziona il giocatore a sinistra
-    hero.centerHero(dx);
+    hero.centerHero(sx);
 }
 
 //funzioni per creare nuove stanze
