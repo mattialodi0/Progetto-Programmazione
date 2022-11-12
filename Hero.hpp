@@ -2,29 +2,27 @@
 #pragma once
 
 #include "Characters.hpp"
+const int starting_x=3;
+const int starting_y=3;
 
 class Hero : public Characters
 {
-public:
+public:	
+	Hero(int y, int x)
+	{
+	Characters(def,x,y,'P');
+	}
 	Hero()
 	{
-		Characters();
-		this->icon = 'P';
-		this->x = 3;
-		this->y = 3;
+		Characters(def,starting_x,starting_y,'P');
 	}
-		Hero(int y, int x)
-	{
-		this->y = y;
-		this->x = x;
-		this->icon = 'P';
-	}
+
 
 	// input
 	void takeDirection(Board game_board)
 	{
 		chtype input = game_board.getInput();
-		int old_timeout = game_board.timeout;
+		int old_timeout = game_board.getTimeout();
 		switch (input)
 		{
 		case KEY_UP:
@@ -53,20 +51,24 @@ public:
 			break;
 		}
 	}
-	int getx()
-	{
-		return Drawable::getx();
-	}
-	int gety()
-	{
-		return Drawable::gety();
-	}
-	int getIcon()
-	{
-		return Drawable::getIcon();
-	}
-		void centerHero() {
-		this->y = BOARD_ROWS/2;
-		this->x = BOARD_COLS/2;
+		void centerHero(Direction dir) {
+	switch(dir){
+	case(sx):
+	this->x=1;
+	this->y=BOARD_ROWS/2;
+	break;
+	case (dx):
+	this->x=BOARD_COLS-2;
+	this->y=BOARD_ROWS/2;
+	break;
+		case (up):
+	this->x=BOARD_COLS/2;
+	this->y=1;
+	break;
+		case (down):
+	this->x=BOARD_COLS/2;
+	this->y=BOARD_ROWS-2;
+	break;
+}
 	}
 };

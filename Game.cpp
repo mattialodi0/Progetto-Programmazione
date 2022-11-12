@@ -43,22 +43,22 @@ void Game::manageDoor() {
 void Game::moveToNorthRoom() {
     current_room = current_room->north;
     //posiziona il giocatore in basso 
-    hero.centerHero();
+    hero.centerHero(up);
 }
 void Game::moveToSouthRoom() {
     current_room = current_room->south;
     //posiziona il giocatore in alto 
-    hero.centerHero();
+    hero.centerHero(down);
 }
 void Game::moveToWestRoom() {
     current_room = current_room->west;
     //posiziona il giocatore a destra
-    hero.centerHero();
+    hero.centerHero(sx);
 }
 void Game::moveToEstRoom() {
     current_room = current_room->est;
     //posiziona il giocatore a sinistra
-    hero.centerHero();
+    hero.centerHero(dx);
 }
 
 //funzioni per creare nuove stanze

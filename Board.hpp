@@ -17,9 +17,9 @@ class Board
 {
 protected:
 	WINDOW *board_win;
-
-public:
 	int timeout;
+public:
+	
 	void construct(int height, int width, int speed)
 	{
 		int yMax, xMax;
@@ -63,12 +63,12 @@ public:
 	// tutto questo sopra e' per init del board
 	void add(Drawable &drawable)
 	{
-		addAt(drawable.y, drawable.x, drawable.icon);
+		addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
 		// add per general use
 	}
 	void remove(Drawable &drawable)
 	{
-		addAt(drawable.y, drawable.x, ' ');
+		addAt(drawable.gety(), drawable.getx(), ' ');
 	}
 
 	void addAt(int y, int x, chtype ch)
@@ -104,18 +104,14 @@ public:
 		}
 	}
 
-	chtype getCharAt(int y, int x)
-	{
-		return mvwinch(board_win, y, x);
-	}
-
 	void setTimeout(int timeout)
 	{
 		wtimeout(board_win, timeout);
 	}
+
 	int getTimeout()
 	{
-		return timeout;
+		return this->timeout;
 	}
 
 	void blink() 

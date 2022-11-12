@@ -8,33 +8,34 @@
 
 class Drawable
 {
-public:
+protected:
 	int y;
 	int x;
 	chtype icon;
-
-	Drawable() // parent di hero
-	{
-		this->y = this->x =0;
-		this->icon = ' ';
-	}
+public:
 	Drawable(int y, int x, chtype ch)
 	{
 		this->y = y;
 		this->x = x;
 		this->icon = ch;
 	}
+	Drawable() // parent di hero
+	{
+		this->y = this->x =0;
+		this->icon = ' ';
+	}
+	
 	int gety()
 	{
-		return y;
+		return this->y;
 	}
 	int getx()
 	{
-		return x;
+		return this->x;
 	}
 	chtype getIcon()
 	{
-		return icon;
+		return this->icon;
 		}
 		};
 		class Door : public Drawable {

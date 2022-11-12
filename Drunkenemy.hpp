@@ -11,10 +11,7 @@ class Drunk : public Enemy
 public:
 	Drunk()
 	{
-		Enemy();
-		this->icon = 'D';
-		this->x = 10;
-		this->y = 10;
+		Enemy(def,default_coord_x,default_coord_y,'D');
 	}
 	 void checkProjectile(Board board_win, Characters hero){
      }

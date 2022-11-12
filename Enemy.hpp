@@ -7,20 +7,26 @@
 //#include "Hero.hpp"
 #include "Projectile.hpp"
 
-const int EnemyReload=8;            //ho tolto extern
-const int EnemyMemory=7;
-const int Range=11;
-const int MeleeRange=2;
-const int MeleeEnemyReload=5;
-
+const int enemy_reload=8;            //ho tolto extern
+const int enemy_memory=7;
+const int range=11;
+const int melee_range=2;
+const int melee_enemy_reload=5;
+const int sight_range= 100;
+const int default_coord_x= 10;
+const int default_coord_y=10;
 class Enemy:public Characters{
     protected: 
     int mem=0;
-    int Reload=0;
+    int reload=0;
     public:
     std::vector<Projectile *> projectile;
     Enemy(){Characters();}
-    virtual void createProjectile(Direction dir){
+    	Enemy(Direction dir, int x, int y, chtype ch){
+            Characters(dir,x,y,ch);
+        }
+    virtual void createProjectile(Direction dir)
+    {
     }
     virtual void checkProjectile(Board board_win, Characters hero)
     {
@@ -29,8 +35,49 @@ class Enemy:public Characters{
 	virtual void ChooseDirection(Board board_win, Characters &hero)
 	{
 	}
-    virtual bool hasLos(Board board_win, Characters hero, int y, int x){
-        return false;
+bool hasLos(Board board_win, Characters hero, int y, int x)
+    {
+            int i=0,k=0;
+              int distancex, distancey;
+        distancex = x - hero.getx();
+        distancey = y - hero.gety();
+            if (abs(distancex) > abs(distancey))
+            {
+                if (distancex < 0)
+                {
+                    k++;
+                }
+                else
+                {
+                    k--;
+                }
+            }
+            else
+            {
+                if (abs(distancex) <= abs(distancey))
+                {
+                    if (distancey < 0)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+            }
+        chtype f =board_win.getCharAt(y+i,x+k);
+            if(f==hero.getIcon()){
+                return true;
+            }
+            else{
+                if(f!=' '){
+                    return false;
+                }
+                else{
+                    return hasLos(board_win, hero, y+i,x+k);
+                }
+            }
     }
 };  
 

@@ -9,10 +9,7 @@ class Coward : public Enemy
 public:
     Coward()
     {
-        Enemy();
-        this->icon = 'W';
-        this->x = 10;
-        this->y = 10;
+        Enemy(def,default_coord_x,default_coord_y,'W');
     }
         void createProjectile(Direction dir)override {}
      void checkProjectile(Board board_win, Characters hero){
@@ -20,7 +17,7 @@ public:
 		{
 			if (projectile[i] != NULL){
         if(!projectile[i]->checkCollision(board_win)){
-        if(projectile[i]->x=hero.x && projectile[i]->y==hero.y){
+        if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             //diminuisci vita player
         }
         board_win.remove(*projectile[i]);
@@ -40,10 +37,10 @@ public:
     {
         int i = 0;
         int distancex, distancey;
-        distancex = this->x - hero.x;
-        distancey = this->y - hero.y;
-            if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < 10 && abs(distancey) < 10){
-            this->mem=EnemyMemory;
+        distancex = this->x - hero.getx();
+        distancey = this->y - hero.gety();
+            if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < sight_range && abs(distancey) < sight_range){
+            this->mem=enemy_memory;
             }
         if (this->mem>0){
             Direction horz = (distancex < 0) ? sx : dx;
@@ -67,50 +64,5 @@ public:
             }
         }
         this->mem--;
-    }
-    //line of sight
-     bool hasLos(Board board_win, Characters hero, int y, int x) override
-    {
-            int i=0,k=0;
-              int distancex, distancey;
-        distancex = x - hero.x;
-        distancey = y - hero.y;
-            if (abs(distancex) > abs(distancey))
-            {
-                if (distancex < 0)
-                {
-                    k++;
-                }
-                else
-                {
-                    k--;
-                }
-            }
-            else
-            {
-                if (abs(distancex) <= abs(distancey))
-                {
-                    if (distancey < 0)
-                    {
-                        i++;
-                    }
-                    else
-                    {
-                        i--;
-                    }
-                }
-            }
-        chtype f =board_win.getCharAt(y+i,x+k);
-            if(f==hero.icon){
-                return true;
-            }
-            else{
-                if(f!=' '){
-                    return false;
-                }
-                else{
-                    return hasLos(board_win, hero, y+i,x+k);
-                }
-            }
     }
 };

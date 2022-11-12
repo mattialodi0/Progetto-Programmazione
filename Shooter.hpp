@@ -11,29 +11,24 @@ class Shooter : public Enemy
 public:
     Shooter()
     {
-        Enemy();
-        this->icon = 'S';
-        this->x = 10;
-        this->y = 10;
+        Enemy(def,default_coord_x,default_coord_y,'S');
     }
     //per creare proiettili
-     void createProjectile(Direction dir)override {
-                if(this->Reload<=0){
-            this->Reload=EnemyReload;
-        Projectile *new_proj = new Projectile();
-        new_proj->cur_direction=dir;
+ void createProjectile(Direction dir)override { 
+      chtype bullet_icon;
         if(dir%2==0){
-            new_proj->icon='|';
+            bullet_icon='|';
         }
         else{
-            new_proj->icon='-';
+            bullet_icon='-';
         }
-            new_proj->x=this->x;
-            new_proj->y=this->y;
+           if(this->reload<=0){
+            this->reload=enemy_reload;
+        Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), bullet_icon);
         projectile.push_back(new_proj); 
     }
     else{
-        this->Reload--;
+        this->reload--;
     }
      }
      //per movimento proiettili e check di colpito o out of range
@@ -41,18 +36,18 @@ public:
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
-                projectile[i]->uptime++;
+                projectile[i]->setUptime((projectile[i]->getUptime())+1);
             board_win.remove(*projectile[i]);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->uptime>Range){
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
         projectile[i]->moveCharacter();
-        if(projectile[i]->x=hero.x && projectile[i]->y==hero.y){
+        if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             //diminuisci vita player
         } 
         projectile.erase(projectile.begin()+i);
         }
         else{
           projectile[i]->moveCharacter();
-          if(board_win.getCharAt(projectile[i]->y,projectile[i]->x)){
+          if(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())){
           board_win.add(*projectile[i]);
           }
         }
@@ -63,10 +58,10 @@ public:
     void ChooseDirection(Board board_win, Characters &hero) override
     {
          int distancex, distancey;
-        distancex = this->x - hero.x;
-        distancey = this->y - hero.y;
-         if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < 10 && abs(distancey) < 10){
-            this->mem=EnemyMemory;
+        distancex = this->x - hero.getx();
+        distancey = this->y - hero.gety();
+         if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < sight_range && abs(distancey) < sight_range){
+            this->mem=enemy_memory;
             }
         if (this->mem>0)
         {
@@ -118,50 +113,5 @@ public:
             }
         }
          this->mem--;
-    }
-    //controlla se ti vede tramite chaser ricorsivo
-     bool hasLos(Board board_win, Characters hero, int y, int x) override
-    {
-            int i=0,k=0;
-              int distancex, distancey;
-        distancex = x - hero.x;
-        distancey = y - hero.y;
-            if (abs(distancex) > abs(distancey))
-            {
-                if (distancex < 0)
-                {
-                    k++;
-                }
-                else
-                {
-                    k--;
-                }
-            }
-            else
-            {
-                if (abs(distancex) <= abs(distancey))
-                {
-                    if (distancey < 0)
-                    {
-                        i++;
-                    }
-                    else
-                    {
-                        i--;
-                    }
-                }
-            }
-        chtype f =board_win.getCharAt(y+i,x+k);
-            if(f==hero.icon){
-                return true;
-            }
-            else{
-                if(f!=' '){
-                    return false;
-                }
-                else{
-                    return hasLos(board_win, hero, y+i,x+k);
-                }
-            }
     }
 };
