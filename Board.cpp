@@ -55,13 +55,11 @@ void Board::print(const char* str)
 
 chtype Board::getInput()                   //*******************
 {
-	Time t = Time();
-    time_t time_last_input = t.milliseconds();
+	time_t time_last_input = Time::milliseconds();
 	chtype input = wgetch(board_win);
 	chtype new_input = ERR;
 	setTimeout(0);
-	t = Time();
-	while (time_last_input + timeout >= t.milliseconds())
+	while (time_last_input + timeout >= Time::milliseconds())
 	{
 		new_input = wgetch(board_win);
 	};

@@ -140,33 +140,36 @@ void Game::checkCollisions()
 }
 
 void Game::manageDoor() {
-    if(hero.gety() <= 1) 
+	if(current_room->isClear()) 
 	{
-		if(searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
-			moveToNorthRoom();
-		else	
-			makeNorthRoom();
-	}
-	else if(hero.gety() >= BOARD_ROWS-2) 
-	{
-		if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
-			moveToSouthRoom();
-		else	
-			makeSouthRoom();
-	}
-	else if(hero.getx() <= 1) 
-	{
-		if(searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
-			moveToWestRoom();
-		else	
-			makeWestRoom();
-	}
-	else if(hero.getx() >= BOARD_COLS-2) 
-	{
-		if(searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
-			moveToEstRoom();
-		else	
-			makeEstRoom();
+		if(hero.gety() <= 1) 
+		{
+			if(searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
+				moveToNorthRoom();
+			else	
+				makeNorthRoom();
+		}
+		else if(hero.gety() >= BOARD_ROWS-2) 
+		{
+			if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
+				moveToSouthRoom();
+			else	
+				makeSouthRoom();
+		}
+		else if(hero.getx() <= 1) 
+		{
+			if(searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
+				moveToWestRoom();
+			else	
+				makeWestRoom();
+		}
+		else if(hero.getx() >= BOARD_COLS-2) 
+		{
+			if(searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
+				moveToEstRoom();
+			else	
+				makeEstRoom();
+		}
 	}
 }
 

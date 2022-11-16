@@ -24,8 +24,7 @@ public:
 
     void moveEnemies(Board board, Hero hero);
 
-    void Destructor();
-
+    bool isClear();
 private:
     void initializeRoomTemplate(int template_num);
     Room* findRoom(vector<Room*> room_index, int y, int x);

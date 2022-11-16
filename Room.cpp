@@ -72,8 +72,12 @@ void Room::moveEnemies(Board board, Hero hero) {
     }
 }
 
-// funzioni private
+bool Room::isClear() {
+    return room_template.enemies_num == 0;
+}
 
+
+// funzioni private
 
 void Room::drawEnemies(Board board) {
     for(int i = 0; i < room_template.enemies_num; i++) {    
