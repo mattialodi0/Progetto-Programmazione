@@ -1,33 +1,5 @@
 {
     "files.associations": {
-        "*.tcc": "cpp",
-        "memory_resource": "cpp",
-        "random": "cpp",
-        "limits": "cpp",
-        "optional": "cpp",
-        "memory": "cpp",
-        "numeric": "cpp",
-        "cmath": "cpp",
-        "functional": "cpp",
-        "sstream": "cpp",
-        "atomic": "cpp",
-        "deque": "cpp",
-        "string": "cpp",
-        "unordered_map": "cpp",
-        "vector": "cpp",
-        "fstream": "cpp",
-        "system_error": "cpp",
-        "bit": "cpp",
-        "array": "cpp",
-        "string_view": "cpp",
-        "initializer_list": "cpp",
-        "utility": "cpp"
-    },
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "/home/fri3erg/Progetto",
-            "binaryPath": "/home/fri3erg/Progetto/game",
-            "binaryArgs": []
-        }
-    ]
+        "vector": "cpp"
+    }
 }

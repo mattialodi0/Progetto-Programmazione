@@ -1,85 +1,142 @@
 #include "Game.hpp"
 
 Game::Game(int height, int width, int speed)
-	{
-		hero= Hero();
-		game_board = Board(height, width, speed);
-		initialize();
-		index_dim = 0;
-    	room_index = new prm[index_dim];
-    	current_index = 0;
-    	current_room  = new Room;
-    	addRoomToIndex(current_room);
-	}
+{
+	game_board = Board(height, width, speed);
+	game_board.initialize();
 
-		Game::~Game()
-	{
- 		delete [] room_index;
-	}
-    	void Game::initialize()
-	{
-		game_board.initialize();
-		game_over = false;
-		game_board.add(hero);
-		hero.setDirection(def);
-	}
-    	/*void Game::startdraw(Drawable &drawable)
-	{
-		game_board.getEmptyCoordinates(drawable);
-		game_board.addAt(drawable.y, drawable.x, drawable.icon);
-	}
-	*/
-	bool Game::isNotOver()
-	{
-		return !game_over;
-	}
-    void Game::processInput()
-	{ // input e direction
+	score_board = Board(height/3, width/2, 15, 110, speed);
+	score_board.initialize();
+	score_board.print("ScoreBoard");
+	score_board.refreshBoard();
+
+	stat_board = Board(height-height/3, width/2, 20, 110, speed);
+	stat_board.initialize();
+	stat_board.print("StatBoard");
+	stat_board.refreshBoard();
+	
+	hero = Hero(herostarty, herostartx);
+	game_board.add(hero);
+	hero.setDirection(def);
+
+	game_over = false;
+
+	current_room  = new Room;
+	room_index.emplace_back(current_room);
+
+
+	canMove = 1;
+}
+
+Game::~Game()
+{
+	//delete [] room_index;
+}
+
+bool Game::isNotOver()
+{
+	return !game_over;
+}
+
+void Game::processInput()
+{
 	chtype input = game_board.getInput();
-		int old_timeout = game_board.getTimeout();
-		hero.takeDirection(game_board);
-		// per non duplicare
-	}
-	// movimenti
-	void Game::updateState()
+	int old_timeout = game_board.getTimeout();
+	switch (input)
 	{
-		// hero
-		game_board.remove(hero);
-		if (hero.checkCollision(game_board))
-		{
-			hero.moveCharacter();
-				manageDoor();
-		}
-		hero.setDirection(def);
-		game_board.add(hero);
-		if(canMove<=0){
+	case KEY_UP:
+	case 'w':
+		hero.setDirection(up);
+		break;
+	case KEY_DOWN:
+	case 's':
+		hero.setDirection(down);
+		break;
+	case KEY_RIGHT:
+	case 'd':
+		hero.setDirection(dx);
+		break;
+	case KEY_LEFT:
+	case 'a':
+		hero.setDirection(sx);
+		break;
+	case 'o':
+		this->game_over = true;
+		break;
+	case 'p':
+		game_board.setTimeout(-1);
+		while (game_board.getInput() != 'p')
+			;
+		game_board.setTimeout(old_timeout);
+	default:
+		hero.setDirection(def); // per non forzare movimento
+		break;
+	}
+}
+
+void Game::updateState()
+{
+	// hero
+	//game_board.remove(hero);
+	checkCollisions();
+	hero.setDirection(def);								//--> da mettere edentro a hero
+	//enemies
+	if(canMove<=0){
 		current_room->moveEnemies(game_board, hero);
 		canMove--;
-		}
-		else{
+	}
+	else{
 		canMove=GameSpeed;
+	}
+}
+
+void Game::updateScreen()
+{
+	game_board.clear();
+	redraw();
+	game_board.refreshBoard();
+}
+
+void Game::redraw() // riaggiunge
+{
+	current_room->drawRoom(game_board);
+	game_board.add(hero);
+}
+
+void Game::checkCollisions()
+{
+	int offsety = 0, offsetx = 0;
+	if (hero.getDirection() == up || hero.getDirection() == down)
+	{
+		// offset per row e col per collisione
+		offsety = hero.getDirection() / 2;
+	}
+	else
+	{
+		if (hero.getDirection() == dx || hero.getDirection() == sx)
+		{
+			offsetx = hero.getDirection();
 		}
 	}
-// refresh
-	void Game::updateScreen()
-	{ // riaggiunge e refresh
-		game_board.clear();
-		redraw();
-		game_board.refreshBoard();
-	}
-    void Game::redraw() // riaggiunge
+	switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
 	{
-		game_board.add(hero);
-		current_room->drawRoom(game_board);
+	case ' ':
+	case 'F':
+	case 'H':
+		hero.moveCharacter();
+		break;	
+	case 'O':		//cambia stanza
+		manageDoor();
+		break;
+	case 'Q':
+		// porta chiuisa:
+		// controlla se il giocatore ha una chiave
+		// se ne ha, ne toglie una e cambia il carattere di tutta la porta
+		// e fa manageDoor();
+		break;
+	default:
+		break;
 	}
-
-
-
-//distruttore manuale
-void Game::Destructor() {
-    for(int i=0; i < index_dim; i++) {
-        room_index[i]->Destructor();
-    }
 }
 
 void Game::manageDoor() {
@@ -137,26 +194,26 @@ void Game::moveToEstRoom() {
 
 //funzioni per creare nuove stanze
 void Game::makeNorthRoom() {
-    current_room->north = new Room(current_room->y+1, current_room->x, room_index, index_dim);
+    current_room->north = new Room(current_room->y+1, current_room->x, room_index);
     updateIndex(current_room->north);
     addRoomToIndex(current_room->north);       //******************
     moveToNorthRoom();
 
 }
 void Game::makeSouthRoom() {
-    current_room->south = new Room(current_room->y-1, current_room->x, room_index, index_dim);
+    current_room->south = new Room(current_room->y-1, current_room->x, room_index);
     updateIndex(current_room->south);
     addRoomToIndex(current_room->south);       //******************
     moveToSouthRoom();  
 }
 void Game::makeWestRoom() {
-    current_room->west = new Room(current_room->y, current_room->x-1, room_index, index_dim);
+    current_room->west = new Room(current_room->y, current_room->x-1, room_index);
     updateIndex(current_room->west);
     addRoomToIndex(current_room->west);       //******************
     moveToWestRoom();
 }
 void Game::makeEstRoom() {
-    current_room->est = new Room(current_room->y, current_room->x+1, room_index, index_dim);
+    current_room->est = new Room(current_room->y, current_room->x+1, room_index);
     updateIndex(current_room->est);
     addRoomToIndex(current_room->est);       //******************
     moveToEstRoom();
@@ -164,15 +221,16 @@ void Game::makeEstRoom() {
 
 
 void Game::addRoomToIndex(prm room) {
-    this->index_dim += 1;
-    this->room_index[current_index] = room;
-    this->current_index += 1;
+    //this->index_dim += 1;
+    //this->room_index[current_index] = room;
+    //this->current_index += 1;
+	this->room_index.emplace_back(room);
 }
 
 
 
 void Game::updateIndex(prm room) {
-    for(int i = 0; i < index_dim; i++)
+    for(int i = 0; i < room_index.size(); i++)
 	{
 		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
 			room_index[i]->south = room;
@@ -187,7 +245,7 @@ void Game::updateIndex(prm room) {
 
 bool Game::searchIndexNorth(prm room) {
     //bool f = false;
-    for(int i = 0; i < index_dim; i++)
+    for(int i = 0; i < room_index.size(); i++)
 	{
 		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
             //f  = true;
@@ -198,7 +256,7 @@ bool Game::searchIndexNorth(prm room) {
 
 bool Game::searchIndexSouth(prm room) {
     //bool f = false;
-    for(int i = 0; i < index_dim; i++)
+    for(int i = 0; i < room_index.size(); i++)
 	{
 		if(room_index[i]->y == room->y-1 && room_index[i]->x == room->x)
             //f  = true;
@@ -209,7 +267,7 @@ bool Game::searchIndexSouth(prm room) {
 
 bool Game::searchIndexWest(prm room) {
     bool f = false;
-    for(int i = 0; i < index_dim; i++)
+    for(int i = 0; i < room_index.size(); i++)
 	{
 		if(room_index[i]->y == room->y && room_index[i]->x == room->x-1)
             f  = true;
@@ -219,7 +277,7 @@ bool Game::searchIndexWest(prm room) {
 
 bool Game::searchIndexEst(prm room) {
     bool f = false;
-    for(int i = 0; i < index_dim; i++)
+    for(int i = 0; i < room_index.size(); i++)
 	{
 		if(room_index[i]->y == room->y && room_index[i]->x == room->x+1)
             f  = true;

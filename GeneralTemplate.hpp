@@ -1,58 +1,34 @@
 #pragma once
 
 #include "Board.hpp"
-#include <iostream>
-//#include "Chaser.hpp"
-#include "Coward.hpp"
-#include "Drunkenemy.hpp"
-#include "Shooter.hpp"
+#include "Chaser.hpp"   //../enemies/
+//#include "../enemies/Coward.hpp"
+#include "Drunk.hpp"
+//#include "../enemies/Shooter.hpp"
+#include "room_objects/Door.hpp"
+#include "room_objects/Wall.hpp"
 
 #define HALF_COLS BOARD_COLS/2
 #define HALF_ROWS BOARD_ROWS/2
-const int default_coord_x= 10;
-const int default_coord_y=10;
 
-/* !!!!!!!!!
-non si sa per quale assurdo motivo funziona tutto solo 
-se non vengono chiamati i delete nei distruttori
-ma non può essere una buona soluzione
-*/
-typedef Enemy * pEne;
 
-class general_template {
+class General_template {
 public:
     Drawable* walls;
     Drawable* doors;
-    pEne* enemies;
+    pEn* enemies;
     int walls_num; 
     int doors_num;
     int enemies_num;
-    general_template() {}
-    general_template(int w, int d, int e)
-    {
-        this->walls_num = w; 
-        this->doors_num = d;
-        this->enemies_num = e;
-        walls = new Drawable[walls_num];
-        doors = new Drawable[doors_num];
-        enemies = new pEne[enemies_num];
-    }
-    ~general_template() {
-        delete [] walls;
-        delete [] doors;
-        delete [] enemies;
-    }
-    void Destructor() {
-        delete [] walls;
-        delete [] doors;
-        delete [] enemies;
-        std::cout << "D\n";
-    }
+    General_template();
+    General_template(int w, int d, int e);
+    ~General_template();
 };
 
-class template_0 : public general_template {
+
+class Template_0 : public General_template {
 public:
-    template_0() : general_template(5,16,0)
+    Template_0() : General_template(5,16,0)
     {
         walls[0] = Wall(6,6);
         walls[1] = Wall(10,19); 
@@ -80,9 +56,9 @@ public:
 };
 
 
-class template_1 : public general_template {
+class Template_1 : public General_template {
 public:
-    template_1() : general_template(1,16,1)
+    Template_1() : General_template(1,16,1)
     {
         walls[0] = Wall(10,15);
         
@@ -103,15 +79,15 @@ public:
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
-        enemies[0] = new Drunk(default_coord_y,default_coord_x);
+        enemies[0] = new Drunk();
         enemies[0]->setDirection(def);
     }
 };
 
-
-class template_2 : public general_template {
+/*
+class Template_2 : public General_template {
 public:
-    template_2() : general_template(8,16,1)
+    Template_2() : General_template(8,16,1)
     {
         walls[0] = Wall(BOARD_ROWS/3*2,1);
         walls[1] = Wall(BOARD_ROWS/3*2,2);
@@ -140,7 +116,43 @@ public:
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
-        enemies[0] = new Coward(default_coord_y,default_coord_x);
+        enemies[0] = new Coward();
+        enemies[0]->setDirection(def);
+    }
+};
+*/
+
+class Template_3 : public General_template {
+public:
+    Template_3() : General_template(7,16,1)
+    {
+        walls[0] = Wall(1,(BOARD_ROWS/3+2)*2);
+        walls[1] = Wall(2,(BOARD_ROWS/3+2)*2);
+        walls[2] = Wall(3,(BOARD_ROWS/3+2)*2);
+        walls[3] = Wall(4,(BOARD_ROWS/3+2)*2);
+        walls[4] = Wall(5,(BOARD_ROWS/3+2)*2);
+        walls[5] = Wall(6,(BOARD_ROWS/3+2)*2);
+        walls[6] = Wall(7,(BOARD_ROWS/3+2)*2);
+
+
+        doors[0] = Door(0,HALF_COLS-2);   //north doors
+        doors[1] = Door(0,HALF_COLS-1);
+        doors[2] = Door(0,HALF_COLS);
+        doors[3] = Door(0,HALF_COLS+1);
+        doors[4] = Door(0,HALF_COLS+2);
+        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+        doors[10] = Door(HALF_ROWS-1,0);   //west doors
+        doors[11] = Door(HALF_ROWS,0);
+        doors[12] = Door(HALF_ROWS+1,0);
+        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+
+        enemies[0] = new Chaser();
         enemies[0]->setDirection(def);
     }
 };

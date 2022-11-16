@@ -1,17 +1,14 @@
 #pragma once
-#ifndef BOARD_HPP
-#define BOARD_HPP
-// file che si occupa del view e del board
 
-#include "Drawable.hpp"
-#include <cstdlib>
-//#include "window.h"
+#include <cstdlib>      //per i numeri random
 #include <time.h>
+#include "Drawable.hpp"
 #include "Time.hpp"
 
 const int BOARD_DIM = 17;					//ho tolto extern
 const int BOARD_ROWS = BOARD_DIM;
 const int BOARD_COLS = BOARD_DIM * 2.5;
+
 
 class Board
 {
@@ -19,31 +16,26 @@ protected:
 	WINDOW *board_win;
 	int timeout;
 public:
-	
-	void construct(int height, int width, int speed);
-
 	Board();
-
 	Board(int height, int width, int speed);
+	Board(int height, int width, int starty, int startx, int speed);
 
 	void initialize();
-	void clear();
-	void refreshBoard();
-	void addBorder();
-	void add(Drawable &drawable);
+
+    void add(Drawable &drawable);
 	void remove(Drawable &drawable);
-
 	void addAt(int y, int x, chtype ch);
+	void print(const char* str);
 
-	chtype getInput();
-
-	void getEmptyCoordinates(int &y, int &x);
-
+    chtype getInput();
 	chtype getCharAt(int y, int x);
+    void getEmptyCoordinates(int &y, int &x);
 
-	void setTimeout(int timeout);
+    void setTimeout(int timeout);
+    int getTimeout();
 
-	int getTimeout();
+    void clear ();
+	void refreshBoard();
+protected:
+	void addBorder();
 };
-
-#endif

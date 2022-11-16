@@ -1,65 +1,53 @@
 #pragma once
 
-// file controller di funzioni e del gioco
-#include <iostream>
-//#include <windows.h>
-// vedete voi se metterlo da me da errori e non mi serve
+#include "Room.hpp"
+#include "Artifact.hpp"
 #include <time.h>
 #include <stdlib.h>
-#include "Room.hpp"
-#include "Artifacts.hpp"
-#include <cassert>
+#include <vector>
+using namespace std;
 
 const int GameSpeed=2;
-using namespace std;
+
 class Game
 {
-protected:
+private:
 	bool game_over;
+
 	Board game_board;
+    Board score_board;
+    Board stat_board;
+
 	Hero hero;
-	Artifacts artifacts;
-	// init di board e hero
-	int canMove = 0;
-	// Board score_board;
-	// da implementare
+
 	Room* current_room;
-   	Room** room_index;
-    int index_dim;
-    int current_index;
+   	vector<Room*> room_index;
+
+    int canMove;
 public:
 	Game(int height, int width, int speed);
-		~Game();
-	// inizialize
-	void initialize();
-	
-	/*void startdraw(Drawable &drawable)
-	*/
-	bool isNotOver();
-	// input
-	void processInput();
-	// movimenti
-	void updateState();
-
-	// refresh
-	void updateScreen();
-
-	void redraw(); // riaggiunge
-	void Destructor();
-
+	~Game();
+    bool isNotOver();
+    void processInput();
+    void updateState();
+    void updateScreen();
 private:
+    void redraw();
+    void checkCollisions();
+// funzioni per le stanze
 	void manageDoor();
 
 	void moveToNorthRoom();
     void moveToSouthRoom();
  	void moveToWestRoom();
   	void moveToEstRoom();
-	
+
     void makeNorthRoom();
     void makeSouthRoom();
     void makeWestRoom();
     void makeEstRoom();
 
+// funzioni per l'indice
 	bool searchIndexNorth(prm room);
 	bool searchIndexSouth(prm room);
 	bool searchIndexWest(prm room);

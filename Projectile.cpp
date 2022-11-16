@@ -1,11 +1,21 @@
 #include "Projectile.hpp"
 
-Projectile::Projectile(Direction dir, int x, int y, chtype ch): Characters(0,0,'O')
-    {
-    }
-    int Projectile::getUptime(){
-        return this->uptime;
-    }
-    void Projectile::setUptime(int new_uptime){
-        this->uptime=new_uptime;
-    }
+Projectile::Projectile()
+{
+    Character();
+}
+
+Projectile::Projectile(Direction dir, int x, int y, chtype ch)
+{
+    Character(dir,x,y,ch);
+}
+
+int Projectile::getUptime()
+{
+    return this->uptime;
+}
+
+void Projectile::setUptime(int new_uptime)
+{
+    this->uptime=new_uptime;
+}

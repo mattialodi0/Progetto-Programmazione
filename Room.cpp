@@ -1,7 +1,6 @@
 #include "Room.hpp"
 
 //fa il set up della stanza scegliendo un template, istanziando i nemici e gli artefatti
-//poi posiziona il giocatore 
 Room::Room() {
     this->y = 0; this->x = 0;
     this->north = NULL; 
@@ -9,43 +8,44 @@ Room::Room() {
     this->west = NULL; 
     this->est = NULL; 
     initializeRoomTemplate(0);
+    this->room_template_number = 0;
 }
 
-Room::Room(int y, int x, Room** room_index, int index_dim) {//int room_template) {
+Room::Room(int y, int x, vector<Room*> room_index) {//int room_template) {
     this->y = y; this->x = x;
-    this->north = findRoom(room_index, index_dim, y+1, x);
-    this->south = findRoom(room_index, index_dim, y-1, x);
-    this->west = findRoom(room_index, index_dim, y, x-1);
-	this->est = findRoom(room_index, index_dim, y, x+1);
-    initializeRoomTemplate(rand()%2+1);   //room_template
+    this->north = findRoom(room_index, y+1, x);
+    this->south = findRoom(room_index, y-1, x);
+    this->west = findRoom(room_index, y, x-1);
+	this->est = findRoom(room_index, y, x+1);
+    int n = rand()%3+1;
+    this->room_template_number = n;
+    initializeRoomTemplate(n);
 }
-
-/*Room::~Room() {
-    delete [] enemies;
-}*/
-
 
 void Room::initializeRoomTemplate(int template_num) {
     switch (template_num)
     {
     case 0:
-        this->room_template = template_0();
+        this->room_template = Template_0();
         break;
     case 1:
-        this->room_template = template_1();
+        this->room_template = Template_1();
         break;
-    case 2:
-        this->room_template = template_2();
+    //case 2:
+    //    this->room_template = Template_2();
+    //    break;
+    case 3:
+        this->room_template = Template_3();
         break;
     default:
-        this->room_template = template_0();
+        this->room_template = Template_0();
         break;
     }
 }
 
-Room* Room::findRoom(Room** room_index, int index_dim, int x, int y){
+Room* Room::findRoom(vector<Room*> room_index, int x, int y){
     int n = -1;
-		for(int i = 0; i < index_dim; i++)
+		for(int i = 0; i < room_index.size(); i++)
 		{
 			if(room_index[i]->y == y && room_index[i]->x == x)
 			{
@@ -56,21 +56,6 @@ Room* Room::findRoom(Room** room_index, int index_dim, int x, int y){
 	if(n < 0) return NULL;
 	else return room_index[n]; 
 }
-
-Room* findRoom1(Room** room_index, int index_dim, int x, int y){
-    int n = -1;
-		for(int i = 0; i < index_dim; i++)
-		{
-			if(room_index[i]->y == y && room_index[i]->x == x)
-			{
-				n = i; 
-				break;	
-			}
-		}
-	if(n < 0) return NULL;
-	else return room_index[n]; 
-}
-
 
 void Room::drawRoom(Board board) {
     drawEnemies(board);
@@ -79,16 +64,12 @@ void Room::drawRoom(Board board) {
 }
 
 void Room::moveEnemies(Board board, Hero hero) {
-    /*for(int i = 0; i < room_template.enemies_num; i++) {    
+    for(int i = 0; i < room_template.enemies_num; i++) {    
         this->room_template.enemies[i]->ChooseDirection(board, hero);
         if(this->room_template.enemies[i]->checkCollision(board)) {
             this->room_template.enemies[i]->moveCharacter();
         }
-    }*/
-}
-
-void Room::Destructor() {
-    this->room_template.Destructor();
+    }
 }
 
 // funzioni private
@@ -116,13 +97,13 @@ void Room::drawDoors(Board board) {
 
 
 void Room::removeEnemy(int pos) {
-    pEne temp = room_template.enemies[pos];
+    pEn temp = room_template.enemies[pos];
     room_template.enemies[pos] = room_template.enemies[room_template.enemies_num-1];
     room_template.enemies[room_template.enemies_num-1] = temp;
     room_template.enemies_num--;
 }
 
-void Room::addEnemy(pEne enemy) {
+void Room::addEnemy(pEn enemy) {
     room_template.enemies_num++;
     room_template.enemies[room_template.enemies_num-1] = enemy;
 }

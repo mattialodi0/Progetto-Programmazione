@@ -1,21 +1,41 @@
+/*CXX = g++
+CXXFLAGS = -Wall -Werror -Wextra -pedantic -std=c++17 -g -fsanitize=address
+LDFLAGS =  -fsanitize=address
+
+SRC = 
+OBJ = $(SRC:.cc=.o)
+EXEC = game
+
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+	$(CXX) $(LDFLAGS) -o $@ $(OBJ) $(LBLIBS)
+
+clean:
+	rm -rf $(OBJ) $(EXEC)
+
+*/
+
+////////////////////////////
+
 OBJS	= main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o GeneralTemplate.o
 SOURCE	= main.cpp Time.cpp Room.cpp Projectile.cpp Hero.cpp Game.cpp Enemy.cpp Drawable.cpp Character.cpp Board.cpp Artifact.cpp Drunk.cpp Chaser.cpp GeneralTemplate.cpp
 HEADER	= Direction.hpp Time.hpp Room.hpp Projectile.hpp Hero.hpp Game.hpp Enemy.hpp Drawable.hpp Character.hpp Board.hpp Artifact.hpp Drunk.hpp Chaser.hpp GeneralTemplate.hpp Door.hpp Wall.hpp
-OUT	= game
+OUT	= game.out
 CC	 = g++
 FLAGS	 = -g -c -Wall
-LFLAGS	 = -lncurses
+LFLAGS	 = -I
 
 all: $(OBJS)
-	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
+	$(CC) -g -o $(OUT) $(OBJS) $(LFLAGS)
 
-main.o: main.cpp
+main.o: main.cpp Game.hpp
 	$(CC) $(FLAGS) main.cpp 
 
-Time.o: Time.cpp
+Time.o: Time.cpp Time.hpp 
 	$(CC) $(FLAGS) Time.cpp 
 
-Room.o: Room.cpp
+Room.o: Room.cpp Room.hpp Hero.hpp 
 	$(CC) $(FLAGS) Room.cpp 
 
 Projectile.o: Projectile.cpp

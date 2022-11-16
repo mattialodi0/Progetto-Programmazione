@@ -1,8 +1,5 @@
 #pragma once
 
-// file che si occupa dei drawables
-// base disegnabile senza direzione
-
 #include <ncurses.h>
 
 
@@ -13,24 +10,10 @@ protected:
 	int x;
 	chtype icon;
 public:
-	Drawable();
-		Drawable(int y, int x, chtype ch) // parent di hero
-	;
+    Drawable();
+	Drawable(int y, int x, chtype ch);
+	
 	int gety();
 	int getx();
 	chtype getIcon();
-		};
-		class Door : public Drawable {
-public:
-	Door(int y, int x) : Drawable(y, x,'O')
-	{
-	}
 };
-
-class Wall : public Drawable {
-public:
-	Wall(int y, int x) : Drawable(y, x,'X')
-	{
-	}
-};
-
