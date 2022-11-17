@@ -16,7 +16,7 @@ Game::Game(int height, int width, int speed)
 	stat_board.refreshBoard();
 	
 	hero = Hero(herostarty, herostartx);
-	game_board.add(hero);
+	//game_board.add(hero);
 	hero.setDirection(def);
 
 	game_over = false;
