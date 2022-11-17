@@ -19,7 +19,6 @@ protected:
 public:
     std::vector<Projectile *> projectile;
 public:
-    Enemy();
     Enemy(Direction dir, int x, int y, chtype ch);
     virtual void createProjectile(Direction dir) {}
     virtual void checkProjectile(Board board_win, Character hero) {}

@@ -1,8 +1,8 @@
 #include "Board.hpp"
 
-Board::Board()
+Board::Board():Board(0, 0, 300)
 {
-	Board(0, 0, 300);
+	
 }
 
 Board::Board(int height, int width, int speed)

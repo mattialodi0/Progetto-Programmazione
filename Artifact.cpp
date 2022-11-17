@@ -1,8 +1,8 @@
 #include "Artifact.hpp"
 
-Artifact::Artifact()
+Artifact::Artifact(): Drawable(x,y,RandomArtifact())
 {
-    Drawable(x,y,RandomArtifact());
+   
 }
 
 chtype Artifact::RandomArtifact()

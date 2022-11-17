@@ -1,13 +1,8 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy()
-{
-    Character();
-}
 
-Enemy::Enemy(Direction dir, int x, int y, chtype ch)
+Enemy::Enemy(Direction dir, int x, int y, chtype ch):Character(dir,x,y,ch)
 {
-    Character(dir,x,y,ch);
 }    
 
 bool Enemy::hasLos(Board board_win, Character hero, int y, int x)

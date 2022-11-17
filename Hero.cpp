@@ -1,12 +1,11 @@
 #include "Hero.hpp"
 
-Hero::Hero()
+Hero::Hero():Character(def, herostarty, herostartx,'P')
 {
-	Character(def, herostarty, herostartx,'P');
+	
 }
-Hero::Hero(int y, int x)
-{
-    Character(def, y, x,'P');
+Hero::Hero(int y, int x):Character(def, y, x,'P')
+{   
 }
 
 void Hero::centerHero(Direction dir) {

@@ -1,13 +1,9 @@
 #include "Projectile.hpp"
 
-Projectile::Projectile()
-{
-    Character();
-}
 
-Projectile::Projectile(Direction dir, int x, int y, chtype ch)
+Projectile::Projectile(Direction dir, int x, int y, chtype ch) :Character(dir,x,y,ch)
 {
-    Character(dir,x,y,ch);
+   
 }
 
 int Projectile::getUptime()

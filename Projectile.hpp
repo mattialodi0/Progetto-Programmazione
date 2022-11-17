@@ -7,7 +7,6 @@ class Projectile : public Character {
 protected:
     int uptime=0;
 public:   
-    Projectile();
     Projectile(Direction dir, int x, int y, chtype ch);
     int getUptime();
     void setUptime(int new_uptime);

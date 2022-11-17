@@ -1,8 +1,7 @@
 #include "Chaser.hpp"
 
-Chaser::Chaser()
+Chaser::Chaser():Enemy(def,10,10,'C')
 {
-    Enemy(def,10,10,'C');
 }
 
 void Chaser::createProjectile(Direction dir) 

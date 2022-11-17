@@ -2,8 +2,8 @@
 
 Drawable::Drawable() // parent di hero
 {
-	this->y = this->x =0;
-	this->icon = ' ';
+	this->y = this->x =3;
+	this->icon = 'X';
 }
 
 Drawable::Drawable(int y, int x, chtype ch)

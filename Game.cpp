@@ -17,7 +17,6 @@ Game::Game(int height, int width, int speed)
 	
 	hero = Hero(herostarty, herostartx);
 	game_board.add(hero);
-	hero.setDirection(def);
 
 	game_over = false;
 

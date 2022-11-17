@@ -10,7 +10,6 @@ class Character : public Drawable
 protected:
 	Direction cur_direction;
 public:
-	Character();
 	Character(Direction dir, int x, int y, chtype ch);
 
 	void setDirection(Direction newdir);

@@ -1,8 +1,8 @@
 #include "Drunk.hpp"
 
-Drunk::Drunk()
+Drunk::Drunk():Enemy(def,default_coord_x,default_coord_y,'D')
 {
-	Enemy(def,default_coord_x,default_coord_y,'D');
+	
 }
 
 
