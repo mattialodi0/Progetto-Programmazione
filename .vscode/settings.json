@@ -1,5 +1,26 @@
 {
     "files.associations": {
-        "vector": "cpp"
+        "*.tcc": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
+        "optional": "cpp",
+        "memory": "cpp",
+        "numeric": "cpp",
+        "cmath": "cpp",
+        "functional": "cpp",
+        "sstream": "cpp",
+        "atomic": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "fstream": "cpp",
+        "system_error": "cpp",
+        "bit": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "utility": "cpp"
     }
 }
