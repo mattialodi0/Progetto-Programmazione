@@ -12,19 +12,19 @@ void Hero::centerHero(Direction dir) {
 	switch(dir){
     case(sx):
         this->x=1;
-        this->y=BOARD_ROWS/2;
+        this->y=herostarty;
         break;
     case (dx):
-        this->x=BOARD_COLS-2;
-        this->y=BOARD_ROWS/2;
+        this->x=herostartx;
+        this->y=herostarty;
         break;
     case (up):
-        this->x=BOARD_COLS/2;
+        this->x=herostartx;
         this->y=1;
         break;
     case (down):
-        this->x=BOARD_COLS/2;
-    	this->y=BOARD_ROWS-2;
+        this->x=herostartx;
+    	this->y=herostarty;
         break;
     }
 }
