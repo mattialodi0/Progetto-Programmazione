@@ -3,7 +3,7 @@ SOURCE	= main.cpp Time.cpp Room.cpp Projectile.cpp Hero.cpp Game.cpp Enemy.cpp D
 HEADER	= Direction.hpp Time.hpp Room.hpp Projectile.hpp Hero.hpp Game.hpp Enemy.hpp Drawable.hpp Character.hpp Board.hpp Artifact.hpp Drunk.hpp Chaser.hpp GeneralTemplate.hpp Door.hpp Wall.hpp
 OUT	= game
 CC	 = g++
-FLAGS	 = -g -c -Wall
+FLAGS	 = -g -c 
 LFLAGS	 = -lncurses
 
 all: $(OBJS)

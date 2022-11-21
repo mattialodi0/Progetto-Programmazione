@@ -73,7 +73,8 @@ void Room::moveEnemies(Board board, Hero hero) {
 }
 
 bool Room::isClear() {
-    return room_template.enemies_num == 0;
+    //return room_template.enemies_num == 0;    //per il testing è disattivata 
+    return 1;
 }
 
 

@@ -1,11 +1,19 @@
 #include "Hero.hpp"
 
-Hero::Hero():Character(def, herostarty, herostartx,'P')
-{
-	
+Hero::Hero() : Character(def, herostarty, herostartx,'P')
+{	
 }
-Hero::Hero(int y, int x):Character(def, y, x,'P')
+
+Hero::Hero(int y, int x) : Character(def, y, x,'P')
 {   
+}
+
+void Hero::Const(int y, int x)
+{
+    setDirection(def);
+    this->y = y;
+	this->x = x;
+	this->icon = 'P';
 }
 
 void Hero::centerHero(Direction dir) {

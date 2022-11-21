@@ -15,14 +15,14 @@ Game::Game(int height, int width, int speed)
 	stat_board.print("StatBoard");
 	stat_board.refreshBoard();
 	
-	hero = Hero(herostarty, herostartx);
-	game_board.add(hero);
+	//hero = Hero(herostarty, herostartx);
+	hero.Const(herostarty, herostartx);
+	//game_board.add(hero);
 
 	game_over = false;
 
 	current_room  = new Room;
 	room_index.emplace_back(current_room);
-
 
 	canMove = 1;
 }
@@ -98,13 +98,14 @@ void Game::updateScreen()
 
 void Game::redraw() // riaggiunge
 {
-	current_room->drawRoom(game_board);
 	game_board.add(hero);
+	current_room->drawRoom(game_board);
 }
 
 void Game::checkCollisions()
 {
-	int offsety = 0, offsetx = 0;
+
+	int offsety = -1, offsetx = 0;
 	if (hero.getDirection() == up || hero.getDirection() == down)
 	{
 		// offset per row e col per collisione

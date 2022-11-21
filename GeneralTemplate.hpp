@@ -84,7 +84,7 @@ public:
     }
 };
 
-/*
+
 class Template_2 : public General_template {
 public:
     Template_2() : General_template(8,16,1)
@@ -116,11 +116,11 @@ public:
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 
-        enemies[0] = new Coward();
+        enemies[0] = new Chaser();      //coward
         enemies[0]->setDirection(def);
     }
 };
-*/
+
 
 class Template_3 : public General_template {
 public:

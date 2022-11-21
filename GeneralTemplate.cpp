@@ -12,8 +12,8 @@ General_template::General_template(int w, int d, int e)
     enemies = new pEn[enemies_num];
 }
 
-General_template::~General_template() {/*
+General_template::~General_template() {
     delete [] walls;
     delete [] doors;
-    delete [] enemies;*/
+    delete [] enemies;
 }
