@@ -10,6 +10,9 @@ class Hero : public Character
 public:	
     Hero();
 	Hero(int y, int x);
+private:
+	//Hero(const Hero& h);
+public:
 	void Const(int y, int x);
 
 	void centerHero(Direction dir);

@@ -1,12 +1,20 @@
 #include "Hero.hpp"
 
+
 Hero::Hero() : Character(def, herostarty, herostartx,'P')
 {	
+    
 }
 
-Hero::Hero(int y, int x) : Character(def, y, x,'P')
+Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
 {   
 }
+/*
+Hero::Hero(const Hero& h) 
+{
+    y=1;x=1;icon='P';cur_direction=def;
+}*/
+
 
 void Hero::Const(int y, int x)
 {

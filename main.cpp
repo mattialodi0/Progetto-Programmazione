@@ -8,7 +8,7 @@ int main()
 {
     // funzioni init di ncurses
 	initscr();
-	noecho();
+	//noecho();
 	cbreak();
 	refresh();
 	curs_set(0);

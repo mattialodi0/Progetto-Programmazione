@@ -5,19 +5,18 @@ Game::Game(int height, int width, int speed)
 	game_board = Board(height, width, speed);
 	game_board.initialize();
 
-	score_board = Board(height/3, width/2, 15, 110, speed);
+	score_board = Board(height/3, width/2, 15, 110, speed); //10,90
 	score_board.initialize();
 	score_board.print("ScoreBoard");
 	score_board.refreshBoard();
 
-	stat_board = Board(height-height/3, width/2, 20, 110, speed);
+	stat_board = Board(height-height/3, width/2, 20, 110, speed);	//15, 90
 	stat_board.initialize();
 	stat_board.print("StatBoard");
 	stat_board.refreshBoard();
 	
-	//hero = Hero(herostarty, herostartx);
-	hero.Const(herostarty, herostartx);
-	//game_board.add(hero);
+	hero = Hero(herostarty, herostartx);
+	//hero.Const(herostarty, herostartx);
 
 	game_over = false;
 

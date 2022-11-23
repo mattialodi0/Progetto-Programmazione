@@ -1,8 +1,14 @@
 #include "Character.hpp"
 
-Character::Character(Direction dir, int x, int y, chtype ch)
+
+Character::Character()
 {
-	Drawable(y,x,ch);
+	setDirection(def);
+}
+
+Character::Character(Direction dir, int x, int y, chtype ch) : Drawable(y,x,ch)
+{
+	//Drawable(y,x,ch);
 	setDirection(dir);
 }
 
