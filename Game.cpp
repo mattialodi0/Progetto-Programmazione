@@ -104,7 +104,7 @@ void Game::redraw() // riaggiunge
 void Game::checkCollisions()
 {
 
-	int offsety = -1, offsetx = 0;
+	int offsety = 0, offsetx = 0;
 	if (hero.getDirection() == up || hero.getDirection() == down)
 	{
 		// offset per row e col per collisione
