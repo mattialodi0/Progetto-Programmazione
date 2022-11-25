@@ -16,7 +16,7 @@ Game::Game(int height, int width, int speed)
 	stat_board.refreshBoard();
 	
 	hero = Hero(herostarty, herostartx);
-	//hero.Const(herostarty, herostartx);
+	hero.centerHero(def);
 
 	game_over = false;
 
