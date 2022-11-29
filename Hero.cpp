@@ -27,7 +27,7 @@ void Hero::centerHero(Direction dir) {
         break;
     case (up):
         this->x=herostartx;
-        this->y=1;
+        this->y=BOARD_ROWS-2;
         break;
     case (down):
         this->x=herostartx;

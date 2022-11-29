@@ -143,7 +143,7 @@ void Game::manageDoor() {
 	{
 		if(hero.gety() <= 1) 
 		{
-			if(searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->north != NULL)		//searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
 				moveToNorthRoom();
 			else	
 				makeNorthRoom();
@@ -176,22 +176,22 @@ void Game::manageDoor() {
 void Game::moveToNorthRoom() {
     current_room = current_room->north;
     //posiziona il giocatore in basso 
-    hero.centerHero(down);
+    hero.centerHero(hero.getDirection());
 }
 void Game::moveToSouthRoom() {
     current_room = current_room->south;
     //posiziona il giocatore in alto 
-    hero.centerHero(up);
+    hero.centerHero(hero.getDirection());
 }
 void Game::moveToWestRoom() {
     current_room = current_room->west;
     //posiziona il giocatore a destra
-    hero.centerHero(dx);
+    hero.centerHero(hero.getDirection());
 }
 void Game::moveToEstRoom() {
     current_room = current_room->est;
     //posiziona il giocatore a sinistra
-    hero.centerHero(sx);
+    hero.centerHero(hero.getDirection());
 }
 
 //funzioni per creare nuove stanze
