@@ -1,5 +1,8 @@
-game: main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o GeneralTemplate.o
-	g++ -o game main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o GeneralTemplate.o -lncurses -lstdc++
+binaries = main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o GeneralTemplate.o
+
+
+game: $(binaries)
+	g++ -o game $(binaries)
 
 main.o: main.cpp Game.hpp
 	g++ -c main.cpp -lncurses
@@ -28,7 +31,7 @@ Character.o: Character.cpp Character.hpp
 Board.o: Board.cpp Board.hpp 
 	g++ -c Board.cpp -lncurses
 
-Enemy.o: Enemy.cpp Enemy.hpp 
+Enemy.o: Enemy.cpp Enemy.hpp
 	g++: -c Enemy.cpp
 
 Artifact.o: Artifact.cpp Artifact.hpp 
@@ -41,7 +44,10 @@ Chaser.o: Chaser.cpp Chaser.hpp
 	g++ -c Chaser.cpp
 
 GeneralTemplate.o: GeneralTemplate.cpp GeneralTemplate.hpp 
-	g++ -c GeneralTemplate.cpp
+	g++ -Iroom_objects -c GeneralTemplate.cpp
+
+.PHONY: clean
 
 clean:
-	rm *.o game
+	rm -f $(binaries) *.o
+	echo clean done
