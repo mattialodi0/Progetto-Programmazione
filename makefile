@@ -2,7 +2,7 @@ binaries = main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Ch
 
 
 game: $(binaries)
-	g++ -o game $(binaries)
+	g++ -o game $(binaries) -lncurses
 
 main.o: main.cpp Game.hpp
 	g++ -c main.cpp -lncurses
@@ -32,7 +32,7 @@ Board.o: Board.cpp Board.hpp
 	g++ -c Board.cpp -lncurses
 
 Enemy.o: Enemy.cpp Enemy.hpp
-	g++: -c Enemy.cpp
+	g++ -c Enemy.cpp 
 
 Artifact.o: Artifact.cpp Artifact.hpp 
 	g++ -c Artifact.cpp
@@ -45,6 +45,7 @@ Chaser.o: Chaser.cpp Chaser.hpp
 
 GeneralTemplate.o: GeneralTemplate.cpp GeneralTemplate.hpp 
 	g++ -Iroom_objects -c GeneralTemplate.cpp
+
 
 .PHONY: clean
 
