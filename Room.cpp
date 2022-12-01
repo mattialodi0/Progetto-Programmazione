@@ -26,19 +26,19 @@ void Room::initializeRoomTemplate(int template_num) {
     switch (template_num)
     {
     case 0:
-        this->room_template = Template_0();
+        this->room_template = new Template_0();
         break;
     case 1:
-        this->room_template = Template_1();
+        this->room_template = new Template_1();
         break;
-    //case 2:
-    //    this->room_template = Template_2();
-    //    break;
+    case 2:
+        this->room_template = new Template_2();
+        break;
     case 3:
-        this->room_template = Template_3();
+        this->room_template = new Template_3();
         break;
     default:
-        this->room_template = Template_0();
+        this->room_template = new Template_0();
         break;
     }
 }
@@ -64,16 +64,16 @@ void Room::drawRoom(Board board) {
 }
 
 void Room::moveEnemies(Board board, Hero hero) {
-    for(int i = 0; i < room_template.enemies_num; i++) {    
-        this->room_template.enemies[i]->ChooseDirection(board, hero);
-        if(this->room_template.enemies[i]->checkCollision(board)) {
-            this->room_template.enemies[i]->moveCharacter();
+    for(int i = 0; i < room_template->enemies_num; i++) {    
+        this->room_template->enemies[i]->ChooseDirection(board, hero);
+        if(this->room_template->enemies[i]->checkCollision(board)) {
+            this->room_template->enemies[i]->moveCharacter();
         }
     }
 }
 
 bool Room::isClear() {
-    //return room_template.enemies_num == 0;    //per il testing è disattivata 
+    //return room_template->enemies_num == 0;    //per il testing è disattivata 
     return 1;
 }
 
@@ -81,34 +81,34 @@ bool Room::isClear() {
 // funzioni private
 
 void Room::drawEnemies(Board board) {
-    for(int i = 0; i < room_template.enemies_num; i++) {    
-        //board.add(room_template->enemies[i]);
-        board.addAt(room_template.enemies[i]->gety(), room_template.enemies[i]->gety(), room_template.enemies[i]->getIcon());
+    for(int i = 0; i < room_template->enemies_num; i++) {    
+        board.add(*room_template->enemies[i]);
+        //board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->gety(), room_template->enemies[i]->getIcon());
     }
    // wrefresh(board);
 }
 
 void Room::drawWalls(Board board) {
-    for(int i = 0; i < room_template.walls_num; i++) {    
-        board.add(room_template.walls[i]);
+    for(int i = 0; i < room_template->walls_num; i++) {    
+        board.add(room_template->walls[i]);
     }
 }
 
 void Room::drawDoors(Board board) {
-    for(int i = 0; i < room_template.doors_num; i++) {    
-        board.add(room_template.doors[i]);
+    for(int i = 0; i < room_template->doors_num; i++) {    
+        board.add(room_template->doors[i]);
     }
 }
 
 
 void Room::removeEnemy(int pos) {
-    pEn temp = room_template.enemies[pos];
-    room_template.enemies[pos] = room_template.enemies[room_template.enemies_num-1];
-    room_template.enemies[room_template.enemies_num-1] = temp;
-    room_template.enemies_num--;
+    pEn temp = room_template->enemies[pos];
+    room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
+    room_template->enemies[room_template->enemies_num-1] = temp;
+    room_template->enemies_num--;
 }
 
 void Room::addEnemy(pEn enemy) {
-    room_template.enemies_num++;
-    room_template.enemies[room_template.enemies_num-1] = enemy;
+    room_template->enemies_num++;
+    room_template->enemies[room_template->enemies_num-1] = enemy;
 }

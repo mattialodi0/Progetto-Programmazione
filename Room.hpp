@@ -11,7 +11,7 @@ using namespace std;
 class Room {
 private:
     int room_template_number;
-    General_template room_template;
+    General_template *room_template;
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
