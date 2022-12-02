@@ -20,15 +20,19 @@ void Hero::tankClass()
 {
 }
 
-void Hero::tankClass() 
+void Hero::rogueClass() 
 {
 }
 
-void Hero::tankClass() 
+void Hero::rangerClass() 
 {
 }
 
-void Hero::tankClass() 
+void Hero::mageClass() 
+{
+}
+
+void Hero::useAbility() 
 {
 }
 

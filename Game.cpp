@@ -58,6 +58,9 @@ void Game::processInput()
 	case 'a':
 		hero.setDirection(sx);
 		break;
+	case 'f':
+		hero.useAbility(); 	//abilità speciale della classe
+		break;
 	case 'o':
 		this->game_over = true;
 		break;
