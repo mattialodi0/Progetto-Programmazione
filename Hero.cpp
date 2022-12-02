@@ -15,6 +15,23 @@ Hero::Hero(const Hero& h)
     y=1;x=1;icon='P';cur_direction=def;
 }*/
 
+//per l'inizializzazione della classe
+void Hero::tankClass() 
+{
+}
+
+void Hero::tankClass() 
+{
+}
+
+void Hero::tankClass() 
+{
+}
+
+void Hero::tankClass() 
+{
+}
+
 void Hero::centerHero(Direction dir) {
 	switch(dir){
     case(sx):
