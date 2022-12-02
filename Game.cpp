@@ -100,8 +100,8 @@ void Game::updateScreen()
 
 void Game::redraw() // riaggiunge
 {
-	game_board.add(hero);
 	current_room->drawRoom(game_board);
+	game_board.add(hero);
 }
 
 void Game::checkCollisions()
@@ -128,7 +128,10 @@ void Game::checkCollisions()
 		hero.moveCharacter();
 		break;	
 	case 'O':		//cambia stanza
-		manageDoor();
+		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-1 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
+			hero.moveCharacter();
+		else
+			manageDoor();
 		break;
 	case 'Q':
 		// porta chiuisa:
@@ -151,7 +154,7 @@ void Game::manageDoor() {
 			else	
 				makeNorthRoom();
 		}
-		else if(hero.gety() >= BOARD_ROWS-2) 
+		else if(hero.gety() >= BOARD_ROWS-1) 
 		{
 			if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
 				moveToSouthRoom();

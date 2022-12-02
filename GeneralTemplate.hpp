@@ -200,3 +200,92 @@ public:
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
     }
 };
+
+
+class Template_5 : public General_template {
+public:
+    Template_5() : General_template(23,16,0)
+    {
+        walls[0] = Wall(HALF_ROWS, HALF_COLS);
+        walls[1] = Wall(HALF_ROWS-1, HALF_COLS);
+        walls[2] = Wall(HALF_ROWS-2, HALF_COLS);
+        walls[3] = Wall(HALF_ROWS-3, HALF_COLS);
+        walls[4] = Wall(HALF_ROWS-4, HALF_COLS);
+        walls[5] = Wall(HALF_ROWS+1, HALF_COLS);
+        walls[6] = Wall(HALF_ROWS+2, HALF_COLS);
+        walls[7] = Wall(HALF_ROWS+3, HALF_COLS);
+        walls[8] = Wall(HALF_ROWS+4, HALF_COLS);
+        walls[9] = Wall(HALF_ROWS, HALF_COLS-1);
+        walls[10] = Wall(HALF_ROWS, HALF_COLS-2);
+        walls[11] = Wall(HALF_ROWS, HALF_COLS-3);
+        walls[12] = Wall(HALF_ROWS, HALF_COLS-4);
+        walls[13] = Wall(HALF_ROWS, HALF_COLS-5);
+        walls[14] = Wall(HALF_ROWS, HALF_COLS-6);
+        walls[15] = Wall(HALF_ROWS, HALF_COLS-7);
+        walls[16] = Wall(HALF_ROWS, HALF_COLS+1);
+        walls[17] = Wall(HALF_ROWS, HALF_COLS+2);
+        walls[18] = Wall(HALF_ROWS, HALF_COLS+3);
+        walls[19] = Wall(HALF_ROWS, HALF_COLS+4);
+        walls[20] = Wall(HALF_ROWS, HALF_COLS+5);
+        walls[21] = Wall(HALF_ROWS, HALF_COLS+6);
+        walls[22] = Wall(HALF_ROWS, HALF_COLS+7);
+        
+
+        doors[0] = Door(0,HALF_COLS-2);   //north doors
+        doors[1] = Door(0,HALF_COLS-1);
+        doors[2] = Door(0,HALF_COLS);
+        doors[3] = Door(0,HALF_COLS+1);
+        doors[4] = Door(0,HALF_COLS+2);
+        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+        doors[10] = Door(HALF_ROWS-1,0);   //west doors
+        doors[11] = Door(HALF_ROWS,0);
+        doors[12] = Door(HALF_ROWS+1,0);
+        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+    }
+};
+
+
+class Template_6 : public General_template {
+public:
+    Template_6() : General_template(10,17,0)
+    {
+        walls[0] = Wall((BOARD_ROWS/3+2)*2,1);
+        walls[1] = Wall((BOARD_ROWS/3+2)*2,2);
+        walls[2] = Wall((BOARD_ROWS/3+2)*2,3);
+        walls[3] = Wall((BOARD_ROWS/3+2)*2,4);
+        walls[4] = Wall((BOARD_ROWS/3+2)*2,5);
+        walls[5] = Wall((BOARD_ROWS/3+2)*2,6);
+        walls[6] = Wall((BOARD_ROWS/3+2)*2,7);
+        
+        walls[7] = Wall((BOARD_ROWS/3+2)*2,9);
+        walls[8] = Wall((BOARD_ROWS/3+2)*2,10);
+        walls[9] = Wall((BOARD_ROWS/3+2)*2+1,10);
+        walls[10] = Wall((BOARD_ROWS/3+2)*2+2,10);
+        
+        doors[16] = Door((BOARD_ROWS/3+2)*2,8);
+
+        doors[0] = Door(0,HALF_COLS-2);   //north doors
+        doors[1] = Door(0,HALF_COLS-1);
+        doors[2] = Door(0,HALF_COLS);
+        doors[3] = Door(0,HALF_COLS+1);
+        doors[4] = Door(0,HALF_COLS+2);
+        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+        doors[10] = Door(HALF_ROWS-1,0);   //west doors
+        doors[11] = Door(HALF_ROWS,0);
+        doors[12] = Door(HALF_ROWS+1,0);
+        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+
+    }
+};
