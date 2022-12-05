@@ -3,12 +3,12 @@
 
 Hero::Hero() : Character(def, herostarty, herostartx,'P')
 {	
-    
 }
 
 Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
 {   
 }
+
 /*
 Hero::Hero(const Hero& h) 
 {
@@ -18,22 +18,51 @@ Hero::Hero(const Hero& h)
 //per l'inizializzazione della classe
 void Hero::tankClass() 
 {
+    this->hp = 30;
+    this->ac = 3;
+    this->dmg = 2;
+    this->speed = 1;
+    this->reload_time=3;
+    this->range = 2;
 }
 
 void Hero::rogueClass() 
 {
+    this->hp = 20;
+    this->ac = 2;
+    this->dmg = 3;
+    this->speed = 4;
+    this->reload_time=2;
+    this->range = 2;
 }
 
 void Hero::rangerClass() 
 {
+    this->hp = 16;
+    this->ac = 1;
+    this->dmg = 1;
+    this->speed = 3;
+    this->reload_time=1;
+    this->range = 10;
 }
 
 void Hero::mageClass() 
 {
+    this->hp = 16;
+    this->ac = 1;
+    this->dmg = 3;
+    this->speed = 2;
+    this->reload_time=4;
+    this->range = 8;
 }
 
 void Hero::useAbility() 
 {
+}
+
+void Hero::attack(Direction dir) 
+{
+    
 }
 
 void Hero::centerHero(Direction dir) {

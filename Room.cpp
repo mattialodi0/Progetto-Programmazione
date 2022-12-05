@@ -7,7 +7,7 @@ Room::Room() {
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    initializeRoomTemplate(0);
+    initializeRoomTemplate(5);
     this->room_template_number = 0;
 }
 
@@ -41,7 +41,7 @@ void Room::initializeRoomTemplate(int template_num) {
         this->room_template = new Template_4();
         break;
     case 5:
-        this->room_template = new Template_5();
+        this->room_template = new Template_5i();
         break;
     case 6:
         this->room_template = new Template_6();

@@ -4,11 +4,13 @@
 Character::Character()
 {
 	setDirection(def);
+	hp=0; ac=0; dmg=0; speed=0; reload_time=0; range=0;
 }
 
 Character::Character(Direction dir, int x, int y, chtype ch) : Drawable(y,x,ch)
 {
 	//Drawable(y,x,ch);
+	hp=0; ac=0; dmg=0; speed=0; reload_time=0; range=0;
 	setDirection(dir);
 }
 

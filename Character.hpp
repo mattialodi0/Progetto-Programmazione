@@ -9,6 +9,13 @@ class Character : public Drawable
 {	
 protected:
 	Direction cur_direction;
+
+	int hp;
+	int ac;
+	int dmg;
+	int speed;
+	int reload_time;
+	int range;
 public:
 	Character();
 	Character(Direction dir, int x, int y, chtype ch);

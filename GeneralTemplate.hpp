@@ -23,6 +23,11 @@ public:
     General_template();
     General_template(int w, int d, int e);
     ~General_template();
+
+    void drawDoors();
+
+    int drawFilledSquare(int start_y, int start_x, int h_height, int h_width, int i);
+    int drawOrtogonalCross(int start_y, int start_x, int h_height, int h_width, int i);
 };
 
 
@@ -84,7 +89,7 @@ public:
     }
 };
 
-
+//orizontal line
 class Template_2 : public General_template {
 public:
     Template_2() : General_template(8,16,1)
@@ -121,7 +126,7 @@ public:
     }
 };
 
-
+//verical line
 class Template_3 : public General_template {
 public:
     Template_3() : General_template(7,16,1)
@@ -157,7 +162,7 @@ public:
     }
 };
 
-
+//square
 class Template_4 : public General_template {
 public:
     Template_4() : General_template(18,16,0)
@@ -201,7 +206,7 @@ public:
     }
 };
 
-
+//ortogonal cross
 class Template_5 : public General_template {
 public:
     Template_5() : General_template(23,16,0)
@@ -250,7 +255,17 @@ public:
     }
 };
 
+class Template_5i : public General_template {
+public:
+    Template_5i() : General_template(19,16,0)
+    {
+        drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
+        drawDoors();
+    }
+};
+
+//wall & door
 class Template_6 : public General_template {
 public:
     Template_6() : General_template(10,17,0)
@@ -286,6 +301,5 @@ public:
         doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
         doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
         doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
-
     }
 };

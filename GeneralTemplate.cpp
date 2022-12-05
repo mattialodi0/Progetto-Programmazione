@@ -12,8 +12,54 @@ General_template::General_template(int w, int d, int e)
     enemies = new pEn[enemies_num];
 }
 
-General_template::~General_template() {
+General_template::~General_template() 
+{
     delete [] walls;
     delete [] doors;
     delete [] enemies;
+}
+
+void General_template::drawDoors()
+{
+    doors[0] = Door(0,HALF_COLS-2);   //north doors
+    doors[1] = Door(0,HALF_COLS-1);
+    doors[2] = Door(0,HALF_COLS);
+    doors[3] = Door(0,HALF_COLS+1);
+    doors[4] = Door(0,HALF_COLS+2);
+    doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+    doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+    doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+    doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+    doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+    doors[10] = Door(HALF_ROWS-1,0);   //west doors
+    doors[11] = Door(HALF_ROWS,0);
+    doors[12] = Door(HALF_ROWS+1,0);
+    doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+    doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+    doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+}
+
+//funzioni per disegnare set di muri
+//assumiamo che lo si possa sempre fare, cioè che non sbattano con pareti ecc
+int General_template::drawFilledSquare(int start_y, int start_x, int h_height, int h_width, int i) 
+{
+
+}
+
+int General_template::drawOrtogonalCross(int start_y, int start_x, int h_height, int h_width, int i) 
+{
+    //this->walls_num += (1+2*h_height+2*h_width);
+    walls[i] = Wall(start_y, start_x); i++;
+    for(int j=1; j <= h_height; j++)
+    {
+        walls[i] = Wall(start_y+j, start_x); i++;
+        walls[i] = Wall(start_y-j, start_x); i++;
+    }
+    for(int k=1; k <= h_width; k++)
+    {
+        walls[i] = Wall(start_y, start_x+k); i++;
+        walls[i] = Wall(start_y, start_x-k); i++;
+    }
+
+    return i;
 }

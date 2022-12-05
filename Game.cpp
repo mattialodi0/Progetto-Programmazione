@@ -42,21 +42,29 @@ void Game::processInput()
 	int old_timeout = game_board.getTimeout();
 	switch (input)
 	{
-	case KEY_UP:
 	case 'w':
 		hero.setDirection(up);
 		break;
-	case KEY_DOWN:
 	case 's':
 		hero.setDirection(down);
 		break;
-	case KEY_RIGHT:
 	case 'd':
 		hero.setDirection(dx);
 		break;
-	case KEY_LEFT:
 	case 'a':
 		hero.setDirection(sx);
+		break;
+	case KEY_UP:
+		hero.attack(up);
+		break;
+	case KEY_DOWN:
+		hero.attack(down);
+		break;
+	case KEY_RIGHT:
+		hero.attack(dx);
+		break;
+	case KEY_LEFT:
+		hero.attack(sx);
 		break;
 	case 'f':
 		hero.useAbility(); 	//abilità speciale della classe
@@ -128,7 +136,7 @@ void Game::checkCollisions()
 		hero.moveCharacter();
 		break;	
 	case 'O':		//cambia stanza
-		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-1 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
+		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-2 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
 			hero.moveCharacter();
 		else
 			manageDoor();
@@ -154,23 +162,23 @@ void Game::manageDoor() {
 			else	
 				makeNorthRoom();
 		}
-		else if(hero.gety() >= BOARD_ROWS-1) 
+		else if(hero.gety() >= BOARD_ROWS-2) 
 		{
-			if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->south != NULL)		//searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
 				moveToSouthRoom();
 			else	
 				makeSouthRoom();
 		}
 		else if(hero.getx() <= 1) 
 		{
-			if(searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->west != NULL)		//searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
 				moveToWestRoom();
 			else	
 				makeWestRoom();
 		}
 		else if(hero.getx() >= BOARD_COLS-2) 
 		{
-			if(searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->est != NULL)		//searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
 				moveToEstRoom();
 			else	
 				makeEstRoom();
