@@ -128,7 +128,7 @@ void Game::checkCollisions()
 		hero.moveCharacter();
 		break;	
 	case 'O':		//cambia stanza
-		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-1 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
+		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-2 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
 			hero.moveCharacter();
 		else
 			manageDoor();
@@ -154,7 +154,7 @@ void Game::manageDoor() {
 			else	
 				makeNorthRoom();
 		}
-		else if(hero.gety() >= BOARD_ROWS-1) 
+		else if(hero.gety() >= BOARD_ROWS-2) 
 		{
 			if(searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
 				moveToSouthRoom();
