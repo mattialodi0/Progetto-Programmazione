@@ -104,22 +104,7 @@ public:
         walls[7] = Wall(BOARD_ROWS/3*2,8);
 
 
-        doors[0] = Door(0,HALF_COLS-2);   //north doors
-        doors[1] = Door(0,HALF_COLS-1);
-        doors[2] = Door(0,HALF_COLS);
-        doors[3] = Door(0,HALF_COLS+1);
-        doors[4] = Door(0,HALF_COLS+2);
-        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-        doors[10] = Door(HALF_ROWS-1,0);   //west doors
-        doors[11] = Door(HALF_ROWS,0);
-        doors[12] = Door(HALF_ROWS+1,0);
-        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+        drawDoors();
 
         enemies[0] = new Chaser();      //coward
         enemies[0]->setDirection(def);
@@ -140,22 +125,7 @@ public:
         walls[6] = Wall(7,(BOARD_ROWS/3+2)*2);
 
 
-        doors[0] = Door(0,HALF_COLS-2);   //north doors
-        doors[1] = Door(0,HALF_COLS-1);
-        doors[2] = Door(0,HALF_COLS);
-        doors[3] = Door(0,HALF_COLS+1);
-        doors[4] = Door(0,HALF_COLS+2);
-        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-        doors[10] = Door(HALF_ROWS-1,0);   //west doors
-        doors[11] = Door(HALF_ROWS,0);
-        doors[12] = Door(HALF_ROWS+1,0);
-        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+        drawDoors();
 
         enemies[0] = new Chaser();
         enemies[0]->setDirection(def);
@@ -187,22 +157,7 @@ public:
         walls[17] = Wall(HALF_ROWS+1, HALF_COLS-2);
         
 
-        doors[0] = Door(0,HALF_COLS-2);   //north doors
-        doors[1] = Door(0,HALF_COLS-1);
-        doors[2] = Door(0,HALF_COLS);
-        doors[3] = Door(0,HALF_COLS+1);
-        doors[4] = Door(0,HALF_COLS+2);
-        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-        doors[10] = Door(HALF_ROWS-1,0);   //west doors
-        doors[11] = Door(HALF_ROWS,0);
-        doors[12] = Door(HALF_ROWS+1,0);
-        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+        drawDoors();
     }
 };
 
@@ -236,22 +191,7 @@ public:
         walls[22] = Wall(HALF_ROWS, HALF_COLS+7);
         
 
-        doors[0] = Door(0,HALF_COLS-2);   //north doors
-        doors[1] = Door(0,HALF_COLS-1);
-        doors[2] = Door(0,HALF_COLS);
-        doors[3] = Door(0,HALF_COLS+1);
-        doors[4] = Door(0,HALF_COLS+2);
-        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-        doors[10] = Door(HALF_ROWS-1,0);   //west doors
-        doors[11] = Door(HALF_ROWS,0);
-        doors[12] = Door(HALF_ROWS+1,0);
-        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+        drawDoors();
     }
 };
 
@@ -285,21 +225,6 @@ public:
         
         doors[16] = Door((BOARD_ROWS/3+2)*2,8);
 
-        doors[0] = Door(0,HALF_COLS-2);   //north doors
-        doors[1] = Door(0,HALF_COLS-1);
-        doors[2] = Door(0,HALF_COLS);
-        doors[3] = Door(0,HALF_COLS+1);
-        doors[4] = Door(0,HALF_COLS+2);
-        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-        doors[10] = Door(HALF_ROWS-1,0);   //west doors
-        doors[11] = Door(HALF_ROWS,0);
-        doors[12] = Door(HALF_ROWS+1,0);
-        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+        drawDoors();
     }
 };
