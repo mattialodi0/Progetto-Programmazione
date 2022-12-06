@@ -7,6 +7,7 @@
 //#include "../enemies/Shooter.hpp"
 #include "room_objects/Door.hpp"
 #include "room_objects/Wall.hpp"
+#include <cstdlib>
 
 #define HALF_COLS BOARD_COLS/2
 #define HALF_ROWS BOARD_ROWS/2
@@ -26,7 +27,11 @@ public:
 
     void drawDoors();
 
-    int drawFilledSquare(int start_y, int start_x, int h_height, int h_width, int i);
+    int drawRandom(int num, int ya, int xa, int yb, int xb, int i);
+    int drawHorizontalLine( int num, int start_y, int start_x, int i);
+    int drawVerticalLine( int num, int start_y, int start_x, int i);
+    int drawFilledSquare(int start_y, int start_x, int height, int width, int i);
+    int drawEmptySquare(int start_y, int start_x, int height, int width, int i);
     int drawOrtogonalCross(int start_y, int start_x, int h_height, int h_width, int i);
 };
 
@@ -41,22 +46,17 @@ public:
         walls[3] = Wall(3,25); 
         walls[4] = Wall(8,30); 
 
-        doors[0] = Door(0,HALF_COLS-2);   //north doors
-        doors[1] = Door(0,HALF_COLS-1);
-        doors[2] = Door(0,HALF_COLS);
-        doors[3] = Door(0,HALF_COLS+1);
-        doors[4] = Door(0,HALF_COLS+2);
-        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-        doors[10] = Door(HALF_ROWS-1,0);   //west doors
-        doors[11] = Door(HALF_ROWS,0);
-        doors[12] = Door(HALF_ROWS+1,0);
-        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+        drawDoors();
+    }
+};
+
+class Template_0i : public General_template {
+public:
+    Template_0i() : General_template(10,16,0)
+    {
+        drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
+
+        drawDoors();
     }
 };
 
@@ -67,22 +67,7 @@ public:
     {
         walls[0] = Wall(10,15);
         
-        doors[0] = Door(0,HALF_COLS-2);   //north doors
-        doors[1] = Door(0,HALF_COLS-1);
-        doors[2] = Door(0,HALF_COLS);
-        doors[3] = Door(0,HALF_COLS+1);
-        doors[4] = Door(0,HALF_COLS+2);
-        doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-        doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-        doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-        doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-        doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-        doors[10] = Door(HALF_ROWS-1,0);   //west doors
-        doors[11] = Door(HALF_ROWS,0);
-        doors[12] = Door(HALF_ROWS+1,0);
-        doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-        doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-        doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+        drawDoors();
 
         enemies[0] = new Drunk();
         enemies[0]->setDirection(def);
@@ -111,6 +96,20 @@ public:
     }
 };
 
+//orizontal line
+class Template_2i : public General_template {
+public:
+    Template_2i() : General_template(8,16,1)
+    {
+        drawHorizontalLine(8, BOARD_ROWS/3*2, 1, 0);
+
+        drawDoors();
+
+        enemies[0] = new Chaser();      //coward
+        enemies[0]->setDirection(def);
+    }
+};
+
 //verical line
 class Template_3 : public General_template {
 public:
@@ -124,6 +123,20 @@ public:
         walls[5] = Wall(6,(BOARD_ROWS/3+2)*2);
         walls[6] = Wall(7,(BOARD_ROWS/3+2)*2);
 
+
+        drawDoors();
+
+        enemies[0] = new Chaser();
+        enemies[0]->setDirection(def);
+    }
+};
+
+//verical line
+class Template_3i : public General_template {
+public:
+    Template_3i() : General_template(7,16,1)
+    {
+        drawVerticalLine(7, 1, (BOARD_ROWS/3+2)*2, 0);
 
         drawDoors();
 
@@ -156,6 +169,28 @@ public:
         walls[16] = Wall(HALF_ROWS, HALF_COLS-2);
         walls[17] = Wall(HALF_ROWS+1, HALF_COLS-2);
         
+
+        drawDoors();
+    }
+};
+
+//filled square
+class Template_4i : public General_template {
+public:
+    Template_4i() : General_template(15,16,0)
+    {
+        drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
+
+        drawDoors();
+    }
+};
+
+//empty square
+class Template_4ii : public General_template {
+public:
+    Template_4ii() : General_template(12,16,0)
+    {
+        drawEmptySquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
         drawDoors();
     }

@@ -7,7 +7,7 @@ Room::Room() {
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    initializeRoomTemplate(0);
+    initializeRoomTemplate(3);
     this->room_template_number = 0;
 }
 
@@ -26,19 +26,19 @@ void Room::initializeRoomTemplate(int template_num) {
     switch (template_num)
     {
     case 0:
-        this->room_template = new Template_0();
+        this->room_template = new Template_0i();
         break;
     case 1:
         this->room_template = new Template_1();
         break;
     case 2:
-        this->room_template = new Template_2();
+        this->room_template = new Template_2i();
         break;
     case 3:
-        this->room_template = new Template_3();
+        this->room_template = new Template_3i();
         break;
     case 4:
-        this->room_template = new Template_4();
+        this->room_template = new Template_4i();
         break;
     case 5:
         this->room_template = new Template_5i();
@@ -91,8 +91,8 @@ bool Room::isClear() {
 
 void Room::drawEnemies(Board board) {
     for(int i = 0; i < room_template->enemies_num; i++) {    
-        board.add(*room_template->enemies[i]);
-        //board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->gety(), room_template->enemies[i]->getIcon());
+        //board.add(*room_template->enemies[i]);
+        board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->gety(), room_template->enemies[i]->getIcon());
     }
    // wrefresh(board);
 }

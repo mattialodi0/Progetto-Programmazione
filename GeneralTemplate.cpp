@@ -41,9 +41,68 @@ void General_template::drawDoors()
 
 //funzioni per disegnare set di muri
 //assumiamo che lo si possa sempre fare, cioè che non sbattano con pareti ecc
-int General_template::drawFilledSquare(int start_y, int start_x, int h_height, int h_width, int i) 
-{
 
+/*a,b,c,d sono i verici dell area in cui diseganre gli n muri*/
+int General_template::drawRandom(int num, int ya, int xa, int yb, int xb, int i)
+{
+    //this->walls_num += num;
+    for(int j=0; j < num; j++)
+    {
+        int y,x;
+        y = rand()%(yb-ya)+ya;
+        x = rand()%(xb-xa)+xa;
+        walls[i] = Wall(y, x); i++;
+    }
+    return i;
+}
+
+int General_template::drawHorizontalLine(int num, int start_y, int start_x, int i)
+{
+    //this->walls_num += num;
+    for(int j=0; j < num; j++)
+    {
+        walls[i] = Wall(start_y, start_x+j); i++;
+    }
+    return i;
+}
+
+int General_template::drawVerticalLine( int num, int start_y, int start_x, int i)
+{
+    //this->walls_num += num;
+    for(int j=0; j < num; j++)
+    {
+        walls[i] = Wall(start_y+j, start_x); i++;
+    }
+    return i;
+}
+
+int General_template::drawFilledSquare(int start_y, int start_x, int height, int width, int i) 
+{
+    //this->walls_num += heigth*widht;
+    for(int j=0; j < height; j++)
+    {
+        for(int k=0; k < width; k++)
+        {
+            walls[i] = Wall(start_y+j, start_x+k); i++;
+        }
+    }
+    return i;
+}
+
+int General_template::drawEmptySquare(int start_y, int start_x, int height, int width, int i) 
+{
+    //this->walls_num += 2*(heigth+widht)-1;
+    for(int j=0; j < width; j++)
+    {
+        walls[i] = Wall(start_y, start_x+j); i++;
+        walls[i] = Wall(start_y+height-1, start_x+j); i++;
+    }
+    for(int j=1; j < height-1; j++)
+    {
+        walls[i] = Wall(start_y+j, start_x); i++;
+        walls[i] = Wall(start_y+j, start_x+width-1); i++;
+    }
+    return i;
 }
 
 int General_template::drawOrtogonalCross(int start_y, int start_x, int h_height, int h_width, int i) 

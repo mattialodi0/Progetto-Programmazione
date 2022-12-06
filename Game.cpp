@@ -2,6 +2,8 @@
 
 Game::Game(int height, int width, int speed)
 {
+	srand(time(0));
+	
 	game_board = Board(height, width, speed);
 	game_board.initialize();
 
