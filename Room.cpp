@@ -7,7 +7,7 @@ Room::Room() {
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    initializeRoomTemplate(3);
+    initializeRoomTemplate(0);
     this->room_template_number = 0;
 }
 
@@ -52,7 +52,7 @@ void Room::initializeRoomTemplate(int template_num) {
     }
 }
 
-Room* Room::findRoom(vector<Room*> room_index, int x, int y){
+Room* Room::findRoom(vector<Room*> room_index, int y, int x){
     int n = -1;
 		for(int i = 0; i < room_index.size(); i++)
 		{

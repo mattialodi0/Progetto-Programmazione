@@ -5,9 +5,9 @@
 #include "Drawable.hpp"
 #include "Time.hpp"
 
-const int BOARD_DIM = 17;//25;					//ho tolto extern
+const int BOARD_DIM = 25;					//prima era 17
 const int BOARD_ROWS = BOARD_DIM;
-const int BOARD_COLS = BOARD_DIM * 2.5;
+const int BOARD_COLS = BOARD_DIM * 2.7;//2.5;
 
 
 class Board

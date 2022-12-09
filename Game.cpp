@@ -3,16 +3,19 @@
 Game::Game(int height, int width, int speed)
 {
 	srand(time(0));
+
+	int yMax, xMax;
+	getmaxyx(stdscr, yMax, xMax);
 	
-	game_board = Board(height, width, speed);
+	game_board = Board(height, width, (yMax/2)-(height/2), (xMax/2)-(width/2)-(width/4)-1, speed);
 	game_board.initialize();
 
-	score_board = Board(height/3, width/2, 15, 110, speed); //10,90
+	score_board = Board(height/3, width/2, (yMax/2)-(height/2), (xMax/2)+(width/4)+1, speed);
 	score_board.initialize();
 	score_board.print("ScoreBoard");
 	score_board.refreshBoard();
 
-	stat_board = Board(height-height/3, width/2, 20, 110, speed);	//15, 90
+	stat_board = Board(height-height/3, width/2, (yMax/2)-(height/2)+(height/3), (xMax/2)+(width/4)+1, speed);
 	stat_board.initialize();
 	stat_board.print("StatBoard");
 	stat_board.refreshBoard();

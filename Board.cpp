@@ -9,9 +9,9 @@ Board::Board(int height, int width, int speed)
 {
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
-	timeout = speed;
 	board_win = newwin(height, width, (yMax / 2) - (height / 2),
 					   (xMax / 2) - (width / 2));
+	timeout = speed;
 	setTimeout(speed);
 	keypad(board_win, true);
 }
@@ -20,8 +20,8 @@ Board::Board(int height, int width, int starty, int startx, int speed)
 {
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
-	timeout = speed;
 	board_win = newwin(height, width, starty, startx);
+	timeout = speed;
 	setTimeout(speed);
 	keypad(board_win, true);
 }
