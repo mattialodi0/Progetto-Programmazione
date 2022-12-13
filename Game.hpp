@@ -23,7 +23,7 @@ private:
 	Room* current_room;
    	vector<Room*> room_index;
 
-    int canMove;
+    int canMove=0;
 public:
 	Game(int height, int width, int speed);
 	~Game();
@@ -33,7 +33,7 @@ public:
     void updateScreen();
 private:
     void redraw();
-    void checkCollisions();
+    void manageHeroMovement();
 // funzioni per le stanze
 	void manageDoor();
 

@@ -1,5 +1,5 @@
 #include "Artifact.hpp"
-
+//raggifrocio
 Artifact::Artifact(): Drawable(x,y,RandomArtifact())
 {
    

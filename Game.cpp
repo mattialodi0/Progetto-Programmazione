@@ -28,7 +28,7 @@ Game::Game(int height, int width, int speed)
 	current_room  = new Room;
 	room_index.emplace_back(current_room);
 
-	canMove = 1;
+	canMove = 0;
 }
 
 Game::~Game()
@@ -92,7 +92,7 @@ void Game::updateState()
 {
 	// hero
 	//game_board.remove(hero);
-	checkCollisions();
+	manageHeroMovement();
 	hero.setDirection(def);								//--> da mettere edentro a hero
 	//enemies
 	if(canMove<=0){
@@ -117,7 +117,7 @@ void Game::redraw() // riaggiunge
 	game_board.add(hero);
 }
 
-void Game::checkCollisions()
+void Game::manageHeroMovement()
 {
 
 	int offsety = 0, offsetx = 0;

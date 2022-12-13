@@ -44,7 +44,7 @@ void Drunk::checkProjectile(Board board_win, Character hero)
 }
 
 
-void Drunk::ChooseDirection(Board board_win, Character &hero)
+void Drunk::chooseDirection(Board board_win, Character &hero)
 {
 	{
 		int n = (rand() % 5) - 2;

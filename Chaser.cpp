@@ -41,7 +41,7 @@ void Chaser::checkProjectile(Board board_win, Character hero)
     }
 }
 
-void Chaser::ChooseDirection(Board board_win, Character &hero)
+void Chaser::chooseDirection(Board board_win, Character &hero)
 {
     if(this->reload<=0){
         int distancex, distancey;

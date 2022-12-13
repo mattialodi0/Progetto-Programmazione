@@ -2,7 +2,6 @@
 #pragma once
 
 #include "Enemy.hpp"
-#include "Hero.hpp"
 
 class Chaser : public Enemy
 {
@@ -13,5 +12,5 @@ public:
     //uguale a shooter ma meno range
     void checkProjectile(Board board_win, Character hero);
     //ti viene vicino e spara un piccolo proiettile e viene stunnato
-    void ChooseDirection(Board board_win, Character &hero) override;
+    void chooseDirection(Board board_win, Character &hero) override;
 };

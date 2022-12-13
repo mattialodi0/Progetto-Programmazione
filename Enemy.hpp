@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Character.hpp"
 #include "Projectile.hpp"
 #include <vector>
 
@@ -17,14 +18,14 @@ protected:
     int mem=0;
     int reload=0;
 public:
-    std::vector<Projectile *> projectile;
+    std::vector<Projectile*> projectile;
 public:
     Enemy(Direction dir, int x, int y, chtype ch);
     virtual void createProjectile(Direction dir) {}
     virtual void checkProjectile(Board board_win, Character hero) {}
     
     // metodo astratto per scelta automatica di direzione dei nemici
-	virtual void ChooseDirection(Board board_win, Character &hero) {}
+	virtual void chooseDirection(Board board_win, Character &hero) {}
 
     bool hasLos(Board board_win, Character hero, int y, int x);
 };  

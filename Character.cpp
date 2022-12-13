@@ -64,16 +64,8 @@ bool Character::checkCollision(Board board_win)
 	{
 	case ' ':
 	case 'F':
-	case 'H':
-	case 'O':		//cambia stanza
+	case 'H':	
 		return true;
-		break;
-	case 'Q':
-	return false;
-		// porta chiuisa:
-		// controlla se il giocatore ha una chiave
-		// se ne ha, ne toglie una e cambia il carattere di tutta la porta
-		// e fa manageDoor();
 		break;
 	default:
 		return false;

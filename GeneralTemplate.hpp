@@ -2,9 +2,9 @@
 
 #include "Board.hpp"
 #include "Chaser.hpp"   //../enemies/
-//#include "../enemies/Coward.hpp"
+#include "Coward.hpp"
 #include "Drunk.hpp"
-//#include "../enemies/Shooter.hpp"
+#include "Shooter.hpp"
 #include "room_objects/Door.hpp"
 #include "room_objects/Wall.hpp"
 #include <cstdlib>
@@ -57,6 +57,8 @@ public:
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
         drawDoors();
+        // enemies[0] = new Drunk();
+        // enemies[0]->setDirection(def);
     }
 };
 
