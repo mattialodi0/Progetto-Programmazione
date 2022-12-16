@@ -9,7 +9,7 @@ const int enemy_memory=7;
 const int range=11;
 const int melee_range=2;
 const int melee_enemy_reload=5;
-const int sight_range= 100;
+const int sight_range= 10;
 const int default_coord_x= 10;
 const int default_coord_y=10;
 

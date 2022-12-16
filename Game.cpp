@@ -97,10 +97,10 @@ void Game::updateState()
 	//enemies
 	if(canMove<=0){
 		current_room->moveEnemies(game_board, hero);
-		canMove--;
+		canMove=GameSpeed;
 	}
 	else{
-		canMove=GameSpeed;
+		canMove--;
 	}
 }
 
