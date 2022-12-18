@@ -5,47 +5,56 @@ Enemy::Enemy(Direction dir, int x, int y, chtype ch):Character(dir,x,y,ch)
 {
 }    
 
-bool Enemy::hasLos(Board board_win, Character hero, int y, int x)
+bool Enemy::hasLos(Board board_win, Character &hero)
 {
     int i=0,k=0;
     int distancex, distancey;
-    distancex = x - hero.getx();
-    distancey = y - hero.gety();
-    if (abs(distancex) > abs(distancey))
+    distancex = this->x - hero.getx();
+    distancey = this->y - hero.gety();
+    bool trovato=false;
+    bool empty=true;
+    while(!trovato && empty){
+
+    empty=false;
+
+        if (abs(distancex) > abs(distancey))
     {
         if (distancex < 0)
         {
+            distancex++;
             k++;
         }
         else
         {
+            distancex--;
             k--;
         }
     }
-    else
-    {
-        if (abs(distancex) <= abs(distancey))
+    
+      if (abs(distancex) <= abs(distancey))
         {
             if (distancey < 0)
             {
+                distancey++;
                 i++;
             }
             else
             {
+                distancey--;
                 i--;
             }
         }
-    }
-    chtype f =board_win.getCharAt(y+i,x+k);
-        if(f==hero.getIcon()){
-            return true;
+
+
+
+    if(board_win.getCharAt(this->y+i,this->x+k)==' '){
+    empty==true;
+}
+
+if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
+    trovato==true;
+}
+
         }
-        else{
-            if(f!=' '){
-                return false;
-            }
-            else{
-                return hasLos(board_win, hero, y+i,x+k);
-            }
-        }
+        return trovato;
 }

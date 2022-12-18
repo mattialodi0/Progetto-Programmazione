@@ -74,11 +74,11 @@ void Room::drawRoom(Board board) {
 
 void Room::moveEnemies(Board board, Hero hero) {
     for(int i = 0; i < room_template->enemies_num; i++) {    
-         /*this->room_template->enemies[i]->chooseDirection(board, hero);
+         this->room_template->enemies[i]->chooseDirection(board, hero);
        if(this->room_template->enemies[i]->checkCollision(board)) {
             this->room_template->enemies[i]->moveCharacter();
             
-        }*/
+        }
     }
 }
 

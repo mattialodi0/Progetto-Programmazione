@@ -48,13 +48,13 @@ void Chaser::chooseDirection(Board board_win, Character &hero)
         distancex = this->x - hero.getx();
         distancey = this->y - hero.gety();
         //se sei vicino
-        if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < sight_range && abs(distancey) < sight_range)
+        if(hasLos(board_win, hero) && abs(distancex) < sight_range && abs(distancey) < sight_range)
         {
             this->mem=enemy_memory;
         }
         if (this->mem>0)
         {
-            if(abs(distancex) < melee_range && abs(distancey) < melee_range){
+            if(abs(distancex) <= melee_range && abs(distancey) <= melee_range){
                 if(distancey==0){
                     if(distancex>0){
                         createProjectile(sx);

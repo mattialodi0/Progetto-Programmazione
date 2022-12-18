@@ -17,7 +17,7 @@ void Coward::createProjectile(Direction dir)
     */
 }
 
-void Coward::checkProjectile(Board board_win, Character hero)
+void Coward::checkProjectile(Board board_win, Character &hero)
 {
     /*
     for (int i = 0; i < projectile.size(); i++)
@@ -49,7 +49,7 @@ void Coward::chooseDirection(Board board_win, Character &hero)
         int distancex, distancey;
         distancex = this->x - hero.getx();
         distancey = this->y - hero.gety();
-            if(hasLos(board_win, hero, this->y, this->x) && abs(distancex) < sight_range && abs(distancey) < sight_range){
+            if(hasLos(board_win, hero) && abs(distancex) < sight_range && abs(distancey) < sight_range){
             this->mem=enemy_memory;
             }
         if (this->mem>0){

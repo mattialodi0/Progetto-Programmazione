@@ -18,7 +18,7 @@ void Drunk::createProjectile(Direction dir)
     }
 }
 
-void Drunk::checkProjectile(Board board_win, Character hero)
+void Drunk::checkProjectile(Board board_win, Character &hero)
 {
     for (int i = 0; i < projectile.size(); i++)
 	{
