@@ -1,30 +1,16 @@
-//file principale con il main che crea l'oggetto di gioco
-
-#include "Game.hpp"
+#include <iostream>
 #include <ncurses.h>
+#include "menu.cpp"
+#include "menu_playing.cpp"
+using namespace std;
 
 
-int main() {
-    initscr();
-    cbreak();
-    noecho();
-    refresh();
-
-    Game game;    //istanzaiamento oggetto che gestisce il gioco
-
-    while(game.isNotOver()) 
-    {   //loop pricipale
-
-        game.processInput();
-
-        game.updateState();
-
-        game.updateScreen();
-
-    }
-
-    getch();
-    endwin();
-
+int main(){
+    
+    Menu menu;
+    Menu_playing menu_p;
+    
+    menu.menu();
+    // menu_p.menu();
     return 0;
 }
