@@ -10,7 +10,7 @@ public:
     //sprite diverso ma uguale
     void createProjectile(Direction dir) override;
     //uguale a shooter ma meno range
-    void checkProjectile(Board board_win, Character hero);
+    void checkProjectile(Board &board_win, Character &hero);
     //ti viene vicino e spara un piccolo proiettile e viene stunnato
-    void chooseDirection(Board board_win, Character &hero) override;
+    void chooseDirection(Board &board_win, Character &hero) override;
 };

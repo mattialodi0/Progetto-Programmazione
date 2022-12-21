@@ -24,5 +24,5 @@ public:
 	Direction getDirection();
 	void moveCharacter();
 
-	bool checkCollision(Board board_win);
+	bool checkCollision(Board &board_win);
 };

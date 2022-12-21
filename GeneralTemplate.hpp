@@ -57,8 +57,10 @@ public:
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
         drawDoors();
-         enemies[0] = new Chaser();
-         enemies[0]->setDirection(def);
+         enemies[0] = new Shooter();
+         enemies[0]->setDirection(def);/*
+          enemies[3] = new Drunk();
+         enemies[3]->setDirection(def);*/
     }
 };
 

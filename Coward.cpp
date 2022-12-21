@@ -1,6 +1,6 @@
 #include "Coward.hpp"
 
-Coward::Coward():Enemy(def,10,10,'K')
+Coward::Coward():Enemy(def,11,11,'K')
 {
 }
 
@@ -17,7 +17,7 @@ void Coward::createProjectile(Direction dir)
     */
 }
 
-void Coward::checkProjectile(Board board_win, Character &hero)
+void Coward::checkProjectile(Board &board_win, Character &hero)
 {
     /*
     for (int i = 0; i < projectile.size(); i++)
@@ -44,7 +44,7 @@ void Coward::checkProjectile(Board board_win, Character &hero)
     */
 }
 
-void Coward::chooseDirection(Board board_win, Character &hero)
+void Coward::chooseDirection(Board &board_win, Character &hero)
 {int i = 0;
         int distancex, distancey;
         distancex = this->x - hero.getx();

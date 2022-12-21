@@ -9,7 +9,7 @@ const int enemy_memory=7;
 const int range=11;
 const int melee_range=2;
 const int melee_enemy_reload=5;
-const int sight_range= 1000;
+const int sight_range= 2000;
 const int default_coord_x= 10;
 const int default_coord_y=10;
 
@@ -22,12 +22,12 @@ public:
 public:
     Enemy(Direction dir, int x, int y, chtype ch);
     virtual void createProjectile(Direction dir) {}
-    virtual void checkProjectile(Board board_win, Character &hero) {}
+    virtual void checkProjectile(Board &board_win, Character &hero) {}
     
     // metodo astratto per scelta automatica di direzione dei nemici
-	virtual void chooseDirection(Board board_win, Character &hero) {}
+	virtual void chooseDirection(Board &board_win, Character &hero) {}
 
-    bool hasLos(Board board_win, Character &hero);
+    bool hasLos(Board &board_win, Character &hero);
 };  
 
 typedef Enemy * pEn;

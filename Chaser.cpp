@@ -16,7 +16,7 @@ void Chaser::createProjectile(Direction dir)
     }
 }
 
-void Chaser::checkProjectile(Board board_win, Character hero)
+void Chaser::checkProjectile(Board &board_win, Character &hero)
 {
     for (int i = 0; i < projectile.size(); i++)
 	{
@@ -41,14 +41,14 @@ void Chaser::checkProjectile(Board board_win, Character hero)
     }
 }
 
-void Chaser::chooseDirection(Board board_win, Character &hero)
+void Chaser::chooseDirection(Board &board_win, Character &hero)
 {
     if(this->reload<=0){
         int distancex, distancey;
         distancex = this->x - hero.getx();
         distancey = this->y - hero.gety();
         //se sei vicino
-        if(hasLos(board_win, hero) && abs(distancex) < sight_range && abs(distancey) < sight_range)
+        if(hasLos(board_win, hero) &&  abs(distancex) < sight_range && abs(distancey) < sight_range)
         {
             this->mem=enemy_memory;
         }
@@ -84,7 +84,9 @@ void Chaser::chooseDirection(Board board_win, Character &hero)
                 }
                 else
                 {
+                    if(distancex>0){
                     setDirection(sx);
+                    }
                 }
             }
             else
@@ -97,7 +99,9 @@ void Chaser::chooseDirection(Board board_win, Character &hero)
                     }
                     else
                     {
+                        if(distancey>0){
                         setDirection(up);
+                        }
                     }
                 }
             }

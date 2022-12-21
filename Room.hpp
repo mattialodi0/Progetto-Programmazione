@@ -20,18 +20,18 @@ public:
 
     Room(int y, int x, vector<Room*> room_index);   //costruttore stanza generica
 
-    void drawRoom(Board board);
+    void drawRoom(Board &board);
 
-    void moveEnemies(Board board, Hero hero);
+    void moveEnemies(Board &board, Hero &hero);
 
     bool isClear();
 private:
     void initializeRoomTemplate(int template_num);
     Room* findRoom(vector<Room*> room_index, int y, int x);
     
-    void drawEnemies(Board board);
-    void drawWalls(Board board);
-    void drawDoors(Board board);
+    void drawEnemies(Board &board);
+    void drawWalls(Board &board);
+    void drawDoors(Board &board);
 
     //funzioni per i nemici
     void removeEnemy(int pos);

@@ -5,18 +5,15 @@ Enemy::Enemy(Direction dir, int x, int y, chtype ch):Character(dir,x,y,ch)
 {
 }    
 
-bool Enemy::hasLos(Board board_win, Character &hero)
+bool Enemy::hasLos(Board &board_win, Character &hero)
 {
-    int i=0,k=0;
+    int i=0,k=0, maxiter=0;
     int distancex, distancey;
     distancex = this->x - hero.getx();
     distancey = this->y - hero.gety();
-    bool trovato=false;
-    bool empty=true;
-    while(!trovato && empty){
 
-    empty=false;
-
+    do{ 
+        maxiter++;
         if (abs(distancex) > abs(distancey))
     {
         if (distancex < 0)
@@ -44,17 +41,14 @@ bool Enemy::hasLos(Board board_win, Character &hero)
                 i--;
             }
         }
-
-
-
-    if(board_win.getCharAt(this->y+i,this->x+k)==' '){
-    empty==true;
 }
+    while(board_win.getCharAt(this->y+i,this->x+k)==' '&& maxiter<sight_range+1);
 
+       
 if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
-    trovato==true;
+    return true;
 }
 
-        }
-        return trovato;
+        
+        return false;
 }

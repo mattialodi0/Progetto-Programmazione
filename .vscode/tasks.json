@@ -24,6 +24,8 @@
                 "Enemy.cpp",
                 "Room.cpp",
                 "Time.cpp",
+                "Coward.cpp",
+                "Shooter.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"

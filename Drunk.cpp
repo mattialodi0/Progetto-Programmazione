@@ -1,6 +1,6 @@
 #include "Drunk.hpp"
 
-Drunk::Drunk():Enemy(def,default_coord_x,default_coord_y,'D')
+Drunk::Drunk():Enemy(def,13,13,'D')
 {
 	
 }
@@ -18,7 +18,7 @@ void Drunk::createProjectile(Direction dir)
     }
 }
 
-void Drunk::checkProjectile(Board board_win, Character &hero)
+void Drunk::checkProjectile(Board &board_win, Character &hero)
 {
     for (int i = 0; i < projectile.size(); i++)
 	{
@@ -44,7 +44,7 @@ void Drunk::checkProjectile(Board board_win, Character &hero)
 }
 
 
-void Drunk::chooseDirection(Board board_win, Character &hero)
+void Drunk::chooseDirection(Board &board_win, Character &hero)
 {
 	{
 		int n = (rand() % 5) - 2;

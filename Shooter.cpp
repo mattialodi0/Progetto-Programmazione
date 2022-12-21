@@ -1,7 +1,7 @@
 #include "Shooter.hpp"
 
 
-Shooter::Shooter():Enemy(def,10,10,'S')
+Shooter::Shooter():Enemy(def,12,12,'S')
     {
     }
     //per creare proiettili
@@ -25,7 +25,7 @@ Shooter::Shooter():Enemy(def,10,10,'S')
     }
      }
      //per movimento proiettili e check di colpito o out of range
-     void Shooter::checkProjectile(Board board_win, Character &hero){
+     void Shooter::checkProjectile(Board &board_win, Character &hero){
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
@@ -40,16 +40,19 @@ Shooter::Shooter():Enemy(def,10,10,'S')
         }
         else{
           projectile[i]->moveCharacter();
-          if(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())){
+         
           board_win.add(*projectile[i]);
           }
         }
     }
         }
-     }
+     
      //va a una tua stessa linea o colonna per spararti e spara
-    void Shooter::chooseDirection(Board board_win, Character &hero)
+    void Shooter::chooseDirection(Board &board_win, Character &hero)
     {
+        setDirection(def);
+        
+    if(this->reload<=0){
          int distancex, distancey;
         distancex = this->x - hero.getx();
         distancey = this->y - hero.gety();
@@ -73,6 +76,7 @@ Shooter::Shooter():Enemy(def,10,10,'S')
                 }
                 else{
                     createProjectile(down);
+                    
                 }
             }
             else{
@@ -85,7 +89,9 @@ Shooter::Shooter():Enemy(def,10,10,'S')
                 }
                 else
                 {
+                    if(distancex>0){
                     setDirection(sx);
+                    }
                 }
             }
             else
@@ -98,12 +104,22 @@ Shooter::Shooter():Enemy(def,10,10,'S')
                     }
                     else
                     {
+                        if(distancey>0){
                         setDirection(up);
+                        }
                     }
                 }
             }
+            }
         }
             }
         }
+        else{
+            this->reload--;
+            setDirection(def);
+            }
+
          this->mem--;
+         
+         
     }

@@ -29,23 +29,23 @@ void Character::moveCharacter()
 	switch (cur_direction)
 	{
 	case down:
-		y++;
+		this->y++;
 		break;
 	case up:
-		y--;
+		this->y--;
 		break;
 	case sx:
-		x--;
+		this->x--;
 		break;
 	case dx:
-		x++;
+		this->x++;
 		break;
 	default:
 		break;
 	}
 }
 
-bool Character::checkCollision(Board board_win)
+bool Character::checkCollision(Board &board_win)
 {
 	int offsety = 0, offsetx = 0;
 	if (cur_direction == up || cur_direction == down)
