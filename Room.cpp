@@ -70,6 +70,7 @@ void Room::drawRoom(Board &board) {
     drawEnemies(board);
     drawWalls(board);
     drawDoors(board);
+    drawProjectiles(board);
 }
 
 void Room::moveEnemies(Board &board, Hero &hero) {
@@ -90,6 +91,15 @@ bool Room::isClear() {
 
 
 // funzioni private
+
+void Room::drawProjectiles(Board &board){
+for(int j = 0; j < room_template->enemies_num; j++) { 
+    for (int i = 0; i < room_template->enemies[j]->projectile.size(); i++)
+		{
+            board.add(*room_template->enemies[j]->projectile[i]);
+        }
+        }
+}
 
 void Room::drawEnemies(Board &board) {
     for(int i = 0; i < room_template->enemies_num; i++) {    

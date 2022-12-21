@@ -4,12 +4,12 @@
 #include "Projectile.hpp"
 #include <vector>
 
-const int enemy_reload=8;
+const int enemy_reload=5;
 const int enemy_memory=7;
-const int range=11;
-const int melee_range=2;
+const int enemy_range=11;
+const int melee_range=3;
 const int melee_enemy_reload=5;
-const int sight_range= 2000;
+const int sight_range= 20;
 const int default_coord_x= 10;
 const int default_coord_y=10;
 

@@ -27,3 +27,17 @@ chtype Drawable::getIcon()
 {
 	return this->icon;
 }
+void Drawable::sety(int y)
+{
+	 this->y=y;
+}
+
+void Drawable::setx(int x)
+{
+	this->x=x;
+}
+
+void Drawable::setIcon(chtype icon)
+{
+	this->icon=icon;
+}

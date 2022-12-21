@@ -29,6 +29,7 @@ private:
     void initializeRoomTemplate(int template_num);
     Room* findRoom(vector<Room*> room_index, int y, int x);
     
+    void drawProjectiles(Board &board);
     void drawEnemies(Board &board);
     void drawWalls(Board &board);
     void drawDoors(Board &board);

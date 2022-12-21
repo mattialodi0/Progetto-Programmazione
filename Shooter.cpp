@@ -1,24 +1,34 @@
 #include "Shooter.hpp"
 
 
-Shooter::Shooter():Enemy(def,12,12,'S')
+Shooter::Shooter():Enemy(def,15,15,'S')
     {
     }
     //per creare proiettili
      void Shooter::createProjectile(Direction dir)
      {
-                if(this->reload<=0){
-            this->reload=enemy_reload;
-        if(dir%2==0){ 
-            Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), '|');
-            projectile.push_back(new_proj); 
-        }
-             
-        else{
-             Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), '-');
-             projectile.push_back(new_proj); 
-        }
-        
+                 if(this->reload<=0){
+    this->reload=enemy_reload;
+    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety()+1, 'o');
+    projectile.push_back(new_proj);
+    switch(dir){
+    case up:
+    new_proj->sety(new_proj->gety()-1);
+    new_proj->setIcon('|');
+    break;
+    case down:
+    new_proj->sety(new_proj->gety()+1);
+    new_proj->setIcon('|');
+    break;
+    case dx:
+     new_proj->setx(new_proj->getx()+1);
+    new_proj->setIcon('-');
+    break;
+    case sx:
+     new_proj->setx(new_proj->getx()-1);
+    new_proj->setIcon('-');
+    break;
+    }
     }
     else{
         this->reload--;
@@ -30,8 +40,7 @@ Shooter::Shooter():Enemy(def,12,12,'S')
 		{
 			if (projectile[i] != NULL){
                 projectile[i]->setUptime(projectile[i]->getUptime()+1);
-            board_win.remove(*projectile[i]);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
         projectile[i]->moveCharacter();
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             //diminuisci vita player
@@ -41,7 +50,6 @@ Shooter::Shooter():Enemy(def,12,12,'S')
         else{
           projectile[i]->moveCharacter();
          
-          board_win.add(*projectile[i]);
           }
         }
     }

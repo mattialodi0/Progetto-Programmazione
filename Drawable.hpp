@@ -16,4 +16,7 @@ public:
 	int gety();
 	int getx();
 	chtype getIcon();
+	void setx(int x);
+	void sety(int y);
+	void setIcon(chtype icon);
 };
