@@ -5,11 +5,11 @@ Shooter::Shooter():Enemy(def,15,15,'S')
     {
     }
     //per creare proiettili
-     void Shooter::createProjectile(Direction dir)
+     void Shooter::createProjectile(Board &board_win, Character &hero, Direction dir)
      {
                  if(this->reload<=0){
     this->reload=enemy_reload;
-    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety()+1, 'o');
+    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
     projectile.push_back(new_proj);
     switch(dir){
     case up:
@@ -71,20 +71,39 @@ Shooter::Shooter():Enemy(def,15,15,'S')
         {
         if(distancey==0){
             if(distancex>0){
-                createProjectile(sx);
+              if(abs(distancex)<enemy_range){
+                    createProjectile(board_win,hero,sx);
+                    }
+                    else{
+                        setDirection(sx);
+                    }
             }
             else{
-                createProjectile(dx);
+               if(abs(distancex)<enemy_range){
+                    createProjectile(board_win,hero,dx);
+                    }
+                    else{
+                        setDirection(dx);
+                    }
             }
         }
         else{
             if(distancex==0){
                 if(distancey>0){
-                    createProjectile(up);
+                    if(abs(distancey)<enemy_range){
+                    createProjectile(board_win,hero,up);
+                    }
+                    else{
+                        setDirection(up);
+                    }
                 }
                 else{
-                    createProjectile(down);
-                    
+                    if(abs(distancey)<enemy_range){
+                    createProjectile(board_win,hero,down);
+                    }
+                    else{
+                        setDirection(down);
+                    }
                 }
             }
             else{

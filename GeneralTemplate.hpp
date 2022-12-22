@@ -5,8 +5,10 @@
 #include "Coward.hpp"
 #include "Drunk.hpp"
 #include "Shooter.hpp"
+#include "Boom.hpp"
 #include "room_objects/Door.hpp"
 #include "room_objects/Wall.hpp"
+
 #include <cstdlib>
 
 #define HALF_COLS BOARD_COLS/2
@@ -57,10 +59,8 @@ public:
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
         drawDoors();
-         enemies[0] = new Chaser();
-         enemies[0]->setDirection(def);/*
-          enemies[3] = new Drunk();
-         enemies[3]->setDirection(def);*/
+         enemies[0] = new Drunk();
+         enemies[0]->setDirection(def);
     }
 };
 

@@ -4,7 +4,7 @@ Chaser::Chaser():Enemy(def,10,10,'C')
 {
 }
 
-void Chaser::createProjectile(Direction dir) 
+void Chaser::createProjectile(Board &board_win, Character &hero, Direction dir) 
 {
     if(this->reload<=0){
     this->reload=enemy_reload;
@@ -69,20 +69,20 @@ void Chaser::chooseDirection(Board &board_win, Character &hero)
             if(abs(distancex) <= melee_range && abs(distancey) <= melee_range){
                 if(distancey==0){
                     if(distancex>0){
-                        createProjectile(sx);
+                        createProjectile(board_win,hero,sx);
                     }
                     else{
-                    createProjectile(dx);
+                    createProjectile(board_win,hero,dx);
                     }
                     this->reload=melee_enemy_reload;
                 }
                 else{
                     if(distancex==0){
                         if(distancey>0){
-                            createProjectile(up);
+                            createProjectile(board_win,hero,up);
                         }
                         else{
-                            createProjectile(down);
+                            createProjectile(board_win,hero,down);
                         }
                         this->reload=melee_enemy_reload;
                     }

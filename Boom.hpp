@@ -1,16 +1,20 @@
-// nemico che ti segue
+// nemico che esplode
 #pragma once
 
 #include "Enemy.hpp"
 
-class Chaser : public Enemy
+class Boom : public Enemy
 {
+    protected:
+    bool die=false;
+    int dying_timer=boom_range+1;
+    
 public:
-    Chaser();
+    Boom();
     //sprite diverso ma uguale
     void createProjectile(Board &board_win, Character &hero, Direction dir) override;
-    //uguale a shooter ma meno range
+    //uguale a chaser ma esplode
     void checkProjectile(Board &board_win, Character &hero);
-    //ti viene vicino e spara un piccolo proiettile e viene stunnato
+    //ti viene vicino e esplode
     void chooseDirection(Board &board_win, Character &hero) override;
 };
