@@ -59,7 +59,7 @@ public:
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
         drawDoors();
-         enemies[0] = new Drunk();
+         enemies[0] = new Boom();
          enemies[0]->setDirection(def);
     }
 };
