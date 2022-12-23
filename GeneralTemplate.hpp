@@ -54,7 +54,7 @@ public:
 
 class Template_0i : public General_template {
 public:
-    Template_0i() : General_template(10,16,1)
+    Template_0i() : General_template(10,16,0)
     {
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
@@ -179,7 +179,7 @@ public:
 //filled square
 class Template_4i : public General_template {
 public:
-    Template_4i() : General_template(15,16,0)
+    Template_4i() : General_template(15,16,1)
     {
         drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
