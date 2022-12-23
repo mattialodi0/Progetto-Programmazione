@@ -7,7 +7,7 @@ Room::Room() {
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    initializeRoomTemplate(8);
+    initializeRoomTemplate(0);
     this->room_template_number = 0;
 }
 
