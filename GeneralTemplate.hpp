@@ -268,3 +268,45 @@ public:
         drawDoors();
     }
 };
+
+//big  negative cross 
+class Template_7 : public General_template {
+public:
+    Template_7() : General_template(161*4,16,0)
+    {
+        int i = 0;
+        i = drawFilledSquare(1, 1, 8, 20, 0);   //126 walls
+        i = drawFilledSquare(BOARD_ROWS-9, 1, 8, 20, i+1);   //126 walls
+        i = drawFilledSquare(1, BOARD_COLS-21, 8, 20, i+1);   //126 walls
+        i = drawFilledSquare(BOARD_ROWS-9, BOARD_COLS-21, 8, 20, i+1);   //126 walls
+
+        drawDoors();
+    }
+};
+
+//central chamber
+class Template_8 : public General_template {
+public:
+    Template_8() : General_template(76,32,0)
+    {
+        drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //76 walls
+        
+        drawDoors();
+        doors[16] = Door(HALF_ROWS-5,HALF_COLS-2);   //north doors
+        doors[17] = Door(HALF_ROWS-5,HALF_COLS-1);
+        doors[18] = Door(HALF_ROWS-5,HALF_COLS);
+        doors[19] = Door(HALF_ROWS-5,HALF_COLS+1);
+        doors[20] = Door(HALF_ROWS-5,HALF_COLS+2);
+        doors[21] = Door(HALF_ROWS+5,HALF_COLS-2);   //south doors
+        doors[22] = Door(HALF_ROWS+5,HALF_COLS-1);
+        doors[23] = Door(HALF_ROWS+5,HALF_COLS);
+        doors[24] = Door(HALF_ROWS+5,HALF_COLS+1);
+        doors[25] = Door(HALF_ROWS+5,HALF_COLS+2);
+        doors[26] = Door(HALF_ROWS-1,HALF_COLS-13);   //west doors
+        doors[27] = Door(HALF_ROWS,HALF_COLS-13);
+        doors[28] = Door(HALF_ROWS+1,HALF_COLS-13);
+        doors[29] = Door(HALF_ROWS-1,HALF_COLS+13);   //est doors
+        doors[30] = Door(HALF_ROWS,HALF_COLS+13);
+        doors[31] = Door(HALF_ROWS+1,HALF_COLS+13);
+    }
+};
