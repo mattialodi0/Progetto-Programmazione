@@ -272,7 +272,7 @@ public:
 //big  negative cross 
 class Template_7 : public General_template {
 public:
-    Template_7() : General_template(161*4,16,0)
+    Template_7() : General_template(161*4,16,1)
     {
         int i = 0;
         i = drawFilledSquare(1, 1, 8, 20, 0);   //126 walls
@@ -281,6 +281,9 @@ public:
         i = drawFilledSquare(BOARD_ROWS-9, BOARD_COLS-21, 8, 20, i+1);   //126 walls
 
         drawDoors();
+
+        enemies[0] = new Shooter();
+        enemies[0]->setDirection(def);
     }
 };
 
@@ -308,5 +311,38 @@ public:
         doors[29] = Door(HALF_ROWS-1,HALF_COLS+13);   //est doors
         doors[30] = Door(HALF_ROWS,HALF_COLS+13);
         doors[31] = Door(HALF_ROWS+1,HALF_COLS+13);
+    }
+};
+
+//small wall blocks
+class Template_9 : public General_template {
+public:
+    Template_9() : General_template(36,16,1)
+    {
+        int i = 0;
+        int ry = rand()%(BOARD_ROWS-2)+1;
+        int rx = rand()%(BOARD_COLS-3)+1;
+        i = drawFilledSquare(ry, rx, 2, 3, i);   //15 walls
+        ry = rand()%(BOARD_ROWS-2)+1;
+        rx = rand()%(BOARD_COLS-3)+1;
+        i = drawFilledSquare(ry, rx, 2, 3, i);   //15 walls
+        ry = rand()%(BOARD_ROWS-2)+1;
+        rx = rand()%(BOARD_COLS-3)+1;
+        i = drawFilledSquare(ry, rx, 2, 3, i);   //15 walls
+        ry = rand()%(BOARD_ROWS-2)+1;
+        rx = rand()%(BOARD_COLS-3)+1;
+        i = drawFilledSquare(ry, rx, 2, 3, i);   //15 walls
+        ry = rand()%(BOARD_ROWS-2)+1;
+        rx = rand()%(BOARD_COLS-3)+1;
+        i = drawFilledSquare(ry, rx, 2, 3, i);   //15 walls
+        ry = rand()%(BOARD_ROWS-2)+1;
+        rx = rand()%(BOARD_COLS-3)+1;
+        i = drawFilledSquare(ry, rx, 2, 3, i);   //15 walls
+
+
+        drawDoors();
+
+        enemies[0] = new Shooter();
+        enemies[0]->setDirection(def);
     }
 };
