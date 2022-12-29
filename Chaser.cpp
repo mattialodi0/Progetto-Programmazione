@@ -4,6 +4,10 @@ Chaser::Chaser():Enemy(def,10,10,'C')
 {
 }
 
+Chaser::Chaser(int y, int x):Enemy(def,y,x,'C')
+{
+}
+
 void Chaser::createProjectile(Board &board_win, Character &hero, Direction dir) 
 {
     if(this->reload<=0){

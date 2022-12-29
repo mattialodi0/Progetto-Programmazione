@@ -81,28 +81,6 @@ class Template_2 : public General_template {
 public:
     Template_2() : General_template(8,16,1)
     {
-        walls[0] = Wall(BOARD_ROWS/3*2,1);
-        walls[1] = Wall(BOARD_ROWS/3*2,2);
-        walls[2] = Wall(BOARD_ROWS/3*2,3);
-        walls[3] = Wall(BOARD_ROWS/3*2,4);
-        walls[4] = Wall(BOARD_ROWS/3*2,5);
-        walls[5] = Wall(BOARD_ROWS/3*2,6);
-        walls[6] = Wall(BOARD_ROWS/3*2,7);
-        walls[7] = Wall(BOARD_ROWS/3*2,8);
-
-
-        drawDoors();
-
-        enemies[0] = new Chaser();      //coward
-        enemies[0]->setDirection(def);
-    }
-};
-
-//orizontal line
-class Template_2i : public General_template {
-public:
-    Template_2i() : General_template(8,16,1)
-    {
         drawHorizontalLine(8, BOARD_ROWS/3*2, 1, 0);
 
         drawDoors();
@@ -116,27 +94,6 @@ public:
 class Template_3 : public General_template {
 public:
     Template_3() : General_template(7,16,1)
-    {
-        walls[0] = Wall(1,(BOARD_ROWS/3+2)*2);
-        walls[1] = Wall(2,(BOARD_ROWS/3+2)*2);
-        walls[2] = Wall(3,(BOARD_ROWS/3+2)*2);
-        walls[3] = Wall(4,(BOARD_ROWS/3+2)*2);
-        walls[4] = Wall(5,(BOARD_ROWS/3+2)*2);
-        walls[5] = Wall(6,(BOARD_ROWS/3+2)*2);
-        walls[6] = Wall(7,(BOARD_ROWS/3+2)*2);
-
-
-        drawDoors();
-
-        enemies[0] = new Chaser();
-        enemies[0]->setDirection(def);
-    }
-};
-
-//verical line
-class Template_3i : public General_template {
-public:
-    Template_3i() : General_template(7,16,1)
     {
         drawVerticalLine(7, 1, (BOARD_ROWS/3+2)*2, 0);
 
@@ -204,40 +161,7 @@ public:
 //ortogonal cross
 class Template_5 : public General_template {
 public:
-    Template_5() : General_template(23,16,0)
-    {
-        walls[0] = Wall(HALF_ROWS, HALF_COLS);
-        walls[1] = Wall(HALF_ROWS-1, HALF_COLS);
-        walls[2] = Wall(HALF_ROWS-2, HALF_COLS);
-        walls[3] = Wall(HALF_ROWS-3, HALF_COLS);
-        walls[4] = Wall(HALF_ROWS-4, HALF_COLS);
-        walls[5] = Wall(HALF_ROWS+1, HALF_COLS);
-        walls[6] = Wall(HALF_ROWS+2, HALF_COLS);
-        walls[7] = Wall(HALF_ROWS+3, HALF_COLS);
-        walls[8] = Wall(HALF_ROWS+4, HALF_COLS);
-        walls[9] = Wall(HALF_ROWS, HALF_COLS-1);
-        walls[10] = Wall(HALF_ROWS, HALF_COLS-2);
-        walls[11] = Wall(HALF_ROWS, HALF_COLS-3);
-        walls[12] = Wall(HALF_ROWS, HALF_COLS-4);
-        walls[13] = Wall(HALF_ROWS, HALF_COLS-5);
-        walls[14] = Wall(HALF_ROWS, HALF_COLS-6);
-        walls[15] = Wall(HALF_ROWS, HALF_COLS-7);
-        walls[16] = Wall(HALF_ROWS, HALF_COLS+1);
-        walls[17] = Wall(HALF_ROWS, HALF_COLS+2);
-        walls[18] = Wall(HALF_ROWS, HALF_COLS+3);
-        walls[19] = Wall(HALF_ROWS, HALF_COLS+4);
-        walls[20] = Wall(HALF_ROWS, HALF_COLS+5);
-        walls[21] = Wall(HALF_ROWS, HALF_COLS+6);
-        walls[22] = Wall(HALF_ROWS, HALF_COLS+7);
-        
-
-        drawDoors();
-    }
-};
-
-class Template_5i : public General_template {
-public:
-    Template_5i() : General_template(19,16,0)
+    Template_5() : General_template(19,16,0)
     {
         drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
@@ -248,22 +172,13 @@ public:
 //wall & door
 class Template_6 : public General_template {
 public:
-    Template_6() : General_template(10,17,0)
+    Template_6() : General_template(50,17,0)
     {
-        walls[0] = Wall((BOARD_ROWS/3+2)*2,1);
-        walls[1] = Wall((BOARD_ROWS/3+2)*2,2);
-        walls[2] = Wall((BOARD_ROWS/3+2)*2,3);
-        walls[3] = Wall((BOARD_ROWS/3+2)*2,4);
-        walls[4] = Wall((BOARD_ROWS/3+2)*2,5);
-        walls[5] = Wall((BOARD_ROWS/3+2)*2,6);
-        walls[6] = Wall((BOARD_ROWS/3+2)*2,7);
+        int i = 0;
+        i = drawHorizontalLine(BOARD_COLS/3, (BOARD_ROWS/3)*2,1,i);
+        i = drawVerticalLine(BOARD_ROWS/3, (BOARD_ROWS/3)*2,BOARD_COLS/3,i);
         
-        walls[7] = Wall((BOARD_ROWS/3+2)*2,9);
-        walls[8] = Wall((BOARD_ROWS/3+2)*2,10);
-        walls[9] = Wall((BOARD_ROWS/3+2)*2+1,10);
-        walls[10] = Wall((BOARD_ROWS/3+2)*2+2,10);
-        
-        doors[16] = Door((BOARD_ROWS/3+2)*2,8);
+        doors[16] = Door((BOARD_ROWS/3)*2,BOARD_COLS/3-4);
 
         drawDoors();
     }
@@ -287,7 +202,7 @@ public:
     }
 };
 
-//central chamber
+//central sub-chamber
 class Template_8 : public General_template {
 public:
     Template_8() : General_template(76,32,0)
@@ -314,7 +229,7 @@ public:
     }
 };
 
-//small wall blocks
+//radom wall blocks
 class Template_9 : public General_template {
 public:
     Template_9() : General_template(36,16,1)
@@ -344,5 +259,63 @@ public:
 
         enemies[0] = new Shooter();
         enemies[0]->setDirection(def);
+    }
+};
+
+//random walls
+class Template_10 : public General_template {
+public:
+    Template_10() : General_template(15,16,0)
+    {
+        int ry, rx;
+        for(int i=0; i < 15; i++)
+        {
+            ry = rand()%(BOARD_ROWS-2)+2;
+            rx = rand()%(BOARD_COLS-2)+2;
+            walls[i] = Wall(ry, rx);
+        }
+
+        drawDoors();
+
+        enemies[0] = new Shooter();
+        enemies[0]->setDirection(def);
+    }
+};
+
+//maze concentric
+class Template_11 : public General_template {
+public:
+    Template_11() : General_template(332,16,4)
+    {
+        int i = 0;
+        i = drawHorizontalLine(26, 2, 5,i);     
+        i = drawHorizontalLine(26, 2, 36,i);
+        i = drawHorizontalLine(26, BOARD_ROWS-3, 5,i);
+        i = drawHorizontalLine(26, BOARD_ROWS-3, 36,i);    //104
+        i = drawVerticalLine(8, 3, 5,i);
+        i = drawVerticalLine(8, 14, 5,i);
+        i = drawVerticalLine(8, 3, BOARD_COLS-6,i);
+        i = drawVerticalLine(8, 14, BOARD_COLS-6,i);    //136
+
+        i = drawHorizontalLine(47, 5, 10,i);
+        i = drawHorizontalLine(47, BOARD_ROWS-6, 10,i);
+        i = drawVerticalLine(9, 8, 10,i);
+        i = drawVerticalLine(9, 8, BOARD_COLS-11,i);    //248
+
+        i = drawHorizontalLine(21, 8, 11,i);
+        i = drawHorizontalLine(21, 8, 35,i);
+        i = drawHorizontalLine(21, BOARD_ROWS-9, 11,i);
+        i = drawHorizontalLine(21, BOARD_ROWS-9, 35,i);    //332
+
+        drawDoors();
+
+        enemies[0] = new Chaser(5,9);
+        enemies[0]->setDirection(def);
+        enemies[1] = new Chaser(4,8);
+        enemies[1]->setDirection(def);
+        enemies[2] = new Chaser(4,BOARD_COLS-8);
+        enemies[2]->setDirection(def);
+        enemies[3] = new Chaser(BOARD_ROWS-6,BOARD_COLS-8);
+        enemies[3]->setDirection(def);
     }
 };

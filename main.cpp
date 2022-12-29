@@ -21,7 +21,6 @@ int main()
 		game.processInput();
 
         // collisioni e movimento
-
 		game.updateState();
 		
         // refresh
