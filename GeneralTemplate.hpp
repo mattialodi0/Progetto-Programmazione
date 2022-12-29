@@ -319,3 +319,22 @@ public:
         enemies[3]->setDirection(def);
     }
 };
+
+//maze spyral
+class Template_12 : public General_template {
+public:
+    Template_12() : General_template(332,16,0)
+    {
+        int i = 0;
+        i = drawVerticalLine(21, 1, 7,i);
+        i = drawHorizontalLine(51, BOARD_ROWS-4, 8,i);     
+        i = drawVerticalLine(18, 4, BOARD_COLS-8,i);
+        i = drawHorizontalLine(46, 3,14,i);  
+        i = drawVerticalLine(15, 4, 14,i);
+        i = drawHorizontalLine(38, 18,15,i);
+        i = drawVerticalLine(12, 7, BOARD_COLS-15,i);
+        i = drawHorizontalLine(32, 6, 21,i);
+        
+        drawDoors();
+    }
+};

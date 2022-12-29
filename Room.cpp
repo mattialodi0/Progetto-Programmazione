@@ -61,6 +61,9 @@ void Room::initializeRoomTemplate(int template_num) {
     case 11:
         this->room_template = new Template_11();
         break;
+    case 12:
+        this->room_template = new Template_12();
+        break;
     default:
         this->room_template = new Template_0();
         break;
