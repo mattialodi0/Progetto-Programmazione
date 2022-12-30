@@ -17,7 +17,7 @@ Room::Room(int y, int x, vector<Room*> room_index) {//int room_template) {
     this->south = findRoom(room_index, y-1, x);
     this->west = findRoom(room_index, y, x-1);
 	this->est = findRoom(room_index, y, x+1);
-    int n = rand()%10+1;
+    int n = rand()%12+1;
     this->room_template_number = n;
     initializeRoomTemplate(n);
 }
