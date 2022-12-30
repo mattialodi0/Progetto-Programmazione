@@ -9,6 +9,7 @@ class Hero : public Character
 {
 protected:
 	int class_type;
+	int key=1;	//numero di chiavi trovate
 public:	
     Hero();
 	Hero(int y, int x);
@@ -24,4 +25,5 @@ public:
 	void attack(Direction dir);
 
 	void centerHero(Direction dir);
+	bool useKey();
 };

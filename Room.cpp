@@ -17,7 +17,7 @@ Room::Room(int y, int x, vector<Room*> room_index) {//int room_template) {
     this->south = findRoom(room_index, y-1, x);
     this->west = findRoom(room_index, y, x-1);
 	this->est = findRoom(room_index, y, x+1);
-    int n = rand()%12+1;
+    int n = rand()%13+1;
     this->room_template_number = n;
     initializeRoomTemplate(n);
 }
@@ -64,6 +64,9 @@ void Room::initializeRoomTemplate(int template_num) {
     case 12:
         this->room_template = new Template_12();
         break;
+    case 13:
+        this->room_template = new Template_13();
+        break;
     default:
         this->room_template = new Template_0();
         break;
@@ -107,6 +110,29 @@ bool Room::isClear() {
     return 1;
 }
 
+void Room::unlockDoor(int y, int x)
+{
+    int j = 0;
+    bool f = true;
+    while(f)
+    {
+        f = false;
+        for(int i=0; i < room_template->doors_num; i++)
+        {
+            int ty = room_template->doors[i].gety();
+            int tx = room_template->doors[i].getx();
+            if((ty == y-j || ty == y+j || ty == y) && (tx == x-j || tx == x+j || tx == x))
+            {
+                if(room_template->doors[i].getIcon() == 'Q')
+                {
+                    f = true;
+                    room_template->doors[i] = Door(ty,tx);
+                }
+            }    
+        }
+        j++;
+    }
+}
 
 // funzioni private
 
@@ -128,13 +154,15 @@ void Room::drawEnemies(Board &board) {
 }
 
 void Room::drawWalls(Board &board) {
-    for(int i = 0; i < room_template->walls_num; i++) {    
+    for(int i = 0; i < room_template->walls_num; i++)
+    {    
         board.add(room_template->walls[i]);
     }
 }
 
 void Room::drawDoors(Board &board) {
-    for(int i = 0; i < room_template->doors_num; i++) {    
+    for(int i = 0; i < room_template->doors_num; i++) 
+    {    
         board.add(room_template->doors[i]);
     }
 }

@@ -3,10 +3,12 @@
 
 Hero::Hero() : Character(def, herostarty, herostartx,'P')
 {	
+    key = 1;
 }
 
 Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
 {   
+    key = 1;
 }
 
 /*
@@ -88,4 +90,14 @@ void Hero::centerHero(Direction dir) {
     	this->y=herostarty;
         break;
     }
+}
+
+bool Hero::useKey()
+{
+    if(this->key >= 1)
+    {
+        this->key--;
+        return true;
+    }
+    else return false;
 }

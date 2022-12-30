@@ -25,6 +25,8 @@ public:
     void moveEnemies(Board &board, Hero &hero);
 
     bool isClear();
+
+    void unlockDoor(int y, int x);
 private:
     void initializeRoomTemplate(int template_num);
     Room* findRoom(vector<Room*> room_index, int y, int x);

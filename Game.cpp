@@ -147,10 +147,9 @@ void Game::manageHeroMovement()
 			manageDoor();
 		break;
 	case 'Q':
-		// porta chiuisa:
-		// controlla se il giocatore ha una chiave
-		// se ne ha, ne toglie una e cambia il carattere di tutta la porta
-		// e fa manageDoor();
+		if(hero.useKey()) {
+			current_room->unlockDoor(hero.gety() + offsety, hero.getx() + offsetx);			
+		}
 		break;
 	default:
 		break;

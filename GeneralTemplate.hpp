@@ -338,3 +338,22 @@ public:
         drawDoors();
     }
 };
+
+//subroom closed doors
+class Template_13 : public General_template {
+public:
+    Template_13() : General_template(60,19,0)
+    {
+        int i = 0;
+        i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
+        i = drawHorizontalLine(21, HALF_ROWS+5, HALF_COLS-10,i);
+        i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS-10,i);     
+        i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS+10,i);
+        
+        doors[16] = Locked_Door(HALF_ROWS-5, HALF_COLS-1);
+        doors[17] = Locked_Door(HALF_ROWS-5, HALF_COLS);
+        doors[18] = Locked_Door(HALF_ROWS-5, HALF_COLS+1);
+
+        drawDoors();
+    }
+};
