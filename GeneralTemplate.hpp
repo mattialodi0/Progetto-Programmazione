@@ -169,16 +169,17 @@ public:
     }
 };
 
-//wall & door
+//left-bottom center subroom
 class Template_6 : public General_template {
 public:
-    Template_6() : General_template(50,17,0)
+    Template_6() : General_template(30,18,0)
     {
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS/3, (BOARD_ROWS/3)*2,1,i);
         i = drawVerticalLine(BOARD_ROWS/3, (BOARD_ROWS/3)*2,BOARD_COLS/3,i);
         
         doors[16] = Door((BOARD_ROWS/3)*2,BOARD_COLS/3-4);
+        doors[17] = Door((BOARD_ROWS/3)*2,BOARD_COLS/3-3);
 
         drawDoors();
     }
@@ -205,9 +206,9 @@ public:
 //central sub-chamber
 class Template_8 : public General_template {
 public:
-    Template_8() : General_template(76,32,0)
+    Template_8() : General_template(72,32,0)
     {
-        drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //76 walls
+        drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //72 walls
         
         drawDoors();
         doors[16] = Door(HALF_ROWS-5,HALF_COLS-2);   //north doors
@@ -323,7 +324,7 @@ public:
 //maze spyral
 class Template_12 : public General_template {
 public:
-    Template_12() : General_template(332,16,0)
+    Template_12() : General_template(233,16,0)
     {
         int i = 0;
         i = drawVerticalLine(21, 1, 7,i);
@@ -357,3 +358,53 @@ public:
         drawDoors();
     }
 };
+
+//E.D.M.    (acronimo dei nomi)
+class Template_14 : public General_template {
+public:
+    Template_14() : General_template(100,16,0)
+    {
+        int i = 0;
+        i = drawVerticalLine(9, 8, 10,i);     
+        i = drawHorizontalLine(10, 8, 11,i);
+        i = drawHorizontalLine(6, 12, 11,i);
+        i = drawHorizontalLine(10, 16, 11,i);
+
+        drawDoors();
+    }
+};
+
+//chrome subchambers
+class Template_15 : public General_template {
+public:
+    Template_15() : General_template(4*BOARD_COLS+6*BOARD_ROWS+300,16,0)
+    {
+        int i = 0;
+        i = drawHorizontalLine(BOARD_COLS-9, 3, 1,i);
+        i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-10,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-9,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-8,i);
+        i = drawHorizontalLine(BOARD_COLS-11, BOARD_ROWS-5, 10,i);
+        i = drawHorizontalLine(BOARD_COLS-11, BOARD_ROWS-4, 10,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 5, 9,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 5, 8,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 5, 7,i);
+        i = drawHorizontalLine(HALF_COLS+5, 9, 10,i);
+        i = drawHorizontalLine(HALF_COLS+5, 8, 10,i);
+        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+15,i);
+        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+16,i);
+        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+17,i);
+        i = drawHorizontalLine(HALF_COLS+5, 15, 19,i);
+        i = drawHorizontalLine(HALF_COLS+5, 16, 19,i);
+        i = drawVerticalLine(HALF_ROWS-2, 10, 16,i);
+        i = drawVerticalLine(HALF_ROWS-2, 10, 17,i);
+        i = drawVerticalLine(HALF_ROWS-2, 10, 18,i);
+
+        drawDoors();
+    }
+};
+
+//hexagonal chamber
+//castle
+//bomb room
