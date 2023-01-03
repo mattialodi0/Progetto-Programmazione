@@ -35,6 +35,9 @@ public:
     int drawFilledSquare(int start_y, int start_x, int height, int width, int i);
     int drawEmptySquare(int start_y, int start_x, int height, int width, int i);
     int drawOrtogonalCross(int start_y, int start_x, int h_height, int h_width, int i);
+
+    int drawFilledSquareDoor(int start_y, int start_x, int height, int width, int i);
+
 };
 
 
@@ -359,8 +362,8 @@ public:
     }
 };
 
-//E.D.M.    (acronimo dei nomi)
-class Template_14 : public General_template {
+//tempio
+class Template_14 : public General_template {               //**************da fare
 public:
     Template_14() : General_template(100,16,0)
     {
@@ -377,7 +380,39 @@ public:
 //chrome subchambers
 class Template_15 : public General_template {
 public:
-    Template_15() : General_template(4*BOARD_COLS+6*BOARD_ROWS+300,16,0)
+    Template_15() : General_template(306,44,0)
+    {
+        int i = 0;
+        i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-10,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-9,i);
+        i = drawHorizontalLine(BOARD_COLS-11, BOARD_ROWS-5, 10,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 5, 9,i);
+        i = drawVerticalLine(BOARD_ROWS-6, 5, 8,i);
+        i = drawHorizontalLine(HALF_COLS+5, 9, 10,i);
+        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+15,i);
+        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+16,i);
+        i = drawHorizontalLine(HALF_COLS+5, 15, 19,i);
+        i = drawVerticalLine(HALF_ROWS-2, 10, 17,i);
+        i = drawVerticalLine(HALF_ROWS-2, 10, 18,i);
+
+        int j = 16;
+        j = drawFilledSquareDoor(HALF_ROWS-3,HALF_COLS-1,1,3,j);
+        j = drawFilledSquareDoor(HALF_ROWS+3,HALF_COLS-1,1,3,j);
+        j = drawFilledSquareDoor(4,HALF_COLS-5,1,3,j);
+        j = drawFilledSquareDoor(BOARD_ROWS-5,HALF_COLS+4,1,3,j);
+        j = drawFilledSquareDoor(HALF_ROWS-3,BOARD_COLS-10,2,2,j);
+        j = drawFilledSquareDoor(HALF_ROWS+2,8,2,2,j);
+        j = drawFilledSquareDoor(HALF_ROWS-1,HALF_COLS-16,2,2,j);
+        j = drawFilledSquareDoor(HALF_ROWS-1,HALF_COLS+15,2,2,j);
+
+        drawDoors();
+    }
+};
+
+class Template_15i : public General_template {
+public:
+    Template_15i() : General_template(4*BOARD_COLS+6*BOARD_ROWS+300,50,0)
     {
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 3, 1,i);
@@ -401,10 +436,61 @@ public:
         i = drawVerticalLine(HALF_ROWS-2, 10, 17,i);
         i = drawVerticalLine(HALF_ROWS-2, 10, 18,i);
 
+        int j = 16;
+        j = drawFilledSquareDoor(3,HALF_COLS-1,2,3,j);
+
         drawDoors();
     }
 };
 
 //hexagonal chamber
+class Template_16 : public General_template {
+public:
+    Template_16() : General_template(60,22,0)
+    {
+        int i = 0;
+        int a = BOARD_ROWS/3-2;
+        int b = BOARD_ROWS/3*2+2;
+        int c = HALF_COLS-9;
+        int d = HALF_COLS+9;
+        i = drawHorizontalLine(19, a, c,i);
+        i = drawHorizontalLine(19, b, c,i);
+        walls[i] = Wall(a+1,c-1); i++;
+        walls[i] = Wall(a+2,c-2); i++;
+        walls[i] = Wall(a+3,c-3); i++;
+        walls[i] = Wall(a+4,c-4); i++;
+        walls[i] = Wall(a+5,c-5); i++;
+        walls[i] = Wall(a+6,c-6); i++;
+        
+        walls[i] = Wall(a+1,d+1); i++;
+        walls[i] = Wall(a+2,d+2); i++;
+        walls[i] = Wall(a+3,d+3); i++;
+        walls[i] = Wall(a+4,d+4); i++;
+        walls[i] = Wall(a+5,d+5); i++;
+        walls[i] = Wall(a+6,d+6); i++;
+
+        walls[i] = Wall(b-1,c-1); i++;
+        walls[i] = Wall(b-2,c-2); i++;
+        walls[i] = Wall(b-3,c-3); i++;
+        walls[i] = Wall(b-4,c-4); i++;
+        walls[i] = Wall(b-5,c-5); i++;
+
+        walls[i] = Wall(b-1,d+1); i++;
+        walls[i] = Wall(b-2,d+2); i++;
+        walls[i] = Wall(b-3,d+3); i++;
+        walls[i] = Wall(b-4,d+4); i++;
+        walls[i] = Wall(b-5,d+5); i++;
+
+        doors[16] = Door(a,HALF_COLS-1);
+        doors[17] = Door(a,HALF_COLS);
+        doors[18] = Door(a,HALF_COLS+1);
+        doors[19] = Door(b,HALF_COLS-1);
+        doors[20] = Door(b,HALF_COLS);
+        doors[21] = Door(b,HALF_COLS+1);
+
+        drawDoors();
+    }
+};
+
 //castle
 //bomb room

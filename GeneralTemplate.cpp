@@ -122,3 +122,16 @@ int General_template::drawOrtogonalCross(int start_y, int start_x, int h_height,
 
     return i;
 }
+
+int General_template::drawFilledSquareDoor(int start_y, int start_x, int height, int width, int i) 
+{
+    //this->walls_num += heigth*widht;
+    for(int j=0; j < height; j++)
+    {
+        for(int k=0; k < width; k++)
+        {
+            doors[i] = Door(start_y+j, start_x+k); i++;
+        }
+    }
+    return i;
+}
