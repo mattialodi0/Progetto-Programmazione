@@ -6,6 +6,7 @@ CC	 = g++
 FLAGS	 = -g -c 
 LFLAGS	 = -lncurses
 
+
 all: $(OBJS)
 	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
 

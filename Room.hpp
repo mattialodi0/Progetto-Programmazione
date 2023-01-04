@@ -27,6 +27,8 @@ public:
     bool isClear();
 
     void unlockDoor(int y, int x);
+
+    void removeArtifact(int pos);
 private:
     void initializeRoomTemplate(int template_num);
     Room* findRoom(vector<Room*> room_index, int y, int x);
@@ -35,6 +37,7 @@ private:
     void drawEnemies(Board &board);
     void drawWalls(Board &board);
     void drawDoors(Board &board);
+    void drawArtifact(Board &board);
 
     //funzioni per i nemici
     void removeEnemy(int pos);

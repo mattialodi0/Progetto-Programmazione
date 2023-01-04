@@ -1,6 +1,6 @@
 #include "Artifact.hpp"
 //raggifrocio
-Artifact::Artifact(): Drawable(x,y,RandomArtifact())
+Artifact::Artifact(int y, int x): Drawable(x,y,RandomArtifact())
 {
    
 }
@@ -11,7 +11,7 @@ chtype Artifact::RandomArtifact()
     int i = (rand() % (3));
     if(i==1)
     {
-        return 'S';
+        return 'R';
     }
     else if(i==2)
     {

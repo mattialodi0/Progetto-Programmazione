@@ -26,7 +26,7 @@ Game::Game(int height, int width, int speed)
 	game_over = false;
 
 	current_room  = new Room;
-	room_index.emplace_back(current_room);
+	room_index.__emplace_back(current_room);
 
 	canMove = 0;
 }
@@ -39,6 +39,11 @@ Game::~Game()
 bool Game::isNotOver()
 {
 	return !game_over;
+}
+
+bool Game::gameOver()
+{
+	return game_over;
 }
 
 void Game::processInput()
@@ -136,10 +141,28 @@ void Game::manageHeroMovement()
 	switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
 	{
 	case ' ':
+		hero.moveCharacter();
+		break;
 	case 'F':
+		hero.increaseDamage();
+		current_room->removeArtifact(0);
+		hero.moveCharacter();
+		break;
+	case 'R':
+		hero.increaseRange();
+		current_room->removeArtifact(0);
+		hero.moveCharacter();
+		break;
 	case 'H':
+		hero.increaseHealth();
+		current_room->removeArtifact(0);
 		hero.moveCharacter();
 		break;	
+	case '-':
+	case 'o':
+		hero.reduceHealth();
+		hero.moveCharacter();
+		break;
 	case 'O':		//cambia stanza
 		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-2 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
 			hero.moveCharacter();
@@ -244,7 +267,7 @@ void Game::addRoomToIndex(prm room) {
     //this->index_dim += 1;
     //this->room_index[current_index] = room;
     //this->current_index += 1;
-	this->room_index.emplace_back(room);
+	this->room_index.__emplace_back(room);
 }
 
 

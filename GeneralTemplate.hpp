@@ -6,6 +6,7 @@
 #include "Drunk.hpp"
 #include "Shooter.hpp"
 #include "Boom.hpp"
+#include "Artifact.hpp"
 #include "room_objects/Door.hpp"
 #include "room_objects/Wall.hpp"
 
@@ -19,12 +20,14 @@ class General_template {
 public:
     Drawable* walls;
     Drawable* doors;
+    Drawable* artifact;
     pEn* enemies;
     int walls_num; 
     int doors_num;
     int enemies_num;
+    int artifact_num;
     General_template();
-    General_template(int w, int d, int e);
+    General_template(int w, int d, int e, int a);
     ~General_template();
 
     void drawDoors();
@@ -40,7 +43,7 @@ public:
 
 class Template_0 : public General_template {
 public:
-    Template_0() : General_template(5,16,0)
+    Template_0() : General_template(5,16,0,0)
     {
         walls[0] = Wall(6,6);
         walls[1] = Wall(10,19); 
@@ -54,18 +57,19 @@ public:
 
 class Template_0i : public General_template {
 public:
-    Template_0i() : General_template(10,16,0)
+    Template_0i() : General_template(10,16,0,1)
     {
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
         drawDoors();
+        artifact[0] = Artifact(6,6);
     }
 };
 
 
 class Template_1 : public General_template {
 public:
-    Template_1() : General_template(1,16,1)
+    Template_1() : General_template(1,16,1,1)
     {
         walls[0] = Wall(10,15);
         
@@ -73,13 +77,15 @@ public:
 
         enemies[0] = new Drunk();
         enemies[0]->setDirection(def);
+        artifact[0] = Artifact(6,6);
+
     }
 };
 
 //orizontal line
 class Template_2 : public General_template {
 public:
-    Template_2() : General_template(8,16,1)
+    Template_2() : General_template(8,16,1,1)
     {
         drawHorizontalLine(8, BOARD_ROWS/3*2, 1, 0);
 
@@ -87,13 +93,15 @@ public:
 
         enemies[0] = new Chaser();      //coward
         enemies[0]->setDirection(def);
+        artifact[0] = Artifact(6,6);
+
     }
 };
 
 //verical line
 class Template_3 : public General_template {
 public:
-    Template_3() : General_template(7,16,1)
+    Template_3() : General_template(7,16,1,1)
     {
         drawVerticalLine(7, 1, (BOARD_ROWS/3+2)*2, 0);
 
@@ -101,13 +109,15 @@ public:
 
         enemies[0] = new Chaser();
         enemies[0]->setDirection(def);
+        artifact[0] = Artifact(6,6);
+
     }
 };
 
 //square
 class Template_4 : public General_template {
 public:
-    Template_4() : General_template(18,16,0)
+    Template_4() : General_template(18,16,0,1)
     {
         walls[0] = Wall(HALF_ROWS-1, HALF_COLS-1);
         walls[1] = Wall(HALF_ROWS-1, HALF_COLS);
@@ -130,13 +140,15 @@ public:
         
 
         drawDoors();
+        artifact[0] = Artifact(6,6);
+
     }
 };
 
 //filled square
 class Template_4i : public General_template {
 public:
-    Template_4i() : General_template(15,16,1)
+    Template_4i() : General_template(15,16,1,1)
     {
         drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
@@ -144,13 +156,15 @@ public:
 
         enemies[0] = new Boom();
         enemies[0]->setDirection(def);
+        artifact[0] = Artifact(6,6);
+
     }
 };
 
 //empty square
 class Template_4ii : public General_template {
 public:
-    Template_4ii() : General_template(12,16,0)
+    Template_4ii() : General_template(12,16,0,0)
     {
         drawEmptySquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
@@ -161,7 +175,7 @@ public:
 //ortogonal cross
 class Template_5 : public General_template {
 public:
-    Template_5() : General_template(19,16,0)
+    Template_5() : General_template(19,16,0,0)
     {
         drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
@@ -172,7 +186,7 @@ public:
 //left-bottom center subroom
 class Template_6 : public General_template {
 public:
-    Template_6() : General_template(30,18,0)
+    Template_6() : General_template(30,18,0,0)
     {
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS/3, (BOARD_ROWS/3)*2,1,i);
@@ -188,7 +202,7 @@ public:
 //big  negative cross 
 class Template_7 : public General_template {
 public:
-    Template_7() : General_template(161*4,16,1)
+    Template_7() : General_template(161*4,16,1,1)
     {
         int i = 0;
         i = drawFilledSquare(1, 1, 8, 20, 0);   //126 walls
@@ -200,13 +214,15 @@ public:
 
         enemies[0] = new Shooter();
         enemies[0]->setDirection(def);
+        artifact[0] = Artifact(6,6);
+
     }
 };
 
 //central sub-chamber
 class Template_8 : public General_template {
 public:
-    Template_8() : General_template(72,32,0)
+    Template_8() : General_template(72,32,0,0)
     {
         drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //72 walls
         
@@ -233,7 +249,7 @@ public:
 //radom wall blocks
 class Template_9 : public General_template {
 public:
-    Template_9() : General_template(36,16,1)
+    Template_9() : General_template(36,16,1,1)
     {
         int i = 0;
         int ry = rand()%(BOARD_ROWS-2)+1;
@@ -260,13 +276,15 @@ public:
 
         enemies[0] = new Shooter();
         enemies[0]->setDirection(def);
+        artifact[0] = Artifact(6,6);
+
     }
 };
 
 //random walls
 class Template_10 : public General_template {
 public:
-    Template_10() : General_template(15,16,0)
+    Template_10() : General_template(15,16,0,0)
     {
         int ry, rx;
         for(int i=0; i < 15; i++)
@@ -286,7 +304,7 @@ public:
 //maze concentric
 class Template_11 : public General_template {
 public:
-    Template_11() : General_template(332,16,4)
+    Template_11() : General_template(332,16,4,1)
     {
         int i = 0;
         i = drawHorizontalLine(26, 2, 5,i);     
@@ -318,13 +336,15 @@ public:
         enemies[2]->setDirection(def);
         enemies[3] = new Chaser(BOARD_ROWS-6,BOARD_COLS-8);
         enemies[3]->setDirection(def);
+
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //maze spyral
 class Template_12 : public General_template {
 public:
-    Template_12() : General_template(233,16,0)
+    Template_12() : General_template(233,16,0,0)
     {
         int i = 0;
         i = drawVerticalLine(21, 1, 7,i);
@@ -343,7 +363,7 @@ public:
 //subroom closed doors
 class Template_13 : public General_template {
 public:
-    Template_13() : General_template(60,19,0)
+    Template_13() : General_template(60,19,0,0)
     {
         int i = 0;
         i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
@@ -362,7 +382,7 @@ public:
 //E.D.M.    (acronimo dei nomi)
 class Template_14 : public General_template {
 public:
-    Template_14() : General_template(100,16,0)
+    Template_14() : General_template(100,16,0,0)
     {
         int i = 0;
         i = drawVerticalLine(9, 8, 10,i);     
@@ -377,7 +397,7 @@ public:
 //chrome subchambers
 class Template_15 : public General_template {
 public:
-    Template_15() : General_template(4*BOARD_COLS+6*BOARD_ROWS+300,16,0)
+    Template_15() : General_template(4*BOARD_COLS+6*BOARD_ROWS+300,16,0,0)
     {
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 3, 1,i);
