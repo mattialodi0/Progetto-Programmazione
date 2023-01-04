@@ -33,7 +33,7 @@ public:
 
     void drawDoors();
 
-    void createEnemies(int num,bool is_random,int j,int n,Board &game_board);
+    void createEnemies(int num,bool is_random,int j,int n,Board &game_board,pEn enemies[]);
     int drawRandom(int num, int ya, int xa, int yb, int xb, int i);
     int drawHorizontalLine( int num, int start_y, int start_x, int i);
     int drawVerticalLine( int num, int start_y, int start_x, int i);
@@ -54,7 +54,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         
         walls[0] = Wall(6,6);
@@ -76,7 +76,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
@@ -93,7 +93,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         walls[0] = Wall(10,15);
         
@@ -111,7 +111,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         drawHorizontalLine(8, BOARD_ROWS/3*2, 1, 0);
 
@@ -129,7 +129,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         drawVerticalLine(7, 1, (BOARD_ROWS/3+2)*2, 0);
 
@@ -146,7 +146,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         walls[0] = Wall(HALF_ROWS-1, HALF_COLS-1);
         walls[1] = Wall(HALF_ROWS-1, HALF_COLS);
@@ -181,7 +181,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
@@ -199,7 +199,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         drawEmptySquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
@@ -216,7 +216,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
@@ -233,7 +233,7 @@ public:
          //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS/3, (BOARD_ROWS/3)*2,1,i);
@@ -255,7 +255,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawFilledSquare(1, 1, 8, 20, 0);   //126 walls
@@ -277,7 +277,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //72 walls
         
@@ -310,7 +310,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         int ry = rand()%(BOARD_ROWS-2)+1;
@@ -347,7 +347,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board);
+        createEnemies(my_xp,false,i,n,game_board,enemies);
         }
         int ry, rx;
         for(int i=0; i < 15; i++)
@@ -359,8 +359,6 @@ public:
 
         drawDoors();
 
-        enemies[0] = new Shooter();
-        enemies[0]->setDirection(def);
     }
 };
 
@@ -373,7 +371,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawHorizontalLine(26, 2, 5,i);     
@@ -410,7 +408,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawVerticalLine(21, 1, 7,i);
@@ -435,7 +433,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
@@ -460,7 +458,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawVerticalLine(9, 8, 10,i);     
@@ -481,7 +479,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
@@ -519,7 +517,7 @@ public:
          //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 3, 1,i);
@@ -559,7 +557,7 @@ public:
         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
         int chosen_enemies[enemies_num]={};
         for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board);
+        createEnemies(my_xp,false,p,n,game_board,enemies);
         }
         int i = 0;
         int a = BOARD_ROWS/3-2;

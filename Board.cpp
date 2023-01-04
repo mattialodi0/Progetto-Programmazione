@@ -119,6 +119,14 @@ bool Board::getTaken(int x, int y){
 	return this->taken[x][y];
 }
 
+void Board::clearTaken(){
+	for(int x=0;x<BOARD_COLS;x++){
+        for(int y=0;y<BOARD_ROWS;y++){
+         setTaken(x,y,false);
+		 }
+    }
+}
+
 int Board::getTimeout()
 {
 	return this->timeout;

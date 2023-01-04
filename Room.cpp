@@ -24,11 +24,7 @@ Room::Room(int y, int x, vector<Room*> room_index,int n,Board &game_board) {//in
 }
 
 void Room::initializeRoomTemplate(int template_num,int n,Board &game_board) {
-    for(int x=0;x<BOARD_COLS;x++){
-        for(int y=0;y<BOARD_ROWS;y++){
-        game_board.setTaken(x,y,false);}
-    }
-    if(template_num!=0){template_num=1;}
+    game_board.clearTaken();
     switch (template_num)
     {
         

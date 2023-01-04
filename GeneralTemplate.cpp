@@ -19,44 +19,47 @@ General_template::~General_template()
     delete [] enemies;
 }
 
-void General_template::createEnemies(int num,bool is_random,int j,int n,Board &game_board)
+void General_template::createEnemies(int num,bool is_random,int j,int n,Board &game_board,pEn enemies[])
 {
             if(is_random){
                 num=rand()%(num+1);
             }
-            int x,y;
+            int x,y,x1,y1;
             bool acceptable=false;
             do{
                 if(n!=0){
             game_board.getEmptyCoordinates(x,y);
+            
                 }
                 else{
                     x=30;
                     y=5+(2*j);
                 }
+                x1=x;
+                y1=y;
             switch(n){
                 case(1):
-                if(abs(x-HALF_COLS)>tols || y>tols){
+                if(abs(x1-HALF_COLS)>tols || y1>tols){
                 acceptable=true;
                 }
                 break;
                 case(-1):
-                if(abs(x-HALF_COLS)>tols || y<BOARD_ROWS-tols){
+                if(abs(x1-HALF_COLS)>tols || y1<BOARD_ROWS-tols){
                 acceptable=true;
                 }
                 break;
                 case(2):
-                if(x<BOARD_COLS-tols || abs(y-HALF_ROWS)>tols){
+                if(x1<BOARD_COLS-tols || abs(y1-HALF_ROWS)>tols){
                 acceptable=true;
                 }
                 break;
                 case(-2):
-                if(x>tols || abs(y-HALF_ROWS)>tols){
+                if(x1>tols || abs(y1-HALF_ROWS)>tols){
                 acceptable=true;
                 }
                 break;
                 case(0):
-                if(abs(x-HALF_COLS)>tols || abs(y-HALF_ROWS)>tols){
+                if(abs(x1-HALF_COLS)>tols || abs(y1-HALF_ROWS)>tols){
                 acceptable=true;
                 }
                 break;
@@ -70,19 +73,19 @@ void General_template::createEnemies(int num,bool is_random,int j,int n,Board &g
             while(!acceptable&&n!=0);
             switch(num){
                 case 0:
-                enemies[j] = new Drunk(y,x);
+                enemies[j] = new Drunk(y1,x1);
                 break;
                 case 1:
-                enemies[j] = new Coward(y,x);
+                enemies[j] = new Coward(y1,x1);
                 break;
                 case 2:
-                enemies[j] = new Shooter(y,x);
+                enemies[j] = new Shooter(y1,x1);
                 break;
                 case 3:
-                enemies[j] = new Chaser(y,x);
+                enemies[j] = new Chaser(y1,x1);
                 break;
                 case 4:
-                enemies[j] = new Boom(y,x);
+                enemies[j] = new Boom(y1,x1);
                 break;
                 default:
                 break;

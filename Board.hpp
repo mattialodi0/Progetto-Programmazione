@@ -25,6 +25,7 @@ public:
 	void initialize();
 	void setTaken(int x, int y,bool set);
 	bool getTaken(int x, int y);
+	void clearTaken();
     void add(Drawable &drawable);
 	void remove(Drawable &drawable);
 	void addAt(int y, int x, chtype ch);
