@@ -20,9 +20,11 @@ protected:
     int reload=0;
     int timer=10;
     bool timeractivated=false;
+    int difficultyneeded=0;
+    int difficultylevel=0;
 public:
     std::vector<Projectile*> projectile;
-    Enemy(Direction dir, int x, int y, chtype ch);
+    Enemy(Direction dir, int y, int x ,chtype ch,int diff_need);
     virtual void createProjectile(Board &board_win, Character &hero, Direction dir) {}
     virtual void checkProjectile(Board &board_win, Character &hero) {}
     

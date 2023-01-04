@@ -2,11 +2,20 @@
 
 Board::Board():Board(0, 0, 300)
 {
-	
+	for(int i=0;i<BOARD_COLS;i++){
+	for(int j=0;j<BOARD_ROWS;j++){
+	taken[i][j]=false;	
+	}	
+	}
 }
 
 Board::Board(int height, int width, int speed)
 {
+	for(int i=0;i<BOARD_COLS;i++){
+	for(int j=0;j<BOARD_ROWS;j++){
+	taken[i][j]=false;	
+	}	
+	}
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
 	board_win = newwin(height, width, (yMax / 2) - (height / 2),
@@ -18,6 +27,11 @@ Board::Board(int height, int width, int speed)
 
 Board::Board(int height, int width, int starty, int startx, int speed)
 {
+	for(int i=0;i<BOARD_COLS;i++){
+	for(int j=0;j<BOARD_ROWS;j++){
+	taken[i][j]=false;	
+	}	
+	}
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
 	board_win = newwin(height, width, starty, startx);
@@ -43,7 +57,17 @@ void Board::remove(Drawable &drawable)
 }
    
 void Board::addAt(int y, int x, chtype ch) 
-{
+{	
+	switch(ch){
+		case ' ':
+		case 'O':
+		case 'o':
+		setTaken(x,y,false);
+		break;
+	 default:
+	setTaken(x,y,true);
+	break;
+	}
 	mvwaddch(board_win, y, x, ch);
 }
 
@@ -74,12 +98,25 @@ chtype Board::getInput()                   //*******************
 void Board::getEmptyCoordinates(int &y, int &x) 
 {
     srand(time(NULL));
-	while ((mvwinch(board_win, y = rand() % BOARD_ROWS, x = rand() % BOARD_COLS)) != ' ') ;     //************
+	do{
+		x = rand() % BOARD_COLS;
+		y = rand() % BOARD_ROWS;
+	}
+	while ((mvwinch(board_win,y,x)) != ' '||this->getTaken(x,y)) ;     //************
 }
 
 void Board::setTimeout(int timeout)
 {
 	wtimeout(board_win, timeout);
+}
+
+void Board::setTaken(int x, int y,bool set){
+this->taken[x][y]=set;
+
+}
+bool Board::getTaken(int x, int y){
+
+	return this->taken[x][y];
 }
 
 int Board::getTimeout()

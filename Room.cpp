@@ -1,83 +1,90 @@
 #include "Room.hpp"
 
 //fa il set up della stanza scegliendo un template, istanziando i nemici e gli artefatti
-Room::Room() {
+Room::Room(Board &game_board) {
     this->y = 0; this->x = 0;
     this->north = NULL; 
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    initializeRoomTemplate(15);
+    initializeRoomTemplate(0,0,game_board);
     this->room_template_number = 0;
 }
 
-Room::Room(int y, int x, vector<Room*> room_index) {//int room_template) {
+
+Room::Room(int y, int x, vector<Room*> room_index,int n,Board &game_board) {//int room_template) {
     this->y = y; this->x = x;
     this->north = findRoom(room_index, y+1, x);
     this->south = findRoom(room_index, y-1, x);
     this->west = findRoom(room_index, y, x-1);
 	this->est = findRoom(room_index, y, x+1);
-    int n = rand()%16+1;
-    this->room_template_number = n;
-    initializeRoomTemplate(n);
+    int num = rand()%16+1;
+    this->room_template_number = num;
+    initializeRoomTemplate(num,n,game_board);
 }
 
-void Room::initializeRoomTemplate(int template_num) {
+void Room::initializeRoomTemplate(int template_num,int n,Board &game_board) {
+    for(int x=0;x<BOARD_COLS;x++){
+        for(int y=0;y<BOARD_ROWS;y++){
+        game_board.setTaken(x,y,false);}
+    }
+    if(template_num!=0){template_num=1;}
     switch (template_num)
     {
+        
     case 0:
-        this->room_template = new Template_0i();
+        this->room_template = new Template_0(n,game_board);
         break;
     case 1:
-        this->room_template = new Template_1();
+        this->room_template = new Template_1(n,game_board);
         break;
     case 2:
-        this->room_template = new Template_2();
+        this->room_template = new Template_2(n,game_board);
         break;
     case 3:
-        this->room_template = new Template_3();
+        this->room_template = new Template_3(n,game_board);
         break;
     case 4:
-        this->room_template = new Template_4i();
+        this->room_template = new Template_4i(n,game_board);
         break;
     case 5:
-        this->room_template = new Template_5();
+        this->room_template = new Template_5(n,game_board);
         break;
     case 6:
-        this->room_template = new Template_6();
+        this->room_template = new Template_6(n,game_board);
         break;
     case 7:
-        this->room_template = new Template_7();
+        this->room_template = new Template_7(n,game_board);
         break; 
     case 8:
-        this->room_template = new Template_8();
+        this->room_template = new Template_8(n,game_board);
         break; 
     case 9:
-        this->room_template = new Template_9();
+        this->room_template = new Template_9(n,game_board);
         break; 
     case 10:
-        this->room_template = new Template_10();
+        this->room_template = new Template_10(n,game_board);
         break;
     case 11:
-        this->room_template = new Template_11();
+        this->room_template = new Template_11(n,game_board);
         break;
     case 12:
-        this->room_template = new Template_12();
+        this->room_template = new Template_12(n,game_board);
         break;
     case 13:
-        this->room_template = new Template_13();
+        this->room_template = new Template_13(n,game_board);
         break;
     case 14:
-        this->room_template = new Template_14();
+        this->room_template = new Template_14(n,game_board);
         break;
     case 15:
-        this->room_template = new Template_15();
+        this->room_template = new Template_15(n, game_board);
         break;
     case 16:
-        this->room_template = new Template_16();
+        this->room_template = new Template_16(n,game_board);
         break;
     default:
-        this->room_template = new Template_0i();
+        this->room_template = new Template_0i(n,game_board);
         break;
     }
 }
@@ -108,7 +115,7 @@ void Room::moveEnemies(Board &board, Hero &hero) {
          this->room_template->enemies[i]->chooseDirection(board, hero);
          this->room_template->enemies[i]->checkProjectile(board, hero);
        if(this->room_template->enemies[i]->checkCollision(board)) {
-            this->room_template->enemies[i]->moveCharacter();
+            this->room_template->enemies[i]->moveCharacter(board);
             
         }
     }

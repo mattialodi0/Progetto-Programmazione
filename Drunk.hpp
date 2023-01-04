@@ -8,6 +8,7 @@ class Drunk : public Enemy
 {
 public:
 	Drunk();
+	Drunk(int y, int x);
 	    //sprite diverso ma uguale
     void createProjectile(Board &board_win, Character &hero, Direction dir) override;
     //uguale a shooter ma meno range

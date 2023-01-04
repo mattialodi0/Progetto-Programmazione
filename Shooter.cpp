@@ -1,9 +1,12 @@
 #include "Shooter.hpp"
 
 
-Shooter::Shooter():Enemy(def,15,15,'S')
+Shooter::Shooter():Enemy(def,'S',3,18,18)
     {
     }
+    Shooter::Shooter(int y, int x):Enemy(def,'S',3,y,x)
+{
+}
     //per creare proiettili
      void Shooter::createProjectile(Board &board_win, Character &hero, Direction dir)
      {
@@ -41,14 +44,15 @@ Shooter::Shooter():Enemy(def,15,15,'S')
 			if (projectile[i] != NULL){
                 projectile[i]->setUptime(projectile[i]->getUptime()+1);
         if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
-        projectile[i]->moveCharacter();
+        projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             //diminuisci vita player
         } 
         projectile.erase(projectile.begin()+i);
+        board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
         }
         else{
-          projectile[i]->moveCharacter();
+          projectile[i]->moveCharacter(board_win);
          
           }
         }

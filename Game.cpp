@@ -25,7 +25,7 @@ Game::Game(int height, int width, int speed)
 
 	game_over = false;
 
-	current_room  = new Room;
+	current_room  = new Room(game_board);
 	room_index.emplace_back(current_room);
 
 	canMove = 0;
@@ -133,16 +133,17 @@ void Game::manageHeroMovement()
 			offsetx = hero.getDirection();
 		}
 	}
+	if(!game_board.getTaken(hero.getx()+offsetx,hero.gety()+offsety)){
 	switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
 	{
 	case ' ':
 	case 'F':
 	case 'H':
-		hero.moveCharacter();
+		hero.moveCharacter(game_board);
 		break;	
 	case 'O':		//cambia stanza
 		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-2 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
-			hero.moveCharacter();
+			hero.moveCharacter(game_board);
 		else
 			manageDoor();
 		break;
@@ -153,6 +154,7 @@ void Game::manageHeroMovement()
 		break;
 	default:
 		break;
+	}
 	}
 }
 
@@ -214,26 +216,26 @@ void Game::moveToEstRoom() {
 
 //funzioni per creare nuove stanze
 void Game::makeNorthRoom() {
-    current_room->north = new Room(current_room->y+1, current_room->x, room_index);
+    current_room->north = new Room(current_room->y+1, current_room->x, room_index,1,game_board);
     updateIndex(current_room->north);
     addRoomToIndex(current_room->north);       //******************
     moveToNorthRoom();
 
 }
 void Game::makeSouthRoom() {
-    current_room->south = new Room(current_room->y-1, current_room->x, room_index);
+    current_room->south = new Room(current_room->y-1, current_room->x, room_index,-1,game_board);
     updateIndex(current_room->south);
     addRoomToIndex(current_room->south);       //******************
     moveToSouthRoom();  
 }
 void Game::makeWestRoom() {
-    current_room->west = new Room(current_room->y, current_room->x-1, room_index);
+    current_room->west = new Room(current_room->y, current_room->x-1, room_index, -2,game_board);
     updateIndex(current_room->west);
     addRoomToIndex(current_room->west);       //******************
     moveToWestRoom();
 }
 void Game::makeEstRoom() {
-    current_room->est = new Room(current_room->y, current_room->x+1, room_index);
+    current_room->est = new Room(current_room->y, current_room->x+1, room_index,2,game_board);
     updateIndex(current_room->est);
     addRoomToIndex(current_room->est);       //******************
     moveToEstRoom();

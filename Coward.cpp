@@ -1,8 +1,12 @@
 #include "Coward.hpp"
 
-Coward::Coward():Enemy(def,11,11,'K')
+Coward::Coward():Enemy(def,11,11,'K',1)
 {
 }
+Coward::Coward(int y, int x):Enemy(def,y,x,'K',1)
+{
+}
+
 
 void Coward::createProjectile(Board &board_win, Character &hero, Direction dir) 
 {
@@ -40,14 +44,15 @@ void Coward::checkProjectile(Board &board_win, Character &hero)
             projectile[i]->setUptime((projectile[i]->getUptime())+1);
             
             if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
-                projectile[i]->moveCharacter();
+                projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                 //diminuisci vita player
                 }    
+                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
             }
             else{
-                projectile[i]->moveCharacter();
+                projectile[i]->moveCharacter(board_win);
                
             }
     

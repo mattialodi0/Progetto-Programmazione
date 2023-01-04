@@ -24,20 +24,28 @@ Direction Character::getDirection()
     return cur_direction;
 }
 
-void Character::moveCharacter()
+void Character::moveCharacter(Board &game_board)
 {
 	switch (cur_direction)
 	{
-	case down:
+	case down:	
+		game_board.setTaken(x,y,false);
+		game_board.setTaken(x,y+1,true);
 		this->y++;
 		break;
 	case up:
+		game_board.setTaken(x,y,false);
+		game_board.setTaken(x,y-1,true);
 		this->y--;
 		break;
 	case sx:
+		game_board.setTaken(x,y,false);
+		game_board.setTaken(x-1,y,true);
 		this->x--;
 		break;
 	case dx:
+		game_board.setTaken(x,y,false);
+		game_board.setTaken(x+1,y,true);
 		this->x++;
 		break;
 	default:
@@ -60,6 +68,7 @@ bool Character::checkCollision(Board &board_win)
 			offsetx = cur_direction;
 		}
 	}
+	if(!board_win.getTaken(x+offsetx,y+offsety)){
 	switch (board_win.getCharAt(y + offsety, x + offsetx))
 	{
 	case ' ':
@@ -70,6 +79,6 @@ bool Character::checkCollision(Board &board_win)
 	default:
 		return false;
 		break;
-	}
+	}}
 	return false;
 }

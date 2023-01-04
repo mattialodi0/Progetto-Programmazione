@@ -19,6 +19,79 @@ General_template::~General_template()
     delete [] enemies;
 }
 
+void General_template::createEnemies(int num,bool is_random,int j,int n,Board &game_board)
+{
+            if(is_random){
+                num=rand()%(num+1);
+            }
+            int x,y;
+            bool acceptable=false;
+            do{
+                if(n!=0){
+            game_board.getEmptyCoordinates(x,y);
+                }
+                else{
+                    x=30;
+                    y=5+(2*j);
+                }
+            switch(n){
+                case(1):
+                if(abs(x-HALF_COLS)>tols || y>tols){
+                acceptable=true;
+                }
+                break;
+                case(-1):
+                if(abs(x-HALF_COLS)>tols || y<BOARD_ROWS-tols){
+                acceptable=true;
+                }
+                break;
+                case(2):
+                if(x<BOARD_COLS-tols || abs(y-HALF_ROWS)>tols){
+                acceptable=true;
+                }
+                break;
+                case(-2):
+                if(x>tols || abs(y-HALF_ROWS)>tols){
+                acceptable=true;
+                }
+                break;
+                case(0):
+                if(abs(x-HALF_COLS)>tols || abs(y-HALF_ROWS)>tols){
+                acceptable=true;
+                }
+                break;
+                default:
+                acceptable=false;
+                break;
+
+            }
+
+            }
+            while(!acceptable&&n!=0);
+            switch(num){
+                case 0:
+                enemies[j] = new Drunk(y,x);
+                break;
+                case 1:
+                enemies[j] = new Coward(y,x);
+                break;
+                case 2:
+                enemies[j] = new Shooter(y,x);
+                break;
+                case 3:
+                enemies[j] = new Chaser(y,x);
+                break;
+                case 4:
+                enemies[j] = new Boom(y,x);
+                break;
+                default:
+                break;
+
+
+            }
+
+    }
+
 void General_template::drawDoors()
 {
     doors[0] = Door(0,HALF_COLS-2);   //north doors

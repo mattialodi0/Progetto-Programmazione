@@ -26,6 +26,7 @@
         "algorithm": "cpp",
         "ratio": "cpp",
         "stdexcept": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "compare": "cpp"
     }
 }

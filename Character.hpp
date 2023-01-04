@@ -22,7 +22,7 @@ public:
 
 	void setDirection(Direction newdir);
 	Direction getDirection();
-	void moveCharacter();
+	void moveCharacter(Board &game_board);
 
 	bool checkCollision(Board &board_win);
 };

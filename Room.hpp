@@ -16,9 +16,9 @@ public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
 public: 
-    Room();    //costrutture stanza di partenza
+    Room(Board &game_board);    //costrutture stanza di partenza
 
-    Room(int y, int x, vector<Room*> room_index);   //costruttore stanza generica
+    Room(int y, int x, vector<Room*> room_index,int n,Board &game_board);   //costruttore stanza generica
 
     void drawRoom(Board &board);
 
@@ -28,7 +28,7 @@ public:
 
     void unlockDoor(int y, int x);
 private:
-    void initializeRoomTemplate(int template_num);
+    void initializeRoomTemplate(int template_num, int n,Board &game_board);
     Room* findRoom(vector<Room*> room_index, int y, int x);
     
     void drawProjectiles(Board &board);

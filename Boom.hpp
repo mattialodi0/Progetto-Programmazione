@@ -11,6 +11,7 @@ class Boom : public Enemy
     
 public:
     Boom();
+    Boom(int y,int x);
     //sprite diverso ma uguale
     void createProjectile(Board &board_win, Character &hero, Direction dir) override;
     //uguale a chaser ma esplode

@@ -15,13 +15,16 @@ class Board
 protected:
 	WINDOW *board_win;
 	int timeout;
+	bool taken[BOARD_COLS][BOARD_ROWS];
+	
 public:
 	Board();
 	Board(int height, int width, int speed);
 	Board(int height, int width, int starty, int startx, int speed);
 
 	void initialize();
-
+	void setTaken(int x, int y,bool set);
+	bool getTaken(int x, int y);
     void add(Drawable &drawable);
 	void remove(Drawable &drawable);
 	void addAt(int y, int x, chtype ch);

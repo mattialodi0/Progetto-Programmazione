@@ -1,8 +1,13 @@
 #include "Boom.hpp"
 
-Boom::Boom():Enemy(def,17,17,'B')
+Boom::Boom():Enemy(def,17,17,'B',5)
 {
      timer=3;
+}
+
+Boom::Boom(int y, int x):Enemy(def,'D',0,y,x)
+{
+    timer=3;
 }
 
 void Boom::createProjectile(Board &board_win, Character &hero,Direction dir)
@@ -33,6 +38,7 @@ void Boom::checkProjectile(Board &board_win, Character &hero)
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                 //diminuisci vita player
                 }    
+                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
             }
         }

@@ -1,9 +1,12 @@
 #include "Enemy.hpp"
 
 
-Enemy::Enemy(Direction dir, int x, int y, chtype ch):Character(dir,x,y,ch)
+Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff_need):Character(dir,x,y,ch)
 {
+    difficultyneeded=diff_need;
+
 }    
+
 
 bool Enemy::hasLos(Board &board_win, Character &hero)
 {
