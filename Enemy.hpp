@@ -33,6 +33,7 @@ public:
 	virtual void chooseDirection(Board &board_win, Character &hero) {}
 
     bool hasLos(Board &board_win, Character &hero);
+    bool inSight(int distancex,int distancey);
 };  
 
 typedef Enemy * pEn;

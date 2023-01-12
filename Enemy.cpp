@@ -1,5 +1,6 @@
 #include "Enemy.hpp"
 #include "Board.hpp"
+#include <cmath>
 
 
 Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch)
@@ -13,17 +14,20 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch
          sight_range= 20+difficulty;
          default_coord_x= 10;
          default_coord_y=10;
-         boom_range=3  +int(difficulty/2);
+         boom_range=2  +int(difficulty/2);
          mem=0;
          reload=0;
-         timer=6-difficulty-int(difficulty/2);
+         timer=7-int(difficulty/2);
 
 
 }    
-
+bool Enemy::inSight(int distancex,int distancey){
+    return int(sqrt(pow(distancex/2.5,2)+pow(distancey,2)))<this->sight_range;
+}
 
 bool Enemy::hasLos(Board &board_win, Character &hero)
 {
+    
     int i=0,k=0, maxiter=0;
     int distancex, distancey;
     distancex = this->x - hero.getx();

@@ -66,7 +66,7 @@ void Chaser::chooseDirection(Board &board_win, Character &hero)
         distancex = this->x - hero.getx();
         distancey = this->y - hero.gety();
         //se sei vicino
-        if(hasLos(board_win, hero) &&  abs(distancex) < sight_range && abs(distancey) < sight_range)
+        if(hasLos(board_win, hero) && inSight(distancex,distancey))
         {
             this->mem=enemy_memory;
         }

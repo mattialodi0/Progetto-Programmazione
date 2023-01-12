@@ -22,7 +22,7 @@ General_template::~General_template()
 void General_template::createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[])
 {
             if(is_random_enemies){
-                chosen=rand()%max_n_enemies+1;
+                chosen=rand()%(max_n_enemies+1);
             }
             if(is_random_coords)
             {
@@ -36,7 +36,8 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
                     x=30;
                     y=5+(2*ite);
                 }
-                
+
+                if(!game_board.getTaken(x,y)){
             switch(room_pos){
                 case(1):
                 if(abs(x-HALF_COLS)>tols || y>tols){
@@ -68,11 +69,11 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
                 break;
 
             }
-
+}
             }
             while(!acceptable&&room_pos!=0);
             }
-
+            game_board.setTaken(x,y,true);
                     switch(chosen)
                     {
                         case 0:
