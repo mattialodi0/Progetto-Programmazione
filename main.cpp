@@ -1,3 +1,5 @@
+#include "menu.hpp"
+#include "menu_playing.hpp"
 #include "Game.hpp"
 #include <iostream>
 #include <ncurses.h>
@@ -12,9 +14,13 @@ int main()
 	cbreak();
 	refresh();
 	curs_set(0);
-	
-	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
 
+	//Menu menu;
+    //Menu_playing menu_p;
+	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
+    
+    //menu.menu();
+	
 	while (game.isNotOver())
 	{
 		// input
