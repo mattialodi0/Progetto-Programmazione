@@ -4,27 +4,28 @@
 #include "Projectile.hpp"
 #include <vector>
 
-const int enemy_reload=5;
-const int enemy_memory=7;
-const int enemy_range=11;
-const int melee_range=3;
-const int melee_enemy_reload=5;
-const int sight_range= 20;
-const int default_coord_x= 10;
-const int default_coord_y=10;
-const int boom_range=5;
+
 
 class Enemy : public Character {
 protected: 
+    int enemy_reload=5;
+    int enemy_memory=7;
+    int enemy_range=11;
+    int melee_range=3;
+    int melee_enemy_reload=5;
+    int sight_range= 20;
+    int default_coord_x= 10;
+    int default_coord_y=10;
+    int boom_range=5;
     int mem=0;
     int reload=0;
     int timer=10;
     bool timeractivated=false;
-    int difficultyneeded=0;
+    int difficulty=0;
     int difficultylevel=0;
 public:
     std::vector<Projectile*> projectile;
-    Enemy(Direction dir, int y, int x ,chtype ch,int diff_need);
+    Enemy(Direction dir, int y, int x ,chtype ch,int diff);
     virtual void createProjectile(Board &board_win, Character &hero, Direction dir) {}
     virtual void checkProjectile(Board &board_win, Character &hero) {}
     

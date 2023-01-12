@@ -19,47 +19,47 @@ General_template::~General_template()
     delete [] enemies;
 }
 
-void General_template::createEnemies(int num,bool is_random,int j,int n,Board &game_board,pEn enemies[])
+void General_template::createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[])
 {
-            if(is_random){
-                num=rand()%(num+1);
+            if(is_random_enemies){
+                chosen=rand()%max_n_enemies+1;
             }
-            int x,y,x1,y1;
-            bool acceptable=false;
+            if(is_random_coords)
+            {
+                bool acceptable=false;
             do{
-                if(n!=0){
-            game_board.getEmptyCoordinates(x,y);
+                if(room_pos!=0){
+            game_board.getEmptyCoordinates(y,x);
             
                 }
                 else{
                     x=30;
-                    y=5+(2*j);
+                    y=5+(2*ite);
                 }
-                x1=x;
-                y1=y;
-            switch(n){
+                
+            switch(room_pos){
                 case(1):
-                if(abs(x1-HALF_COLS)>tols || y1>tols){
+                if(abs(x-HALF_COLS)>tols || y>tols){
                 acceptable=true;
                 }
                 break;
                 case(-1):
-                if(abs(x1-HALF_COLS)>tols || y1<BOARD_ROWS-tols){
+                if(abs(x-HALF_COLS)>tols || y<BOARD_ROWS-tols){
                 acceptable=true;
                 }
                 break;
                 case(2):
-                if(x1<BOARD_COLS-tols || abs(y1-HALF_ROWS)>tols){
+                if(x<BOARD_COLS-tols || abs(y-HALF_ROWS)>tols){
                 acceptable=true;
                 }
                 break;
                 case(-2):
-                if(x1>tols || abs(y1-HALF_ROWS)>tols){
+                if(x>tols || abs(y-HALF_ROWS)>tols){
                 acceptable=true;
                 }
                 break;
                 case(0):
-                if(abs(x1-HALF_COLS)>tols || abs(y1-HALF_ROWS)>tols){
+                if(abs(x-HALF_COLS)>tols || abs(y-HALF_ROWS)>tols){
                 acceptable=true;
                 }
                 break;
@@ -70,30 +70,28 @@ void General_template::createEnemies(int num,bool is_random,int j,int n,Board &g
             }
 
             }
-            while(!acceptable&&n!=0);
-            switch(num){
-                case 0:
-                enemies[j] = new Drunk(y1,x1);
-                break;
-                case 1:
-                enemies[j] = new Coward(y1,x1);
-                break;
-                case 2:
-                enemies[j] = new Shooter(y1,x1);
-                break;
-                case 3:
-                enemies[j] = new Chaser(y1,x1);
-                break;
-                case 4:
-                enemies[j] = new Boom(y1,x1);
-                break;
-                default:
-                break;
-
-
+            while(!acceptable&&room_pos!=0);
             }
 
-    }
+                    switch(chosen)
+                    {
+                        case 0:
+                        enemies[ite] = new Drunk(y,x,game_board.getDifficulty());
+                        break;
+                        case 1:
+                        enemies[ite] = new Coward(y,x,game_board.getDifficulty());
+                        break;
+                        case 2:
+                        enemies[ite] = new Shooter(y,x,game_board.getDifficulty());
+                        break;
+                        case 3:
+                        enemies[ite] = new Chaser(y,x,game_board.getDifficulty());
+                        break;
+                        case 4:
+                        enemies[ite] = new Boom(y,x,game_board.getDifficulty());
+                        break;
+                    }
+                }
 
 void General_template::drawDoors()
 {

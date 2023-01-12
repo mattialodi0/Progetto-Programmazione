@@ -1,11 +1,11 @@
 #include "Chaser.hpp"
 
-Chaser::Chaser():Enemy(def,10,10,'C',4)
+Chaser::Chaser():Enemy(def,10,10,'C',0)
 {
 
 }
 
-Chaser::Chaser(int y, int x):Enemy(def,y,x,'C',4)
+Chaser::Chaser(int y, int x,int diff):Enemy(def,y,x,'C',diff)
 {
 }
 

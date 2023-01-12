@@ -33,7 +33,8 @@ public:
 
     void drawDoors();
 
-    void createEnemies(int num,bool is_random,int j,int n,Board &game_board,pEn enemies[]);
+    void createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[]);
+    //in chosen enemies 0=drunk,1=coward,2=shooter,3=chaser,4=boom
     int drawRandom(int num, int ya, int xa, int yb, int xb, int i);
     int drawHorizontalLine( int num, int start_y, int start_x, int i);
     int drawVerticalLine( int num, int start_y, int start_x, int i);
@@ -50,13 +51,6 @@ class Template_0 : public General_template {
 public:
     Template_0(int n,Board &game_board):General_template(5,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
-        
         walls[0] = Wall(6,6);
         walls[1] = Wall(10,19); 
         walls[2] = Wall(10,11); 
@@ -64,6 +58,19 @@ public:
         walls[4] = Wall(8,30); 
 
         drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
     
 };
@@ -72,15 +79,21 @@ class Template_0i : public General_template {
 public:
     Template_0i(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
         drawDoors();
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -89,16 +102,22 @@ class Template_1 : public General_template {
 public:
     Template_1(int n,Board &game_board) : General_template(1,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         walls[0] = Wall(10,15);
         
         drawDoors();
 
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -107,16 +126,21 @@ class Template_2 : public General_template {
 public:
     Template_2(int n,Board &game_board) : General_template(8,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         drawHorizontalLine(8, BOARD_ROWS/3*2, 1, 0);
 
         drawDoors();
-
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -125,15 +149,21 @@ class Template_3 : public General_template {
 public:
     Template_3(int n,Board &game_board) : General_template(7,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         drawVerticalLine(7, 1, (BOARD_ROWS/3+2)*2, 0);
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -142,12 +172,6 @@ class Template_4 : public General_template {
 public:
     Template_4(int n,Board &game_board) : General_template(18,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         walls[0] = Wall(HALF_ROWS-1, HALF_COLS-1);
         walls[1] = Wall(HALF_ROWS-1, HALF_COLS);
         walls[2] = Wall(HALF_ROWS-1, HALF_COLS+1);
@@ -169,6 +193,18 @@ public:
         
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -177,16 +213,21 @@ class Template_4i : public General_template {
 public:
     Template_4i(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
         drawDoors();
-
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -195,15 +236,21 @@ class Template_4ii : public General_template {
 public:
     Template_4ii(int n,Board &game_board) : General_template(12,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         drawEmptySquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -212,15 +259,22 @@ class Template_5 : public General_template {
 public:
     Template_5(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
+        
         drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -229,12 +283,7 @@ class Template_6 : public General_template {
 public:
     Template_6(int n,Board &game_board) : General_template(30,18,rand() % (max_n_enemies+1))
     {
-         int p;
-         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
+        
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS/3, (BOARD_ROWS/3)*2,1,i);
         i = drawVerticalLine(BOARD_ROWS/3, (BOARD_ROWS/3)*2,BOARD_COLS/3,i);
@@ -243,6 +292,18 @@ public:
         doors[17] = Door((BOARD_ROWS/3)*2,BOARD_COLS/3-3);
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -251,12 +312,6 @@ class Template_7 : public General_template {
 public:
     Template_7(int n,Board &game_board) : General_template(161*4,16,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
         int i = 0;
         i = drawFilledSquare(1, 1, 8, 20, 0);   //126 walls
         i = drawFilledSquare(BOARD_ROWS-9, 1, 8, 20, i+1);   //126 walls
@@ -264,6 +319,18 @@ public:
         i = drawFilledSquare(BOARD_ROWS-9, BOARD_COLS-21, 8, 20, i+1);   //126 walls
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
 
     }
 };
@@ -273,12 +340,6 @@ class Template_8 : public General_template {
 public:
     Template_8(int n,Board &game_board) : General_template(72,32,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //72 walls
         
         drawDoors();
@@ -298,6 +359,18 @@ public:
         doors[29] = Door(HALF_ROWS-1,HALF_COLS+13);   //est doors
         doors[30] = Door(HALF_ROWS,HALF_COLS+13);
         doors[31] = Door(HALF_ROWS+1,HALF_COLS+13);
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -306,12 +379,6 @@ class Template_9 : public General_template {
 public:
     Template_9(int n,Board &game_board) : General_template(36,16,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
         int i = 0;
         int ry = rand()%(BOARD_ROWS-2)+1;
         int rx = rand()%(BOARD_COLS-3)+1;
@@ -334,6 +401,18 @@ public:
 
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
 
     }
 };
@@ -343,12 +422,6 @@ class Template_10 : public General_template {
 public:
     Template_10(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1))
     {
-        int i;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(i=0;i<this->enemies_num;i++){   
-        createEnemies(my_xp,false,i,n,game_board,enemies);
-        }
         int ry, rx;
         for(int i=0; i < 15; i++)
         {
@@ -358,6 +431,18 @@ public:
         }
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
 
     }
 };
@@ -367,12 +452,7 @@ class Template_11 : public General_template {
 public:
     Template_11(int n,Board &game_board) : General_template(332,16,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
+        
         int i = 0;
         i = drawHorizontalLine(26, 2, 5,i);     
         i = drawHorizontalLine(26, 2, 36,i);
@@ -394,7 +474,18 @@ public:
         i = drawHorizontalLine(21, BOARD_ROWS-9, 35,i);    //332
 
         drawDoors();
-
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
        
     }
 };
@@ -404,12 +495,7 @@ class Template_12 : public General_template {
 public:
     Template_12(int n,Board &game_board) : General_template(233,16,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
+        
         int i = 0;
         i = drawVerticalLine(21, 1, 7,i);
         i = drawHorizontalLine(51, BOARD_ROWS-4, 8,i);     
@@ -421,6 +507,18 @@ public:
         i = drawHorizontalLine(32, 6, 21,i);
         
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -429,12 +527,6 @@ class Template_13 : public General_template {
 public:
     Template_13(int n,Board &game_board) : General_template(60,19,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
         int i = 0;
         i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
         i = drawHorizontalLine(21, HALF_ROWS+5, HALF_COLS-10,i);
@@ -446,6 +538,18 @@ public:
         doors[18] = Locked_Door(HALF_ROWS-5, HALF_COLS+1);
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -454,12 +558,6 @@ class Template_14 : public General_template {               //**************da f
 public:
     Template_14(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
         int i = 0;
         i = drawVerticalLine(9, 8, 10,i);     
         i = drawHorizontalLine(10, 8, 11,i);
@@ -467,6 +565,18 @@ public:
         i = drawHorizontalLine(10, 16, 11,i);
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -475,12 +585,6 @@ class Template_15 : public General_template {
 public:
     Template_15(int n,Board &game_board) : General_template(306,44,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
         i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-10,i);
@@ -506,6 +610,18 @@ public:
         j = drawFilledSquareDoor(HALF_ROWS-1,HALF_COLS+15,2,2,j);
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -513,12 +629,6 @@ class Template_15i : public General_template {
 public:
     Template_15i(int n,Board &game_board) : General_template(4*BOARD_COLS+6*BOARD_ROWS+300,50,rand() % (max_n_enemies+1))
     {
-         int p;
-         //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 3, 1,i);
         i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
@@ -545,6 +655,18 @@ public:
         j = drawFilledSquareDoor(3,HALF_COLS-1,2,3,j);
 
         drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 
@@ -553,12 +675,6 @@ class Template_16 : public General_template {
 public:
     Template_16(int n,Board &game_board) : General_template(60,22,rand() % (max_n_enemies+1))
     {
-        int p;
-        //se vuoi decidere che nemici mettere metti chosen_enemies[i] in my_x e false
-        int chosen_enemies[enemies_num]={};
-        for(p=0;p<this->enemies_num;p++){   
-        createEnemies(my_xp,false,p,n,game_board,enemies);
-        }
         int i = 0;
         int a = BOARD_ROWS/3-2;
         int b = BOARD_ROWS/3*2+2;
@@ -600,6 +716,18 @@ public:
         doors[21] = Door(b,HALF_COLS+1);
 
         drawDoors();
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
     }
 };
 

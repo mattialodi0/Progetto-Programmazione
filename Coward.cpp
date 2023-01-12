@@ -1,9 +1,9 @@
 #include "Coward.hpp"
 
-Coward::Coward():Enemy(def,11,11,'K',1)
+Coward::Coward():Enemy(def,11,11,'K',0)
 {
 }
-Coward::Coward(int y, int x):Enemy(def,y,x,'K',1)
+Coward::Coward(int y, int x,int diff):Enemy(def,y,x,'K',diff)
 {
 }
 

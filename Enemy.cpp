@@ -1,9 +1,23 @@
 #include "Enemy.hpp"
+#include "Board.hpp"
 
 
-Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff_need):Character(dir,x,y,ch)
+Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch)
 {
-    difficultyneeded=diff_need;
+        difficulty=diff;
+         enemy_reload=9-difficulty;
+         enemy_memory=7;
+         enemy_range=15+(2*difficulty);
+         melee_range=3;
+         melee_enemy_reload=9-difficulty;
+         sight_range= 20+difficulty;
+         default_coord_x= 10;
+         default_coord_y=10;
+         boom_range=3  +int(difficulty/2);
+         mem=0;
+         reload=0;
+         timer=6-difficulty-int(difficulty/2);
+
 
 }    
 

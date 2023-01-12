@@ -7,7 +7,7 @@ class Chaser : public Enemy
 {
 public:
     Chaser();
-    Chaser(int y, int x);
+    Chaser(int y, int x,int diff);
     //sprite diverso ma uguale
     void createProjectile(Board &board_win, Character &hero, Direction dir) override;
     //uguale a shooter ma meno range

@@ -13,6 +13,7 @@ const int BOARD_COLS = BOARD_DIM * 2.7;//2.5;
 class Board
 {
 protected:
+	int difficulty;
 	WINDOW *board_win;
 	int timeout;
 	bool taken[BOARD_COLS][BOARD_ROWS];
@@ -30,6 +31,9 @@ public:
 	void remove(Drawable &drawable);
 	void addAt(int y, int x, chtype ch);
 	void print(const char* str);
+	int getDifficulty();
+	void setDifficulty(int diff);
+
 
     chtype getInput();
 	chtype getCharAt(int y, int x);

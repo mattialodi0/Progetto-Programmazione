@@ -1,10 +1,10 @@
 #include "Drunk.hpp"
 
-Drunk::Drunk():Enemy(def,'D',0,13,13)
+Drunk::Drunk():Enemy(def,13,13,'D',0)
 {
 	
 }
-Drunk::Drunk(int y, int x):Enemy(def,'D',0,y,x)
+Drunk::Drunk(int y, int x,int diff):Enemy(def,y,x,'D',diff)
 {
 }
 

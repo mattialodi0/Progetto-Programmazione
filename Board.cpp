@@ -11,6 +11,7 @@ Board::Board():Board(0, 0, 300)
 
 Board::Board(int height, int width, int speed)
 {
+	difficulty=0;
 	for(int i=0;i<BOARD_COLS;i++){
 	for(int j=0;j<BOARD_ROWS;j++){
 	taken[i][j]=false;	
@@ -27,6 +28,7 @@ Board::Board(int height, int width, int speed)
 
 Board::Board(int height, int width, int starty, int startx, int speed)
 {
+	difficulty=0;
 	for(int i=0;i<BOARD_COLS;i++){
 	for(int j=0;j<BOARD_ROWS;j++){
 	taken[i][j]=false;	
@@ -104,6 +106,14 @@ void Board::getEmptyCoordinates(int &y, int &x)
 	}
 	while ((mvwinch(board_win,y,x)) != ' '||this->getTaken(x,y)) ;     //************
 }
+
+int Board::getDifficulty(){
+	return this->difficulty;
+}
+void Board::setDifficulty(int diff){
+	this->difficulty=diff;
+}
+
 
 void Board::setTimeout(int timeout)
 {

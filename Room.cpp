@@ -12,7 +12,7 @@ Room::Room(Board &game_board) {
 }
 
 
-Room::Room(int y, int x, vector<Room*> room_index,int n,Board &game_board) {//int room_template) {
+Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {//int room_template) {
     this->y = y; this->x = x;
     this->north = findRoom(room_index, y+1, x);
     this->south = findRoom(room_index, y-1, x);
@@ -20,67 +20,67 @@ Room::Room(int y, int x, vector<Room*> room_index,int n,Board &game_board) {//in
 	this->est = findRoom(room_index, y, x+1);
     int num = rand()%16+1;
     this->room_template_number = num;
-    initializeRoomTemplate(num,n,game_board);
+    initializeRoomTemplate(num,room_pos,game_board);
 }
 
-void Room::initializeRoomTemplate(int template_num,int n,Board &game_board) {
+void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_board) {
     game_board.clearTaken();
     switch (template_num)
     {
         
     case 0:
-        this->room_template = new Template_0(n,game_board);
+        this->room_template = new Template_0(room_pos,game_board);
         break;
     case 1:
-        this->room_template = new Template_1(n,game_board);
+        this->room_template = new Template_1(room_pos,game_board);
         break;
     case 2:
-        this->room_template = new Template_2(n,game_board);
+        this->room_template = new Template_2(room_pos,game_board);
         break;
     case 3:
-        this->room_template = new Template_3(n,game_board);
+        this->room_template = new Template_3(room_pos,game_board);
         break;
     case 4:
-        this->room_template = new Template_4i(n,game_board);
+        this->room_template = new Template_4i(room_pos,game_board);
         break;
     case 5:
-        this->room_template = new Template_5(n,game_board);
+        this->room_template = new Template_5(room_pos,game_board);
         break;
     case 6:
-        this->room_template = new Template_6(n,game_board);
+        this->room_template = new Template_6(room_pos,game_board);
         break;
     case 7:
-        this->room_template = new Template_7(n,game_board);
+        this->room_template = new Template_7(room_pos,game_board);
         break; 
     case 8:
-        this->room_template = new Template_8(n,game_board);
+        this->room_template = new Template_8(room_pos,game_board);
         break; 
     case 9:
-        this->room_template = new Template_9(n,game_board);
+        this->room_template = new Template_9(room_pos,game_board);
         break; 
     case 10:
-        this->room_template = new Template_10(n,game_board);
+        this->room_template = new Template_10(room_pos,game_board);
         break;
     case 11:
-        this->room_template = new Template_11(n,game_board);
+        this->room_template = new Template_11(room_pos,game_board);
         break;
     case 12:
-        this->room_template = new Template_12(n,game_board);
+        this->room_template = new Template_12(room_pos,game_board);
         break;
     case 13:
-        this->room_template = new Template_13(n,game_board);
+        this->room_template = new Template_13(room_pos,game_board);
         break;
     case 14:
-        this->room_template = new Template_14(n,game_board);
+        this->room_template = new Template_14(room_pos,game_board);
         break;
     case 15:
-        this->room_template = new Template_15(n, game_board);
+        this->room_template = new Template_15(room_pos, game_board);
         break;
     case 16:
-        this->room_template = new Template_16(n,game_board);
+        this->room_template = new Template_16(room_pos,game_board);
         break;
     default:
-        this->room_template = new Template_0i(n,game_board);
+        this->room_template = new Template_0i(room_pos,game_board);
         break;
     }
 }

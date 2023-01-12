@@ -1,13 +1,11 @@
 #include "Boom.hpp"
 
-Boom::Boom():Enemy(def,17,17,'B',5)
+Boom::Boom():Enemy(def,17,17,'B',0)
 {
-     timer=3;
 }
 
-Boom::Boom(int y, int x):Enemy(def,'D',0,y,x)
+Boom::Boom(int y, int x,int diff):Enemy(def,y,x,'B',diff)
 {
-    timer=3;
 }
 
 void Boom::createProjectile(Board &board_win, Character &hero,Direction dir)
@@ -89,7 +87,7 @@ void Boom::chooseDirection(Board &board_win, Character &hero)
                     }
                 }
             }
-             if(abs(distancex) <= (boom_range/2)-1 && abs(distancey) <= (boom_range/2)-1){
+             if(abs(distancex) <= (boom_range/2)-1 && abs(distancey) <= (boom_range/2)+1){
                 
                 timeractivated=true;
                 setDirection(def);

@@ -1,10 +1,10 @@
 #include "Shooter.hpp"
 
 
-Shooter::Shooter():Enemy(def,'S',3,18,18)
+Shooter::Shooter():Enemy(def,18,18,'S',0)
     {
     }
-    Shooter::Shooter(int y, int x):Enemy(def,'S',3,y,x)
+    Shooter::Shooter(int y, int x,int diff):Enemy(def,y,x,'S',diff)
 {
 }
     //per creare proiettili

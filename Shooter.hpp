@@ -9,7 +9,7 @@ class Shooter : public Enemy
 {
 public:
     Shooter();
-    Shooter(int y,int x);
+    Shooter(int y,int x,int diff);
     //per creare proiettili
      void createProjectile(Board &board_win, Character &hero, Direction dir)override;
      //per movimento proiettili e check di colpito o out of range

@@ -16,6 +16,7 @@ protected:
 	int speed;
 	int reload_time;
 	int range;
+	int difficulty;
 public:
 	Character();
 	Character(Direction dir, int x, int y, chtype ch);
