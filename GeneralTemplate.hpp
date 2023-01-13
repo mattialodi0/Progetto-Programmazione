@@ -47,65 +47,23 @@ public:
 };
 
 
+
 class Template_0 : public General_template {
 public:
-    Template_0(int n,Board &game_board):General_template(5,16,rand() % (max_n_enemies+1))
+    Template_0(int n,Board &game_board) : General_template(0,16,0)
     {
-        walls[0] = Wall(6,6);
-        walls[1] = Wall(10,19); 
-        walls[2] = Wall(10,11); 
-        walls[3] = Wall(3,25); 
-        walls[4] = Wall(8,30); 
-
         drawDoors();
-
-        int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        //chosen_enemies={}
-        //x_chosen={}
-        //y_chosen={}
-        for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
     }
-    
 };
 
-class Template_0i : public General_template {
+//muri casuali
+class Template_1 : public General_template {
 public:
-    Template_0i(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1))
+    Template_1(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1))
     {
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
         drawDoors();
-        int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        //chosen_enemies={}
-        //x_chosen={}
-        //y_chosen={}
-        for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
-    }
-};
-
-
-class Template_1 : public General_template {
-public:
-    Template_1(int n,Board &game_board) : General_template(1,16,rand() % (max_n_enemies+1))
-    {
-        walls[0] = Wall(10,15);
-        
-        drawDoors();
-
         int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
         int y_chosen[enemies_num];
@@ -167,51 +125,10 @@ public:
     }
 };
 
-//square
+//filled square
 class Template_4 : public General_template {
 public:
-    Template_4(int n,Board &game_board) : General_template(18,16,rand() % (max_n_enemies+1))
-    {
-        walls[0] = Wall(HALF_ROWS-1, HALF_COLS-1);
-        walls[1] = Wall(HALF_ROWS-1, HALF_COLS);
-        walls[2] = Wall(HALF_ROWS-1, HALF_COLS+1);
-        walls[3] = Wall(HALF_ROWS, HALF_COLS+1);
-        walls[4] = Wall(HALF_ROWS+1, HALF_COLS+1);
-        walls[5] = Wall(HALF_ROWS+1, HALF_COLS);
-        walls[6] = Wall(HALF_ROWS+1, HALF_COLS-1);
-        walls[7] = Wall(HALF_ROWS, HALF_COLS-1);
-        walls[8] = Wall(HALF_ROWS, HALF_COLS);
-        walls[9] = Wall(HALF_ROWS-1, HALF_COLS-1);
-        walls[10] = Wall(HALF_ROWS, HALF_COLS-1);
-        walls[11] = Wall(HALF_ROWS+1, HALF_COLS-1);
-        walls[12] = Wall(HALF_ROWS-1, HALF_COLS+2);
-        walls[13] = Wall(HALF_ROWS, HALF_COLS+2);
-        walls[14] = Wall(HALF_ROWS+1, HALF_COLS+2);
-        walls[15] = Wall(HALF_ROWS-1, HALF_COLS-2);
-        walls[16] = Wall(HALF_ROWS, HALF_COLS-2);
-        walls[17] = Wall(HALF_ROWS+1, HALF_COLS-2);
-        
-
-        drawDoors();
-                int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        //chosen_enemies={}
-        //x_chosen={}
-        //y_chosen={}
-        for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
-    }
-};
-
-//filled square
-class Template_4i : public General_template {
-public:
-    Template_4i(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1))
+    Template_4(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1))
     {
         drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
@@ -232,9 +149,9 @@ public:
 };
 
 //empty square
-class Template_4ii : public General_template {
+class Template_4i : public General_template {
 public:
-    Template_4ii(int n,Board &game_board) : General_template(12,16,rand() % (max_n_enemies+1))
+    Template_4i(int n,Board &game_board) : General_template(12,16,rand() % (max_n_enemies+1))
     {
         drawEmptySquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 

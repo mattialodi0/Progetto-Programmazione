@@ -7,7 +7,7 @@ Room::Room(Board &game_board) {
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    initializeRoomTemplate(16,0,game_board);
+    initializeRoomTemplate(11,0,game_board);
     this->room_template_number = 0;
 }
 
@@ -41,7 +41,7 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
         this->room_template = new Template_3(room_pos,game_board);
         break;
     case 4:
-        this->room_template = new Template_4i(room_pos,game_board);
+        this->room_template = new Template_4(room_pos,game_board);
         break;
     case 5:
         this->room_template = new Template_5(room_pos,game_board);
@@ -80,7 +80,7 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
         this->room_template = new Template_16(room_pos,game_board);
         break;
     default:
-        this->room_template = new Template_0i(room_pos,game_board);
+        this->room_template = new Template_0(room_pos,game_board);
         break;
     }
 }
