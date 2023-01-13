@@ -554,15 +554,23 @@ public:
 };
 
 //tempio
-class Template_14 : public General_template {               //**************da fare
+class Template_14 : public General_template {
 public:
     Template_14(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1))
     {
         int i = 0;
-        i = drawVerticalLine(9, 8, 10,i);     
-        i = drawHorizontalLine(10, 8, 11,i);
-        i = drawHorizontalLine(6, 12, 11,i);
-        i = drawHorizontalLine(10, 16, 11,i);
+        int x = 12;
+        i = drawFilledSquare(6, x, 2, 3, i);     
+        i = drawFilledSquare(BOARD_ROWS-8, x, 2, 3, i);
+        i = drawFilledSquare(6, x+10, 2, 3, i);     
+        i = drawFilledSquare(BOARD_ROWS-8, x+10, 2, 3, i);
+        i = drawFilledSquare(6, x+20, 2, 3, i);     
+        i = drawFilledSquare(BOARD_ROWS-8, x+20, 2, 3, i);
+        i = drawFilledSquare(6, x+30, 2, 3, i);     
+        i = drawFilledSquare(BOARD_ROWS-8, x+30, 2, 3, i);
+        i = drawFilledSquare(6, x+40, 2, 3, i);     
+        i = drawFilledSquare(BOARD_ROWS-8, x+40, 2, 3, i);
+
 
         drawDoors();
                 int chosen_enemies[enemies_num];
@@ -625,55 +633,10 @@ public:
     }
 };
 
-class Template_15i : public General_template {
-public:
-    Template_15i(int n,Board &game_board) : General_template(4*BOARD_COLS+6*BOARD_ROWS+300,50,rand() % (max_n_enemies+1))
-    {
-        int i = 0;
-        i = drawHorizontalLine(BOARD_COLS-9, 3, 1,i);
-        i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
-        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-10,i);
-        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-9,i);
-        i = drawVerticalLine(BOARD_ROWS-6, 1, BOARD_COLS-8,i);
-        i = drawHorizontalLine(BOARD_COLS-11, BOARD_ROWS-5, 10,i);
-        i = drawHorizontalLine(BOARD_COLS-11, BOARD_ROWS-4, 10,i);
-        i = drawVerticalLine(BOARD_ROWS-6, 5, 9,i);
-        i = drawVerticalLine(BOARD_ROWS-6, 5, 8,i);
-        i = drawVerticalLine(BOARD_ROWS-6, 5, 7,i);
-        i = drawHorizontalLine(HALF_COLS+5, 9, 10,i);
-        i = drawHorizontalLine(HALF_COLS+5, 8, 10,i);
-        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+15,i);
-        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+16,i);
-        i = drawVerticalLine(HALF_ROWS-2, 5, HALF_COLS+17,i);
-        i = drawHorizontalLine(HALF_COLS+5, 15, 19,i);
-        i = drawHorizontalLine(HALF_COLS+5, 16, 19,i);
-        i = drawVerticalLine(HALF_ROWS-2, 10, 16,i);
-        i = drawVerticalLine(HALF_ROWS-2, 10, 17,i);
-        i = drawVerticalLine(HALF_ROWS-2, 10, 18,i);
-
-        int j = 16;
-        j = drawFilledSquareDoor(3,HALF_COLS-1,2,3,j);
-
-        drawDoors();
-                int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        //chosen_enemies={}
-        //x_chosen={}
-        //y_chosen={}
-        for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
-    }
-};
-
 //hexagonal chamber
 class Template_16 : public General_template {
 public:
-    Template_16(int n,Board &game_board) : General_template(60,22,rand() % (max_n_enemies+1))
+    Template_16(int n,Board &game_board) : General_template(52,30,rand() % (max_n_enemies+1))
     {
         int i = 0;
         int a = BOARD_ROWS/3-2;
@@ -684,28 +647,28 @@ public:
         i = drawHorizontalLine(19, b, c,i);
         walls[i] = Wall(a+1,c-1); i++;
         walls[i] = Wall(a+2,c-2); i++;
-        walls[i] = Wall(a+3,c-3); i++;
-        walls[i] = Wall(a+4,c-4); i++;
+        //walls[i] = Wall(a+3,c-3); i++;
+        //walls[i] = Wall(a+4,c-4); i++;
         walls[i] = Wall(a+5,c-5); i++;
         walls[i] = Wall(a+6,c-6); i++;
         
         walls[i] = Wall(a+1,d+1); i++;
         walls[i] = Wall(a+2,d+2); i++;
-        walls[i] = Wall(a+3,d+3); i++;
-        walls[i] = Wall(a+4,d+4); i++;
+        //walls[i] = Wall(a+3,d+3); i++;
+        //walls[i] = Wall(a+4,d+4); i++;
         walls[i] = Wall(a+5,d+5); i++;
         walls[i] = Wall(a+6,d+6); i++;
 
         walls[i] = Wall(b-1,c-1); i++;
         walls[i] = Wall(b-2,c-2); i++;
-        walls[i] = Wall(b-3,c-3); i++;
-        walls[i] = Wall(b-4,c-4); i++;
+        //walls[i] = Wall(b-3,c-3); i++;
+        //walls[i] = Wall(b-4,c-4); i++;
         walls[i] = Wall(b-5,c-5); i++;
 
         walls[i] = Wall(b-1,d+1); i++;
         walls[i] = Wall(b-2,d+2); i++;
-        walls[i] = Wall(b-3,d+3); i++;
-        walls[i] = Wall(b-4,d+4); i++;
+        //walls[i] = Wall(b-3,d+3); i++;
+        //walls[i] = Wall(b-4,d+4); i++;
         walls[i] = Wall(b-5,d+5); i++;
 
         doors[16] = Door(a,HALF_COLS-1);
@@ -714,6 +677,14 @@ public:
         doors[19] = Door(b,HALF_COLS-1);
         doors[20] = Door(b,HALF_COLS);
         doors[21] = Door(b,HALF_COLS+1);
+        doors[22] = Door(a+3,c-3);
+        doors[23] = Door(a+4,c-4);
+        doors[24] = Door(a+3,d+3);
+        doors[25] = Door(a+4,d+4);
+        doors[26] = Door(b-3,c-3);
+        doors[27] = Door(b-4,c-4);
+        doors[28] = Door(b-3,d+3);
+        doors[29] = Door(b-4,d+4);
 
         drawDoors();
         int chosen_enemies[enemies_num];
