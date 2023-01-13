@@ -19,8 +19,6 @@ nemico che spara frecce <,>,^,v
 nemico che lascia delle piccole bombe
 
 
--stanze:
-
-**suggerite nuovi template**
-
+-stanze:\n
+**suggerite nuovi template** \n
 funzione per la probabilità delle stanze
