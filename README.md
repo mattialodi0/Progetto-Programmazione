@@ -14,5 +14,5 @@ nemico che lascia delle piccole bombe
 
 
 -stanze:
-*suggerite nuovi template*
-funzione per la probabilità delle stanze
+*suggerite nuovi template*  
+funzione per la probabilità delle stanze  
