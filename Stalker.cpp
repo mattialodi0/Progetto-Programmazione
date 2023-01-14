@@ -1,30 +1,34 @@
-#include "Shooter.hpp"
+#include "Stalker.hpp"
 
 
-Shooter::Shooter():Enemy(def,18,18,'S',0)
+Stalker::Stalker():Enemy(def,20,20,'Z',0)
     {
     }
-    Shooter::Shooter(int y, int x,int diff):Enemy(def,y,x,'S',diff)
+    Stalker::Stalker(int y, int x,int diff):Enemy(def,y,x,'Z',diff)
 {
 }
     //per creare proiettili
-     void Shooter::createProjectile(Board &board_win, Character &hero, Direction dir)
+     void Stalker::createProjectile(Board &board_win, Character &hero, Direction dir)
      {
-        if(this->reload<=0){
+                 if(this->reload<=0){
     this->reload=enemy_reload;
     Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
     projectile.push_back(new_proj);
     switch(dir){
     case up:
+    new_proj->sety(new_proj->gety()-1);
     new_proj->setIcon('|');
     break;
     case down:
+    new_proj->sety(new_proj->gety()+1);
     new_proj->setIcon('|');
     break;
     case dx:
+     new_proj->setx(new_proj->getx()+1);
     new_proj->setIcon('-');
     break;
     case sx:
+     new_proj->setx(new_proj->getx()-1);
     new_proj->setIcon('-');
     break;
     }
@@ -34,7 +38,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
     }
      }
      //per movimento proiettili e check di colpito o out of range
-     void Shooter::checkProjectile(Board &board_win, Character &hero){
+     void Stalker::checkProjectile(Board &board_win, Character &hero){
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
@@ -48,7 +52,6 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
         }
         else{
-            
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                 //diminuisci vita player
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
@@ -62,7 +65,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         }
      
      //va a una tua stessa linea o colonna per spararti e spara
-    void Shooter::chooseDirection(Board &board_win, Character &hero)
+    void Stalker::chooseDirection(Board &board_win, Character &hero)
     {
         setDirection(def);
         
@@ -78,18 +81,22 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         if(distancey==0){
             if(distancex>0){
               if(abs(distancex)<enemy_range){
+                    this->setIcon('Z');
                     createProjectile(board_win,hero,sx);
                     }
                     else{
                         setDirection(sx);
+                        this->setIcon(' ');
                     }
             }
             else{
                if(abs(distancex)<enemy_range){
+                    this->setIcon('Z');
                     createProjectile(board_win,hero,dx);
                     }
                     else{
                         setDirection(dx);
+                        this->setIcon(' ');
                     }
             }
         }
@@ -97,18 +104,22 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
             if(distancex==0){
                 if(distancey>0){
                     if(abs(distancey)<enemy_range){
+                        this->setIcon('Z');
                     createProjectile(board_win,hero,up);
                     }
                     else{
                         setDirection(up);
+                        this->setIcon(' ');
                     }
                 }
                 else{
                     if(abs(distancey)<enemy_range){
+                        this->setIcon('Z');
                     createProjectile(board_win,hero,down);
                     }
                     else{
                         setDirection(down);
+                        this->setIcon(' ');
                     }
                 }
             }
@@ -119,11 +130,13 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
                 if (distancex < 0)
                 {
                     setDirection(dx);
+                    this->setIcon(' ');
                 }
                 else
                 {
                     if(distancex>0){
                     setDirection(sx);
+                    this->setIcon(' ');
                     }
                 }
             }
@@ -134,11 +147,13 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
                     if (distancey < 0)
                     {
                         setDirection(down);
+                        this->setIcon(' ');
                     }
                     else
                     {
                         if(distancey>0){
                         setDirection(up);
+                        this->setIcon(' ');
                         }
                     }
                 }
@@ -149,6 +164,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         }
         else{
             this->reload--;
+            this->setIcon('Z');
             setDirection(def);
             }
 

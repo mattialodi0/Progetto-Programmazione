@@ -1,15 +1,16 @@
-#include "Chaser.hpp"
+#include "Flyer.hpp"
 
-Chaser::Chaser():Enemy(def,10,10,'C',0)
+Flyer::Flyer():Enemy(def,10,10,'F',0)
 {
-
+    setisFlyer(true);
 }
 
-Chaser::Chaser(int y, int x,int diff):Enemy(def,y,x,'C',diff)
+Flyer::Flyer(int y, int x,int diff):Enemy(def,y,x,'F',diff)
 {
+    setisFlyer(true);
 }
 
-void Chaser::createProjectile(Board &board_win, Character &hero, Direction dir) 
+void Flyer::createProjectile(Board &board_win, Character &hero, Direction dir) 
 {
     if(this->reload<=0){
     this->reload=enemy_reload;
@@ -22,14 +23,14 @@ void Chaser::createProjectile(Board &board_win, Character &hero, Direction dir)
     }
 }
 
-void Chaser::checkProjectile(Board &board_win, Character &hero)
+void Flyer::checkProjectile(Board &board_win, Character &hero)
 {
     for (int i = 0; i < projectile.size(); i++)
 	{
 		if (projectile[i] != NULL){
             projectile[i]->setUptime((projectile[i]->getUptime())+1);
             
-            if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range){
+            if(!projectile[i]->checkFlyerCollision(board_win)|| projectile[i]->getUptime()>melee_range){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                 //diminuisci vita player
@@ -51,14 +52,15 @@ void Chaser::checkProjectile(Board &board_win, Character &hero)
     }
 }
 
-void Chaser::chooseDirection(Board &board_win, Character &hero)
+void Flyer::chooseDirection(Board &board_win, Character &hero)
 {
+    
     if(this->reload<=0){
         int distancex, distancey;
         distancex = this->x - hero.getx();
         distancey = this->y - hero.gety();
         //se sei vicino
-        if(hasLos(board_win, hero) && inSight(distancex,distancey))
+        if(flyerHasLos(board_win, hero) && inSight(distancex,distancey))
         {
             this->mem=enemy_memory;
         }
@@ -68,9 +70,11 @@ void Chaser::chooseDirection(Board &board_win, Character &hero)
                 if(distancey==0){
                     if(distancex>0){
                         createProjectile(board_win,hero,sx);
+                        setDirection(def);
                     }
                     else{
                     createProjectile(board_win,hero,dx);
+                    setDirection(def);
                     }
                     this->reload=melee_enemy_reload;
                 }
@@ -78,15 +82,16 @@ void Chaser::chooseDirection(Board &board_win, Character &hero)
                     if(distancex==0){
                         if(distancey>0){
                             createProjectile(board_win,hero,up);
+                            setDirection(def);
                         }
                         else{
                             createProjectile(board_win,hero,down);
+                            setDirection(def);
                         }
                         this->reload=melee_enemy_reload;
                     }
                 }
-            }
-            else{
+            }else{
             if (abs(distancex) > abs(distancey))
             {
                 if (distancex < 0)
@@ -114,8 +119,8 @@ void Chaser::chooseDirection(Board &board_win, Character &hero)
                         setDirection(up);
                         }
                     }
-                }}
-
+                }
+            }
             }
         }
     }

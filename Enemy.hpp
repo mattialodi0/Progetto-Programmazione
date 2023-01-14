@@ -8,6 +8,7 @@
 
 class Enemy : public Character {
 protected: 
+    bool isFlyer=false;
     int enemy_reload=5;
     int enemy_memory=7;
     int enemy_range=11;
@@ -32,7 +33,10 @@ public:
     // metodo astratto per scelta automatica di direzione dei nemici
 	virtual void chooseDirection(Board &board_win, Character &hero) {}
 
+    bool getisFlyer();
+    void setisFlyer(bool set);
     bool hasLos(Board &board_win, Character &hero);
+    bool flyerHasLos(Board &board_win, Character &hero);
     bool inSight(int distancex,int distancey);
 };  
 

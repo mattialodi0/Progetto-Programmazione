@@ -73,12 +73,44 @@ bool Character::checkCollision(Board &board_win)
 	{
 	case ' ':
 	case 'F':
-	case 'H':	
+	case 'H':
+	case 'O':	
 		return true;
 		break;
 	default:
 		return false;
 		break;
 	}}
+	return false;
+}
+bool Character::checkFlyerCollision(Board &board_win)
+{
+	int offsety = 0, offsetx = 0;
+	if (cur_direction == up || cur_direction == down)
+	{
+		// offset per row e col per collisione
+		offsety = cur_direction / 2;
+	}
+	else
+	{
+		if (cur_direction == dx || cur_direction == sx)
+		{
+			offsetx = cur_direction;
+		}
+	}
+	
+	switch (board_win.getCharAt(y + offsety, x + offsetx))
+	{
+	case ' ':
+	case 'F':
+	case 'H':	
+	case 'X':
+	case 'O':
+		return true;
+		break;
+	default:
+		return false;
+		break;
+	}
 	return false;
 }

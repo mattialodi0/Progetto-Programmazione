@@ -27,6 +27,9 @@
                 "Coward.cpp",
                 "Shooter.cpp",
                 "Boom.cpp",
+                "menu_playing.cpp",
+                "Flyer.cpp",
+                "Stalker.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"

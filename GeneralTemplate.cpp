@@ -91,6 +91,12 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
                         case 4:
                         enemies[ite] = new Boom(y,x,game_board.getDifficulty());
                         break;
+                        case 5:
+                        enemies[ite] = new Flyer(y,x,game_board.getDifficulty());
+                        break;
+                        case 6:
+                        enemies[ite] = new Stalker(y,x,game_board.getDifficulty());
+                        break;
                     }
                 }
 

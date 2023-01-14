@@ -22,7 +22,7 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch
 
 }    
 bool Enemy::inSight(int distancex,int distancey){
-    return int(sqrt(pow(distancex/2.5,2)+pow(distancey,2)))<this->sight_range;
+    return int(abs(sqrt(pow(distancex/2.5,2)+pow(distancey,2))))<this->sight_range;
 }
 
 bool Enemy::hasLos(Board &board_win, Character &hero)
@@ -63,7 +63,7 @@ bool Enemy::hasLos(Board &board_win, Character &hero)
             }
         }
 }
-    while(board_win.getCharAt(this->y+i,this->x+k)==' '&& maxiter<sight_range+1);
+    while((board_win.getCharAt(this->y+i,this->x+k)==' '||board_win.getCharAt(this->y+i,this->x+k)=='O')&& maxiter<sight_range+1);
 
        
 if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
@@ -72,4 +72,58 @@ if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
 
         
         return false;
+}
+bool Enemy::flyerHasLos(Board &board_win, Character &hero)
+{
+    
+    int i=0,k=0, maxiter=0;
+    int distancex, distancey;
+    distancex = this->x - hero.getx();
+    distancey = this->y - hero.gety();
+
+    do{ 
+        maxiter++;
+        if (abs(distancex) > abs(distancey))
+    {
+        if (distancex < 0)
+        {
+            distancex++;
+            k++;
+        }
+        else
+        {
+            distancex--;
+            k--;
+        }
+    }
+    
+      if (abs(distancex) <= abs(distancey))
+        {
+            if (distancey < 0)
+            {
+                distancey++;
+                i++;
+            }
+            else
+            {
+                distancey--;
+                i--;
+            }
+        }
+}
+    while((board_win.getCharAt(this->y+i,this->x+k)==' '||board_win.getCharAt(this->y+i,this->x+k)=='O'||board_win.getCharAt(this->y+i,this->x+k)=='X')&& maxiter<sight_range+1);
+
+       
+if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
+    return true;
+}
+
+        
+        return false;
+}
+bool Enemy:: getisFlyer(){
+    return this->isFlyer;
+}
+void Enemy:: setisFlyer(bool set){
+    this->isFlyer=set;
 }

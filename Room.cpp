@@ -110,10 +110,18 @@ void Room::moveEnemies(Board &board, Hero &hero) {
     for(int i = 0; i < room_template->enemies_num; i++) {    
          this->room_template->enemies[i]->chooseDirection(board, hero);
          this->room_template->enemies[i]->checkProjectile(board, hero);
+         if(this->room_template->enemies[i]->getisFlyer()){
+            if(this->room_template->enemies[i]->checkFlyerCollision(board)) {
+            this->room_template->enemies[i]->moveCharacter(board);
+            
+        }
+         }
+         else{
        if(this->room_template->enemies[i]->checkCollision(board)) {
             this->room_template->enemies[i]->moveCharacter(board);
             
         }
+     }
     }
 }
 

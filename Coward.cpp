@@ -43,7 +43,7 @@ void Coward::checkProjectile(Board &board_win, Character &hero)
 		if (projectile[i] != NULL){
             projectile[i]->setUptime((projectile[i]->getUptime())+1);
             
-            if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
+            if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                 //diminuisci vita player
@@ -52,6 +52,11 @@ void Coward::checkProjectile(Board &board_win, Character &hero)
                 projectile.erase(projectile.begin()+i);
             }
             else{
+                if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
+                //diminuisci vita player
+                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                projectile.erase(projectile.begin()+i);
+                }    
                 projectile[i]->moveCharacter(board_win);
                
             }

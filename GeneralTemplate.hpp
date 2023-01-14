@@ -6,6 +6,8 @@
 #include "Drunk.hpp"
 #include "Shooter.hpp"
 #include "Boom.hpp"
+#include "Flyer.hpp"
+#include "Stalker.hpp"
 #include "room_objects/Door.hpp"
 #include "room_objects/Wall.hpp"
 
@@ -13,7 +15,7 @@
 
 #define HALF_COLS BOARD_COLS/2
 #define HALF_ROWS BOARD_ROWS/2
-const int max_n_enemies=4;
+const int max_n_enemies=6;
 const int tols=6;
 
 
@@ -34,7 +36,7 @@ public:
     void drawDoors();
 
     void createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[]);
-    //in chosen enemies 0=drunk,1=coward,2=shooter,3=chaser,4=boom
+    //in chosen enemies 0=drunk,1=coward,2=shooter,3=chaser,4=boom,5=flyer,6=stalker
     int drawRandom(int num, int ya, int xa, int yb, int xb, int i);
     int drawHorizontalLine( int num, int start_y, int start_x, int i);
     int drawVerticalLine( int num, int start_y, int start_x, int i);

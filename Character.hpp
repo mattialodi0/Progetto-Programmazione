@@ -26,4 +26,5 @@ public:
 	void moveCharacter(Board &game_board);
 
 	bool checkCollision(Board &board_win);
+	bool checkFlyerCollision(Board &board_win);
 };
