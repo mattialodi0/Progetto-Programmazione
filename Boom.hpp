@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Enemy.hpp"
+#include "Hero.hpp"
 
 class Boom : public Enemy
 {
@@ -13,9 +14,9 @@ public:
     Boom();
     Boom(int y,int x,int diff);
     //sprite diverso ma uguale
-    void createProjectile(Board &board_win, Character &hero, Direction dir) override;
+    void createProjectile(Board &board_win, Character &hero, Direction dir)override;
     //uguale a chaser ma esplode
-    void checkProjectile(Board &board_win, Character &hero);
+    void checkProjectile(Board &board_win, Hero &hero);
     //ti viene vicino e esplode
-    void chooseDirection(Board &board_win, Character &hero) override;
+    void chooseDirection(Board &board_win, Character &hero)override;
 };

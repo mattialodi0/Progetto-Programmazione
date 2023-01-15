@@ -1,14 +1,21 @@
 #include "Hero.hpp"
 
+const int enemiesdamage = 15;
+const int artifacthp = 5;
+const int artifactdmg = 1;
+const int artifactrange = 2;
 
 Hero::Hero() : Character(def, herostarty, herostartx,'P')
 {	
     key = 1;
+    this->hp = 30;
 }
 
 Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
 {   
     key = 1;
+    this->hp = 30;
+
 }
 
 /*
@@ -62,9 +69,49 @@ void Hero::useAbility()
 {
 }
 
-void Hero::attack(Direction dir) 
+void Hero::createProjectile(Direction dir) 
 {
     
+    if(this->reload_time<=0){
+    this->reload_time=reload_time;
+    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+    projectile.push_back(new_proj); 
+    switch(dir){
+    case up:
+    new_proj->sety(new_proj->gety()-1);
+    break;
+    case down:
+    new_proj->sety(new_proj->gety()+1);
+    break;
+    case dx:
+    new_proj->setx(new_proj->getx()+1); 
+    break;
+    case sx:
+     new_proj->setx(new_proj->getx()-1);
+    break;
+    }
+    }
+    else{
+        this->reload_time--;
+    }
+}
+
+void Hero::attack(Direction dir) 
+{
+    switch(dir){
+        case(sx):
+            createProjectile(sx);
+            break;
+        case(dx):
+            createProjectile(dx);
+        case(up):
+            createProjectile(up);
+        case(down):
+            createProjectile(down);
+            break;
+        default:
+            break;
+    }
 }
 
 void Hero::centerHero(Direction dir) {
@@ -100,4 +147,32 @@ bool Hero::useKey()
         return true;
     }
     else return false;
+}
+
+void Hero::increaseHealth()
+{
+    this->hp = this->hp + artifacthp;
+}
+
+void Hero::increaseDamage()
+{
+    this->dmg = this->dmg + artifactdmg;
+}
+
+void Hero::increaseRange()
+{
+    this->range = this->range + artifactrange;
+}
+
+void Hero::reduceHealth()
+{
+	this->hp=this->hp-2;
+}
+
+bool Hero::zeroLife()
+{
+    if(this->hp <= 0){
+        return true;
+    }
+    return false;
 }

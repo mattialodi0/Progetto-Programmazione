@@ -104,6 +104,7 @@ void Room::drawRoom(Board &board) {
     drawWalls(board);
     drawDoors(board);
     drawProjectiles(board);
+    drawArtifact(board);
 }
 
 void Room::moveEnemies(Board &board, Hero &hero) {
@@ -173,6 +174,12 @@ void Room::drawEnemies(Board &board) {
    // wrefresh(board);
 }
 
+void Room::drawArtifact(Board &board) {
+    for(int i = 0; i < room_template->artifact_num; i++) {
+        board.add(room_template->artifact[i]);
+    }
+}
+
 void Room::drawWalls(Board &board) {
     for(int i = 0; i < room_template->walls_num; i++)
     {    
@@ -198,4 +205,11 @@ void Room::removeEnemy(int pos) {
 void Room::addEnemy(pEn enemy) {
     room_template->enemies_num++;
     room_template->enemies[room_template->enemies_num-1] = enemy;
+}
+
+void Room::removeArtifact(int pos) {
+    Drawable temp = room_template->artifact[pos];
+    room_template->artifact[pos] = room_template->artifact[room_template->artifact_num-1];
+    room_template->artifact[room_template->artifact_num-1] = temp;
+    room_template->artifact_num--;
 }

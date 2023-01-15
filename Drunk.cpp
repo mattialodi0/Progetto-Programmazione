@@ -36,7 +36,7 @@ void Drunk::createProjectile(Board &board_win, Character &hero, Direction dir)
     }
 }
 
-void Drunk::checkProjectile(Board &board_win, Character &hero)
+void Drunk::checkProjectile(Board &board_win, Hero &hero)
 {
     for (int i = 0; i < projectile.size(); i++)
 	{
@@ -46,7 +46,7 @@ void Drunk::checkProjectile(Board &board_win, Character &hero)
             if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                //diminuisci vita player
+                    hero.reduceHealth();
                 }    
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);

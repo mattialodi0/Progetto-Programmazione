@@ -6,6 +6,7 @@
 #include "Drunk.hpp"
 #include "Shooter.hpp"
 #include "Boom.hpp"
+#include "Artifact.hpp"
 #include "Flyer.hpp"
 #include "Stalker.hpp"
 #include "room_objects/Door.hpp"
@@ -24,13 +25,15 @@ class General_template {
 public:
     Drawable* walls;
     Drawable* doors;
+    Drawable* artifact;
     pEn* enemies;
     int walls_num; 
     int doors_num;
     int enemies_num=0;
+    int artifact_num;
     int my_xp=3;
     General_template();
-    General_template(int w, int d, int e);
+    General_template(int w, int d, int e, int a);
     ~General_template();
 
     void drawDoors();
@@ -52,16 +55,17 @@ public:
 
 class Template_0 : public General_template {
 public:
-    Template_0(int n,Board &game_board) : General_template(0,16,0)
+    Template_0(int n,Board &game_board) : General_template(0,16,0,1)
     {
         drawDoors();
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //muri casuali
 class Template_1 : public General_template {
 public:
-    Template_1(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1))
+    Template_1(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1),1)
     {
         drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
 
@@ -78,13 +82,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //orizontal line
 class Template_2 : public General_template {
 public:
-    Template_2(int n,Board &game_board) : General_template(8,16,rand() % (max_n_enemies+1))
+    Template_2(int n,Board &game_board) : General_template(8,16,rand() % (max_n_enemies+1),1)
     {
         drawHorizontalLine(8, BOARD_ROWS/3*2, 1, 0);
 
@@ -101,13 +106,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //verical line
 class Template_3 : public General_template {
 public:
-    Template_3(int n,Board &game_board) : General_template(7,16,rand() % (max_n_enemies+1))
+    Template_3(int n,Board &game_board) : General_template(7,16,rand() % (max_n_enemies+1),1)
     {
         drawVerticalLine(7, 1, (BOARD_ROWS/3+2)*2, 0);
 
@@ -124,13 +130,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //filled square
 class Template_4 : public General_template {
 public:
-    Template_4(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1))
+    Template_4(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1),1)
     {
         drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
@@ -147,13 +154,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //empty square
 class Template_4i : public General_template {
 public:
-    Template_4i(int n,Board &game_board) : General_template(12,16,rand() % (max_n_enemies+1))
+    Template_4i(int n,Board &game_board) : General_template(12,16,rand() % (max_n_enemies+1),1)
     {
         drawEmptySquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
 
@@ -170,13 +178,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //ortogonal cross
 class Template_5 : public General_template {
 public:
-    Template_5(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1))
+    Template_5(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1),1)
     {
         
         drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
@@ -194,13 +203,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //left-bottom center subroom
 class Template_6 : public General_template {
 public:
-    Template_6(int n,Board &game_board) : General_template(30,18,rand() % (max_n_enemies+1))
+    Template_6(int n,Board &game_board) : General_template(30,18,rand() % (max_n_enemies+1),1)
     {
         
         int i = 0;
@@ -223,13 +233,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //big  negative cross 
 class Template_7 : public General_template {
 public:
-    Template_7(int n,Board &game_board) : General_template(161*4,16,rand() % (max_n_enemies+1))
+    Template_7(int n,Board &game_board) : General_template(161*4,16,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         i = drawFilledSquare(1, 1, 8, 20, 0);   //126 walls
@@ -250,6 +261,7 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
 
     }
 };
@@ -257,7 +269,7 @@ public:
 //central sub-chamber
 class Template_8 : public General_template {
 public:
-    Template_8(int n,Board &game_board) : General_template(72,32,rand() % (max_n_enemies+1))
+    Template_8(int n,Board &game_board) : General_template(72,32,rand() % (max_n_enemies+1),1)
     {
         drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //72 walls
         
@@ -290,13 +302,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //radom wall blocks
 class Template_9 : public General_template {
 public:
-    Template_9(int n,Board &game_board) : General_template(36,16,rand() % (max_n_enemies+1))
+    Template_9(int n,Board &game_board) : General_template(36,16,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         int ry = rand()%(BOARD_ROWS-2)+1;
@@ -332,6 +345,7 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
 
     }
 };
@@ -339,7 +353,7 @@ public:
 //random walls
 class Template_10 : public General_template {
 public:
-    Template_10(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1))
+    Template_10(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1),1)
     {
         int ry, rx;
         for(int i=0; i < 15; i++)
@@ -362,6 +376,7 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
 
     }
 };
@@ -369,7 +384,7 @@ public:
 //maze concentric
 class Template_11 : public General_template {
 public:
-    Template_11(int n,Board &game_board) : General_template(332,16,rand() % (max_n_enemies+1))
+    Template_11(int n,Board &game_board) : General_template(332,16,rand() % (max_n_enemies+1),1)
     {
         
         int i = 0;
@@ -405,6 +420,7 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
        
     }
 };
@@ -412,7 +428,7 @@ public:
 //maze spyral
 class Template_12 : public General_template {
 public:
-    Template_12(int n,Board &game_board) : General_template(233,16,rand() % (max_n_enemies+1))
+    Template_12(int n,Board &game_board) : General_template(233,16,rand() % (max_n_enemies+1),1)
     {
         
         int i = 0;
@@ -438,13 +454,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //subroom closed doors
 class Template_13 : public General_template {
 public:
-    Template_13(int n,Board &game_board) : General_template(60,19,rand() % (max_n_enemies+1))
+    Template_13(int n,Board &game_board) : General_template(60,19,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
@@ -469,13 +486,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //tempio
 class Template_14 : public General_template {
 public:
-    Template_14(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1))
+    Template_14(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         int x = 12;
@@ -504,13 +522,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //chrome subchambers
 class Template_15 : public General_template {
 public:
-    Template_15(int n,Board &game_board) : General_template(306,44,rand() % (max_n_enemies+1))
+    Template_15(int n,Board &game_board) : General_template(306,44,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
@@ -549,13 +568,14 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 
 //hexagonal chamber
 class Template_16 : public General_template {
 public:
-    Template_16(int n,Board &game_board) : General_template(52,30,rand() % (max_n_enemies+1))
+    Template_16(int n,Board &game_board) : General_template(52,30,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         int a = BOARD_ROWS/3-2;
@@ -618,6 +638,7 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
+        artifact[0] = Artifact(6,6);
     }
 };
 

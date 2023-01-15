@@ -8,8 +8,6 @@ class Artifact : public Drawable
 protected:
     
 public:
-    Artifact();
+    Artifact(int y, int x);
     chtype RandomArtifact();
 };
-
-//mancano gli effetti degli artifatti

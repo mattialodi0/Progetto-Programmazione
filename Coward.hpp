@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Enemy.hpp"
+#include "Hero.hpp"
 
 class Coward : public Enemy
 {
@@ -10,8 +11,8 @@ public:
     Coward();
     Coward(int y,int x,int diff);
     void createProjectile(Board &board_win, Character &hero, Direction dir)override;
-    void checkProjectile(Board &board_win, Character &hero);
+    void checkProjectile(Board &board_win, Hero &hero);
     // va via da te
-    void chooseDirection(Board &board_win, Character &hero) override;
+    void chooseDirection(Board &board_win, Character &hero)override;
    
 };

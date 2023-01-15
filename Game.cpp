@@ -94,6 +94,7 @@ void Game::updateState()
 	//game_board.remove(hero);
 	manageHeroMovement();
 	hero.setDirection(def);								//--> da mettere edentro a hero
+	
 	//enemies
 	if(canMove<=0){
 		current_room->moveEnemies(game_board, hero);
@@ -102,6 +103,11 @@ void Game::updateState()
 	else{
 		canMove--;
 	}
+	
+	if(hero.zeroLife()){
+		this->game_over = true;
+	}
+
 }
 
 void Game::updateScreen()
@@ -137,9 +143,25 @@ void Game::manageHeroMovement()
 	switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
 	{
 	case ' ':
+	case 'o':
+	case '-':
+	case '|':
+		hero.moveCharacter(game_board);
+		break;
 	case 'F':
+		hero.moveCharacter(game_board);
+		hero.increaseDamage();
+		current_room->removeArtifact(0);
+		break;
 	case 'H':
 		hero.moveCharacter(game_board);
+		hero.increaseHealth();
+		current_room->removeArtifact(0);
+		break;
+	case 'R':
+		hero.moveCharacter(game_board);
+		hero.increaseRange();
+		current_room->removeArtifact(0);
 		break;	
 	case 'O':		//cambia stanza
 		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-2 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 

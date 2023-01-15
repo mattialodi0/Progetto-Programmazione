@@ -27,12 +27,15 @@ public:
     bool isClear();
 
     void unlockDoor(int y, int x);
+
+    void removeArtifact(int pos);
 private:
     void initializeRoomTemplate(int template_num, int n,Board &game_board);
     Room* findRoom(vector<Room*> room_index, int y, int x);
     
     void drawProjectiles(Board &board);
     void drawEnemies(Board &board);
+    void drawArtifact(Board &board);
     void drawWalls(Board &board);
     void drawDoors(Board &board);
 

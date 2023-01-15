@@ -2,14 +2,16 @@
 
 General_template::General_template() {}
 
-General_template::General_template(int w, int d, int e)
+General_template::General_template(int w, int d, int e, int a)
 {
     this->walls_num = w; 
     this->doors_num = d;
     this->enemies_num = e;
+    this->artifact_num = a;
     walls = new Drawable[walls_num];
     doors = new Drawable[doors_num];
     enemies = new pEn[enemies_num];
+    artifact = new Drawable[artifact_num];
 }
 
 General_template::~General_template() 
@@ -17,6 +19,7 @@ General_template::~General_template()
     delete [] walls;
     delete [] doors;
     delete [] enemies;
+    delete [] artifact;
 }
 
 void General_template::createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[])
