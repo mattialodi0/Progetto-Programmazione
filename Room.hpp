@@ -7,6 +7,7 @@
 
 using namespace std;
 
+#define NUMBER_OF_ROOMS 17
 
 class Room {
 private:
@@ -30,6 +31,7 @@ public:
 
     void removeArtifact(int pos);
 private:
+    int randomRoomNumber(); 
     void initializeRoomTemplate(int template_num, int n,Board &game_board);
     Room* findRoom(vector<Room*> room_index, int y, int x);
     

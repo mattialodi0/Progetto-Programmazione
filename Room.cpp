@@ -7,8 +7,8 @@ Room::Room(Board &game_board) {
     this->south = NULL; 
     this->west = NULL; 
     this->est = NULL; 
-    initializeRoomTemplate(11,0,game_board);
     this->room_template_number = 0;
+    initializeRoomTemplate(0,0,game_board);
 }
 
 
@@ -18,9 +18,24 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
     this->south = findRoom(room_index, y-1, x);
     this->west = findRoom(room_index, y, x-1);
 	this->est = findRoom(room_index, y, x+1);
-    int num = rand()%16+1;
+    int num = randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
+}
+
+int Room::randomRoomNumber() {
+    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16},
+                                    {0, 0, 0, 0, 3, 0, 4, 5, 5, 4, 3, 2, 4, 2, 2, 4}};   // = 28
+    int parts = 0;
+    for(int i=0; i < NUMBER_OF_ROOMS; i++) {
+        parts += prob[1][i];
+    }
+    int n = rand()%parts+1;
+    for(int i=0; i < NUMBER_OF_ROOMS; i++) {
+        n -= prob[1][i];
+        if(n <= 0) return prob[0][i];
+    }
+    return -1;
 }
 
 void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_board) {
