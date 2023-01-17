@@ -642,5 +642,66 @@ public:
     }
 };
 
+//4 square +
+class Template_17 : public General_template {
+public:
+    Template_17(int n,Board &game_board) : General_template(160,16,rand() % (max_n_enemies+1),1)
+    {
+        int i = 0;
+        i = drawFilledSquare(HALF_ROWS/2-1, HALF_COLS/2-4, 4, 10, i);
+        i = drawFilledSquare((HALF_ROWS/2)*3-2, HALF_COLS/2-4, 4, 10, i);
+        i = drawFilledSquare(HALF_ROWS/2-1, (HALF_COLS/2)*3-3, 4, 10, i);
+        i = drawFilledSquare((HALF_ROWS/2)*3-2, (HALF_COLS/2)*3-3, 4, 10, i);
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//4 square x
+class Template_18 : public General_template {
+public:
+    Template_18(int n,Board &game_board) : General_template(108,16,rand() % (max_n_enemies+1),1)
+    {
+        int i = 0;
+        i = drawFilledSquare(HALF_ROWS/2-2, HALF_COLS-4, 3, 9, i);
+        i = drawFilledSquare(BOARD_ROWS-HALF_ROWS/2-1, HALF_COLS-4, 3, 9, i);
+        i = drawFilledSquare(HALF_ROWS-1, HALF_COLS/2-6, 3, 9, i);
+        i = drawFilledSquare(HALF_ROWS-1, (HALF_COLS/2)*3, 3, 9, i);
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+
 //castle
 //bomb room

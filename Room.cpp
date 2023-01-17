@@ -24,8 +24,8 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
 }
 
 int Room::randomRoomNumber() {
-    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16},    //numero del tempate
-                                    {0, 0, 0, 0, 3, 0, 4, 5, 5, 4, 3, 2, 4, 2, 2, 4}};   //rarità (5 comune, 1 rara)
+    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18},    //numero del tempate
+                                    {0, 0, 0, 0, 3, 0, 4, 5, 5, 4, 3, 2, 4, 2, 2, 4, 5, 5}};   //rarità (5 comune, 1 rara)
     int parts = 0;
     for(int i=0; i < NUMBER_OF_ROOMS; i++) {
         parts += prob[1][i];
@@ -93,6 +93,12 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
         break;
     case 16:
         this->room_template = new Template_16(room_pos,game_board);
+        break;
+    case 17:
+        this->room_template = new Template_17(room_pos,game_board);
+        break;
+    case 18:
+        this->room_template = new Template_18(room_pos,game_board);
         break;
     default:
         this->room_template = new Template_0(room_pos,game_board);
