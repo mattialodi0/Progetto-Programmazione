@@ -746,7 +746,7 @@ public:
 //horizontal S
 class Template_20 : public General_template {
 public:
-    Template_20(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1),1)
+    Template_20(int n,Board &game_board) : General_template(85,16,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         i = drawHorizontalLine(20, HALF_ROWS-4, HALF_COLS-20, i);
@@ -776,7 +776,40 @@ public:
     }
 };
 
-//petali fiore
+//4 angoli 
+class Template_21 : public General_template {
+public:
+    Template_21(int n,Board &game_board) : General_template(80,16,rand() % (max_n_enemies+1),1)
+    {
+        int i = 0;
+        i = drawHorizontalLine(16, 4, 11, i);
+        i = drawVerticalLine(6, 4, 10, i);
+        i = drawHorizontalLine(16, 4, BOARD_COLS-27, i);
+        i = drawVerticalLine(6, 4, BOARD_COLS-11, i);
+        i = drawHorizontalLine(16, BOARD_ROWS-5, 11, i);
+        i = drawVerticalLine(6, BOARD_ROWS-10, 10, i);
+        i = drawHorizontalLine(16, BOARD_ROWS-5, BOARD_COLS-27, i);
+        i = drawVerticalLine(6, BOARD_ROWS-10, BOARD_COLS-11, i);   
 
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//pacman
 //castle
 //bomb room
