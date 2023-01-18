@@ -15,4 +15,15 @@ nemico che lascia delle piccole bombe
 
 -stanze:  
 *suggerite nuovi template che ho finito le idee*  
-funzione per la probabilità delle stanze  
+nelle sottostanze un una porta chiusa non possono spawnare nemici, perchè senza una chiave non li si può uccidere    
+e senza ucciderli non si può cambiare stanza   
+
+rimettere la condizione per cambiare stanza    
+
+-menu:  
+chiusura corretta delle finestre    
+controllo che la finestra del terminale sia abbastanza grande per il gioco prima di iniziare   
+
+-statistiche  
+scoreboard con il prunteggio(esperienza)
+statboard con statitiche,chivi,artefatti, poteri
