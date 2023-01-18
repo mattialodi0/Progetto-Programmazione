@@ -810,6 +810,63 @@ public:
     }
 };
 
-//pacman
+//pacman, i nemici dovrebbero  essere tutti chaser
+class Template_22 : public General_template {
+public:
+    Template_22(int n,Board &game_board) : General_template(200,16,rand() % (max_n_enemies+1),1)
+    {
+        int i = 0;
+        i = drawHorizontalLine(7, HALF_ROWS+1, HALF_COLS-3, i);
+        i = drawVerticalLine(3, HALF_ROWS-1, HALF_COLS-4, i);
+        i = drawVerticalLine(3, HALF_ROWS-1, HALF_COLS+4, i);
+        walls[i] = Wall(HALF_ROWS-1,HALF_COLS-2); i++;
+        walls[i] = Wall(HALF_ROWS-1,HALF_COLS+2); i++;
+        walls[i] = Wall(HALF_ROWS-1,HALF_COLS-3); i++;
+        walls[i] = Wall(HALF_ROWS-1,HALF_COLS+3); i++;
+        i = drawEmptySquare(2, 5, 2, 5, i);
+        i = drawEmptySquare(2, 15, 2, 5, i);
+        i = drawVerticalLine(8, 1, 24, i);
+        i = drawEmptySquare(6, 5, 3, 5, i);
+        i = drawVerticalLine(5, 6, 17, i);
+        i = drawHorizontalLine(9, 11, 13, i);
+        i = drawHorizontalLine(7, 8, 30, i);
+        walls[i] = Wall(9,HALF_COLS); i++;
+        i = drawEmptySquare(3, HALF_COLS-1, 3, 3, i);
+        i = drawVerticalLine(4, 11, 7, i);
+        i = drawHorizontalLine(4, 14, 8, i);
+        i = drawEmptySquare(16, 16, 3, 9, i);
+        walls[i] = Wall(14,20); i++;
+        walls[i] = Wall(15,20); i++;
+        walls[i] = Wall(19,20); i++;
+        i = drawHorizontalLine(4, 20, 28, i);
+        i = drawHorizontalLine(4, 21, 28, i);
+        i = drawHorizontalLine(4, 20, 35, i);
+        i = drawHorizontalLine(4, 21, 35, i);
+        i = drawEmptySquare(BOARD_ROWS-4, 11, 3, 5, i);
+        i = drawVerticalLine(2, BOARD_ROWS-3, 22, i);
+        i = drawHorizontalLine(8, 17, 1, i);
+        walls[i] = Wall(BOARD_ROWS-5,5); i++;
+        walls[i] = Wall(BOARD_ROWS-4,5); i++;
+        i = drawOrtogonalCross(16, HALF_COLS, 1, 2, i);
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
 //castle
 //bomb room
