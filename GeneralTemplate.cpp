@@ -103,24 +103,86 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
                     }
                 }
 
-void General_template::drawDoors()
-{
-    doors[0] = Door(0,HALF_COLS-2);   //north doors
-    doors[1] = Door(0,HALF_COLS-1);
-    doors[2] = Door(0,HALF_COLS);
-    doors[3] = Door(0,HALF_COLS+1);
-    doors[4] = Door(0,HALF_COLS+2);
-    doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-    doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-    doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-    doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-    doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-    doors[10] = Door(HALF_ROWS-1,0);   //west doors
-    doors[11] = Door(HALF_ROWS,0);
-    doors[12] = Door(HALF_ROWS+1,0);
-    doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-    doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-    doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+void General_template::drawDoors() {
+    int r = rand()%20; 
+    switch(r)
+    {   
+        case 16:        //west
+            doors[0] = Door(0,HALF_COLS-2);   //north doors
+            doors[1] = Door(0,HALF_COLS-1);
+            doors[2] = Door(0,HALF_COLS);
+            doors[3] = Door(0,HALF_COLS+1);
+            doors[4] = Door(0,HALF_COLS+2);
+            doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+            doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+            doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+            doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+            doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+            doors[10] = Locked_Door(HALF_ROWS-1,0);
+            doors[11] = Locked_Door(HALF_ROWS,0);
+            doors[12] = Locked_Door(HALF_ROWS+1,0);
+            doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+            doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+            doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+            break;
+        case 17:        //est
+            doors[0] = Door(0,HALF_COLS-2);   //north doors
+            doors[1] = Door(0,HALF_COLS-1);
+            doors[2] = Door(0,HALF_COLS);
+            doors[3] = Door(0,HALF_COLS+1);
+            doors[4] = Door(0,HALF_COLS+2);
+            doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+            doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+            doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+            doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+            doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+            doors[10] = Door(HALF_ROWS-1,0);   //west doors
+            doors[11] = Door(HALF_ROWS,0);
+            doors[12] = Door(HALF_ROWS+1,0);
+            doors[13] = Locked_Door(HALF_ROWS-1,BOARD_COLS-1);
+            doors[14] = Locked_Door(HALF_ROWS,BOARD_COLS-1);
+            doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
+            break;
+        case 18:
+            doors[0] = Locked_Door(0,HALF_COLS-2);   //north doors
+            doors[1] = Locked_Door(0,HALF_COLS-1);
+            doors[2] = Locked_Door(0,HALF_COLS);
+            doors[3] = Locked_Door(0,HALF_COLS+1);
+            doors[4] = Locked_Door(0,HALF_COLS+2);
+            doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+            doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+            doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+            doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+            doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+            doors[10] = Door(HALF_ROWS-1,0);   //west doors
+            doors[11] = Door(HALF_ROWS,0);
+            doors[12] = Door(HALF_ROWS+1,0);
+            doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+            doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+            doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+            break;
+        case 19:
+            doors[0] = Door(0,HALF_COLS-2);   //north doors
+            doors[1] = Door(0,HALF_COLS-1);
+            doors[2] = Door(0,HALF_COLS);
+            doors[3] = Door(0,HALF_COLS+1);
+            doors[4] = Door(0,HALF_COLS+2);
+            doors[5] = Locked_Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+            doors[6] = Locked_Door(BOARD_ROWS-1,HALF_COLS-1);
+            doors[7] = Locked_Door(BOARD_ROWS-1,HALF_COLS);
+            doors[8] = Locked_Door(BOARD_ROWS-1,HALF_COLS+1);
+            doors[9] = Locked_Door(BOARD_ROWS-1,HALF_COLS+2);
+            doors[10] = Door(HALF_ROWS-1,0);   //west doors
+            doors[11] = Door(HALF_ROWS,0);
+            doors[12] = Door(HALF_ROWS+1,0);
+            doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+            doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+            doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
+            break;
+        default:
+            break;
+    }
+    
 }
 
 //funzioni per disegnare set di muri

@@ -42,7 +42,6 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
     game_board.clearTaken();
     switch (template_num)
     {
-        
     case 0:
         this->room_template = new Template_0(room_pos,game_board);
         break;
@@ -143,6 +142,7 @@ Room* Room::findRoom(vector<Room*> room_index, int y, int x){
 	if(n < 0) return NULL;
 	else return room_index[n]; 
 }
+
 
 void Room::drawRoom(Board &board) {
     drawEnemies(board);
