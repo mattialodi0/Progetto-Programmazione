@@ -76,6 +76,9 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
          if(hasLos(board_win, hero) && inSight(distancex,distancey)){
             this->mem=enemy_memory;
             }
+            else{
+                this->setIcon('Z');
+            }
         if (this->mem>0)
         {
         if(distancey==0){

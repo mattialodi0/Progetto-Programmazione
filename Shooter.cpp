@@ -78,6 +78,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         if(distancey==0){
             if(distancex>0){
               if(abs(distancex)<enemy_range){
+                    setDirection(def);
                     createProjectile(board_win,hero,sx);
                     }
                     else{
@@ -86,6 +87,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
             }
             else{
                if(abs(distancex)<enemy_range){
+                setDirection(def);
                     createProjectile(board_win,hero,dx);
                     }
                     else{
@@ -97,6 +99,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
             if(distancex==0){
                 if(distancey>0){
                     if(abs(distancey)<enemy_range){
+                        setDirection(def);
                     createProjectile(board_win,hero,up);
                     }
                     else{
@@ -105,6 +108,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
                 }
                 else{
                     if(abs(distancey)<enemy_range){
+                        setDirection(def);
                     createProjectile(board_win,hero,down);
                     }
                     else{

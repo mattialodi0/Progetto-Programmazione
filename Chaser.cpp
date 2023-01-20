@@ -35,18 +35,21 @@ void Chaser::checkProjectile(Board &board_win, Hero &hero)
                     hero.reduceHealth();
                 }    
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                board_win.remove(*projectile[i]);
                 projectile.erase(projectile.begin()+i);
             }
             else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                 //diminuisci vita player
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                board_win.remove(*projectile[i]);
                 projectile.erase(projectile.begin()+i);
+                
+                
                 }    
                 projectile[i]->moveCharacter(board_win);
                
             }
-    
         }
     }
 }
@@ -67,9 +70,11 @@ void Chaser::chooseDirection(Board &board_win, Character &hero)
             if(abs(distancex) <= melee_range && abs(distancey) <= melee_range){
                 if(distancey==0){
                     if(distancex>0){
+                        setDirection(def);
                         createProjectile(board_win,hero,sx);
                     }
                     else{
+                        setDirection(def);
                     createProjectile(board_win,hero,dx);
                     }
                     this->reload=melee_enemy_reload;
@@ -77,9 +82,11 @@ void Chaser::chooseDirection(Board &board_win, Character &hero)
                 else{
                     if(distancex==0){
                         if(distancey>0){
+                            setDirection(def);
                             createProjectile(board_win,hero,up);
                         }
                         else{
+                            setDirection(def);
                             createProjectile(board_win,hero,down);
                         }
                         this->reload=melee_enemy_reload;

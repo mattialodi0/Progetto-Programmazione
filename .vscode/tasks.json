@@ -30,6 +30,7 @@
                 "menu_playing.cpp",
                 "Flyer.cpp",
                 "Stalker.cpp",
+                "Artifact.cpp"
             ],
             "options": {
                 "cwd": "${fileDirname}"
