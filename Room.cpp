@@ -25,8 +25,8 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
     decideIfDoors();
     this->north =  findRoom(room_index, y+1, x, up); //findRoom(room_index, y, x, up);
     this->south = findRoom(room_index, y-1, x, down);
-    this->west = findRoom(room_index, y, x+1, sx);
-	this->est = findRoom(room_index, y, x-1, dx);
+    this->west = findRoom(room_index, y, x-1, sx);
+	this->est = findRoom(room_index, y, x+1, dx);
     int num = randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
