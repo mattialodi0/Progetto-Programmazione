@@ -32,6 +32,7 @@ public:
     int enemies_num=0;
     int artifact_num;
     int my_xp=3;
+    bool is_north_door_locked, is_south_door_locked, is_west_door_locked, is_est_door_locked;
     General_template();
     General_template(int w, int d, int e, int a);
     ~General_template();

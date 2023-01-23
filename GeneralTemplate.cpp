@@ -12,6 +12,10 @@ General_template::General_template(int w, int d, int e, int a)
     doors = new Drawable[doors_num];
     enemies = new pEn[enemies_num];
     artifact = new Drawable[artifact_num];
+    is_north_door_locked = false;
+    is_south_door_locked = false;
+    is_west_door_locked = false; 
+    is_est_door_locked = false;
 }
 
 General_template::~General_template() 
@@ -104,10 +108,11 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
                 }
 
 void General_template::drawDoors() {
-    int r = rand()%20; 
+    int r = rand()%10;      //solitamente a 30, a 10 non blocca mai le porte
     switch(r)
     {   
         case 16:        //west
+            is_west_door_locked = true;
             doors[0] = Door(0,HALF_COLS-2);   //north doors
             doors[1] = Door(0,HALF_COLS-1);
             doors[2] = Door(0,HALF_COLS);
@@ -126,6 +131,7 @@ void General_template::drawDoors() {
             doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
             break;
         case 17:        //est
+            is_est_door_locked = true;
             doors[0] = Door(0,HALF_COLS-2);   //north doors
             doors[1] = Door(0,HALF_COLS-1);
             doors[2] = Door(0,HALF_COLS);
@@ -144,6 +150,7 @@ void General_template::drawDoors() {
             doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
             break;
         case 18:
+            is_north_door_locked = true;
             doors[0] = Locked_Door(0,HALF_COLS-2);   //north doors
             doors[1] = Locked_Door(0,HALF_COLS-1);
             doors[2] = Locked_Door(0,HALF_COLS);
@@ -162,6 +169,7 @@ void General_template::drawDoors() {
             doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
             break;
         case 19:
+            is_south_door_locked = true;
             doors[0] = Door(0,HALF_COLS-2);   //north doors
             doors[1] = Door(0,HALF_COLS-1);
             doors[2] = Door(0,HALF_COLS);

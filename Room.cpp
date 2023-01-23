@@ -3,6 +3,10 @@
 //fa il set up della stanza scegliendo un template, istanziando i nemici e gli artefatti
 Room::Room(Board &game_board) {
     this->y = 0; this->x = 0;
+    this->has_north_door = true; 
+    this->has_south_door = true;
+    this->has_west_door = true; 
+    this->has_est_door = true;
     this->north = NULL; 
     this->south = NULL; 
     this->west = NULL; 
@@ -14,13 +18,116 @@ Room::Room(Board &game_board) {
 
 Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {//int room_template) {
     this->y = y; this->x = x;
-    this->north = findRoom(room_index, y+1, x);
-    this->south = findRoom(room_index, y-1, x);
-    this->west = findRoom(room_index, y, x-1);
-	this->est = findRoom(room_index, y, x+1);
+    this->has_north_door = true; 
+    this->has_south_door = true;
+    this->has_west_door = true; 
+    this->has_est_door = true;
+    decideIfDoors();
+    this->north =  findRoom(room_index, y+1, x, up); //findRoom(room_index, y, x, up);
+    this->south = findRoom(room_index, y-1, x, down);
+    this->west = findRoom(room_index, y, x+1, sx);
+	this->est = findRoom(room_index, y, x-1, dx);
     int num = randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
+}
+/*
+Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
+    int n = -1;
+    switch(dir)     //trova le coordinate della stanza che si vuole cercare
+    {
+    case up:
+        y++;
+        break;
+    case down:
+        y--;
+        break;
+    case sx:
+        x--;
+        break;
+    case dx:
+        x++;
+        break;
+    }
+	for(int i = 0; i < room_index.size(); i++)
+	{
+		if(room_index[i]->y == y && room_index[i]->x == x)
+		{
+			n = i; 
+			break;	
+		}
+	}
+	if(n < 0) return NULL;
+	else 
+    {
+        switch(dir)     //trova le coordinate della stanza che si vuole cercare
+        {
+        case up:
+            if(!room_index[n]->has_south_door)
+                this->has_north_door = false;
+            if(!room_index[n]->room_template->is_south_door_locked)
+                lockNorthDoor();
+            break;
+        case down:
+            if(!room_index[n]->has_north_door)
+                this->has_south_door = false;
+            if(!room_index[n]->room_template->is_north_door_locked)
+                lockSouthDoor();
+            break;
+        case sx:
+            if(!room_index[n]->has_est_door)
+                this->has_west_door = false;
+            if(!room_index[n]->room_template->is_est_door_locked)
+                lockWestDoor();
+            break;
+        case dx:
+            if(!room_index[n]->has_west_door)
+                this->has_est_door = false;
+            if(!room_index[n]->room_template->is_west_door_locked)
+                lockEstDoor();
+            break;
+        }
+        return room_index[n]; 
+    }
+}
+*/
+
+Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
+    int n = -1;
+		for(int i = 0; i < room_index.size(); i++)
+		{
+			if(room_index[i]->y == y && room_index[i]->x == x)
+			{
+				n = i; 
+				break;	
+			}
+		}
+	if(n < 0) return NULL;
+	else return room_index[n]; 
+}
+
+void Room::decideIfDoors() {
+    int r = rand()%4;
+    for(int i = 0; i < r; i++) 
+    {
+        switch (rand()%4)
+        {
+        case 0:
+            this->has_north_door = false;
+            break;
+        case 1:
+            this->has_south_door = false;
+            break;
+        case 2:
+            this->has_west_door = false;
+            break;
+        case 3:
+            this->has_est_door = false;
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 int Room::randomRoomNumber() {
@@ -129,27 +236,41 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
     }
 }
 
-Room* Room::findRoom(vector<Room*> room_index, int y, int x){
-    int n = -1;
-		for(int i = 0; i < room_index.size(); i++)
-		{
-			if(room_index[i]->y == y && room_index[i]->x == x)
-			{
-				n = i; 
-				break;	
-			}
-		}
-	if(n < 0) return NULL;
-	else return room_index[n]; 
-}
-
-
 void Room::drawRoom(Board &board) {
     drawEnemies(board);
     drawWalls(board);
     drawDoors(board);
     drawProjectiles(board);
     drawArtifact(board);
+}
+
+void Room::lockNorthDoor() {
+    this->room_template->is_north_door_locked = true;
+    this->room_template->doors[0] = Locked_Door(0,HALF_COLS-2);
+    this->room_template->doors[1] = Locked_Door(0,HALF_COLS-1);
+    this->room_template->doors[2] = Locked_Door(0,HALF_COLS);
+    this->room_template->doors[3] = Locked_Door(0,HALF_COLS+1);
+    this->room_template->doors[4] = Locked_Door(0,HALF_COLS+2);
+}
+void Room::lockSouthDoor() {
+    this->room_template->is_south_door_locked = true;
+    this->room_template->doors[5] = Locked_Door(BOARD_ROWS-1,HALF_COLS-2);
+    this->room_template->doors[6] = Locked_Door(BOARD_ROWS-1,HALF_COLS-1);
+    this->room_template->doors[7] = Locked_Door(BOARD_ROWS-1,HALF_COLS);
+    this->room_template->doors[8] = Locked_Door(BOARD_ROWS-1,HALF_COLS+1);
+    this->room_template->doors[9] = Locked_Door(BOARD_ROWS-1,HALF_COLS+2);
+}
+void Room::lockWestDoor() {
+    this->room_template->is_west_door_locked = true;
+    this->room_template->doors[10] = Locked_Door(HALF_ROWS-1,0);
+    this->room_template->doors[11] = Locked_Door(HALF_ROWS,0);
+    this->room_template->doors[12] = Locked_Door(HALF_ROWS+1,0);
+}
+void Room::lockEstDoor() {
+    this->room_template->is_est_door_locked = true;
+    this->room_template->doors[13] = Locked_Door(HALF_ROWS-1,BOARD_COLS-1);
+    this->room_template->doors[14] = Locked_Door(HALF_ROWS,BOARD_COLS-1);
+    this->room_template->doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
 }
 
 void Room::moveEnemies(Board &board, Hero &hero) {
@@ -232,10 +353,35 @@ void Room::drawWalls(Board &board) {
     }
 }
 
+/* Le porte che collegano le stanze sono indicizzate da 0 a 15 in ordine di direzione*/
 void Room::drawDoors(Board &board) {
-    for(int i = 0; i < room_template->doors_num; i++) 
-    {    
-        board.add(room_template->doors[i]);
+    if(has_north_door) 
+    {
+        for(int i = 0; i < 5; i++) 
+        {    
+            board.add(room_template->doors[i]);
+        }
+    }
+    if(has_south_door) 
+    {
+        for(int i = 5; i < 10; i++) 
+        {    
+            board.add(room_template->doors[i]);
+        }
+    }
+    if(has_west_door) 
+    {
+        for(int i = 10; i < 13; i++) 
+        {    
+            board.add(room_template->doors[i]);
+        }
+    }
+    if(has_est_door) 
+    {
+        for(int i = 13; i < 16; i++) 
+        {    
+            board.add(room_template->doors[i]);
+        }
     }
 }
 

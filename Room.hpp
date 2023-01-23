@@ -16,6 +16,7 @@ private:
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
+    bool has_north_door, has_south_door, has_west_door, has_est_door;
 public: 
     Room(Board &game_board);    //costrutture stanza di partenza
 
@@ -31,9 +32,16 @@ public:
 
     void removeArtifact(int pos);
 private:
+    void decideIfDoors();
+    Room* findRoom(vector<Room*> room_index, int y, int x, Direction dir);
+
     int randomRoomNumber(); 
     void initializeRoomTemplate(int template_num, int n,Board &game_board);
-    Room* findRoom(vector<Room*> room_index, int y, int x);
+
+    void lockNorthDoor();
+    void lockSouthDoor();
+    void lockWestDoor();
+    void lockEstDoor();
     
     void drawProjectiles(Board &board);
     void drawEnemies(Board &board);

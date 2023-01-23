@@ -17,7 +17,7 @@ nemico che lascia delle piccole bombe
 *suggerite nuovi template che ho finito le idee*  
 nelle sottostanze un una porta chiusa non possono spawnare nemici, perchè senza una chiave non li si può uccidere    
 e senza ucciderli non si può cambiare stanza   
-
+i nemici spawnano sui muri, da sistemare anche quelli di pacman   
 rimettere la condizione per cambiare stanza    
 
 -menu:  
