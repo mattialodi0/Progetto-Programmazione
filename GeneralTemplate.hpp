@@ -70,7 +70,7 @@ class Template_1 : public General_template {
 public:
     Template_1(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1),1)
     {
-        drawRandom(10, 2, 2,BOARD_ROWS-2, BOARD_COLS-2,0);
+        drawRandom(10, 2, 2,BOARD_ROWS-3, BOARD_COLS-3,0);
 
         drawDoors();
         int chosen_enemies[enemies_num];
@@ -361,8 +361,8 @@ public:
         int ry, rx;
         for(int i=0; i < 15; i++)
         {
-            ry = rand()%(BOARD_ROWS-2)+2;
-            rx = rand()%(BOARD_COLS-2)+2;
+            ry = rand()%(BOARD_ROWS-4)+2;
+            rx = rand()%(BOARD_COLS-4)+2;
             walls[i] = Wall(ry, rx);
         }
 
@@ -714,17 +714,17 @@ public:
         int ry = rand()%(BOARD_ROWS-5)+3;
         int rx = rand()%(BOARD_COLS-7)+4;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-4)+3;
-        rx = rand()%(BOARD_COLS-5)+4;
+        ry = rand()%(BOARD_ROWS-5)+3;
+        rx = rand()%(BOARD_COLS-7)+4;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-4)+3;
-        rx = rand()%(BOARD_COLS-5)+4;
+        ry = rand()%(BOARD_ROWS-5)+3;
+        rx = rand()%(BOARD_COLS-7)+4;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-4)+3;
-        rx = rand()%(BOARD_COLS-5)+4;
+        ry = rand()%(BOARD_ROWS-5)+3;
+        rx = rand()%(BOARD_COLS-7)+4;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-4)+3;
-        rx = rand()%(BOARD_COLS-5)+4;
+        ry = rand()%(BOARD_ROWS-5)+3;
+        rx = rand()%(BOARD_COLS-7)+4;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls        
 
         drawDoors();

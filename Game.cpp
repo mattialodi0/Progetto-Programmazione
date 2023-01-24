@@ -60,16 +60,32 @@ void Game::processInput()
 		hero.setDirection(sx);
 		break;
 	case KEY_UP:
-		hero.attack(up);
+		//hero.attack(up);
+		if(current_room->north != NULL)		//per il testing
+				moveToNorthRoom();
+			else	
+				makeNorthRoom();
 		break;
 	case KEY_DOWN:
-		hero.attack(down);
+		//hero.attack(down);
+		if(current_room->south != NULL)		//per il testing
+				moveToSouthRoom();
+			else	
+				makeSouthRoom();
 		break;
 	case KEY_RIGHT:
-		hero.attack(dx);
+		//hero.attack(dx);
+		if(current_room->west != NULL)		//per il testing
+				moveToWestRoom();
+			else	
+				makeWestRoom();
 		break;
 	case KEY_LEFT:
-		hero.attack(sx);
+		//hero.attack(sx);
+		if(current_room->est != NULL)		//per il testing
+				moveToEstRoom();
+			else	
+				makeEstRoom();
 		break;
 	case 'f':
 		hero.useAbility(); 	//abilità speciale della classe
