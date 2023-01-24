@@ -23,32 +23,17 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
     this->has_west_door = true; 
     this->has_est_door = true;
     decideIfDoors();
-    this->north =  findRoom(room_index, y+1, x, up); //findRoom(room_index, y, x, up);
+    this->north =  findRoom(room_index, y+1, x, up);
     this->south = findRoom(room_index, y-1, x, down);
     this->west = findRoom(room_index, y, x-1, sx);
 	this->est = findRoom(room_index, y, x+1, dx);
-    int num = randomRoomNumber();
+    int num = 0;//randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
 }
-/*
+
 Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     int n = -1;
-    switch(dir)     //trova le coordinate della stanza che si vuole cercare
-    {
-    case up:
-        y++;
-        break;
-    case down:
-        y--;
-        break;
-    case sx:
-        x--;
-        break;
-    case dx:
-        x++;
-        break;
-    }
 	for(int i = 0; i < room_index.size(); i++)
 	{
 		if(room_index[i]->y == y && room_index[i]->x == x)
@@ -60,38 +45,46 @@ Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
 	if(n < 0) return NULL;
 	else 
     {
-        switch(dir)     //trova le coordinate della stanza che si vuole cercare
+        switch(dir)
         {
         case up:
             if(!room_index[n]->has_south_door)
                 this->has_north_door = false;
-            if(!room_index[n]->room_template->is_south_door_locked)
-                lockNorthDoor();
+            else    
+                this->has_north_door = true;
+            //if(!room_index[n]->room_template->is_south_door_locked)
+            //    lockNorthDoor();
             break;
         case down:
             if(!room_index[n]->has_north_door)
                 this->has_south_door = false;
-            if(!room_index[n]->room_template->is_north_door_locked)
-                lockSouthDoor();
+            else    
+                this->has_south_door = true;
+            //if(!room_index[n]->room_template->is_north_door_locked)
+            //    lockSouthDoor();
             break;
         case sx:
             if(!room_index[n]->has_est_door)
                 this->has_west_door = false;
-            if(!room_index[n]->room_template->is_est_door_locked)
-                lockWestDoor();
+            else
+                this->has_west_door = true;
+            //if(!room_index[n]->room_template->is_est_door_locked)
+            //    lockWestDoor();
             break;
         case dx:
             if(!room_index[n]->has_west_door)
                 this->has_est_door = false;
-            if(!room_index[n]->room_template->is_west_door_locked)
-                lockEstDoor();
+            else
+                this->has_est_door = true;
+            //if(!room_index[n]->room_template->is_west_door_locked)
+            //    lockEstDoor();
             break;
         }
         return room_index[n]; 
     }
 }
-*/
 
+/*
 Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     int n = -1;
 		for(int i = 0; i < room_index.size(); i++)
@@ -105,9 +98,9 @@ Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
 	if(n < 0) return NULL;
 	else return room_index[n]; 
 }
-
+*/
 void Room::decideIfDoors() {
-    int r = rand()%4;
+    int r = rand() % 7 - 3;    //minore è il primo numero maggiore è la possibilità di non avere porte, il secondo è il primo -4
     for(int i = 0; i < r; i++) 
     {
         switch (rand()%4)
