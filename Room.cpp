@@ -18,18 +18,14 @@ Room::Room(Board &game_board) {
 
 Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {//int room_template) {
     this->y = y; this->x = x;
-    this->has_north_door = true; 
-    this->has_south_door = true;
-    this->has_west_door = true; 
-    this->has_est_door = true;
+    int num = randomRoomNumber();
+    this->room_template_number = num;
+    initializeRoomTemplate(num,room_pos,game_board);
     decideIfDoors();
     this->north =  findRoom(room_index, y+1, x, up);
     this->south = findRoom(room_index, y-1, x, down);
     this->west = findRoom(room_index, y, x-1, sx);
 	this->est = findRoom(room_index, y, x+1, dx);
-    int num = 0;//randomRoomNumber();
-    this->room_template_number = num;
-    initializeRoomTemplate(num,room_pos,game_board);
 }
 
 Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
@@ -100,32 +96,45 @@ Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
 }
 */
 void Room::decideIfDoors() {
-    int r = rand() % 7 - 3;    //minore è il primo numero maggiore è la possibilità di non avere porte, il secondo è il primo -4
-    for(int i = 0; i < r; i++) 
-    {
-        switch (rand()%4)
+    if(room_template->need_doors) {
+        this->has_north_door = room_template->has_north_door; 
+        this->has_south_door = room_template->has_south_door;
+        this->has_west_door = room_template->has_west_door; 
+        this->has_est_door = room_template->has_est_door;
+    }
+    else {
+        this->has_north_door = true; 
+        this->has_south_door = true;
+        this->has_west_door = true; 
+        this->has_est_door = true;
+
+        int r = rand() % 7 - 3;    //minore è il primo numero maggiore è la possibilità di non avere porte, il secondo è il primo -4
+        for(int i = 0; i < r; i++) 
         {
-        case 0:
-            this->has_north_door = false;
-            break;
-        case 1:
-            this->has_south_door = false;
-            break;
-        case 2:
-            this->has_west_door = false;
-            break;
-        case 3:
-            this->has_est_door = false;
-            break;
-        default:
-            break;
+            switch (rand()%4)
+            {
+            case 0:
+                this->has_north_door = false;
+                break;
+            case 1:
+                this->has_south_door = false;
+                break;
+            case 2:
+                this->has_west_door = false;
+                break;
+            case 3:
+                this->has_est_door = false;
+                break;
+            default:
+                break;
+            }
         }
     }
 }
 
-int Room::randomRoomNumber() {
+int Room::randomRoomNumber() {                                                                       //sono le stanze sbarrate
     int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26},    //numero del tempate
-                                    {0, 0, 0, 0, 3, 0, 4, 5, 5, 4, 3, 2, 4, 2, 2, 4, 5, 5, 4, 3, 5, 3, 4, 4, 4, 4}};   //rarità (5 comune, 1 rara)
+                                    {0, 0, 0, 0, 3, 0, 4, 5, 5, 4, 3, 2, 4, 2, 2, 4, 5, 5, 4, 3, 5, 3, 0, 0, 0, 0}};   //rarità (5 comune, 1 rara)
     int parts = 0;
     for(int i=0; i < NUMBER_OF_ROOMS; i++) {
         parts += prob[1][i];

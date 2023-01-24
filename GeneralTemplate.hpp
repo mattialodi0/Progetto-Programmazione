@@ -33,6 +33,8 @@ public:
     int artifact_num;
     int my_xp=3;
     bool is_north_door_locked, is_south_door_locked, is_west_door_locked, is_est_door_locked;
+    bool need_doors;
+    bool has_north_door, has_south_door, has_west_door, has_est_door;
     General_template();
     General_template(int w, int d, int e, int a);
     ~General_template();
