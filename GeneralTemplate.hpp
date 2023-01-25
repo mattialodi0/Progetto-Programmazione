@@ -58,10 +58,9 @@ public:
 
 class Template_0 : public General_template {
 public:
-    Template_0(int n,Board &game_board) : General_template(0,16,0,1)
+    Template_0(int n,Board &game_board) : General_template(0,16,0,0)
     {
         drawDoors();
-        artifact[0] = Artifact(6,6);
     }
 };
 
@@ -245,6 +244,8 @@ class Template_7 : public General_template {
 public:
     Template_7(int n,Board &game_board) : General_template(161*4,16,rand() % (max_n_enemies+1),1)
     {
+        need_doors = true;
+        has_north_door = true; has_south_door = true; has_west_door = true; has_est_door = true;
         int i = 0;
         i = drawFilledSquare(1, 1, 8, 20, 0);   //126 walls
         i = drawFilledSquare(BOARD_ROWS-9, 1, 8, 20, i+1);   //126 walls
@@ -293,7 +294,8 @@ public:
         doors[29] = Door(HALF_ROWS-1,HALF_COLS+13);   //est doors
         doors[30] = Door(HALF_ROWS,HALF_COLS+13);
         doors[31] = Door(HALF_ROWS+1,HALF_COLS+13);
-                int chosen_enemies[enemies_num];
+        
+        int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
         int y_chosen[enemies_num];
         for(int i=0;i<enemies_num;i++){

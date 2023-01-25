@@ -18,7 +18,7 @@ Room::Room(Board &game_board) {
 
 Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {//int room_template) {
     this->y = y; this->x = x;
-    int num = randomRoomNumber();
+    int num = 8;//randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
     decideIfDoors();
@@ -80,21 +80,6 @@ Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     }
 }
 
-/*
-Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
-    int n = -1;
-		for(int i = 0; i < room_index.size(); i++)
-		{
-			if(room_index[i]->y == y && room_index[i]->x == x)
-			{
-				n = i; 
-				break;	
-			}
-		}
-	if(n < 0) return NULL;
-	else return room_index[n]; 
-}
-*/
 void Room::decideIfDoors() {
     if(room_template->need_doors) {
         this->has_north_door = room_template->has_north_door; 
@@ -239,13 +224,13 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
 }
 
 void Room::drawRoom(Board &board) {
-    drawEnemies(board);
+    drawProjectiles(board);
     drawWalls(board);
     drawDoors(board);
-    drawProjectiles(board);
+    drawEnemies(board);
     drawArtifact(board);
 }
-
+/*
 void Room::lockNorthDoor() {
     this->room_template->is_north_door_locked = true;
     this->room_template->doors[0] = Locked_Door(0,HALF_COLS-2);
@@ -274,7 +259,7 @@ void Room::lockEstDoor() {
     this->room_template->doors[14] = Locked_Door(HALF_ROWS,BOARD_COLS-1);
     this->room_template->doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
 }
-
+*/
 void Room::moveEnemies(Board &board, Hero &hero) {
     for(int i = 0; i < room_template->enemies_num; i++) {    
          this->room_template->enemies[i]->chooseDirection(board, hero);
@@ -382,6 +367,11 @@ void Room::drawDoors(Board &board) {
     {
         for(int i = 13; i < 16; i++) 
         {    
+            board.add(room_template->doors[i]);
+        }
+    }
+    if(room_template->doors_num > 16) {
+        for(int i = 16; i < room_template->doors_num; i++) {
             board.add(room_template->doors[i]);
         }
     }
