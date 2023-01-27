@@ -1,6 +1,6 @@
-OBJS	= main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o GeneralTemplate.o
-SOURCE	= main.cpp Time.cpp Room.cpp Projectile.cpp Hero.cpp Game.cpp Enemy.cpp Drawable.cpp Character.cpp Board.cpp Artifact.cpp Drunk.cpp Chaser.cpp GeneralTemplate.cpp
-HEADER	= Direction.hpp Time.hpp Room.hpp Projectile.hpp Hero.hpp Game.hpp Enemy.hpp Drawable.hpp Character.hpp Board.hpp Artifact.hpp Drunk.hpp Chaser.hpp GeneralTemplate.hpp Door.hpp Wall.hpp
+OBJS	= main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o GeneralTemplate.o menu.o menu_playing.o
+SOURCE	= main.cpp Time.cpp Room.cpp Projectile.cpp Hero.cpp Game.cpp Enemy.cpp Drawable.cpp Character.cpp Board.cpp Artifact.cpp Drunk.cpp Chaser.cpp GeneralTemplate.cpp menu.cpp menu-playing.cpp
+HEADER	= Direction.hpp Time.hpp Room.hpp Projectile.hpp Hero.hpp Game.hpp Enemy.hpp Drawable.hpp Character.hpp Board.hpp Artifact.hpp Drunk.hpp Chaser.hpp GeneralTemplate.hpp Door.hpp Wall.hpp menu.hpp menu_playing.hpp
 OUT	= game
 CC	 = g++
 FLAGS	 = -g -c 
@@ -50,6 +50,13 @@ Chaser.o: Chaser.cpp
 
 GeneralTemplate.o: GeneralTemplate.cpp
 	$(CC) $(FLAGS) GeneralTemplate.cpp 
+
+menu.o: menu.cpp 
+	$(CC) $(FLAGS) menu.cpp
+
+menu_playing.o: menu_playing.cpp 
+	$(CC) $(FLAGS) menu_playing.cpp
+
 
 
 clean:

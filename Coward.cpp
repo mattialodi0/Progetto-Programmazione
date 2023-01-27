@@ -35,7 +35,7 @@ void Coward::createProjectile(Board &board_win, Character &hero, Direction dir)
     */
 }
 
-void Coward::checkProjectile(Board &board_win, Hero &hero)
+void Coward::checkProjectile(Board &board_win, Character &hero)
 {
     /*
     for (int i = 0; i < projectile.size(); i++)

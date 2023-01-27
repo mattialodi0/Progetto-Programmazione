@@ -9,8 +9,6 @@ class Character : public Drawable
 {	
 protected:
 	Direction cur_direction;
-
-	int hp;
 	int ac;
 	int dmg;
 	int speed;
@@ -18,6 +16,7 @@ protected:
 	int range;
 	int difficulty;
 public:
+	int hp;
 	Character();
 	Character(Direction dir, int x, int y, chtype ch);
 

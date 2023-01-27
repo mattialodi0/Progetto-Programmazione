@@ -1,4 +1,4 @@
-binaries = main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o Coward.o Boom.o Shooter.o Flyer.o Stalker.o GeneralTemplate.o Menu.o Menu_playing.o
+binaries = main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o Coward.o Boom.o Shooter.o Flyer.o Stalker.o GeneralTemplate.o menu.o menu_playing.o
 
 
 game: $(binaries)
@@ -61,11 +61,11 @@ Stalker.o: Stalker.cpp Stalker.hpp
 GeneralTemplate.o: GeneralTemplate.cpp GeneralTemplate.hpp 
 	g++ -Iroom_objects -c GeneralTemplate.cpp
 
-Menu.o: Menu.cpp Menu.hpp
-	g++ -c Menu.cpp
+menu.o: menu.cpp menu.hpp
+	g++ -c menu.cpp
 
-Menu_playing.o: Menu_playing.cpp Menu_playing.hpp
-	g++ -c Menu_playing.cpp
+menu_playing.o: menu_playing.cpp menu_playing.hpp
+	g++ -c menu_playing.cpp
 
 
 

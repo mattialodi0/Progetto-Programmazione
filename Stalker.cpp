@@ -46,14 +46,14 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
         if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range){
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            //diminuisci vita player
+            hero.hp=hero.hp-30;
         } 
         projectile.erase(projectile.begin()+i);
         board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
         }
         else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                //diminuisci vita player
+                    hero.hp=hero.hp-30;
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
                 }    

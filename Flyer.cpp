@@ -33,14 +33,14 @@ void Flyer::checkProjectile(Board &board_win, Character &hero)
             if(!projectile[i]->checkFlyerCollision(board_win)|| projectile[i]->getUptime()>melee_range){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                //diminuisci vita player
+                    hero.hp=hero.hp-30;
                 }    
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
             }
             else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                //diminuisci vita player
+                    hero.hp=hero.hp-30;
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
                 }    

@@ -106,24 +106,24 @@ void Game::processInput()
 
 void Game::updateState()
 {
-	// hero
+	//hero
 	//game_board.remove(hero);
-	manageHeroMovement();
-	hero.setDirection(def);								//--> da mettere edentro a hero
 	
+	if(hero.hp <= 0){
+		this->game_over = true;
+	}
+
+	manageHeroMovement();
+	hero.setDirection(def);								//--> da mettere dentro a hero
+
 	//enemies
-	if(canMove<=0){
+	if(canMove <= 0){
 		current_room->moveEnemies(game_board, hero);
 		canMove=GameSpeed;
 	}
 	else{
 		canMove--;
 	}
-	
-	if(hero.zeroLife()){
-		this->game_over = true;
-	}
-
 }
 
 void Game::updateScreen()

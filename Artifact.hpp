@@ -6,8 +6,8 @@
 class Artifact : public Drawable
 {
 protected:
-    
 public:
+    Artifact();
     Artifact(int y, int x);
     chtype RandomArtifact();
 };

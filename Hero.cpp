@@ -7,15 +7,16 @@ const int artifactrange = 2;
 
 Hero::Hero() : Character(def, herostarty, herostartx,'P')
 {	
-    key = 1;
+    artifact = Artifact (y, x);
+    this->key = 1;
     this->hp = 30;
 }
 
 Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
 {   
-    key = 1;
+    artifact = Artifact (y, x);
+    this->key = 1;
     this->hp = 30;
-
 }
 
 /*
@@ -69,7 +70,7 @@ void Hero::useAbility()
 {
 }
 
-void Hero::createProjectile(Direction dir) 
+void Hero::attack(Direction dir) 
 {
     
     if(this->reload_time<=0){
@@ -93,24 +94,6 @@ void Hero::createProjectile(Direction dir)
     }
     else{
         this->reload_time--;
-    }
-}
-
-void Hero::attack(Direction dir) 
-{
-    switch(dir){
-        case(sx):
-            createProjectile(sx);
-            break;
-        case(dx):
-            createProjectile(dx);
-        case(up):
-            createProjectile(up);
-        case(down):
-            createProjectile(down);
-            break;
-        default:
-            break;
     }
 }
 
@@ -149,6 +132,11 @@ bool Hero::useKey()
     else return false;
 }
 
+/*void Hero::reduceHealth()
+{
+	this->hp=this->hp-30;
+}
+*/
 void Hero::increaseHealth()
 {
     this->hp = this->hp + artifacthp;
@@ -164,15 +152,7 @@ void Hero::increaseRange()
     this->range = this->range + artifactrange;
 }
 
-void Hero::reduceHealth()
+void Hero::takenArtifact()
 {
-	this->hp=this->hp-2;
-}
-
-bool Hero::zeroLife()
-{
-    if(this->hp <= 0){
-        return true;
-    }
-    return false;
+    artifact.setIcon(' ');
 }

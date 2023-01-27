@@ -3,7 +3,7 @@
 //nemico stealth
 
 #include "Enemy.hpp"
-
+#include "Hero.hpp"
 
 class Stalker : public Enemy
 {

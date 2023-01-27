@@ -30,7 +30,7 @@ public:
     int walls_num; 
     int doors_num;
     int enemies_num=0;
-    int artifact_num;
+    int artifact_num=0;
     int my_xp=3;
     bool is_north_door_locked, is_south_door_locked, is_west_door_locked, is_est_door_locked;
     bool need_doors;

@@ -34,7 +34,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
     }
      }
      //per movimento proiettili e check di colpito o out of range
-     void Shooter::checkProjectile(Board &board_win, Hero &hero){
+     void Shooter::checkProjectile(Board &board_win, Character &hero){
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
@@ -42,7 +42,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range){
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            hero.reduceHealth();
+            hero.hp=hero.hp-30;
         } 
         projectile.erase(projectile.begin()+i);
         board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
@@ -50,7 +50,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         else{
             
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                //diminuisci vita player
+                    hero.hp=hero.hp-30;
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
                 }    

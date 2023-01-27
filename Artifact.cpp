@@ -1,5 +1,10 @@
 #include "Artifact.hpp"
 
+Artifact::Artifact(): Drawable()
+{
+   
+}
+
 Artifact::Artifact(int y, int x): Drawable(x,y,RandomArtifact())
 {
    
