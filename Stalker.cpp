@@ -16,19 +16,15 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
     projectile.push_back(new_proj);
     switch(dir){
     case up:
-    new_proj->sety(new_proj->gety()-1);
     new_proj->setIcon('|');
     break;
     case down:
-    new_proj->sety(new_proj->gety()+1);
     new_proj->setIcon('|');
     break;
     case dx:
-     new_proj->setx(new_proj->getx()+1);
     new_proj->setIcon('-');
     break;
     case sx:
-     new_proj->setx(new_proj->getx()-1);
     new_proj->setIcon('-');
     break;
     }

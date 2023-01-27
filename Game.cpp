@@ -164,7 +164,7 @@ void Game::manageHeroMovement()
 	case '|':
 		hero.moveCharacter(game_board);
 		break;
-	case 'F':
+	case 'E':
 		hero.moveCharacter(game_board);
 		hero.increaseDamage();
 		current_room->removeArtifact(0);

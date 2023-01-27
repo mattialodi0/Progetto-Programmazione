@@ -66,32 +66,7 @@ void Flyer::chooseDirection(Board &board_win, Character &hero)
         }
         if (this->mem>0)
         {
-            if(abs(distancex) <= melee_range && abs(distancey) <= melee_range){
-                if(distancey==0){
-                    if(distancex>0){
-                        createProjectile(board_win,hero,sx);
-                        setDirection(def);
-                    }
-                    else{
-                    createProjectile(board_win,hero,dx);
-                    setDirection(def);
-                    }
-                    this->reload=melee_enemy_reload;
-                }
-                else{
-                    if(distancex==0){
-                        if(distancey>0){
-                            createProjectile(board_win,hero,up);
-                            setDirection(def);
-                        }
-                        else{
-                            createProjectile(board_win,hero,down);
-                            setDirection(def);
-                        }
-                        this->reload=melee_enemy_reload;
-                    }
-                }
-            }else{
+            
             if (abs(distancex) > abs(distancey))
             {
                 if (distancex < 0)
@@ -121,6 +96,31 @@ void Flyer::chooseDirection(Board &board_win, Character &hero)
                     }
                 }
             }
+            if(abs(distancex) <= melee_range && abs(distancey) <= melee_range){
+                if(distancey==0){
+                    if(distancex>0){
+                        createProjectile(board_win,hero,sx);
+                        setDirection(def);
+                    }
+                    else{
+                    createProjectile(board_win,hero,dx);
+                    setDirection(def);
+                    }
+                    this->reload=melee_enemy_reload;
+                }
+                else{
+                    if(distancex==0){
+                        if(distancey>0){
+                            createProjectile(board_win,hero,up);
+                            setDirection(def);
+                        }
+                        else{
+                            createProjectile(board_win,hero,down);
+                            setDirection(def);
+                        }
+                        this->reload=melee_enemy_reload;
+                    }
+                }
             }
         }
     }

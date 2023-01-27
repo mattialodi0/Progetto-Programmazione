@@ -64,6 +64,9 @@ void Board::addAt(int y, int x, chtype ch)
 		case ' ':
 		case 'O':
 		case 'o':
+		case 'R':
+		case 'E':
+		case 'H':
 		setTaken(x,y,false);
 		break;
 	 default:

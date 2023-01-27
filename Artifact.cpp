@@ -20,7 +20,7 @@ chtype Artifact::RandomArtifact()
     }
     else if(i==2)
     {
-        return 'F';
+        return 'E';
     }
     else
     {

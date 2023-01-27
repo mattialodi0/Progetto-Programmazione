@@ -103,8 +103,6 @@ bool Character::checkFlyerCollision(Board &board_win)
 	switch (board_win.getCharAt(y + offsety, x + offsetx))
 	{
 	case ' ':
-	case 'F':
-	case 'H':	
 	case 'X':
 	case 'O':
 		return true;
