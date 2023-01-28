@@ -12,14 +12,15 @@ class Hero : public Character
 protected:
 	int class_type;
 	int key=1;	//numero di chiavi trovate
+	int hp = 30;
     int ac = 3;
     int dmg = 2;
     int speed = 1;
     int reload_time=3;
     int range = 2;
+	int reload = 0;
 public:	
 	Artifact artifact;
-	int hp = 30;
     Hero();
 	Hero(int y, int x);
 	//void Const(int y, int x);
@@ -32,8 +33,6 @@ public:
 	void mageClass();	//ranged, hp-, ac-, dmg++, speed, reload-
 	//da aggiungere le abilità al bilanciamento
 	void useAbility();
-	void attack(Direction dir);
-
 	void centerHero(Direction dir);
 	bool useKey();
 
@@ -41,6 +40,9 @@ public:
 	void increaseDamage();
 	void increaseRange();
 	//void reduceHealth();
-
-	void takenArtifact();
+	void attack(Board &board_win, Direction dir);
+     //per movimento proiettili e check di colpito o out of range
+    void checkProjectile(Board &board_win);
+	void reduceHealth();
+	bool death();
 };

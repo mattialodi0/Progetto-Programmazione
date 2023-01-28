@@ -8,7 +8,7 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
 {
 }
     //per creare proiettili
-     void Stalker::createProjectile(Board &board_win, Character &hero, Direction dir)
+     void Stalker::createProjectile(Board &board_win, Hero &hero, Direction dir)
      {
                  if(this->reload<=0){
     this->reload=enemy_reload;
@@ -34,7 +34,7 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
     }
      }
      //per movimento proiettili e check di colpito o out of range
-     void Stalker::checkProjectile(Board &board_win, Character &hero){
+     void Stalker::checkProjectile(Board &board_win, Hero &hero){
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
@@ -42,14 +42,14 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
         if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range){
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            hero.hp=hero.hp-30;
+            hero.reduceHealth();
         } 
         projectile.erase(projectile.begin()+i);
         board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
         }
         else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.hp=hero.hp-30;
+                    hero.reduceHealth();
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
                 }    
@@ -61,7 +61,7 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
         }
      
      //va a una tua stessa linea o colonna per spararti e spara
-    void Stalker::chooseDirection(Board &board_win, Character &hero)
+    void Stalker::chooseDirection(Board &board_win, Hero &hero)
     {
         setDirection(def);
         

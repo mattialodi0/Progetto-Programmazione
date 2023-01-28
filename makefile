@@ -31,7 +31,7 @@ Character.o: Character.cpp Character.hpp
 Board.o: Board.cpp Board.hpp 
 	g++ -c Board.cpp -lncurses
 
-Enemy.o: Enemy.cpp Enemy.hpp
+Enemy.o: Enemy.cpp Enemy.hpp Hero.hpp
 	g++ -c Enemy.cpp 
 
 Artifact.o: Artifact.cpp Artifact.hpp 

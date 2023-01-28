@@ -8,7 +8,7 @@ Coward::Coward(int y, int x,int diff):Enemy(def,y,x,'K',diff)
 }
 
 
-void Coward::createProjectile(Board &board_win, Character &hero, Direction dir) 
+void Coward::createProjectile(Board &board_win, Hero &hero, Direction dir) 
 {
   /*  if(this->reload<=0){
     this->reload=enemy_reload;
@@ -35,7 +35,7 @@ void Coward::createProjectile(Board &board_win, Character &hero, Direction dir)
     */
 }
 
-void Coward::checkProjectile(Board &board_win, Character &hero)
+void Coward::checkProjectile(Board &board_win, Hero &hero)
 {
     /*
     for (int i = 0; i < projectile.size(); i++)
@@ -66,7 +66,7 @@ void Coward::checkProjectile(Board &board_win, Character &hero)
     */
 }
 
-void Coward::chooseDirection(Board &board_win, Character &hero)
+void Coward::chooseDirection(Board &board_win, Hero &hero)
 {int i = 0;
         int distancex, distancey;
         distancex = this->x - hero.getx();

@@ -1,10 +1,8 @@
 #pragma once
 
-#include "Character.hpp"
 #include "Projectile.hpp"
+#include "Hero.hpp"
 #include <vector>
-
-
 
 class Enemy : public Character {
 protected: 
@@ -27,16 +25,16 @@ protected:
 public:
     std::vector<Projectile*> projectile;
     Enemy(Direction dir, int y, int x ,chtype ch,int diff);
-    virtual void createProjectile(Board &board_win, Character &hero, Direction dir) {}
-    virtual void checkProjectile(Board &board_win, Character &hero) {}
+    virtual void createProjectile(Board &board_win, Hero &hero, Direction dir) {}
+    virtual void checkProjectile(Board &board_win, Hero &hero) {}
     
     // metodo astratto per scelta automatica di direzione dei nemici
-	virtual void chooseDirection(Board &board_win, Character &hero) {}
+	virtual void chooseDirection(Board &board_win, Hero &hero) {}
 
     bool getisFlyer();
     void setisFlyer(bool set);
-    bool hasLos(Board &board_win, Character &hero);
-    bool flyerHasLos(Board &board_win, Character &hero);
+    bool hasLos(Board &board_win, Hero &hero);
+    bool flyerHasLos(Board &board_win, Hero &hero);
     bool inSight(int distancex,int distancey);
 };  
 

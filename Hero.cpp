@@ -1,6 +1,6 @@
 #include "Hero.hpp"
 
-const int enemiesdamage = 15;
+const int enemiesdamage = 10;
 const int artifacthp = 5;
 const int artifactdmg = 1;
 const int artifactrange = 2;
@@ -10,6 +10,11 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     artifact = Artifact (y, x);
     this->key = 1;
     this->hp = 30;
+    this->reload_time = 3;
+    this->range = 2;
+    this->speed = 1;
+    this->dmg = 2;
+    this->reload = 0;
 }
 
 Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
@@ -17,6 +22,11 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     artifact = Artifact (y, x);
     this->key = 1;
     this->hp = 30;
+    this->reload_time = 3;
+    this->range = 2;
+    this->speed = 1;
+    this->dmg = 2;
+    this->reload = 0;
 }
 
 /*
@@ -70,30 +80,50 @@ void Hero::useAbility()
 {
 }
 
-void Hero::attack(Direction dir) 
+void Hero::attack(Board &board_win, Direction dir) 
 {
-    
-    if(this->reload_time<=0){
-    this->reload_time=reload_time;
-    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
-    projectile.push_back(new_proj); 
-    switch(dir){
-    case up:
-    new_proj->sety(new_proj->gety()-1);
-    break;
-    case down:
-    new_proj->sety(new_proj->gety()+1);
-    break;
-    case dx:
-    new_proj->setx(new_proj->getx()+1); 
-    break;
-    case sx:
-     new_proj->setx(new_proj->getx()-1);
-    break;
-    }
+    if(this->reload<=0){
+        this->reload=reload_time;
+        Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+        projectile.push_back(new_proj); 
+        switch(dir){
+            case up:
+                new_proj->setIcon('|');
+                break;
+            case down:
+                new_proj->setIcon('|');
+                break;
+            case dx:
+                new_proj->setIcon('-');
+                break;
+            case sx:
+                new_proj->setIcon('-');
+                break;
+        }
     }
     else{
-        this->reload_time--;
+        this->reload--;
+    }
+}
+
+
+//per movimento proiettili e check di colpito o out of range
+void Hero::checkProjectile(Board &board_win){
+    for (int i = 0; i < projectile.size(); i++)
+	{
+		if (projectile[i] != NULL){
+            projectile[i]->setUptime(projectile[i]->getUptime()+1);
+            if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>reload_time){
+                projectile[i]->moveCharacter(board_win);
+                projectile.erase(projectile.begin()+i);
+            board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+            }
+            else{
+                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                projectile.erase(projectile.begin()+i);
+                projectile[i]->moveCharacter(board_win);
+            }
+        }
     }
 }
 
@@ -132,11 +162,6 @@ bool Hero::useKey()
     else return false;
 }
 
-/*void Hero::reduceHealth()
-{
-	this->hp=this->hp-30;
-}
-*/
 void Hero::increaseHealth()
 {
     this->hp = this->hp + artifacthp;
@@ -152,7 +177,15 @@ void Hero::increaseRange()
     this->range = this->range + artifactrange;
 }
 
-void Hero::takenArtifact()
+void Hero::reduceHealth()
 {
-    artifact.setIcon(' ');
+    hp = hp -enemiesdamage;
+}
+
+bool Hero::death()
+{
+    if(this->hp <= 0){
+        return true;
+    }
+    return false;
 }

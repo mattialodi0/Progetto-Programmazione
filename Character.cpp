@@ -72,7 +72,7 @@ bool Character::checkCollision(Board &board_win)
 	switch (board_win.getCharAt(y + offsety, x + offsetx))
 	{
 	case ' ':
-	case 'F':
+	case 'E':
 	case 'H':
 	case 'R':
 	case 'O':

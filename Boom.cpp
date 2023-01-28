@@ -8,7 +8,7 @@ Boom::Boom(int y, int x,int diff):Enemy(def,y,x,'B',diff)
 {
 }
 
-void Boom::createProjectile(Board &board_win, Character &hero,Direction dir)
+void Boom::createProjectile(Board &board_win, Hero &hero,Direction dir)
 {
         this->setIcon(' ');
         board_win.addAt(this->y,this->x,' ');
@@ -24,17 +24,16 @@ void Boom::createProjectile(Board &board_win, Character &hero,Direction dir)
     
 }
 
-void Boom::checkProjectile(Board &board_win, Character &hero)
+void Boom::checkProjectile(Board &board_win, Hero &hero)
 {
     for (int i = 0; i < projectile.size(); i++)
 	{
 		if (projectile[i] != NULL){
-            projectile[i]->setUptime((projectile[i]->getUptime())+1);
-            
+            projectile[i]->setUptime((projectile[i]->getUptime())+1);            
             if( projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon()&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' ')){
                 
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.hp=hero.hp-30;
+                    hero.reduceHealth();
                 }    
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
@@ -43,7 +42,7 @@ void Boom::checkProjectile(Board &board_win, Character &hero)
     }
 }
 
-void Boom::chooseDirection(Board &board_win, Character &hero)
+void Boom::chooseDirection(Board &board_win, Hero &hero)
 {
     if(!timeractivated&& !die){
     if(this->reload<=0){

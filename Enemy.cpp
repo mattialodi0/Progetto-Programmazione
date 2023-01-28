@@ -25,7 +25,7 @@ bool Enemy::inSight(int distancex,int distancey){
     return int(abs(sqrt(pow(distancex/2.5,2)+pow(distancey,2))))<this->sight_range;
 }
 
-bool Enemy::hasLos(Board &board_win, Character &hero)
+bool Enemy::hasLos(Board &board_win, Hero &hero)
 {
     
     int i=0,k=0, maxiter=0;
@@ -69,11 +69,10 @@ bool Enemy::hasLos(Board &board_win, Character &hero)
 if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
     return true;
 }
-
-        
         return false;
 }
-bool Enemy::flyerHasLos(Board &board_win, Character &hero)
+
+bool Enemy::flyerHasLos(Board &board_win, Hero &hero)
 {
     
     int i=0,k=0, maxiter=0;

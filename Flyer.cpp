@@ -10,7 +10,7 @@ Flyer::Flyer(int y, int x,int diff):Enemy(def,y,x,'F',diff)
     setisFlyer(true);
 }
 
-void Flyer::createProjectile(Board &board_win, Character &hero, Direction dir) 
+void Flyer::createProjectile(Board &board_win, Hero &hero, Direction dir) 
 {
     if(this->reload<=0){
     this->reload=enemy_reload;
@@ -23,7 +23,7 @@ void Flyer::createProjectile(Board &board_win, Character &hero, Direction dir)
     }
 }
 
-void Flyer::checkProjectile(Board &board_win, Character &hero)
+void Flyer::checkProjectile(Board &board_win, Hero &hero)
 {
     for (int i = 0; i < projectile.size(); i++)
 	{
@@ -33,14 +33,14 @@ void Flyer::checkProjectile(Board &board_win, Character &hero)
             if(!projectile[i]->checkFlyerCollision(board_win)|| projectile[i]->getUptime()>melee_range){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.hp=hero.hp-30;
+                    hero.reduceHealth();
                 }    
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
             }
             else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.hp=hero.hp-30;
+                    hero.reduceHealth();
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
                 projectile.erase(projectile.begin()+i);
                 }    
@@ -52,7 +52,7 @@ void Flyer::checkProjectile(Board &board_win, Character &hero)
     }
 }
 
-void Flyer::chooseDirection(Board &board_win, Character &hero)
+void Flyer::chooseDirection(Board &board_win, Hero &hero)
 {
     
     if(this->reload<=0){

@@ -60,32 +60,32 @@ void Game::processInput()
 		hero.setDirection(sx);
 		break;
 	case KEY_UP:
-		//hero.attack(up);
-		if(current_room->north != NULL)		//per il testing
+		hero.attack(game_board, up);
+		/*if(current_room->north != NULL)		//per il testing
 				moveToNorthRoom();
 			else	
-				makeNorthRoom();
+				makeNorthRoom();*/
 		break;
 	case KEY_DOWN:
-		//hero.attack(down);
-		if(current_room->south != NULL)		//per il testing
+		hero.attack(game_board, down);
+		/*if(current_room->south != NULL)		//per il testing
 				moveToSouthRoom();
 			else	
-				makeSouthRoom();
+				makeSouthRoom();*/
 		break;
 	case KEY_RIGHT:
-		//hero.attack(dx);
-		if(current_room->west != NULL)		//per il testing
+		hero.attack(game_board, dx);
+		/*if(current_room->west != NULL)		//per il testing
 				moveToWestRoom();
 			else	
-				makeWestRoom();
+				makeWestRoom();*/
 		break;
 	case KEY_LEFT:
-		//hero.attack(sx);
-		if(current_room->est != NULL)		//per il testing
+		hero.attack(game_board, sx);
+		/*if(current_room->est != NULL)		//per il testing
 				moveToEstRoom();
 			else	
-				makeEstRoom();
+				makeEstRoom();*/
 		break;
 	case 'f':
 		hero.useAbility(); 	//abilità speciale della classe
@@ -109,12 +109,13 @@ void Game::updateState()
 	//hero
 	//game_board.remove(hero);
 	
-	if(hero.hp <= 0){
+	if(hero.death()){
 		this->game_over = true;
 	}
 
 	manageHeroMovement();
-	hero.setDirection(def);								//--> da mettere dentro a hero
+	hero.setDirection(def);	
+	hero.checkProjectile(game_board);							//--> da mettere dentro a hero
 
 	//enemies
 	if(canMove <= 0){
