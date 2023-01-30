@@ -9,6 +9,7 @@
 #include "Artifact.hpp"
 #include "Flyer.hpp"
 #include "Stalker.hpp"
+#include "Turret.hpp"
 #include "room_objects/Door.hpp"
 #include "room_objects/Wall.hpp"
 
@@ -876,6 +877,7 @@ public:
         
 
         drawDoors();
+        
 
         enemies[0] = new Chaser();              // ho fatto così solo perchè non so come aggiungere i chaser altrimenti,
         enemies[0]->setDirection(def);          // ne andrebbero messi nel quadrato al centro

@@ -104,6 +104,10 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
                         case 6:
                         enemies[ite] = new Stalker(y,x,game_board.getDifficulty());
                         break;
+                        case 7:
+                        enemies[ite] = new Turret(y,x,game_board.getDifficulty());
+                        break;
+
                     }
                 }
 

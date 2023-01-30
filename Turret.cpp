@@ -1,0 +1,85 @@
+#include "Turret.hpp"
+
+
+Turret::Turret():Enemy(def,25,25,'T',0)
+    {
+    }
+    Turret::Turret(int y, int x,int diff):Enemy(def,y,x,'T',diff)
+{
+}
+    //per creare proiettili
+     void Turret::createProjectile(Board &board_win, Hero &hero, Direction dir)
+     {
+        if(this->reload+5<=0){
+    this->reload=enemy_reload;
+    for(int i=0;i<4;i++){
+        switch(i){
+    case 0:
+    dir=up;
+    break;
+    case 1:
+    dir=down;
+    break;
+    case 2:
+    dir=dx;
+    break;
+    case 3:
+    dir=sx;
+    break;   
+        }
+    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+    projectile.push_back(new_proj);
+    switch(dir){
+    case up:
+    new_proj->setIcon('|');
+    break;
+    case down:
+    new_proj->setIcon('|');
+    break;
+    case dx:
+    new_proj->setIcon('-');
+    break;
+    case sx:
+    new_proj->setIcon('-');
+    break;
+    }
+    }
+    }
+    else{
+        this->reload--;
+    }
+     }
+     //per movimento proiettili e check di colpito o out of range
+     void Turret::checkProjectile(Board &board_win, Hero &hero){
+        for (int i = 0; i < projectile.size(); i++)
+		{
+			if (projectile[i] != NULL){
+                projectile[i]->setUptime(projectile[i]->getUptime()+1);
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range){
+        projectile[i]->moveCharacter(board_win);
+        if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
+            hero.reduceHealth();
+        } 
+        projectile.erase(projectile.begin()+i);
+        board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+        }
+        else{
+            
+                if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
+                    hero.reduceHealth();
+                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                projectile.erase(projectile.begin()+i);
+                }    
+          projectile[i]->moveCharacter(board_win);
+          
+          }
+        }
+    }
+        }
+     
+     //va a una tua stessa linea o colonna per spararti e spara
+    void Turret::chooseDirection(Board &board_win, Hero &hero)
+    {
+        createProjectile(board_win,hero,def);
+        setDirection(def);
+    }

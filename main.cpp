@@ -33,7 +33,7 @@ int main()
 		game.updateScreen();
 	}
 	
-	getch();
+	
 	endwin();
 	std::cout << "game over\n";
 	return 0;
