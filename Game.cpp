@@ -129,7 +129,7 @@ void Game::updateState()
 
 void Game::updateScreen()
 {
-	game_board.clear();
+	//game_board.clear();
 	redraw();
 	game_board.refreshBoard();
 }

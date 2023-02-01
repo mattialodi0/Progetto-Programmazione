@@ -134,6 +134,7 @@ int Room::randomRoomNumber() {                                                  
 
 void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_board) {
     game_board.clearTaken();
+    game_board.clear();
     switch (template_num)
     {
     case 0:
@@ -224,8 +225,8 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
 }
 
 void Room::drawRoom(Board &board) {
-    drawProjectiles(board);
     drawWalls(board);
+    drawProjectiles(board);
     drawDoors(board);
     drawEnemies(board);
     drawArtifact(board);

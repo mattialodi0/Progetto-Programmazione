@@ -29,7 +29,7 @@ General_template::~General_template()
 void General_template::createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[])
 {
             if(is_random_enemies){
-                chosen=rand()%(max_n_enemies+1);
+                chosen=(rand()%(max_n_enemies)+1);
             }
             if(is_random_coords)
             {

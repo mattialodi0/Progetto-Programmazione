@@ -33,22 +33,22 @@ void Chaser::checkProjectile(Board &board_win, Hero &hero)
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealth();
-                }    
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                board_win.remove(*projectile[i]);
                 projectile.erase(projectile.begin()+i);
+                }    
+                else{
+                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                board_win.addAt(this->y,this->x,' ');
+                projectile.erase(projectile.begin()+i);
+                }
             }
             else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealth();
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                board_win.remove(*projectile[i]);
                 projectile.erase(projectile.begin()+i);
-                
-                
-                }    
+                }  
+                else{  
                 projectile[i]->moveCharacter(board_win);
-               
+                }
             }
         }
     }

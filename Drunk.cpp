@@ -49,6 +49,7 @@ void Drunk::checkProjectile(Board &board_win, Hero &hero)
                     hero.reduceHealth();
                 }    
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                board_win.addAt(this->y,this->x,' ');
                 projectile.erase(projectile.begin()+i);
             }
             else{

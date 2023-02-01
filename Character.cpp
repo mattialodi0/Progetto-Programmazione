@@ -30,23 +30,31 @@ void Character::moveCharacter(Board &game_board)
 	{
 	case down:	
 		game_board.setTaken(x,y,false);
-		game_board.setTaken(x,y+1,true);
+		game_board.addAt(this->y,this->x,' ');
 		this->y++;
+		game_board.setTaken(x,y,true);
+		game_board.addAt(this->y,this->x,this->icon);
 		break;
 	case up:
 		game_board.setTaken(x,y,false);
-		game_board.setTaken(x,y-1,true);
+		game_board.addAt(this->y,this->x,' ');
 		this->y--;
+		game_board.setTaken(x,y,true);
+		game_board.addAt(this->y,this->x,this->icon);
 		break;
 	case sx:
 		game_board.setTaken(x,y,false);
-		game_board.setTaken(x-1,y,true);
+		game_board.addAt(this->y,this->x,' ');
 		this->x--;
+		game_board.setTaken(x,y,true);
+		game_board.addAt(this->y,this->x,this->icon);
 		break;
 	case dx:
 		game_board.setTaken(x,y,false);
-		game_board.setTaken(x+1,y,true);
+		game_board.addAt(this->y,this->x,' ');
 		this->x++;
+		game_board.setTaken(x,y,true);
+		game_board.addAt(this->y,this->x,this->icon);
 		break;
 	default:
 		break;

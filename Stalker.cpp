@@ -44,17 +44,20 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             hero.reduceHealth();
         } 
-        projectile.erase(projectile.begin()+i);
         board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+        board_win.addAt(this->y,this->x,' ');
+        projectile.erase(projectile.begin()+i);
         }
         else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealth();
                 board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
+                board_win.addAt(this->y,this->x,' ');
                 projectile.erase(projectile.begin()+i);
-                }    
+                }  
+                else{  
           projectile[i]->moveCharacter(board_win);
-         
+                }
           }
         }
     }
