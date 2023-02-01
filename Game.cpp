@@ -204,6 +204,9 @@ void Game::manageHeroMovement()
 void Game::manageDoor() {
 	if(current_room->isClear()) 
 	{
+		game_board.addAt(hero.gety(),hero.getx(),' ');
+		game_board.clearTaken();
+		game_board.clear();
 		if(hero.gety() <= 1) 
 		{
 			if(current_room->north != NULL)		//searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
@@ -237,25 +240,21 @@ void Game::manageDoor() {
 
 //funzioni per cambiare stanza
 void Game::moveToNorthRoom() {
-	game_board.clearTaken();
     current_room = current_room->north;
     //posiziona il giocatore in basso 
     hero.centerHero(hero.getDirection());
 }
 void Game::moveToSouthRoom() {
-	game_board.clearTaken();
     current_room = current_room->south;
     //posiziona il giocatore in alto 
     hero.centerHero(hero.getDirection());
 }
 void Game::moveToWestRoom() {
-	game_board.clearTaken();
     current_room = current_room->west;
     //posiziona il giocatore a destra
     hero.centerHero(hero.getDirection());
 }
 void Game::moveToEstRoom() {
-	game_board.clearTaken();
     current_room = current_room->est;
     //posiziona il giocatore a sinistra
     hero.centerHero(hero.getDirection());
@@ -263,7 +262,6 @@ void Game::moveToEstRoom() {
 
 //funzioni per creare nuove stanze
 void Game::makeNorthRoom() {
-	game_board.clearTaken();
     current_room->north = new Room(current_room->y+1, current_room->x, room_index,1,game_board);
     updateIndex(current_room->north);
     addRoomToIndex(current_room->north);       //******************
@@ -271,21 +269,18 @@ void Game::makeNorthRoom() {
 
 }
 void Game::makeSouthRoom() {
-	game_board.clearTaken();
     current_room->south = new Room(current_room->y-1, current_room->x, room_index,-1,game_board);
     updateIndex(current_room->south);
     addRoomToIndex(current_room->south);       //******************
     moveToSouthRoom();  
 }
 void Game::makeWestRoom() {
-	game_board.clearTaken();
     current_room->west = new Room(current_room->y, current_room->x-1, room_index, -2,game_board);
     updateIndex(current_room->west);
     addRoomToIndex(current_room->west);       //******************
     moveToWestRoom();
 }
 void Game::makeEstRoom() {
-	game_board.clearTaken();
     current_room->est = new Room(current_room->y, current_room->x+1, room_index,2,game_board);
     updateIndex(current_room->est);
     addRoomToIndex(current_room->est);       //******************
