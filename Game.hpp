@@ -28,6 +28,7 @@ public:
 	Game(int height, int width, int speed);
 	~Game();
     bool isNotOver();
+    void setGameOver();
     void processInput();
     void updateState();
     void updateScreen();

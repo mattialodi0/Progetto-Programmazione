@@ -41,6 +41,10 @@ bool Game::isNotOver()
 	return !game_over;
 }
 
+void Game::setGameOver() {
+	this->game_over = true;
+}
+
 void Game::processInput()
 {
 	chtype input = game_board.getInput();
