@@ -1009,6 +1009,67 @@ public:
     }
 };
 
+//turret boss
+class Template_27 : public General_template {
+public:
+    Template_27(int n,Board &game_board) : General_template(24,16,1,1)
+    {
+        int i = 0;   
+        i = drawFilledSquare(HALF_ROWS/2,(HALF_COLS/2)*3-1,2,3,i);
+        i = drawFilledSquare(HALF_ROWS/2,HALF_COLS/2-1,2,3,i);
+        i = drawFilledSquare((HALF_ROWS/2)*3,(HALF_COLS/2)*3-1,2,3,i);
+        i = drawFilledSquare((HALF_ROWS/2)*3,HALF_COLS/2-1,2,3,i);
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num] = {7};
+        int x_chosen[enemies_num] = {HALF_COLS};
+        int y_chosen[enemies_num] = {HALF_ROWS};
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//4 turret
+class Template_28 : public General_template {
+public:
+    Template_28(int n,Board &game_board) : General_template(0,16,4,1)
+    {
+        drawDoors();
+
+        int chosen_enemies[enemies_num] = {7,7,7,7};
+        int x_chosen[enemies_num] = {HALF_COLS/2, (HALF_COLS/2)*3, HALF_COLS/2, (HALF_COLS/2)*3};
+        int y_chosen[enemies_num] = {HALF_ROWS/2, HALF_ROWS/2, (HALF_ROWS/2)*3, (HALF_ROWS/2)*3};
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//16 turret
+class Template_29 : public General_template {
+public:
+    Template_29(int n,Board &game_board) : General_template(0,16,30,0)
+    {
+        need_doors = true; has_west_door = true; has_est_door = true;
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num] = {7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7};
+        int x_chosen[enemies_num] = {12,13,14,22,23,24,32,33,34,42,43,44,52,53,54,12,13,14,22,23,24,32,33,34,42,43,44,52,53,54};
+        int y_chosen[enemies_num] = {6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18};
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+    }
+};
+
+
 
 //castle
 //bomb room

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define NUMBER_OF_ROOMS 26
+#define NUMBER_OF_ROOMS 29
 
 class Room {
 private:
