@@ -34,7 +34,7 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
     }
      }
      //per movimento proiettili e check di colpito o out of range
-     void Stalker::checkProjectile(Board &board_win, Hero &hero){
+          void Stalker::checkProjectile(Board &board_win, Hero &hero){
         for (int i = 0; i < projectile.size(); i++)
 		{
 			if (projectile[i] != NULL){
@@ -43,19 +43,21 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             hero.reduceHealth();
+            projectile.erase(projectile.begin()+i);
         } 
-        board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-        board_win.addAt(this->y,this->x,' ');
+        else{
+        board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
         projectile.erase(projectile.begin()+i);
         }
+        }
         else{
+            
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealth();
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                board_win.addAt(this->y,this->x,' ');
+                board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
-                }  
-                else{  
+                    }
+                else{    
           projectile[i]->moveCharacter(board_win);
                 }
           }

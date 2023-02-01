@@ -46,8 +46,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
             projectile.erase(projectile.begin()+i);
         } 
         else{
-        board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-        board_win.addAt(this->y,this->x,' ');
+        board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
         projectile.erase(projectile.begin()+i);
         }
         }
@@ -55,10 +54,9 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
             
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealth();
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                board_win.addAt(this->y,this->x,' ');
+                board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
-                }
+                    }
                 else{    
           projectile[i]->moveCharacter(board_win);
                 }

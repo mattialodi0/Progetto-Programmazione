@@ -48,9 +48,8 @@ void Drunk::checkProjectile(Board &board_win, Hero &hero)
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealth();
                 }    
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                board_win.addAt(this->y,this->x,' ');
-                projectile.erase(projectile.begin()+i);
+                board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
+                 projectile.erase(projectile.begin()+i);
             }
             else{
                 projectile[i]->moveCharacter(board_win);

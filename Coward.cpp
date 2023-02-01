@@ -47,16 +47,17 @@ void Coward::checkProjectile(Board &board_win, Hero &hero)
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealth();
-                }    
+                    projectile.erase(projectile.begin()+i);
+                } 
+                else{   
+                board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                board_win.addAt(this->y,this->x,' ');
+                }
             }
             else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                 //diminuisci vita player
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                board_win.addAt(this->y,this->x,' ');
+                board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
                 }    
                 else{

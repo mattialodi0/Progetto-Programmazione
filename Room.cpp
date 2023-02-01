@@ -133,8 +133,7 @@ int Room::randomRoomNumber() {                                                  
 }
 
 void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_board) {
-    game_board.clearTaken();
-    game_board.clear();
+    
     switch (template_num)
     {
     case 0:
