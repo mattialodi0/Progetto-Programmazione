@@ -10,8 +10,8 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     artifact = Artifact (y, x);
     this->key = 1;
     this->hp = 30;
-    this->reload_time = 3;
-    this->range = 2;
+    this->reload_time = 2;
+    this->range = 5;
     this->speed = 1;
     this->dmg = 2;
     this->reload = 0;
@@ -22,8 +22,8 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     artifact = Artifact (y, x);
     this->key = 1;
     this->hp = 30;
-    this->reload_time = 3;
-    this->range = 2;
+    this->reload_time = 2;
+    this->range = 5;
     this->speed = 1;
     this->dmg = 2;
     this->reload = 0;
@@ -113,14 +113,12 @@ void Hero::checkProjectile(Board &board_win){
 	{
 		if (projectile[i] != NULL){
             projectile[i]->setUptime(projectile[i]->getUptime()+1);
-            if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>reload_time){
+            if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
                 projectile[i]->moveCharacter(board_win);
+                board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
-            board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
             }
             else{
-                board_win.setTaken(projectile[i]->getx(),projectile[i]->gety(),false);
-                projectile.erase(projectile.begin()+i);
                 projectile[i]->moveCharacter(board_win);
             }
         }

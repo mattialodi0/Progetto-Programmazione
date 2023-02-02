@@ -16,8 +16,8 @@ protected:
     int ac = 3;
     int dmg = 2;
     int speed = 1;
-    int reload_time=3;
-    int range = 2;
+    int reload_time=2;
+    int range = 5;
 	int reload = 0;
 public:	
 	Artifact artifact;
