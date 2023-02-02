@@ -1,5 +1,7 @@
 #include "Room.hpp"
 
+int locked_door_num=0;
+
 //fa il set up della stanza scegliendo un template, istanziando i nemici e gli artefatti
 Room::Room(Board &game_board) {
     this->y = 0; this->x = 0;
@@ -12,11 +14,11 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(0,0,game_board);
+    initializeRoomTemplate(13,0,game_board);
 }
 
 
-Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {//int room_template) {
+Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {
     this->y = y; this->x = x;
     int num = randomRoomNumber();
     this->room_template_number = num;
@@ -26,6 +28,7 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
     this->south = findRoom(room_index, y-1, x, down);
     this->west = findRoom(room_index, y, x-1, sx);
 	this->est = findRoom(room_index, y, x+1, dx);
+    lockDoor(room_index.size());
 }
 
 Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
@@ -117,9 +120,9 @@ void Room::decideIfDoors() {
     }
 }
 
-int Room::randomRoomNumber() {                                                                       //sono le stanze sbarrate
-    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29},    //numero del tempate
-                                    {0, 0, 0, 0, 3, 0, 4, 5, 5, 4, 3, 2, 4, 2, 2, 4, 5, 5, 4, 3, 5, 3, 0, 0, 0, 0, 1, 5, 3}};   //rarità (5 comune, 1 rara)
+int Room::randomRoomNumber() {
+    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33},    //numero del tempate
+                                    {0, 0, 0, 0, 6, 0, 8,10,10, 8, 6, 4, 8, 4, 4, 8,10,10, 8, 6,10, 6, 0, 0, 0, 0, 1,10, 6,10,10,10,10}};   //rarità (5 comune, 1 rara)
     int parts = 0;
     for(int i=0; i < NUMBER_OF_ROOMS; i++) {
         parts += prob[1][i];
@@ -226,6 +229,18 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
     case 29:
         this->room_template = new Template_29(room_pos,game_board);
         break;
+    case 30:
+        this->room_template = new Template_30(room_pos,game_board);
+        break;
+    case 31:
+        this->room_template = new Template_31(room_pos,game_board);
+        break;
+    case 32:
+        this->room_template = new Template_32(room_pos,game_board);
+        break;
+    case 33:
+        this->room_template = new Template_33(room_pos,game_board);
+        break;
     default:
         this->room_template = new Template_0(room_pos,game_board);
         break;
@@ -239,7 +254,39 @@ void Room::drawRoom(Board &board) {
     drawEnemies(board);
     drawArtifact(board);
 }
-/*
+
+void Room::lockDoor(int n) {
+    if(locked_door_num+1 < n) {
+        int r = rand() % 4;
+        switch(r) {
+        case 0:
+            if(has_north_door)
+                north_door_locked = true;
+                lockNorthDoor();
+                locked_door_num++;
+            break;
+        case 1:
+            if(has_south_door)
+                south_door_locked = true;
+                lockSouthDoor();
+                locked_door_num++;
+            break;
+        case 2:
+            if(has_west_door)
+                west_door_locked = true;
+                lockWestDoor();
+                locked_door_num++;
+            break;
+        case 3:
+            if(has_est_door)
+                est_door_locked = true;
+                lockEstDoor();
+                locked_door_num++;
+            break;
+        }
+    }
+}
+
 void Room::lockNorthDoor() {
     this->room_template->is_north_door_locked = true;
     this->room_template->doors[0] = Locked_Door(0,HALF_COLS-2);
@@ -268,7 +315,7 @@ void Room::lockEstDoor() {
     this->room_template->doors[14] = Locked_Door(HALF_ROWS,BOARD_COLS-1);
     this->room_template->doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
 }
-*/
+
 void Room::moveEnemies(Board &board, Hero &hero) {
     for(int i = 0; i < room_template->enemies_num; i++) {    
          this->room_template->enemies[i]->chooseDirection(board, hero);
@@ -302,7 +349,7 @@ void Room::unlockDoor(int y, int x)
         f = false;
         for(int i=0; i < room_template->doors_num; i++)
         {
-            int ty = room_template->doors[i].gety();
+            /*int ty = room_template->doors[i].gety();
             int tx = room_template->doors[i].getx();
             if((ty == y-j || ty == y+j || ty == y) && (tx == x-j || tx == x+j || tx == x))
             {
@@ -311,7 +358,10 @@ void Room::unlockDoor(int y, int x)
                     f = true;
                     room_template->doors[i] = Door(ty,tx);
                 }
-            }    
+            }    */
+            int ty = room_template->doors[i].gety();
+            int tx = room_template->doors[i].getx();
+            room_template->doors[i] = Door(ty,tx);
         }
         j++;
     }

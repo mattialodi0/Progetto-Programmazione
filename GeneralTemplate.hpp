@@ -480,7 +480,7 @@ public:
         doors[18] = Locked_Door(HALF_ROWS-5, HALF_COLS+1);
 
         drawDoors();
-                int chosen_enemies[enemies_num];
+        int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
         int y_chosen[enemies_num];
         for(int i=0;i<enemies_num;i++){
@@ -490,7 +490,7 @@ public:
         //x_chosen={}
         //y_chosen={}
         for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
         artifact[0] = Artifact(6,6);
     }
@@ -516,7 +516,7 @@ public:
 
 
         drawDoors();
-                int chosen_enemies[enemies_num];
+        int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
         int y_chosen[enemies_num];
         for(int i=0;i<enemies_num;i++){
@@ -526,7 +526,7 @@ public:
         //x_chosen={}
         //y_chosen={}
         for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
         artifact[0] = Artifact(6,6);
     }
@@ -878,13 +878,12 @@ public:
 
         drawDoors();
         
-
-        enemies[0] = new Chaser();              // ho fatto così solo perchè non so come aggiungere i chaser altrimenti,
-        enemies[0]->setDirection(def);          // ne andrebbero messi nel quadrato al centro
-        enemies[1] = new Chaser();
-        enemies[1]->setDirection(def);
-        enemies[2] = new Chaser();
-        enemies[2]->setDirection(def);
+        int chosen_enemies[enemies_num] = {3,3,3};
+        int x_chosen[enemies_num] = {HALF_COLS-2, HALF_COLS, HALF_COLS+2};
+        int y_chosen[enemies_num] = {HALF_ROWS, HALF_ROWS, HALF_ROWS};
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }        
 
         artifact[0] = Artifact(6,6);
     }
@@ -1002,7 +1001,7 @@ public:
         //x_chosen={}
         //y_chosen={}
         for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
         artifact[0] = Artifact(6,6);
@@ -1036,15 +1035,18 @@ public:
 //4 turret
 class Template_28 : public General_template {
 public:
-    Template_28(int n,Board &game_board) : General_template(0,16,4,1)
+    Template_28(int n,Board &game_board) : General_template(0,16,rand() % (max_n_enemies-3) +4,1)
     {
         drawDoors();
 
         int chosen_enemies[enemies_num] = {7,7,7,7};
         int x_chosen[enemies_num] = {HALF_COLS/2, (HALF_COLS/2)*3, HALF_COLS/2, (HALF_COLS/2)*3};
         int y_chosen[enemies_num] = {HALF_ROWS/2, HALF_ROWS/2, (HALF_ROWS/2)*3, (HALF_ROWS/2)*3};
-        for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        for(int i=0;i<4;i++){   
+            createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+        for(int i=4;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
         artifact[0] = Artifact(6,6);
@@ -1069,7 +1071,146 @@ public:
     }
 };
 
+//wall horizontal north rand
+class Template_30 : public General_template {
+public:
+    Template_30(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,rand() % (max_n_enemies+1),1)
+    {
+        int r = rand() % 5 + 3;
+        drawHorizontalLine(BOARD_COLS-2, r, 1, 0);
+        int f = rand() % 4;
+        int t = rand() % (BOARD_COLS-10) + 5;
+        if(f == 0) {
+            doors[16] = Locked_Door(r,t);
+            doors[17] = Locked_Door(r,t+1);
+            doors[18] = Locked_Door(r,t+2);
+            doors[19] = Locked_Door(r,t+3);
+        }
+        else {
+            doors[16] = No_Door(r,t);
+            doors[17] = No_Door(r,t+1);
+            doors[18] = No_Door(r,t+2);
+            doors[19] = No_Door(r,t+3);
+        }   
 
+        drawDoors();
 
-//castle
-//bomb room
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//wall horizontal south rand
+class Template_31 : public General_template {
+public:
+    Template_31(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,rand() % (max_n_enemies+1),1)
+    {
+        int r = rand() % 5 + HALF_ROWS+5;
+        drawHorizontalLine(BOARD_COLS-2, r, 1, 0);
+        int f = rand() % 4;
+        int t = rand() % (BOARD_COLS-9) + 5;
+        if(f == 0) {
+            doors[16] = Locked_Door(r,t);
+            doors[17] = Locked_Door(r,t+1);
+            doors[18] = Locked_Door(r,t+2);
+            doors[19] = Locked_Door(r,t+3);
+        }
+        else {
+            doors[16] = No_Door(r,t);
+            doors[17] = No_Door(r,t+1);
+            doors[18] = No_Door(r,t+2);
+            doors[19] = No_Door(r,t+3);
+        }   
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//wall vertical west rand
+class Template_32 : public General_template {
+public:
+    Template_32(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,rand() % (max_n_enemies+1),1)
+    {
+        int r = rand() % 10 + 10;
+        drawVerticalLine(BOARD_ROWS-2, 1, r, 0);
+        int f = rand() % 4;
+        int t = rand() % (BOARD_ROWS-7) + 3;
+        if(f == 0) {
+            doors[16] = Locked_Door(t,r);
+            doors[17] = Locked_Door(t+1,r);
+        }
+        else {
+            doors[16] = No_Door(t,r);
+            doors[17] = No_Door(t+1,r);
+        }   
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//wall vertical est rand
+class Template_33 : public General_template {
+public:
+    Template_33(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,rand() % (max_n_enemies+1),1)
+    {
+        int r = rand() % 10 + BOARD_COLS-20;
+        drawVerticalLine(BOARD_ROWS-2, 1, r, 0);
+        int f = rand() % 4;
+        int t = rand() % (BOARD_ROWS-7) + 3;
+        if(f == 0) {
+            doors[16] = Locked_Door(t,r);
+            doors[17] = Locked_Door(t+1,r);
+        }
+        else {
+            doors[16] = No_Door(t,r);
+            doors[17] = No_Door(t+1,r);
+        }   
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};

@@ -7,10 +7,12 @@
 
 using namespace std;
 
-#define NUMBER_OF_ROOMS 29
+#define NUMBER_OF_ROOMS 33
 
 class Room {
 private:
+    bool has_north_door, has_south_door, has_west_door, has_est_door;
+    bool north_door_locked, south_door_locked, west_door_locked, est_door_locked;
     int room_template_number;
     General_template *room_template;
     void decideIfDoors();
@@ -19,6 +21,7 @@ private:
     int randomRoomNumber(); 
     void initializeRoomTemplate(int template_num, int n,Board &game_board);
 
+    void lockDoor(int n);
     void lockNorthDoor();
     void lockSouthDoor();
     void lockWestDoor();
@@ -39,7 +42,6 @@ private:
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
-    bool has_north_door, has_south_door, has_west_door, has_est_door;
 
     Room(Board &game_board);    //costrutture stanza di partenza
 
