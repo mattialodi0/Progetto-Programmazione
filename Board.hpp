@@ -44,6 +44,5 @@ public:
 
     void clear ();
 	void refreshBoard();
-protected:
 	void addBorder();
 };

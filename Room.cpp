@@ -233,11 +233,12 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
 }
 
 void Room::drawRoom(Board &board) {
-    drawWalls(board);
-    drawProjectiles(board);
-    drawDoors(board);
-    drawEnemies(board);
     drawArtifact(board);
+    drawProjectiles(board);
+    board.addBorder();
+    drawDoors(board);
+    drawWalls(board);
+    drawEnemies(board);
 }
 /*
 void Room::lockNorthDoor() {
