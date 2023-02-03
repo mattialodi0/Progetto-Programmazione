@@ -464,10 +464,10 @@ public:
     }
 };
 
-//subroom closed doors
+//subroom no doors
 class Template_13 : public General_template {
 public:
-    Template_13(int n,Board &game_board) : General_template(60,19,rand() % (max_n_enemies+1),1)
+    Template_13(int n,Board &game_board) : General_template(60,24,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
@@ -475,9 +475,14 @@ public:
         i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS-10,i);     
         i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS+10,i);
         
-        doors[16] = Locked_Door(HALF_ROWS-5, HALF_COLS-1);
-        doors[17] = Locked_Door(HALF_ROWS-5, HALF_COLS);
-        doors[18] = Locked_Door(HALF_ROWS-5, HALF_COLS+1);
+        doors[16] = No_Door(HALF_ROWS-5, HALF_COLS-1);
+        doors[17] = No_Door(HALF_ROWS-5, HALF_COLS);
+        doors[18] = No_Door(HALF_ROWS-5, HALF_COLS+1);
+        doors[19] = No_Door(HALF_ROWS+5, HALF_COLS-1);
+        doors[20] = No_Door(HALF_ROWS+5, HALF_COLS);
+        doors[21] = No_Door(HALF_ROWS+5, HALF_COLS+1);
+        doors[22] = No_Door(HALF_ROWS, HALF_COLS-10);
+        doors[23] = No_Door(HALF_ROWS, HALF_COLS+10);        
 
         drawDoors();
         int chosen_enemies[enemies_num];

@@ -14,7 +14,7 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(13,0,game_board);
+    initializeRoomTemplate(0,0,game_board);
 }
 
 
@@ -122,7 +122,7 @@ void Room::decideIfDoors() {
 
 int Room::randomRoomNumber() {
     int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33},    //numero del tempate
-                                    {0, 0, 0, 0, 6, 0, 8,10,10, 8, 6, 4, 8, 4, 4, 8,10,10, 8, 6,10, 6, 0, 0, 0, 0, 1,10, 6,10,10,10,10}};   //rarità (5 comune, 1 rara)
+                                    {0, 0, 0, 0, 6, 0, 8,10,10, 8, 6, 4, 6, 4, 4, 8,10,10, 8, 6,10, 6, 0, 0, 0, 0, 1,10, 6,10,10,10,10}};   //rarità (5 comune, 1 rara)
     int parts = 0;
     for(int i=0; i < NUMBER_OF_ROOMS; i++) {
         parts += prob[1][i];
@@ -251,8 +251,8 @@ void Room::drawRoom(Board &board) {
     drawArtifact(board);
     drawProjectiles(board);
     board.addBorder();
-    drawDoors(board);
     drawWalls(board);
+    drawDoors(board);
     drawEnemies(board);
 }
 
@@ -350,7 +350,7 @@ void Room::unlockDoor(int y, int x)
         f = false;
         for(int i=0; i < room_template->doors_num; i++)
         {
-            /*int ty = room_template->doors[i].gety();
+            int ty = room_template->doors[i].gety();
             int tx = room_template->doors[i].getx();
             if((ty == y-j || ty == y+j || ty == y) && (tx == x-j || tx == x+j || tx == x))
             {
@@ -359,10 +359,10 @@ void Room::unlockDoor(int y, int x)
                     f = true;
                     room_template->doors[i] = Door(ty,tx);
                 }
-            }    */
-            int ty = room_template->doors[i].gety();
+            }
+/*            int ty = room_template->doors[i].gety();
             int tx = room_template->doors[i].getx();
-            room_template->doors[i] = Door(ty,tx);
+            room_template->doors[i] = Door(ty,tx);*/
         }
         j++;
     }
