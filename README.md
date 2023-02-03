@@ -27,3 +27,41 @@ controllo che la finestra del terminale sia abbastanza grande per il gioco prima
 -statistiche  
 scoreboard con il prunteggio(esperienza)
 statboard con statitiche,chivi,artefatti, poteri
+
+
+Template:
+0   - stanza vuota      solo all'inizio
+1   - muri rand               0
+2   - linea orizzontale       0
+3   - linea vericale          0
+4   - quadrato pieno          0
+4i  - quadrato vuoto          -
+5   - croce                   6
+6   - sottostanza lb          0
+7   - croce negativa          8
+8   - sottostanza c no porte  10
+9   - blochhi muri rand       10
+10  - muri rand               8
+11  - maze contrentico        3        
+12  - maze spirale            2
+13  - sottostanza c porte     6
+14  - tempio                  4
+15  - sottostanze chrome      4
+16  - sottostanza esagonale   7
+17  - quadrati pieni  x       10
+18  - quadrati pieni  +       10
+19  - croci casuali           7
+20  - s orizzontale           8
+21  - 4 angoli                10
+22  - pacman                  5
+23  - muro bloccante r        0
+24  - muro bloccante l        0
+25  - muro bloccante t        0
+26  - muro bloccante b        0
+27  - boss turret             1
+28  - 4 turret                8
+29  - 16 turret (passaggio)   6
+30  - muro t                  10
+31  - muro b                  10
+32  - muro l                  10
+33  - muro r                  10

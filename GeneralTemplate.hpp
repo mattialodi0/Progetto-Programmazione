@@ -36,6 +36,7 @@ public:
     bool is_north_door_locked, is_south_door_locked, is_west_door_locked, is_est_door_locked;
     bool need_doors;
     bool has_north_door, has_south_door, has_west_door, has_est_door;
+    bool must_complete = true;
     General_template();
     General_template(int w, int d, int e, int a);
     ~General_template();
@@ -52,6 +53,8 @@ public:
     int drawOrtogonalCross(int start_y, int start_x, int h_height, int h_width, int i);
 
     int drawFilledSquareDoor(int start_y, int start_x, int height, int width, int i);
+    int drawFilledSquareLockedDoor(int start_y, int start_x, int height, int width, int i);
+    int drawFilledSquareNoDoor(int start_y, int start_x, int height, int width, int i);
 
 };
 
@@ -271,7 +274,7 @@ public:
     }
 };
 
-//central sub-chamber
+//central sub-chamber no doors
 class Template_8 : public General_template {
 public:
     Template_8(int n,Board &game_board) : General_template(72,32,rand() % (max_n_enemies+1),1)
@@ -279,22 +282,22 @@ public:
         drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //72 walls
         
         drawDoors();
-        doors[16] = Door(HALF_ROWS-5,HALF_COLS-2);   //north doors
-        doors[17] = Door(HALF_ROWS-5,HALF_COLS-1);
-        doors[18] = Door(HALF_ROWS-5,HALF_COLS);
-        doors[19] = Door(HALF_ROWS-5,HALF_COLS+1);
-        doors[20] = Door(HALF_ROWS-5,HALF_COLS+2);
-        doors[21] = Door(HALF_ROWS+5,HALF_COLS-2);   //south doors
-        doors[22] = Door(HALF_ROWS+5,HALF_COLS-1);
-        doors[23] = Door(HALF_ROWS+5,HALF_COLS);
-        doors[24] = Door(HALF_ROWS+5,HALF_COLS+1);
-        doors[25] = Door(HALF_ROWS+5,HALF_COLS+2);
-        doors[26] = Door(HALF_ROWS-1,HALF_COLS-13);   //west doors
-        doors[27] = Door(HALF_ROWS,HALF_COLS-13);
-        doors[28] = Door(HALF_ROWS+1,HALF_COLS-13);
-        doors[29] = Door(HALF_ROWS-1,HALF_COLS+13);   //est doors
-        doors[30] = Door(HALF_ROWS,HALF_COLS+13);
-        doors[31] = Door(HALF_ROWS+1,HALF_COLS+13);
+        doors[16] = No_Door(HALF_ROWS-5,HALF_COLS-2);   //north doors
+        doors[17] = No_Door(HALF_ROWS-5,HALF_COLS-1);
+        doors[18] = No_Door(HALF_ROWS-5,HALF_COLS);
+        doors[19] = No_Door(HALF_ROWS-5,HALF_COLS+1);
+        doors[20] = No_Door(HALF_ROWS-5,HALF_COLS+2);
+        doors[21] = No_Door(HALF_ROWS+5,HALF_COLS-2);   //south doors
+        doors[22] = No_Door(HALF_ROWS+5,HALF_COLS-1);
+        doors[23] = No_Door(HALF_ROWS+5,HALF_COLS);
+        doors[24] = No_Door(HALF_ROWS+5,HALF_COLS+1);
+        doors[25] = No_Door(HALF_ROWS+5,HALF_COLS+2);
+        doors[26] = No_Door(HALF_ROWS-1,HALF_COLS-13);   //west doors
+        doors[27] = No_Door(HALF_ROWS,HALF_COLS-13);
+        doors[28] = No_Door(HALF_ROWS+1,HALF_COLS-13);
+        doors[29] = No_Door(HALF_ROWS-1,HALF_COLS+13);   //est doors
+        doors[30] = No_Door(HALF_ROWS,HALF_COLS+13);
+        doors[31] = No_Door(HALF_ROWS+1,HALF_COLS+13);
         
         int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
@@ -464,7 +467,7 @@ public:
     }
 };
 
-//subroom no doors
+//subroom doors
 class Template_13 : public General_template {
 public:
     Template_13(int n,Board &game_board) : General_template(60,24,rand() % (max_n_enemies+1),1)
@@ -506,6 +509,8 @@ class Template_14 : public General_template {
 public:
     Template_14(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1),1)
     {
+        need_doors  = true;
+        has_north_door = false; has_south_door = false; has_west_door = true; has_est_door = true;
         int i = 0;
         int x = 12;
         i = drawFilledSquare(6, x, 2, 3, i);     
@@ -540,7 +545,7 @@ public:
 //chrome subchambers
 class Template_15 : public General_template {
 public:
-    Template_15(int n,Board &game_board) : General_template(306,44,rand() % (max_n_enemies+1),1)
+    Template_15(int n,Board &game_board) : General_template(306,52,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
@@ -565,9 +570,11 @@ public:
         j = drawFilledSquareDoor(HALF_ROWS+2,8,2,2,j);
         j = drawFilledSquareDoor(HALF_ROWS-1,HALF_COLS-16,2,2,j);
         j = drawFilledSquareDoor(HALF_ROWS-1,HALF_COLS+15,2,2,j);
+        j = drawFilledSquareLockedDoor(HALF_ROWS-6,HALF_COLS+15,2,2,j);
+        j = drawFilledSquareLockedDoor(HALF_ROWS+5,HALF_COLS-16,2,2,j);
 
         drawDoors();
-                int chosen_enemies[enemies_num];
+        int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
         int y_chosen[enemies_num];
         for(int i=0;i<enemies_num;i++){
@@ -621,20 +628,20 @@ public:
         //walls[i] = Wall(b-4,d+4); i++;
         walls[i] = Wall(b-5,d+5); i++;
 
-        doors[16] = Door(a,HALF_COLS-1);
-        doors[17] = Door(a,HALF_COLS);
-        doors[18] = Door(a,HALF_COLS+1);
-        doors[19] = Door(b,HALF_COLS-1);
-        doors[20] = Door(b,HALF_COLS);
-        doors[21] = Door(b,HALF_COLS+1);
-        doors[22] = Door(a+3,c-3);
-        doors[23] = Door(a+4,c-4);
-        doors[24] = Door(a+3,d+3);
-        doors[25] = Door(a+4,d+4);
-        doors[26] = Door(b-3,c-3);
-        doors[27] = Door(b-4,c-4);
-        doors[28] = Door(b-3,d+3);
-        doors[29] = Door(b-4,d+4);
+        doors[16] = No_Door(a,HALF_COLS-1);
+        doors[17] = No_Door(a,HALF_COLS);
+        doors[18] = No_Door(a,HALF_COLS+1);
+        doors[19] = No_Door(b,HALF_COLS-1);
+        doors[20] = No_Door(b,HALF_COLS);
+        doors[21] = No_Door(b,HALF_COLS+1);
+        doors[22] = No_Door(a+3,c-3);
+        doors[23] = No_Door(a+4,c-4);
+        doors[24] = No_Door(a+3,d+3);
+        doors[25] = No_Door(a+4,d+4);
+        doors[26] = No_Door(b-3,c-3);
+        doors[27] = No_Door(b-4,c-4);
+        doors[28] = No_Door(b-3,d+3);
+        doors[29] = No_Door(b-4,d+4);
 
         drawDoors();
         int chosen_enemies[enemies_num];
@@ -719,20 +726,20 @@ public:
     Template_19(int n,Board &game_board) : General_template(35,16,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
-        int ry = rand()%(BOARD_ROWS-5)+3;
-        int rx = rand()%(BOARD_COLS-7)+4;
+        int ry = rand()%(BOARD_ROWS-8)+3;
+        int rx = rand()%(BOARD_COLS-14)+6;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-5)+3;
-        rx = rand()%(BOARD_COLS-7)+4;
+        ry = rand()%(BOARD_ROWS-8)+3;
+        rx = rand()%(BOARD_COLS-14)+6;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-5)+3;
-        rx = rand()%(BOARD_COLS-7)+4;
+        ry = rand()%(BOARD_ROWS-8)+3;
+        rx = rand()%(BOARD_COLS-14)+6;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-5)+3;
-        rx = rand()%(BOARD_COLS-7)+4;
+        ry = rand()%(BOARD_ROWS-8)+3;
+        rx = rand()%(BOARD_COLS-14)+6;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls
-        ry = rand()%(BOARD_ROWS-5)+3;
-        rx = rand()%(BOARD_COLS-7)+4;
+        ry = rand()%(BOARD_ROWS-8)+3;
+        rx = rand()%(BOARD_COLS-14)+6;
         i = drawOrtogonalCross(ry, rx, 1, 2, i);   //7 walls        
 
         drawDoors();
@@ -757,7 +764,7 @@ public:
 //horizontal S
 class Template_20 : public General_template {
 public:
-    Template_20(int n,Board &game_board) : General_template(85,16,rand() % (max_n_enemies+1),1)
+    Template_20(int n,Board &game_board) : General_template(85,19,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         i = drawHorizontalLine(20, HALF_ROWS-4, HALF_COLS-20, i);
@@ -767,6 +774,10 @@ public:
         i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS+21, i);
         i = drawHorizontalLine(9, HALF_ROWS-4, HALF_COLS+12, i);
         i = drawHorizontalLine(9, HALF_ROWS+4, HALF_COLS-20, i);
+
+        doors[16] = Locked_Door(HALF_ROWS-1, HALF_COLS);
+        doors[17] = Locked_Door(HALF_ROWS, HALF_COLS);
+        doors[18] = Locked_Door(HALF_ROWS+1, HALF_COLS);
 
         drawDoors();
 
@@ -1064,6 +1075,7 @@ public:
     Template_29(int n,Board &game_board) : General_template(0,16,30,0)
     {
         need_doors = true; has_west_door = true; has_est_door = true;
+        must_complete = false;
 
         drawDoors();
 

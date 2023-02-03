@@ -112,105 +112,22 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
                 }
 
 void General_template::drawDoors() {
-    int r = rand()%10;      //solitamente a 30, a 10 non blocca mai le porte
-    switch(r)
-    {   
-        case 16:        //west
-            is_west_door_locked = true;
-            doors[0] = Door(0,HALF_COLS-2);   //north doors
-            doors[1] = Door(0,HALF_COLS-1);
-            doors[2] = Door(0,HALF_COLS);
-            doors[3] = Door(0,HALF_COLS+1);
-            doors[4] = Door(0,HALF_COLS+2);
-            doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-            doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-            doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-            doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-            doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-            doors[10] = Locked_Door(HALF_ROWS-1,0);
-            doors[11] = Locked_Door(HALF_ROWS,0);
-            doors[12] = Locked_Door(HALF_ROWS+1,0);
-            doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-            doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-            doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
-            break;
-        case 17:        //est
-            is_est_door_locked = true;
-            doors[0] = Door(0,HALF_COLS-2);   //north doors
-            doors[1] = Door(0,HALF_COLS-1);
-            doors[2] = Door(0,HALF_COLS);
-            doors[3] = Door(0,HALF_COLS+1);
-            doors[4] = Door(0,HALF_COLS+2);
-            doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-            doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-            doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-            doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-            doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-            doors[10] = Door(HALF_ROWS-1,0);   //west doors
-            doors[11] = Door(HALF_ROWS,0);
-            doors[12] = Door(HALF_ROWS+1,0);
-            doors[13] = Locked_Door(HALF_ROWS-1,BOARD_COLS-1);
-            doors[14] = Locked_Door(HALF_ROWS,BOARD_COLS-1);
-            doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
-            break;
-        case 18:
-            is_north_door_locked = true;
-            doors[0] = Locked_Door(0,HALF_COLS-2);   //north doors
-            doors[1] = Locked_Door(0,HALF_COLS-1);
-            doors[2] = Locked_Door(0,HALF_COLS);
-            doors[3] = Locked_Door(0,HALF_COLS+1);
-            doors[4] = Locked_Door(0,HALF_COLS+2);
-            doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-            doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-            doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-            doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-            doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-            doors[10] = Door(HALF_ROWS-1,0);   //west doors
-            doors[11] = Door(HALF_ROWS,0);
-            doors[12] = Door(HALF_ROWS+1,0);
-            doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-            doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-            doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
-            break;
-        case 19:
-            is_south_door_locked = true;
-            doors[0] = Door(0,HALF_COLS-2);   //north doors
-            doors[1] = Door(0,HALF_COLS-1);
-            doors[2] = Door(0,HALF_COLS);
-            doors[3] = Door(0,HALF_COLS+1);
-            doors[4] = Door(0,HALF_COLS+2);
-            doors[5] = Locked_Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-            doors[6] = Locked_Door(BOARD_ROWS-1,HALF_COLS-1);
-            doors[7] = Locked_Door(BOARD_ROWS-1,HALF_COLS);
-            doors[8] = Locked_Door(BOARD_ROWS-1,HALF_COLS+1);
-            doors[9] = Locked_Door(BOARD_ROWS-1,HALF_COLS+2);
-            doors[10] = Door(HALF_ROWS-1,0);   //west doors
-            doors[11] = Door(HALF_ROWS,0);
-            doors[12] = Door(HALF_ROWS+1,0);
-            doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-            doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-            doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
-            break;
-        default:
-            doors[0] = Door(0,HALF_COLS-2);   //north doors
-            doors[1] = Door(0,HALF_COLS-1);
-            doors[2] = Door(0,HALF_COLS);
-            doors[3] = Door(0,HALF_COLS+1);
-            doors[4] = Door(0,HALF_COLS+2);
-            doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
-            doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
-            doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
-            doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
-            doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
-            doors[10] = Door(HALF_ROWS-1,0);   //west doors
-            doors[11] = Door(HALF_ROWS,0);
-            doors[12] = Door(HALF_ROWS+1,0);
-            doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
-            doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
-            doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
-            break;
-    }
-    
+    doors[0] = Door(0,HALF_COLS-2);   //north doors
+    doors[1] = Door(0,HALF_COLS-1);
+    doors[2] = Door(0,HALF_COLS);
+    doors[3] = Door(0,HALF_COLS+1);
+    doors[4] = Door(0,HALF_COLS+2);
+    doors[5] = Door(BOARD_ROWS-1,HALF_COLS-2);   //south doors
+    doors[6] = Door(BOARD_ROWS-1,HALF_COLS-1);
+    doors[7] = Door(BOARD_ROWS-1,HALF_COLS);
+    doors[8] = Door(BOARD_ROWS-1,HALF_COLS+1);
+    doors[9] = Door(BOARD_ROWS-1,HALF_COLS+2);
+    doors[10] = Door(HALF_ROWS-1,0);   //west doors
+    doors[11] = Door(HALF_ROWS,0);
+    doors[12] = Door(HALF_ROWS+1,0);
+    doors[13] = Door(HALF_ROWS-1,BOARD_COLS-1);   //est doors
+    doors[14] = Door(HALF_ROWS,BOARD_COLS-1);
+    doors[15] = Door(HALF_ROWS+1,BOARD_COLS-1);
 }
 
 //funzioni per disegnare set di muri
@@ -305,6 +222,32 @@ int General_template::drawFilledSquareDoor(int start_y, int start_x, int height,
         for(int k=0; k < width; k++)
         {
             doors[i] = Door(start_y+j, start_x+k); i++;
+        }
+    }
+    return i;
+}
+
+int General_template::drawFilledSquareLockedDoor(int start_y, int start_x, int height, int width, int i) 
+{
+    //this->walls_num += heigth*widht;
+    for(int j=0; j < height; j++)
+    {
+        for(int k=0; k < width; k++)
+        {
+            doors[i] = Locked_Door(start_y+j, start_x+k); i++;
+        }
+    }
+    return i;
+}
+
+int General_template::drawFilledSquareNoDoor(int start_y, int start_x, int height, int width, int i) 
+{
+    //this->walls_num += heigth*widht;
+    for(int j=0; j < height; j++)
+    {
+        for(int k=0; k < width; k++)
+        {
+            doors[i] = No_Door(start_y+j, start_x+k); i++;
         }
     }
     return i;
