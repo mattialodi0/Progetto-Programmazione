@@ -32,7 +32,7 @@ void Chaser::checkProjectile(Board &board_win, Hero &hero)
             if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealth();
+                    hero.reduceHealthHero();
                 projectile.erase(projectile.begin()+i);
                 }    
                 else{
@@ -42,7 +42,7 @@ void Chaser::checkProjectile(Board &board_win, Hero &hero)
             }
             else{
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealth();
+                    hero.reduceHealthHero();
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
                 }  

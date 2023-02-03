@@ -19,7 +19,6 @@ private:
     Board stat_board;
 
 	Hero hero;
-
 	Room* current_room;
    	vector<Room*> room_index;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Character.hpp"
+#include "GeneralTemplate.hpp"
 #include "Projectile.hpp"
 #include "Artifact.hpp"
 
@@ -14,13 +14,15 @@ protected:
 	int key=1;	//numero di chiavi trovate
 	int hp = 30;
     int ac = 3;
-    int dmg = 2;
     int speed = 1;
     int reload_time=2;
     int range = 5;
 	int reload = 0;
+	//General_template *room_template;
 public:	
+	int dmg = 3;
 	Artifact artifact;
+	General_template *room_template;
     Hero();
 	Hero(int y, int x);
 	//void Const(int y, int x);
@@ -43,6 +45,6 @@ public:
 	void attack(Board &board_win, Direction dir);
      //per movimento proiettili e check di colpito o out of range
     void checkProjectile(Board &board_win);
-	void reduceHealth();
+	void reduceHealthHero();
 	bool death();
 };

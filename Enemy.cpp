@@ -2,6 +2,7 @@
 #include "Board.hpp"
 #include <cmath>
 
+const int herodamage = 3;
 
 Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch)
 {
@@ -18,6 +19,7 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch
          mem=0;
          reload=0;
          timer=7-int(difficulty/2);
+         hp=5;
 
 
 }    
@@ -126,3 +128,9 @@ bool Enemy:: getisFlyer(){
 void Enemy:: setisFlyer(bool set){
     this->isFlyer=set;
 }
+
+void Enemy::reduceHealthEnemy()
+{
+    hp = hp - herodamage;
+}
+

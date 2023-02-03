@@ -13,7 +13,7 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     this->reload_time = 2;
     this->range = 5;
     this->speed = 1;
-    this->dmg = 2;
+    this->dmg = 3;
     this->reload = 0;
 }
 
@@ -25,7 +25,7 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     this->reload_time = 2;
     this->range = 5;
     this->speed = 1;
-    this->dmg = 2;
+    this->dmg = 3;
     this->reload = 0;
 }
 
@@ -110,16 +110,33 @@ void Hero::attack(Board &board_win, Direction dir)
 //per movimento proiettili e check di colpito o out of range
 void Hero::checkProjectile(Board &board_win){
     for (int i = 0; i < projectile.size(); i++)
-	{
+	{   
 		if (projectile[i] != NULL){
             projectile[i]->setUptime(projectile[i]->getUptime()+1);
             if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
                 projectile[i]->moveCharacter(board_win);
-                board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
-                projectile.erase(projectile.begin()+i);
+                for(int j=0;j < room_template->enemies_num; j++){
+                    if(projectile[i]->getx()==this->room_template->enemies[j]->getx() && projectile[i]->gety()==this->room_template->enemies[j]->gety()){
+                        this->room_template->enemies[j]->reduceHealthEnemy();
+                        projectile.erase(projectile.begin()+i);
+                    }
+                    else{
+                    board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
+                    projectile.erase(projectile.begin()+i);
+                    }
+                }
             }
             else{
-                projectile[i]->moveCharacter(board_win);
+                for(int h=0;h < room_template->enemies_num; h++){
+                    if(projectile[i]->getx()==this->room_template->enemies[h]->getx() && projectile[i]->gety()==this->room_template->enemies[h]->gety()){
+                        this->room_template->enemies[h]->reduceHealthEnemy();
+                        board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
+                        projectile.erase(projectile.begin()+i);
+                    }
+                    else{    
+                        projectile[i]->moveCharacter(board_win);
+                    }
+                }
             }
         }
     }
@@ -175,7 +192,7 @@ void Hero::increaseRange()
     this->range = this->range + artifactrange;
 }
 
-void Hero::reduceHealth()
+void Hero::reduceHealthHero()
 {
     hp = hp -enemiesdamage;
 }
