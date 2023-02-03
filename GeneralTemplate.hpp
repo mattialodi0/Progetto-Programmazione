@@ -1231,3 +1231,33 @@ public:
         artifact[0] = Artifact(6,6);
     }
 };
+
+//3 rand subchamber
+class Template_34 : public General_template {
+public:
+    Template_34(int n,Board &game_board) : General_template(BOARD_ROWS,19,rand() % (max_n_enemies+1),1)
+    {
+        int i = 0;
+        int r1 = rand() % (HALF_COLS-20) +10;
+        int r2 = rand() % 2 * HALF_COLS+3;
+        i = drawVerticalLine(BOARD_ROWS-2, 1, r1+r2, i);
+        int r = rand() % BOARD_ROWS-6 +1;
+        doors[16] = No_Door(r,r1+r2);
+        doors[17] = No_Door(r+1,r1+r2);
+        doors[18] = No_Door(r+2,r1+r2);
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
