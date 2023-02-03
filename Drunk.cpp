@@ -63,25 +63,14 @@ void Drunk::checkProjectile(Board &board_win, Hero &hero)
 
 void Drunk::chooseDirection(Board &board_win, Hero &hero)
 {
+    int i=0;
 	do
     {
-		int n = (rand() % 5) - 2;
-		switch (n)
-		{
-		case -2:
-			setDirection(up);
-			break;
-		case 2:
-			setDirection(down);
-			break;
-		case -1:
-			setDirection(sx);
-			break;
-		case 1:
-			setDirection(dx);
-			break;
-		default:
-			break;
-		}
-	} while (!checkCollision(board_win));
+	Direction dir= getRandomDirection();
+    setDirection(dir);
+    if(i>10){
+        setDirection(def);
+        }
+        i++;
+	} while (!checkCollision(board_win)&&i<12);
 }

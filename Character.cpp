@@ -60,6 +60,30 @@ void Character::moveCharacter(Board &game_board)
 		break;
 	}
 }
+Direction Character::getRandomDirection(){
+	int n = (rand() % 5) - 2;
+		switch (n)
+		{
+		case -2:
+			return up;
+			break;
+		case 2:
+			return down;
+			break;
+		case -1:
+			return sx;
+			break;
+		case 1:
+			return dx;
+			break;
+		default:
+		return def;
+			break;
+		}
+
+}
+
+
 
 bool Character::checkCollision(Board &board_win)
 {

@@ -7,6 +7,7 @@
 class Enemy : public Character {
 protected: 
     bool isFlyer=false;
+    int bomb_reload=10;
     int enemy_reload=5;
     int enemy_memory=7;
     int enemy_range=11;
@@ -22,6 +23,7 @@ protected:
     bool timeractivated=false;
     int difficulty=0;
     int difficultylevel=0;
+    int ammo=2;
 public:
     std::vector<Projectile*> projectile;
     Enemy(Direction dir, int y, int x ,chtype ch,int diff);

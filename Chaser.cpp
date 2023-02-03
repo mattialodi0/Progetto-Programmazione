@@ -123,6 +123,18 @@ void Chaser::chooseDirection(Board &board_win, Hero &hero)
                 }
             }
         }
+        else{ 
+            int i=0;
+            do{  
+	Direction dir= getRandomDirection();
+    setDirection(dir);
+    if(i>10){
+        setDirection(def);
+    } 
+    i++;
+	} 
+    while (!checkCollision(board_win)&&i<12);
+        }
     }
      else{
             this->reload--;
