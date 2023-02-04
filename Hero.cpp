@@ -108,16 +108,16 @@ void Hero::attack(Board &board_win, Direction dir)
 
 
 //per movimento proiettili e check di colpito o out of range
-void Hero::checkProjectile(Board &board_win, Room &current_room){
+void Hero::checkProjectile(Board &board_win, Room *current_room){
     for (int i = 0; i < projectile.size(); i++)
 	{   
 		if (projectile[i] != NULL){
             projectile[i]->setUptime(projectile[i]->getUptime()+1);
             if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
                 projectile[i]->moveCharacter(board_win);
-                for(int j=0;j < current_room.room_template->enemies_num; j++){
-                    if(projectile[i]->getx()==current_room.room_template->enemies[j]->getx() && projectile[i]->gety()==current_room.room_template->enemies[j]->gety()){
-                        current_room.room_template->enemies[j]->reduceHealthEnemy();
+                for(int j=0;j < current_room->room_template->enemies_num; j++){
+                    if(projectile[i]->getx()==current_room->room_template->enemies[j]->getx() && projectile[i]->gety()==current_room->room_template->enemies[j]->gety()){
+                        current_room->room_template->enemies[j]->reduceHealthEnemy();
                         projectile.erase(projectile.begin()+i);
                     }
                     else{
@@ -127,9 +127,9 @@ void Hero::checkProjectile(Board &board_win, Room &current_room){
                 }
             }
             else{
-                for(int h=0;h < current_room.room_template->enemies_num; h++){
-                    if(projectile[i]->getx()==current_room.room_template->enemies[h]->getx() && projectile[i]->gety()==current_room.room_template->enemies[h]->gety()){
-                        current_room.room_template->enemies[h]->reduceHealthEnemy();
+                for(int h=0;h < current_room->room_template->enemies_num; h++){
+                    if(projectile[i]->getx()==current_room->room_template->enemies[h]->getx() && projectile[i]->gety()==current_room->room_template->enemies[h]->gety()){
+                        current_room->room_template->enemies[h]->reduceHealthEnemy();
                         board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                         projectile.erase(projectile.begin()+i);
                     }

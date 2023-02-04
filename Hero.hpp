@@ -42,7 +42,7 @@ public:
 	//void reduceHealth();
 	void attack(Board &board_win, Direction dir);
      //per movimento proiettili e check di colpito o out of range
-    void checkProjectile(Board &board_win, Room &current_room);
+    void checkProjectile(Board &board_win, Room *current_room);
 	void reduceHealthHero();
 	bool death();
 };

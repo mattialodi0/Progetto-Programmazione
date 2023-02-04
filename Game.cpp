@@ -118,8 +118,8 @@ void Game::updateState()
 	}
 
 	manageHeroMovement();
-	hero.setDirection(def);	
-	hero.checkProjectile(game_board);							//--> da mettere dentro a hero
+	hero.setDirection(def);
+	hero.checkProjectile(game_board, current_room);							//--> da mettere dentro a hero
 
 	//enemies
 	if(canMove <= 0){

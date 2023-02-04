@@ -2,6 +2,7 @@
 
 #include "Room.hpp"
 #include "Artifact.hpp"
+#include "Hero.hpp"
 #include <time.h>
 #include <stdlib.h>
 #include <vector>

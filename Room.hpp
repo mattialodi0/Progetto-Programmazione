@@ -1,7 +1,6 @@
 #pragma once 
 
 #include "GeneralTemplate.hpp"  //room_templates/
-#include "Hero.hpp"
 #include <cstdlib>
 #include <vector>
 
