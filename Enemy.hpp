@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Projectile.hpp"
 #include "Hero.hpp"
+#include "Projectile.hpp"
 #include <vector>
 
 class Enemy : public Character {

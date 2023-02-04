@@ -1,3 +1,6 @@
+#pragma once
+
+#include <iostream>
 #include <ncurses.h>
 #include <string>
 using namespace std;

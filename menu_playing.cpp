@@ -1,6 +1,3 @@
-#include <iostream>
-#include <ncurses.h>
-#include <string>
 #include "menu_playing.hpp"
 using namespace std;
 

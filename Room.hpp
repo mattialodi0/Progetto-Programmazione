@@ -14,7 +14,6 @@ private:
     bool has_north_door, has_south_door, has_west_door, has_est_door;
     bool north_door_locked, south_door_locked, west_door_locked, est_door_locked;
     int room_template_number;
-    General_template *room_template;
     void decideIfDoors();
     Room* findRoom(vector<Room*> room_index, int y, int x, Direction dir);
 
@@ -42,6 +41,8 @@ private:
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
+
+    General_template *room_template;
 
     Room(Board &game_board);    //costrutture stanza di partenza
 

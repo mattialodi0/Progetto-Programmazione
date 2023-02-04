@@ -1,5 +1,8 @@
-#include <ncurses.h>
+#pragma once
+
+#include <iostream>
 #include <string>
+#include <ncurses.h>
 using namespace std;
 
 class Menu_playing{

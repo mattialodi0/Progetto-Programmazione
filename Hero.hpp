@@ -1,7 +1,7 @@
 #pragma once
 
-#include "GeneralTemplate.hpp"
 #include "Projectile.hpp"
+#include "Room.hpp"
 #include "Artifact.hpp"
 
 const int herostartx = (BOARD_COLS/2);
@@ -18,11 +18,9 @@ protected:
     int reload_time=2;
     int range = 5;
 	int reload = 0;
-	//General_template *room_template;
 public:	
 	int dmg = 3;
 	Artifact artifact;
-	General_template *room_template;
     Hero();
 	Hero(int y, int x);
 	//void Const(int y, int x);
@@ -44,7 +42,7 @@ public:
 	//void reduceHealth();
 	void attack(Board &board_win, Direction dir);
      //per movimento proiettili e check di colpito o out of range
-    void checkProjectile(Board &board_win);
+    void checkProjectile(Board &board_win, Room &current_room);
 	void reduceHealthHero();
 	bool death();
 };
