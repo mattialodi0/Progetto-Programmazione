@@ -1235,7 +1235,7 @@ public:
 //4 rand subchamber
 class Template_34 : public General_template {
 public:
-    Template_34(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,28,0,1)
+    Template_34(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,28,rand() % (max_n_enemies+1),1)
     {
         int i = 0;
         int rx1 = (rand() % (HALF_COLS-12)) +5;   //primo muro
@@ -1264,6 +1264,110 @@ public:
         doors[25] = No_Door(ry,r+1);
         doors[26] = No_Door(ry,r+2);
         doors[27] = No_Door(ry,r+3);
+      
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//3 rand subchamber vertical
+class Template_35 : public General_template {
+public:
+    Template_35(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,24,rand() % (max_n_enemies+1),1)
+    { 
+        int i = 0;
+        int rx1 = (rand() % (HALF_COLS-20)) +10;   //primo muro
+        int rx2 = (rand() % 2) * (HALF_COLS);
+        int rx = rx1+rx2;
+        i = drawVerticalLine(BOARD_ROWS-2, 1, rx, i);
+        int ry1 = (rand() % (HALF_ROWS-6)) +4;   //secondo muro
+        int ry2 = (rand() % 2) * (HALF_ROWS);
+        int ry = ry1+ry2;
+        int f;
+        if(rx2 > 1) {
+            f = 1;
+            i = drawHorizontalLine(rx-1, ry, f, i);
+        }
+        else {
+            f = rx+1;
+            i = drawHorizontalLine(BOARD_COLS-rx-2, ry, f, i);
+        }
+
+        int r = (rand() % (ry-3)) +1;
+        doors[16] = No_Door(r,rx);
+        doors[17] = No_Door(r+1,rx);
+        r = (rand() % (BOARD_ROWS-ry-3)) +ry +1;
+        doors[18] = No_Door(r,rx);
+        doors[19] = No_Door(r+1,rx);
+        r = (rand() % (BOARD_COLS-rx-5)) +f;
+        doors[20] = No_Door(ry,r);
+        doors[21] = No_Door(ry,r+1);
+        doors[22] = No_Door(ry,r+2);
+        doors[23] = No_Door(ry,r+3);
+      
+        drawDoors();
+
+        int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//3 rand subchamber horizontal
+class Template_36 : public General_template {
+public:
+    Template_36(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,26,rand() % (max_n_enemies+1),1)
+    {
+        int i = 0;
+        int ry1 = (rand() % (HALF_ROWS-5)) +3;   //primo muro
+        int ry2 = (rand() % 2) * (HALF_ROWS);
+        int ry = ry1+ry2;
+        i = drawHorizontalLine(BOARD_COLS-2, ry, 1, i);
+        int rx1 = (rand() % (HALF_COLS-20)) +10;   //secondo muro
+        int rx2 = (rand() % 2) * (HALF_COLS);
+        int rx = rx1+rx2;
+        int f;
+        if(ry2 > 1) {
+            f = 1;
+            i = drawVerticalLine(ry-1, f, rx, i);
+        }
+        else {
+            f = ry+1;
+            i = drawVerticalLine(BOARD_ROWS-ry-2, f, rx, i);
+        }
+
+        int r = rand() % (rx-4) +0;
+        doors[16] = No_Door(ry,r);
+        doors[17] = No_Door(ry,r+1);
+        doors[18] = No_Door(ry,r+2);
+        doors[19] = No_Door(ry,r+3);
+        r = rand() % (BOARD_COLS-rx-6) +rx +1;
+        doors[20] = No_Door(ry,r);
+        doors[21] = No_Door(ry,r+1);
+        doors[22] = No_Door(ry,r+2);
+        doors[23] = No_Door(ry,r+3);      
+        r = (rand() % (BOARD_ROWS-ry-3)) +f;
+        doors[24] = No_Door(r,rx);
+        doors[25] = No_Door(r+1,rx);
       
         drawDoors();
 
