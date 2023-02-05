@@ -65,3 +65,4 @@ Template:
 31  - muro b                  10
 32  - muro l                  10
 33  - muro r                  10
+34  - 4 sottostanze rand      15
