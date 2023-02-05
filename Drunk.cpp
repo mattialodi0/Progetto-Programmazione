@@ -46,7 +46,7 @@ void Drunk::checkProjectile(Board &board_win, Hero &hero)
             if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealthHero();
+                    hero.reduceHealthHero(this->dmg);
                 }    
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                  projectile.erase(projectile.begin()+i);

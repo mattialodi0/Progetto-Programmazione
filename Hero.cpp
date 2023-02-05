@@ -108,7 +108,8 @@ void Hero::attack(Board &board_win, Direction dir)
 
 
 //per movimento proiettili e check di colpito o out of range
-void Hero::checkProjectile(Board &board_win, Room *current_room){
+/*
+void Hero::checkHeroProjectile(Board &board_win, Room *current_room){
     for (int i = 0; i < projectile.size(); i++)
 	{   
 		if (projectile[i] != NULL){
@@ -117,7 +118,7 @@ void Hero::checkProjectile(Board &board_win, Room *current_room){
                 projectile[i]->moveCharacter(board_win);
                 for(int j=0;j < current_room->room_template->enemies_num; j++){
                     if(projectile[i]->getx()==current_room->room_template->enemies[j]->getx() && projectile[i]->gety()==current_room->room_template->enemies[j]->gety()){
-                        current_room->room_template->enemies[j]->reduceHealthEnemy();
+                        current_room->room_template->enemies[j]->reduceHealthEnemy(this->dmg);
                         projectile.erase(projectile.begin()+i);
                     }
                     else{
@@ -126,22 +127,15 @@ void Hero::checkProjectile(Board &board_win, Room *current_room){
                     }
                 }
             }
-            else{
-                for(int h=0;h < current_room->room_template->enemies_num; h++){
-                    if(projectile[i]->getx()==current_room->room_template->enemies[h]->getx() && projectile[i]->gety()==current_room->room_template->enemies[h]->gety()){
-                        current_room->room_template->enemies[h]->reduceHealthEnemy();
-                        board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
-                        projectile.erase(projectile.begin()+i);
-                    }
-                    else{    
+            else{  
                         projectile[i]->moveCharacter(board_win);
-                    }
+                    
                 }
             }
         }
     }
-}
 
+*/
 void Hero::centerHero(Direction dir) {
 	switch(dir){
     case(sx):
@@ -177,24 +171,24 @@ bool Hero::useKey()
     else return false;
 }
 
-void Hero::increaseHealth()
+void Hero::increaseHealth(int artifactHp)
 {
-    this->hp = this->hp + artifacthp;
+    this->hp = this->hp + artifactHp;
 }
 
-void Hero::increaseDamage()
+void Hero::increaseDamage(int artifactDmg)
 {
-    this->dmg = this->dmg + artifactdmg;
+    this->dmg = this->dmg + artifactDmg;
 }
 
-void Hero::increaseRange()
+void Hero::increaseRange(int artifactRange)
 {
-    this->range = this->range + artifactrange;
+    this->range = this->range + artifactRange;
 }
 
-void Hero::reduceHealthHero()
+void Hero::reduceHealthHero(int enemiesDamage)
 {
-    hp = hp -enemiesdamage;
+    hp = hp -enemiesDamage;
 }
 
 bool Hero::death()

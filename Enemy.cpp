@@ -129,7 +129,7 @@ void Enemy:: setisFlyer(bool set){
     this->isFlyer=set;
 }
 
-void Enemy::reduceHealthEnemy()
+void Enemy::reduceHealthEnemy(int heroDamage)
 {
     hp = hp - herodamage;
 }

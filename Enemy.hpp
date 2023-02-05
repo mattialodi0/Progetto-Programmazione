@@ -39,7 +39,7 @@ public:
     bool hasLos(Board &board_win, Hero &hero);
     bool flyerHasLos(Board &board_win, Hero &hero);
     bool inSight(int distancex,int distancey);
-    void reduceHealthEnemy();
+    void reduceHealthEnemy(int heroDmg);
 };  
 
 typedef Enemy * pEn;
