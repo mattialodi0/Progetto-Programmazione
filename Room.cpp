@@ -14,7 +14,7 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(0,0,game_board);
+    initializeRoomTemplate(37,0,game_board);
 }
 
 
@@ -113,8 +113,8 @@ void Room::decideIfDoors() {
 }
 
 int Room::randomRoomNumber() {
-    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36},    //numero del tempate
-                                    {0, 0, 0, 0, 6, 0, 8,10,10, 8, 3, 2, 6, 4, 4, 7,10,10, 7, 8,10, 5, 0, 0, 0, 0, 1, 8, 6,10,10,10,10,15,15,15}};   //rarità (5 comune, 1 rara)
+    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38},    //numero del tempate
+                                    {0, 0, 0, 0, 6, 0, 8,10,10, 8, 3, 2, 6, 4, 4, 7,10,10, 7, 8,10, 5, 0, 0, 0, 0, 1, 8, 6,10,10,10,10,15,15,15, 1, 1}};   //rarità (5 comune, 1 rara)
     int parts = 0;
     for(int i=0; i < NUMBER_OF_ROOMS; i++) {
         parts += prob[1][i];
@@ -241,6 +241,12 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
         break;
     case 36:
         this->room_template = new Template_36(room_pos,game_board);
+        break;
+    case 37:
+        this->room_template = new Template_37(room_pos,game_board);
+        break;
+    case 38:
+        this->room_template = new Template_38(room_pos,game_board);
         break;
     default:
         this->room_template = new Template_0(room_pos,game_board);
@@ -383,16 +389,18 @@ for(int j = 0; j < room_template->enemies_num; j++) {
 }
 
 void Room::drawEnemies(Board &board) {
-    for(int i = 0; i < room_template->enemies_num; i++) {    
-        board.add(*room_template->enemies[i]);
+    for(int i = 0; i < room_template->enemies_num; i++) {   
+        //if(*room_template->enemies[i].isBoss())
+        //    board.add_B(*room_template->enemies[i]);
+        //else 
+            board.add_B(*room_template->enemies[i]);
        // board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->getx(), room_template->enemies[i]->getIcon());
     }
-   // wrefresh(board);
 }
 
 void Room::drawArtifact(Board &board) {
     for(int i = 0; i < room_template->artifact_num; i++) {
-        board.add(room_template->artifact[i]);
+        board.add_A(room_template->artifact[i]);
     }
 }
 

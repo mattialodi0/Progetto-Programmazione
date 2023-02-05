@@ -5,6 +5,8 @@
 #include "Drawable.hpp"
 #include "Time.hpp"
 
+#define BOSS_PAIR 1
+#define ARTIFACT_PAIR 2
 const int BOARD_DIM = 25;					//prima era 17
 const int BOARD_ROWS = BOARD_DIM;
 const int BOARD_COLS = BOARD_DIM * 2.7;//2.5;
@@ -28,8 +30,12 @@ public:
 	bool getTaken(int x, int y);
 	void clearTaken();
     void add(Drawable &drawable);
+    void add_A(Drawable &drawable);
+    void add_B(Drawable &drawable);
 	void remove(Drawable &drawable);
-	void addAt(int y, int x, chtype ch);
+	void addAt(int y, int x, chtype ch);	
+	void addAt_A(int y, int x, chtype ch);	
+	void addAt_B(int y, int x, chtype ch);	
 	void print(const char* str);
 	int getDifficulty();
 	void setDifficulty(int diff);

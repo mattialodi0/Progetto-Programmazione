@@ -53,6 +53,26 @@ void Board::add(Drawable &drawable)
     addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
 }
 
+/*
+*	usata per aggiungere gli artefatti, disegnati in blu
+*/
+void Board::add_A(Drawable &drawable) 
+{
+	//attron(COLOR_PAIR(ARTIFACT_PAIR));
+    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	//attroff(COLOR_PAIR(ARTIFACT_PAIR));
+}
+
+/* 
+*	usata per aggiungere i boss, disegnati in rosso
+*/
+void Board::add_B(Drawable &drawable) 
+{
+	//attron(COLOR_PAIR(BOSS_PAIR));
+    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	//attroff(COLOR_PAIR(BOSS_PAIR));
+}
+
 void Board::remove(Drawable &drawable) 
 {
     addAt(drawable.gety(), drawable.getx(), ' ');
@@ -74,6 +94,46 @@ void Board::addAt(int y, int x, chtype ch)
 	break;
 	}
 	mvwaddch(board_win, y, x, ch);
+}
+
+void Board::addAt_A(int y, int x, chtype ch) 
+{	
+	switch(ch){
+		case ' ':
+		case 'O':
+		case 'o':
+		case 'R':
+		case 'E':
+		case 'H':
+		setTaken(x,y,false);
+		break;
+	 default:
+	setTaken(x,y,true);
+	break;
+	}
+	wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+	mvwaddch(board_win, y, x, ch);
+	wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+}
+
+void Board::addAt_B(int y, int x, chtype ch) 
+{	
+	switch(ch){
+		case ' ':
+		case 'O':
+		case 'o':
+		case 'R':
+		case 'E':
+		case 'H':
+		setTaken(x,y,false);
+		break;
+	 default:
+	setTaken(x,y,true);
+	break;
+	}
+	wattron(board_win,COLOR_PAIR(BOSS_PAIR));
+	mvwaddch(board_win, y, x, ch);
+	wattroff(board_win,COLOR_PAIR(BOSS_PAIR));
 }
 
 void Board::print(const char* str) 

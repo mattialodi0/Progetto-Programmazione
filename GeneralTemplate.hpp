@@ -1384,3 +1384,45 @@ public:
         artifact[0] = Artifact(6,6);
     }
 };
+
+//stalker boss, (4 deboli + il boss)
+class Template_37 : public General_template {
+public:
+    Template_37(int n,Board &game_board) : General_template(0,16,5,1)
+    {
+        int i = 0;   
+        //i = drawFilledSquare(HALF_ROWS/2,(HALF_COLS/2)*3-1,2,3,i);
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num] = {3,3,3,3,3};
+        int x_chosen[enemies_num] = {HALF_COLS,HALF_COLS/2,HALF_COLS/2,(HALF_COLS/2)*3,(HALF_COLS/2)*3};
+        int y_chosen[enemies_num] = {HALF_ROWS,HALF_ROWS/2,(HALF_ROWS/2)*3,HALF_ROWS/2,(HALF_ROWS/2)*3};
+        for(int i=0;i<this->enemies_num;i++){   
+            createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
+
+//drunk boss (4 deboli + il boss)
+class Template_38 : public General_template {
+public:
+    Template_38(int n,Board &game_board) : General_template(0,16,5,1)
+    {
+        int i = 0;   
+        //i = drawFilledSquare(HALF_ROWS/2,(HALF_COLS/2)*3-1,2,3,i);
+
+        drawDoors();
+
+        int chosen_enemies[enemies_num] = {0,0,0,0,0};
+        int x_chosen[enemies_num] = {HALF_COLS,HALF_COLS-2,HALF_COLS-2,HALF_COLS+2,HALF_COLS+2};
+        int y_chosen[enemies_num] = {HALF_ROWS,HALF_ROWS-2,HALF_ROWS+2,HALF_ROWS-2,HALF_ROWS+2};
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        artifact[0] = Artifact(6,6);
+    }
+};
