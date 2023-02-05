@@ -8,7 +8,7 @@ Projectile::Projectile(Direction dir, int x, int y, chtype ch) :Character(dir,x,
 
 int Projectile::getUptime()
 {
-    return this->uptime;
+ return this->uptime;
 }
 
 void Projectile::setUptime(int new_uptime)

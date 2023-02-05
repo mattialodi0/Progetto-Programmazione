@@ -28,6 +28,7 @@ General_template::~General_template()
 
 void General_template::createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[])
 {
+
             if(is_random_enemies){
                 chosen=(rand()%(max_n_enemies)+1);
             }
@@ -110,7 +111,46 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
 
                     }
                 }
+                
+void General_template::checkHeroProjectile(Board &board_win,Hero &hero){
+    for (int i = 0; i < hero.projectile.size(); i++)
+	{   
+		if (hero.projectile[i] != NULL){
+            hero.projectile[i]->setUptime(hero.projectile[i]->getUptime()+1);
+            if(!hero.projectile[i]->checkCollision(board_win)||hero.projectile[i]->getUptime()>hero.getRange()){
+                hero.projectile[i]->moveCharacter(board_win);
+                bool found=false;
+                int j=0;
+                while(j < this->enemies_num && !found ){
+                    if(this->enemies[j]!=NULL){
+                    if(hero.projectile[i]->getx()==this->enemies[j]->getx() && hero.projectile[i]->gety()==this->enemies[j]->gety()){
+                        this->enemies[j]->reduceHealthEnemy(hero.getDmg());
+                        if(this->enemies[j]->getHp()<=0){
+                            //erase
+                        }
+                        hero.projectile.erase(hero.projectile.begin()+i);
+                        found=true;
+                    }
+                    
+                    }
+                    j++;
+                }
+                if(!found){
+                    board_win.addAt(hero.projectile[i]->gety(),hero.projectile[i]->getx(),' ');
+                    hero.projectile.erase(hero.projectile.begin()+i);
+                    
+                }
+            }
+            else{  
+                        hero.projectile[i]->moveCharacter(board_win);
+                    
+                }
+            }
+        }
+    }
 
+
+                
 void General_template::drawDoors() {
     doors[0] = Door(0,HALF_COLS-2);   //north doors
     doors[1] = Door(0,HALF_COLS-1);

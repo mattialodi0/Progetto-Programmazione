@@ -29,11 +29,11 @@ void Coward::createProjectile(Board &board_win, Hero &hero, Direction dir)
     }
     }
     else{
-        for(int j=0;j<boom_range;j++){
-        for(int i=0;i<boom_range*2.5;i++){
-            if(board_win.getCharAt(projectile[0]->gety()+j-(boom_range/2), projectile[0]->getx()+i-((boom_range*2.5/2))+1)==' '|| board_win.getCharAt(projectile[0]->gety()+j-(boom_range/2), projectile[0]->getx()+i-((boom_range*2.5/2))+1)==hero.getIcon()){
+        for(int j=0;j<boom_range*2;j++){
+        for(int i=0;i<boom_range*5;i++){
+            if(board_win.getCharAt(projectile[0]->gety()+j-(boom_range), projectile[0]->getx()+i-((boom_range*2.5))+1)==' '|| board_win.getCharAt(projectile[0]->gety()+j-(boom_range), projectile[0]->getx()+i-((boom_range*2.5))+1)==hero.getIcon()){
                
-                Projectile *new_proj = new Projectile(def,projectile[0]->getx()+i-((boom_range*2.5/2))+1,projectile[0]->gety()+j-(boom_range/2), 'o');
+                Projectile *new_proj = new Projectile(def,projectile[0]->getx()+i-((boom_range*2.5))+1,projectile[0]->gety()+j-(boom_range), 'o');
                 projectile.push_back(new_proj); 
         }
     }

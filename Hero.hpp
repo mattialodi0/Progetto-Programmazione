@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Projectile.hpp"
-//#include "Room.hpp"
 #include "Artifact.hpp"
 
 const int herostartx = (BOARD_COLS/2);
@@ -15,11 +14,12 @@ protected:
 	int hp = 30;
     int ac = 3;
     int speed = 1;
-    int reload_time=2;
-    int range = 5;
+    int hero_reload_time=8;
+    int range = 15;
 	int reload = 0;
+	int dmg = 15;
 public:	
-	int dmg = 3;
+	
 	Artifact artifact;
     Hero();
 	Hero(int y, int x);
@@ -36,13 +36,16 @@ public:
 	void centerHero(Direction dir);
 	bool useKey();
 
+	int getRange();
+	int getDmg();
+	int getReload();
+
 	void increaseHealth(int artifactHp);
 	void increaseDamage(int artifactDmg);
 	void increaseRange(int artifactRange);
+	void minusReload();
 	//void reduceHealth();
 	void attack(Board &board_win, Direction dir);
-     //per movimento proiettili e check di colpito o out of range
-    //void checkHeroProjectile(Board &board_win, Room *current_room);
 	void reduceHealthHero(int enemiesDamage);
 	bool death();
 };

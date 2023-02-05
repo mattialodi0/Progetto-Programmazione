@@ -108,6 +108,9 @@ bool Character::checkCollision(Board &board_win)
 	case 'H':
 	case 'R':
 	case 'O':
+	case '-':
+	case '|':
+	case 'o':
 		return true;
 		break;
 	default:

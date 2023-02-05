@@ -10,10 +10,10 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     artifact = Artifact (y, x);
     this->key = 1;
     this->hp = 30;
-    this->reload_time = 2;
-    this->range = 5;
+    this->hero_reload_time = 8;
+    this->range = 15;
     this->speed = 1;
-    this->dmg = 3;
+    this->dmg = 15;
     this->reload = 0;
 }
 
@@ -22,10 +22,10 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     artifact = Artifact (y, x);
     this->key = 1;
     this->hp = 30;
-    this->reload_time = 2;
-    this->range = 5;
+    this->hero_reload_time = 8;
+    this->range = 15;
     this->speed = 1;
-    this->dmg = 3;
+    this->dmg = 15;
     this->reload = 0;
 }
 
@@ -83,7 +83,7 @@ void Hero::useAbility()
 void Hero::attack(Board &board_win, Direction dir) 
 {
     if(this->reload<=0){
-        this->reload=reload_time;
+        this->reload=hero_reload_time;
         Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
         projectile.push_back(new_proj); 
         switch(dir){
@@ -101,41 +101,18 @@ void Hero::attack(Board &board_win, Direction dir)
                 break;
         }
     }
-    else{
-        this->reload--;
-    }
 }
 
+int Hero::getReload(){
+    return this->reload;
+}
+void Hero::minusReload(){
+    this->reload--;
 
+}
 //per movimento proiettili e check di colpito o out of range
-/*
-void Hero::checkHeroProjectile(Board &board_win, Room *current_room){
-    for (int i = 0; i < projectile.size(); i++)
-	{   
-		if (projectile[i] != NULL){
-            projectile[i]->setUptime(projectile[i]->getUptime()+1);
-            if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>range){
-                projectile[i]->moveCharacter(board_win);
-                for(int j=0;j < current_room->room_template->enemies_num; j++){
-                    if(projectile[i]->getx()==current_room->room_template->enemies[j]->getx() && projectile[i]->gety()==current_room->room_template->enemies[j]->gety()){
-                        current_room->room_template->enemies[j]->reduceHealthEnemy(this->dmg);
-                        projectile.erase(projectile.begin()+i);
-                    }
-                    else{
-                    board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
-                    projectile.erase(projectile.begin()+i);
-                    }
-                }
-            }
-            else{  
-                        projectile[i]->moveCharacter(board_win);
-                    
-                }
-            }
-        }
-    }
 
-*/
+
 void Hero::centerHero(Direction dir) {
 	switch(dir){
     case(sx):
@@ -171,6 +148,17 @@ bool Hero::useKey()
     else return false;
 }
 
+int Hero::getRange()
+{
+    return this->range;
+}
+
+int Hero::getDmg()
+{
+    return this->dmg;
+}
+
+
 void Hero::increaseHealth(int artifactHp)
 {
     this->hp = this->hp + artifactHp;
@@ -188,7 +176,7 @@ void Hero::increaseRange(int artifactRange)
 
 void Hero::reduceHealthHero(int enemiesDamage)
 {
-    hp = hp -enemiesDamage;
+    this->hp = this->hp -enemiesDamage;
 }
 
 bool Hero::death()

@@ -55,7 +55,7 @@ public:
     int drawFilledSquareDoor(int start_y, int start_x, int height, int width, int i);
     int drawFilledSquareLockedDoor(int start_y, int start_x, int height, int width, int i);
     int drawFilledSquareNoDoor(int start_y, int start_x, int height, int width, int i);
-
+    void checkHeroProjectile(Board &board_win, Hero &hero);
 };
 
 

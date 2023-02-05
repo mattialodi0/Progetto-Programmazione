@@ -5,8 +5,11 @@
 const int herodamage = 3;
 
 Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch)
-{
+{   
         difficulty=diff;
+
+
+
          enemy_reload=9-difficulty;
          enemy_memory=7;
          enemy_range=15+(2*difficulty);
@@ -19,7 +22,8 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch
          mem=0;
          reload=0;
          timer=7-int(difficulty/2);
-         hp=5;
+         hp=30+(10*difficulty);
+         dmg=5+difficulty;
 
 
 }    
@@ -72,6 +76,10 @@ if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
     return true;
 }
         return false;
+}
+
+int Enemy::getHp(){
+    return this->hp;
 }
 
 bool Enemy::flyerHasLos(Board &board_win, Hero &hero)

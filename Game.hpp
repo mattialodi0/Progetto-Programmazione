@@ -23,6 +23,7 @@ private:
 	Room* current_room;
    	vector<Room*> room_index;
 protected:
+    
     int artifactDmg=5;
     int artifactRange=5;
     int artifactHp=10;

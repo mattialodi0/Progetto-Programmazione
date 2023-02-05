@@ -24,7 +24,8 @@ protected:
     int difficulty=0;
     int difficultylevel=0;
     int ammo=2;
-    int hp=3;
+    int hp=30;
+    int dmg=5;
 public:
     std::vector<Projectile*> projectile;
     Enemy(Direction dir, int y, int x ,chtype ch,int diff);
@@ -40,6 +41,7 @@ public:
     bool flyerHasLos(Board &board_win, Hero &hero);
     bool inSight(int distancex,int distancey);
     void reduceHealthEnemy(int heroDmg);
+    int getHp ();
 };  
 
 typedef Enemy * pEn;
