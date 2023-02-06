@@ -15,8 +15,7 @@ int main()
 	refresh();
 	curs_set(0);
 	start_color();
-	init_pair(BOSS_PAIR, COLOR_RED, COLOR_BLACK);
-	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
+	
 
 	Menu menu;
     

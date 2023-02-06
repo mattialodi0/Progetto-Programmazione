@@ -7,6 +7,9 @@ Board::Board():Board(0, 0, 300)
 	taken[i][j]=false;	
 	}	
 	}
+	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
+	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int speed)
@@ -24,6 +27,8 @@ Board::Board(int height, int width, int speed)
 	timeout = speed;
 	setTimeout(speed);
 	keypad(board_win, true);
+	init_pair(BOSS_PAIR, COLOR_RED, COLOR_BLACK);
+	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int starty, int startx, int speed)
@@ -64,7 +69,17 @@ void Board::add_A(Drawable &drawable)
 }
 
 /* 
-*	usata per aggiungere i boss, disegnati in rosso
+*	usata per aggiungere i nemici, disegnati in rosso
+*/
+void Board::add_E(Drawable &drawable) 
+{
+	wattron(board_win,COLOR_PAIR(ENEMY_PAIR));
+    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	wattroff(board_win,COLOR_PAIR(ENEMY_PAIR));
+}
+
+/* 
+*	usata per aggiungere i boss, disegnati in viola
 */
 void Board::add_B(Drawable &drawable) 
 {
@@ -72,6 +87,7 @@ void Board::add_B(Drawable &drawable)
     addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
 	wattroff(board_win,COLOR_PAIR(BOSS_PAIR));
 }
+
 
 void Board::remove(Drawable &drawable) 
 {

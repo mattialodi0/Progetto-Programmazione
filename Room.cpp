@@ -14,7 +14,7 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(8,0,game_board);
+    initializeRoomTemplate(0,0,game_board);
 }
 
 
@@ -393,8 +393,8 @@ void Room::drawEnemies(Board &board) {
         //if(*room_template->enemies[i].isBoss())
         //    board.add_B(*room_template->enemies[i]);
         //else 
-            board.add_B(*room_template->enemies[i]);
-       // board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->getx(), room_template->enemies[i]->getIcon());
+            board.add_E(*room_template->enemies[i]);
+        //board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->getx(), room_template->enemies[i]->getIcon());
     }
 }
 
@@ -449,7 +449,15 @@ void Room::drawDoors(Board &board) {
 }
 
 
-void Room::removeEnemy(int pos) {
+void Room::removeEnemy(int y, int x) {
+    int pos;
+    for(int i=0; i < room_template->enemies_num; i++) {
+        pEn temp = room_template->enemies[i];
+        if(temp->gety() == y && temp->getx() == x) {
+            pos = i;
+            break;
+        }
+    }
     pEn temp = room_template->enemies[pos];
     room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
     room_template->enemies[room_template->enemies_num-1] = temp;
