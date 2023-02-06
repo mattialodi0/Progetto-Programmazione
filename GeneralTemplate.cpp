@@ -200,14 +200,18 @@ int General_template::checkHeroProjectile(Board &board_win,Hero &hero){
                         this->enemies[j]->reduceHealthEnemy(hero.getDmg());
                         if(this->enemies[j]->getHp()<=0){
                             //erase
-                           /* if(this->enemies[j]->getIcon()=='K'){
+                           /* 
+                           if((rand()%drop_chance) ==0){
+                           if(this->enemies[j]->getIcon()=='K'){
                                 int k=0;
                                 while(this->artifact[k].getIcon()!=NULL){
                                     k++;
                                 }
                                 k++;
                                 this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
-                            }*/
+                            }
+                            }
+                            */
                             killed++;
                         }
                         hero.projectile.erase(hero.projectile.begin()+i);

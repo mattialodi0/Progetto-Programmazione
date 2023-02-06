@@ -21,6 +21,7 @@ const int n_enemies=6;
 const int max_n_enemies=6;
 const int n_artifact=4;
 const int tols=6;
+const int drop_chance=3;
 
 
 
