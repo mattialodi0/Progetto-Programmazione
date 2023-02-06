@@ -5,6 +5,10 @@ Artifact::Artifact(): Drawable()
    
 }
 
+Artifact::Artifact(int y, int x,chtype ch): Drawable(x,y,ch)
+{
+   
+}
 Artifact::Artifact(int y, int x): Drawable(x,y,RandomArtifact())
 {
    

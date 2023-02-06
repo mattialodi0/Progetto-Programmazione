@@ -17,7 +17,9 @@
 
 #define HALF_COLS BOARD_COLS/2
 #define HALF_ROWS BOARD_ROWS/2
+const int n_enemies=6;
 const int max_n_enemies=6;
+const int n_artifact=4;
 const int tols=6;
 
 
@@ -31,7 +33,7 @@ public:
     int walls_num; 
     int doors_num;
     int enemies_num=0;
-    int artifact_num=0;
+    int artifact_num=1;
     int my_xp=3;
     bool is_north_door_locked, is_south_door_locked, is_west_door_locked, is_est_door_locked;
     bool need_doors;
@@ -41,10 +43,13 @@ public:
     General_template(int w, int d, int e, int a);
     ~General_template();
 
-    void drawDoors();
+    void drawDoors();   
 
+    //in chosen enemies 0=drunk,1=coward,2=shooter,3=chaser,4=boom,5=flyer,6=stalker,7=turret
     void createEnemies(bool is_random_enemies,bool is_random_coords,int x, int y,int chosen,int ite,int room_pos,Board &game_board,pEn enemies[]);
-    //in chosen enemies 0=drunk,1=coward,2=shooter,3=chaser,4=boom,5=flyer,6=stalker
+    
+    //in chosen artifact 0=R,1=E,2=H,3=J
+    void createArtifact(bool is_random_artifact,bool is_random_coords,int x, int y,int chosen,Board &game_board,int room_pos,Drawable* artifact);
     int drawRandom(int num, int ya, int xa, int yb, int xb, int i);
     int drawHorizontalLine( int num, int start_y, int start_x, int i);
     int drawVerticalLine( int num, int start_y, int start_x, int i);
@@ -55,7 +60,7 @@ public:
     int drawFilledSquareDoor(int start_y, int start_x, int height, int width, int i);
     int drawFilledSquareLockedDoor(int start_y, int start_x, int height, int width, int i);
     int drawFilledSquareNoDoor(int start_y, int start_x, int height, int width, int i);
-    void checkHeroProjectile(Board &board_win, Hero &hero);
+    int checkHeroProjectile(Board &board_win, Hero &hero);
 };
 
 
@@ -88,7 +93,18 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }
     }
 };
 
@@ -112,7 +128,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
+        
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }
     }
 };
 
@@ -136,8 +164,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //filled square
@@ -160,8 +199,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //empty square
@@ -184,8 +234,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //ortogonal cross
@@ -209,8 +270,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //left-bottom center subroom
@@ -239,8 +311,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //big  negative cross 
@@ -269,8 +352,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
 
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }
     }
 };
 
@@ -311,8 +405,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //radom wall blocks
@@ -354,8 +459,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
 
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }
     }
 };
 
@@ -385,8 +501,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
 
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }
     }
 };
 
@@ -429,8 +556,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-       
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }       
     }
 };
 
@@ -463,8 +601,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //subroom doors
@@ -500,8 +649,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //tempio
@@ -538,8 +698,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //chrome subchambers
@@ -586,8 +757,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //hexagonal chamber
@@ -656,8 +838,19 @@ public:
         for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //4 square x
@@ -686,8 +879,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //4 square +
@@ -716,8 +920,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //random cross
@@ -757,8 +972,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //horizontal S
@@ -794,8 +1020,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //4 angoli 
@@ -828,8 +1065,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //pacman, i nemici dovrebbero  essere tutti chaser
@@ -901,8 +1149,19 @@ public:
             createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }        
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //verical blocking wall right 
@@ -932,8 +1191,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //verical blocking wall left 
@@ -963,8 +1233,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }};
 };
 
 //horizontal blocking wall up 
@@ -992,8 +1273,19 @@ public:
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //horizontal blocking wall down 
@@ -1020,8 +1312,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //turret boss
@@ -1044,8 +1347,19 @@ public:
         createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //4 turret
@@ -1065,8 +1379,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //16 turret
@@ -1122,8 +1447,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //wall horizontal south rand
@@ -1160,8 +1496,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //wall vertical west rand
@@ -1194,8 +1541,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //wall vertical est rand
@@ -1228,8 +1586,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //4 rand subchamber
@@ -1277,8 +1646,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //3 rand subchamber vertical
@@ -1328,8 +1708,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //3 rand subchamber horizontal
@@ -1381,8 +1772,19 @@ public:
             createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //stalker boss, (4 deboli + il boss)
@@ -1402,8 +1804,19 @@ public:
             createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
 
 //drunk boss (4 deboli + il boss)
@@ -1423,6 +1836,18 @@ public:
         createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
         }
 
-        artifact[0] = Artifact(6,6);
-    }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
 };
+

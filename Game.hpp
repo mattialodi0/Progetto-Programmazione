@@ -26,11 +26,12 @@ private:
 
     Menu_playing menu_playing;
 protected:
-    
+    int score=0;
+    int canMove=0;
+    int artifactHeal=10;
     int artifactDmg=5;
     int artifactRange=5;
     int artifactHp=10;
-    int canMove=0;
 public:
 	Game(int height, int width, int speed);
 	~Game();
@@ -39,6 +40,7 @@ public:
     void processInput();
     void updateState();
     void updateScreen();
+    void addScore();
 private:
     void redraw();
     void manageHeroMovement();

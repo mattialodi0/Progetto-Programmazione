@@ -32,6 +32,7 @@
                 "Stalker.cpp",
                 "Artifact.cpp",
                 "Turret.cpp",
+                "menu.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"

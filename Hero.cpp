@@ -7,9 +7,10 @@ const int artifactrange = 2;
 
 Hero::Hero() : Character(def, herostarty, herostartx,'P')
 {	
-    artifact = Artifact (y, x);
+    artifact = Artifact (y, x,'H');
     this->key = 1;
-    this->hp = 30;
+    this->maxHp=30;
+    this->hp = this->maxHp;
     this->hero_reload_time = 8;
     this->range = 15;
     this->speed = 1;
@@ -19,9 +20,10 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
 
 Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
 {   
-    artifact = Artifact (y, x);
+    artifact = Artifact (y, x,'H');
     this->key = 1;
-    this->hp = 30;
+    this->maxHp=30;
+    this->hp = this->maxHp;
     this->hero_reload_time = 8;
     this->range = 15;
     this->speed = 1;
@@ -38,7 +40,8 @@ Hero::Hero(const Hero& h)
 //per l'inizializzazione della classe
 void Hero::tankClass() 
 {
-    this->hp = 30;
+    this->maxHp=40;
+    this->hp = this->maxHp;
     this->ac = 3;
     this->dmg = 2;
     this->speed = 1;
@@ -48,7 +51,8 @@ void Hero::tankClass()
 
 void Hero::rogueClass() 
 {
-    this->hp = 20;
+    this->maxHp=20;
+    this->hp = this->maxHp;
     this->ac = 2;
     this->dmg = 3;
     this->speed = 4;
@@ -58,7 +62,8 @@ void Hero::rogueClass()
 
 void Hero::rangerClass() 
 {
-    this->hp = 16;
+    this->maxHp=16;
+    this->hp = this->maxHp;
     this->ac = 1;
     this->dmg = 1;
     this->speed = 3;
@@ -68,7 +73,8 @@ void Hero::rangerClass()
 
 void Hero::mageClass() 
 {
-    this->hp = 16;
+    this->maxHp=16;
+    this->hp = this->maxHp;
     this->ac = 1;
     this->dmg = 3;
     this->speed = 2;
@@ -148,6 +154,10 @@ bool Hero::useKey()
     else return false;
 }
 
+void Hero::addKey(){
+    this->key++;
+}
+
 int Hero::getRange()
 {
     return this->range;
@@ -158,10 +168,18 @@ int Hero::getDmg()
     return this->dmg;
 }
 
+void Hero::heal(int artifactHp){
+    if(this->hp+artifactHp<=this->maxHp){
+    this->hp=this->hp+artifactHp;
+    }
+    else{
+        this->hp=this->maxHp;
+        }
+}
 
 void Hero::increaseHealth(int artifactHp)
 {
-    this->hp = this->hp + artifactHp;
+    this->maxHp = this->maxHp + artifactHp;
 }
 
 void Hero::increaseDamage(int artifactDmg)

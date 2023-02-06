@@ -126,8 +126,12 @@ void Game::updateState()
 
 	manageHeroMovement();
 	hero.setDirection(def);
-	current_room->room_template->checkHeroProjectile(game_board, hero);					//--> da mettere dentro a hero
+	int killed=0;
+	killed=current_room->room_template->checkHeroProjectile(game_board, hero);					//--> da mettere dentro a hero
 
+	for(int i=0;i<killed;i++){
+		addScore();
+	}
 	//enemies
 	
 	if(canMove <= 0){
@@ -150,6 +154,10 @@ void Game::redraw() // riaggiunge
 {
 	current_room->drawRoom(game_board);
 	game_board.add(hero);
+}
+
+void Game::addScore(){
+	this->score=this->score + 10;
 }
 
 void Game::manageHeroMovement()
@@ -179,17 +187,26 @@ void Game::manageHeroMovement()
 		break;
 	case 'E':
 		hero.moveCharacter(game_board);
+		hero.heal(artifactHeal);
 		hero.increaseDamage(artifactDmg);
 		current_room->removeArtifact(0);
 		break;
 	case 'H':
 		hero.moveCharacter(game_board);
 		hero.increaseHealth(artifactHp);
+		hero.heal(artifactHeal);
 		current_room->removeArtifact(0);
 		break;
 	case 'R':
 		hero.moveCharacter(game_board);
 		hero.increaseRange(artifactRange);
+		hero.heal(artifactHeal);
+		current_room->removeArtifact(0);
+		break;	
+	case 'J':
+		hero.moveCharacter(game_board);
+		hero.addKey();
+		hero.heal(artifactHeal);
 		current_room->removeArtifact(0);
 		break;	
 	case 'O':		//cambia stanza

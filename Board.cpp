@@ -85,6 +85,7 @@ void Board::addAt(int y, int x, chtype ch)
 		case 'O':
 		case 'o':
 		case 'R':
+		case 'J':
 		case 'E':
 		case 'H':
 		setTaken(x,y,false);
@@ -103,6 +104,7 @@ void Board::addAt_A(int y, int x, chtype ch)
 		case 'O':
 		case 'o':
 		case 'R':
+		case 'J':
 		case 'E':
 		case 'H':
 		setTaken(x,y,false);
@@ -123,6 +125,7 @@ void Board::addAt_B(int y, int x, chtype ch)
 		case 'O':
 		case 'o':
 		case 'R':
+		case 'J':
 		case 'E':
 		case 'H':
 		setTaken(x,y,false);

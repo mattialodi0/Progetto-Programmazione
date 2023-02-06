@@ -30,7 +30,7 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
 {
 
             if(is_random_enemies){
-                chosen=(rand()%(max_n_enemies)+1);
+                chosen=(rand()%(n_enemies)+1);
             }
             if(is_random_coords)
             {
@@ -111,10 +111,83 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
 
                     }
                 }
+
+void General_template::createArtifact(bool is_random_artifact,bool is_random_coords,int x, int y,int chosen,Board &game_board,int room_pos,Drawable* artifact){
+    if(is_random_artifact){
+                chosen=(rand()%(n_artifact)+1);
+            }
+            if(is_random_coords)
+            {
+                bool acceptable=false;
+            do{
+                if(room_pos!=0){
+            game_board.getEmptyCoordinates(y,x);
+            
+                }
+                else{
+                    x=6;
+                    y=6;
+                }
+
+                if(!game_board.getTaken(x,y)){
+            switch(room_pos){
+                case(1):
+                if(abs(x-HALF_COLS)>tols || y>tols){
+                acceptable=true;
+                }
+                break;
+                case(-1):
+                if(abs(x-HALF_COLS)>tols || y<BOARD_ROWS-tols){
+                acceptable=true;
+                }
+                break;
+                case(2):
+                if(x<BOARD_COLS-tols || abs(y-HALF_ROWS)>tols){
+                acceptable=true;
+                }
+                break;
+                case(-2):
+                if(x>tols || abs(y-HALF_ROWS)>tols){
+                acceptable=true;
+                }
+                break;
+                case(0):
+                if(abs(x-HALF_COLS)>tols || abs(y-HALF_ROWS)>tols){
+                acceptable=true;
+                }
+                break;
+                default:
+                acceptable=false;
+                break;
+
+            }
+}
+            }
+            while(!acceptable&&room_pos!=0);
+            }
+            switch(chosen)
+                    {
+                        case 0:
+                       artifact[0] = Artifact(y,x,'R');
+                        break;
+                        case 1:
+                        artifact[0] = Artifact(y,x,'E');
+                        break;
+                        case 2:
+                        artifact[0] = Artifact(y,x,'H');
+                        break;
+                        case 3:
+                        artifact[0] = Artifact(y,x,'J');
+                        break;
+                       
+                    }
+}
                 
-void General_template::checkHeroProjectile(Board &board_win,Hero &hero){
+int General_template::checkHeroProjectile(Board &board_win,Hero &hero){
+    int killed=0;
     for (int i = 0; i < hero.projectile.size(); i++)
 	{   
+        
 		if (hero.projectile[i] != NULL){
             hero.projectile[i]->setUptime(hero.projectile[i]->getUptime()+1);
             if(!hero.projectile[i]->checkCollision(board_win)||hero.projectile[i]->getUptime()>hero.getRange()){
@@ -127,6 +200,15 @@ void General_template::checkHeroProjectile(Board &board_win,Hero &hero){
                         this->enemies[j]->reduceHealthEnemy(hero.getDmg());
                         if(this->enemies[j]->getHp()<=0){
                             //erase
+                           /* if(this->enemies[j]->getIcon()=='K'){
+                                int k=0;
+                                while(this->artifact[k].getIcon()!=NULL){
+                                    k++;
+                                }
+                                k++;
+                                this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
+                            }*/
+                            killed++;
                         }
                         hero.projectile.erase(hero.projectile.begin()+i);
                         found=true;
@@ -147,6 +229,7 @@ void General_template::checkHeroProjectile(Board &board_win,Hero &hero){
                 }
             }
         }
+        return killed;
     }
 
 

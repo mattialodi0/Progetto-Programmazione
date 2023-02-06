@@ -11,7 +11,9 @@ class Hero : public Character
 protected:
 	int class_type;
 	int key=1;	//numero di chiavi trovate
-	int hp = 30;
+
+	int maxHp=30;
+	int hp = maxHp;
     int ac = 3;
     int speed = 1;
     int hero_reload_time=8;
@@ -35,12 +37,14 @@ public:
 	void useAbility();
 	void centerHero(Direction dir);
 	bool useKey();
+	void addKey();
 
 	int getRange();
 	int getDmg();
 	int getReload();
 
 	void increaseHealth(int artifactHp);
+	void heal(int artifactHp);
 	void increaseDamage(int artifactDmg);
 	void increaseRange(int artifactRange);
 	void minusReload();
