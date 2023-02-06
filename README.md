@@ -44,7 +44,7 @@ Template:
 10  - muri rand               8
 11  - maze contrentico        3        
 12  - maze spirale            2
-13  - sottostanza c porte     6
+13  - sottostanza c porte_l   6
 14  - tempio                  4
 15  - sottostanze chrome      4
 16  - sottostanza esagonale   7

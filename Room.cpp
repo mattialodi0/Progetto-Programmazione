@@ -14,7 +14,7 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(37,0,game_board);
+    initializeRoomTemplate(8,0,game_board);
 }
 
 

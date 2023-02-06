@@ -19,7 +19,6 @@ protected:
 	WINDOW *board_win;
 	int timeout;
 	bool taken[BOARD_COLS][BOARD_ROWS];
-	
 public:
 	Board();
 	Board(int height, int width, int speed);
