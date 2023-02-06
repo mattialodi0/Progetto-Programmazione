@@ -30,12 +30,10 @@ public:
 	void clearTaken();
     void add(Drawable &drawable);
     void add_A(Drawable &drawable);
-    void add_B(Drawable &drawable);
+    void add_E(Drawable &drawable);
+	void add_B(Drawable &drawable);
 	void remove(Drawable &drawable);
 	void addAt(int y, int x, chtype ch);	
-	void addAt_A(int y, int x, chtype ch);	
-	void addAt_B(int y, int x, chtype ch);	
-	void addAt_E(int y, int x, chtype ch);	
 	void print(const char* str);
 	int getDifficulty();
 	void setDifficulty(int diff);

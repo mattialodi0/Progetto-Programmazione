@@ -2,7 +2,9 @@
 
 int locked_door_num=0;
 
-//fa il set up della stanza scegliendo un template, istanziando i nemici e gli artefatti
+/*
+*   Costruttore di default, usato solo per la stanza di partenza
+*/
 Room::Room(Board &game_board) {
     this->y = 0; this->x = 0;
     this->has_north_door = true; 
@@ -17,10 +19,13 @@ Room::Room(Board &game_board) {
     initializeRoomTemplate(0,0,game_board);
 }
 
-
+/*
+*   Costruttore per le stanze, inizializza il template, le porte chiuse tra quelle presenti
+*   e la collega a quelle vicine
+*/
 Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {
     this->y = y; this->x = x;
-    int num = randomRoomNumber();
+    int num = 0;//randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
     decideIfDoors();
@@ -31,6 +36,9 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
     lockDoor(room_index.size());
 }
 
+/*
+*   Funzione usata per trovare le stanze da collegare a quella corrente, in base alle porte disponibili
+*/
 Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     int n = -1;
 	for(int i = 0; i < room_index.size(); i++)
@@ -75,6 +83,7 @@ Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     }
 }
 
+/* Sceglie quali porte tenere/togliere, anche in base al template */
 void Room::decideIfDoors() {
     if(room_template->need_doors) {
         this->has_north_door = room_template->has_north_door; 
@@ -112,6 +121,7 @@ void Room::decideIfDoors() {
     }
 }
 
+/* Genera il numero di un template, in base alla loro rarità */
 int Room::randomRoomNumber() {
     int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38},    //numero del tempate
                                     {0, 0, 0, 0, 6, 0, 8,10,10, 8, 3, 2, 6, 4, 4, 7,10,10, 7, 8,10, 5, 0, 0, 0, 0, 1, 8, 6,10,10,10,10,15,15,15, 1, 1}};   //rarità (5 comune, 1 rara)
@@ -127,6 +137,7 @@ int Room::randomRoomNumber() {
     return -1;
 }
 
+/* Inizializza il template con il numero indicato */
 void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_board) {
     
     switch (template_num)
@@ -254,6 +265,7 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
     }
 }
 
+/* Aggiunge le componenti della stanza allo schermo */
 void Room::drawRoom(Board &board) {
     drawArtifact(board);
     drawProjectiles(board);
@@ -263,6 +275,7 @@ void Room::drawRoom(Board &board) {
     drawEnemies(board);
 }
 
+/* Sceglie quali porte bloccare, facendo in modo che non siano troppe da intrappolare il giocatore */
 void Room::lockDoor(int n) {
     if(locked_door_num+1 < n) {
         int r = rand() % 4;
@@ -369,9 +382,6 @@ void Room::unlockDoor(int y, int x)
                     room_template->doors[i] = Door(ty,tx);
                 }
             }
-/*            int ty = room_template->doors[i].gety();
-            int tx = room_template->doors[i].getx();
-            room_template->doors[i] = Door(ty,tx);*/
         }
         j++;
     }
