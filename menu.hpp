@@ -1,6 +1,3 @@
-#pragma once
-
-#include <iostream>
 #include <ncurses.h>
 #include <string>
 using namespace std;
@@ -16,6 +13,7 @@ class Menu{
         void class_rogue();
         void class_ranger();
         void class_mage();
+        void commands();
 
 };
 

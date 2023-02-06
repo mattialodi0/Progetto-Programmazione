@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include "menu.hpp"
-#include "menu_playing.hpp"
 #include <iostream>
 #include <ncurses.h>
 
@@ -19,11 +18,11 @@ int main()
 	init_pair(BOSS_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 
-	//Menu menu;
-    //Menu_playing menu_p;
+	Menu menu;
+    
 	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
     
-    //menu.menu();
+    menu.menu();
 	
 	while (game.isNotOver())
 	{

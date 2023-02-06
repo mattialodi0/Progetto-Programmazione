@@ -1,3 +1,6 @@
+#include <iostream>
+#include <ncurses.h>
+#include <string>
 #include "menu.hpp"
 using namespace std;
 
@@ -20,7 +23,7 @@ void Menu::menu(){
     wrefresh(menuwin);
     keypad(menuwin, true);      //makes arrows keys usable
     
-    string choices[3] = {"Play", "Settings", "exit"};
+    string choices[3] = {"Play", "Commands", "exit"};
     int choice;
     int highlight = 0;
 
@@ -52,21 +55,16 @@ void Menu::menu(){
     }
 
     if (highlight==0){
-        endwin();
         play();
     }
     if (highlight==1){
-        endwin();
-        settings();
+        commands();
     }
     if (highlight==2){
         endwin();
     }
 
-    getch();
-    endwin();
 }
-
 
 void Menu::play(){
     initscr();
@@ -116,20 +114,15 @@ void Menu::play(){
     }
 
     if (highlight==0){
-        endwin();
         // start_game();
     }
     if (highlight==1){
-        endwin();
         character_class();
     }
     if (highlight==2){
-        endwin();
         menu();
     }
 
-    getch();
-    endwin();
 }
 
 void Menu::settings(){
@@ -189,15 +182,104 @@ void Menu::settings(){
     }
 
     if (highlight==2){
-        endwin();
         menu();
     }
     
-
-    getch();
-    endwin();
 }
 
+void Menu::commands(){
+
+    initscr();
+    cbreak();
+    noecho();
+
+    //prende le dimensioni della finestra
+    int yMax, xMax;
+    getmaxyx(stdscr, yMax, xMax);
+
+    //crea una finestra per l'input
+    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    box(menuwin, 0 ,0);
+    refresh();
+    wrefresh(menuwin);
+    keypad(menuwin, true);      //makes arrows keys usable
+    
+    int iy = (yMax/2)-10;
+    int ix = (xMax/2)-20;
+
+    string comln = " Keybindings :";
+    mvwprintw(menuwin, iy, ix, comln.c_str());
+
+    string comln1 = " W-A-S-D = Movement ";
+    mvwprintw(menuwin, iy+2, ix, comln1.c_str());
+
+    string comln2 = " Arrow keys = Attack in choosen direction ";
+    mvwprintw(menuwin, iy+3, ix, comln2.c_str());
+
+    string comln3 = " F = Use special ability ";
+    mvwprintw(menuwin, iy+4, ix, comln3.c_str());
+
+    string comln4 = " O = Quit the game";
+    mvwprintw(menuwin, iy+5, ix, comln4.c_str());
+
+    string comln5 = " P = Pause the game ";
+    mvwprintw(menuwin, iy+6, ix, comln5.c_str());
+
+    string comln6 = " E = Increase damage";
+    mvwprintw(menuwin, iy+7, ix, comln6.c_str());
+
+    string comln7 = " H = Increase healt";
+    mvwprintw(menuwin, iy+8, ix, comln7.c_str());
+
+    string comln8 = " R = Increase range";
+    mvwprintw(menuwin, iy+9, ix, comln8.c_str());
+
+    string comln9 = " 0 = Change room";
+    mvwprintw(menuwin, iy+10, ix, comln9.c_str());
+
+    string comln10 = " Q = Open door";
+    mvwprintw(menuwin, iy+11, ix, comln10.c_str());
+
+    string choices[1] = {"Back"};
+    int choice;
+    int highlight = 0;
+
+    
+
+    while(1) {
+       for(int i = 0; i < 1; i++) {
+            if(i == highlight) 
+                wattron(menuwin, A_REVERSE);
+            mvwprintw(menuwin, i+1, 1, choices[i].c_str());
+            wattroff(menuwin, A_REVERSE);
+        }
+        choice = wgetch(menuwin);
+
+        switch(choice) {
+            case KEY_UP:
+                highlight--;
+                if(highlight < 0)
+                    highlight = 0;
+                break;
+            case KEY_DOWN:
+                highlight++;
+                if(highlight > 1)
+                    highlight = 1;
+                break;
+            default:
+                break;
+        }
+        if(choice == 10)
+            break;        
+    }
+
+
+
+    if (highlight==0){
+        menu();
+    }
+
+}
 
 void Menu::character_class(){
 
@@ -248,27 +330,20 @@ void Menu::character_class(){
     }
 
     if (highlight==0){
-        endwin();
         class_tank();
     }
     if (highlight==1){
-        endwin();
         class_rogue();
     }
     if (highlight==2){
-        endwin();
         class_ranger();
     }
     if (highlight==3){
-        endwin();
         class_mage();
     }
     if (highlight==4){
-        endwin();
         play();
     }
-    getch();
-    endwin();
 
 }
 
@@ -348,16 +423,11 @@ void Menu::class_tank(){
 
 
     if (highlight==0){
-        endwin();
         // start_game with Tank
     }
     if (highlight==1){
-        endwin();
         character_class();
     }
-
-    getch();
-    endwin();
 
 }
 
@@ -437,16 +507,11 @@ void Menu::class_rogue(){
 
 
     if (highlight==0){
-        endwin();
         // start_game with Rogue
     }
     if (highlight==1){
-        endwin();
         character_class();
     }
-
-    getch();
-    endwin();
 
 }
 
@@ -526,16 +591,11 @@ void Menu::class_ranger(){
 
 
     if (highlight==0){
-        endwin();
         // start_game with Ranger
     }
     if (highlight==1){
-        endwin();
         character_class();
     }
-
-    getch();
-    endwin();
 
 }
 
@@ -615,15 +675,10 @@ void Menu::class_mage(){
 
 
     if (highlight==0){
-        endwin();
         // start_game with Mage
     }
     if (highlight==1){
-        endwin();
         character_class();
     }
-
-    getch();
-    endwin();
 
 }

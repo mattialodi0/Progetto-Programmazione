@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
+#include "menu_playing.hpp"
 using namespace std;
 
 const int GameSpeed=2;
@@ -22,6 +23,8 @@ private:
 	Hero hero;
 	Room* current_room;
    	vector<Room*> room_index;
+
+    Menu_playing menu_playing;
 protected:
     
     int artifactDmg=5;

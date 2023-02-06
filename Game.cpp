@@ -107,8 +107,7 @@ void Game::processInput()
 		break;
 	case 'p':
 		game_board.setTimeout(-1);
-		while (game_board.getInput() != 'p')
-			;
+		menu_playing.menu();
 		game_board.setTimeout(old_timeout);
 	default:
 		hero.setDirection(def); // per non forzare movimento
