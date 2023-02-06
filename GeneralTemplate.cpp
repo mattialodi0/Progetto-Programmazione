@@ -168,7 +168,7 @@ void General_template::createArtifact(bool is_random_artifact,bool is_random_coo
             switch(chosen)
                     {
                         case 0:
-                       artifact[0] = Artifact(y,x,'R');
+                        artifact[0] = Artifact(y,x,'R');
                         break;
                         case 1:
                         artifact[0] = Artifact(y,x,'E');

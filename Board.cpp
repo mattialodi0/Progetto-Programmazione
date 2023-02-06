@@ -27,7 +27,8 @@ Board::Board(int height, int width, int speed)
 	timeout = speed;
 	setTimeout(speed);
 	keypad(board_win, true);
-	init_pair(BOSS_PAIR, COLOR_RED, COLOR_BLACK);
+	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 }
 
@@ -45,6 +46,9 @@ Board::Board(int height, int width, int starty, int startx, int speed)
 	timeout = speed;
 	setTimeout(speed);
 	keypad(board_win, true);
+	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
+	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 }
 
 void Board::initialize() 

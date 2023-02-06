@@ -32,7 +32,7 @@ statboard con statitiche,chivi,artefatti, poteri
 Template:
 0   - stanza vuota      solo all'inizio
 1   - muri rand               0
-2   - linea orizzontale       0
+2   - stanza artefatti        1
 3   - linea vericale          0
 4   - quadrato pieno          0
 4i  - quadrato vuoto          -

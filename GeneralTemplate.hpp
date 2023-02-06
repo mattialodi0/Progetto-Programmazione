@@ -74,7 +74,7 @@ public:
     }
 };
 
-//muri casuali
+//random walls
 class Template_1 : public General_template {
 public:
     Template_1(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1),1)
@@ -109,39 +109,36 @@ public:
     }
 };
 
-//orizontal line
+//loot room
 class Template_2 : public General_template {
 public:
-    Template_2(int n,Board &game_board) : General_template(8,16,rand() % (max_n_enemies+1),1)
+    Template_2(int n,Board &game_board) : General_template(18,16,0,1)
     {
-        drawHorizontalLine(8, BOARD_ROWS/3*2, 1, 0);
+        need_doors = true; has_north_door = false; has_south_door = false; has_west_door = false; has_est_door = false;
 
-        drawDoors();
-        int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        //chosen_enemies={}
-        //x_chosen={}
-        //y_chosen={}
-        for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
+        int i = 0;
+        walls[i] = Wall(HALF_ROWS-3, HALF_COLS-6); i++;
+        walls[i] = Wall(HALF_ROWS-3, HALF_COLS-5); i++;
+        walls[i] = Wall(HALF_ROWS-3, HALF_COLS-2); i++;
+        walls[i] = Wall(HALF_ROWS-2, HALF_COLS-6); i++;
+        walls[i] = Wall(HALF_ROWS+3, HALF_COLS-6); i++;
+        walls[i] = Wall(HALF_ROWS+3, HALF_COLS-5); i++;
+        walls[i] = Wall(HALF_ROWS+3, HALF_COLS-2); i++;
+        walls[i] = Wall(HALF_ROWS+2, HALF_COLS-6); i++;
+        walls[i] = Wall(HALF_ROWS-3, HALF_COLS+6); i++;
+        walls[i] = Wall(HALF_ROWS-3, HALF_COLS+5); i++;
+        walls[i] = Wall(HALF_ROWS-3, HALF_COLS+2); i++;
+        walls[i] = Wall(HALF_ROWS-2, HALF_COLS+6); i++;
+        walls[i] = Wall(HALF_ROWS+3, HALF_COLS+6); i++;
+        walls[i] = Wall(HALF_ROWS+3, HALF_COLS+5); i++;
+        walls[i] = Wall(HALF_ROWS+3, HALF_COLS+2); i++;
+        walls[i] = Wall(HALF_ROWS+2, HALF_COLS+6); i++;
+        walls[i] = Wall(HALF_ROWS, HALF_COLS-6); i++;
+        walls[i] = Wall(HALF_ROWS, HALF_COLS+6); i++;
         
-        int chosen_artifact[artifact_num];
-        int x_chosen_artifact[artifact_num];
-        int y_chosen_artifact[artifact_num];
-        for(int i=0;i<artifact_num;i++){
-            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-        }
-        //chosen_artifact={}
-        //x_chosen_artifact={}
-        //y_chosen_artifact={}
-        for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-        }
+        drawDoors();
+
+        artifact[0] = Artifact(HALF_ROWS, HALF_COLS);
     }
 };
 
@@ -1851,4 +1848,5 @@ public:
         createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
         }    }
 };
+
 
