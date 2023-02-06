@@ -25,7 +25,7 @@ Room::Room(Board &game_board) {
 */
 Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {
     this->y = y; this->x = x;
-    int num = 0;//randomRoomNumber();
+    int num = randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
     decideIfDoors();
@@ -277,7 +277,7 @@ void Room::drawRoom(Board &board) {
 
 /* Sceglie quali porte bloccare, facendo in modo che non siano troppe da intrappolare il giocatore */
 void Room::lockDoor(int n) {
-    if(locked_door_num+1 < n) {
+    if(locked_door_num+1 < (n/4)) {
         int r = rand() % 4;
         switch(r) {
         case 0:
@@ -337,6 +337,7 @@ void Room::lockEstDoor() {
     this->room_template->doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
 }
 
+/* Muove i nemici */
 void Room::moveEnemies(Board &board, Hero &hero) {
     for(int i = 0; i < room_template->enemies_num; i++) {    
          this->room_template->enemies[i]->chooseDirection(board, hero);
@@ -356,6 +357,7 @@ void Room::moveEnemies(Board &board, Hero &hero) {
     }
 }
 
+/* Verifica che la stanza non abbia altri nemici */
 bool Room::isClear() {
     //if(room_template->must_complete)
     //    return room_template->enemies_num == 0;    //per il testing è disattivata 
@@ -363,6 +365,7 @@ bool Room::isClear() {
         return 1;
 }
 
+/* Sblocca la porta nella direzione in cui si punta*/
 void Room::unlockDoor(int y, int x)
 {
     int j = 0;

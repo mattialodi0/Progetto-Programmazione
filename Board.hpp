@@ -6,7 +6,8 @@
 #include "Time.hpp"
 
 #define BOSS_PAIR 1
-#define ARTIFACT_PAIR 2
+#define ENEMY_PAIR 2
+#define ARTIFACT_PAIR 3
 const int BOARD_DIM = 25;					//prima era 17
 const int BOARD_ROWS = BOARD_DIM;
 const int BOARD_COLS = BOARD_DIM * 2.7;//2.5;
