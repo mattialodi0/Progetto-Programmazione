@@ -33,11 +33,10 @@ Template:
 0   - stanza vuota      solo all'inizio
 1   - muri rand               0
 2   - stanza artefatti        1
-3   - linea vericale          0
-4   - quadrato pieno          0
-4i  - quadrato vuoto          -
-5   - croce                   6
-6   - sottostanza lb          0
+3   - sottostanza lt          8
+4   - sottostanza rt          8
+5   - sottostanza lt          8
+6   - sottostanza lb          8
 7   - croce negativa          8
 8   - sottostanza c no porte  10
 9   - blochhi muri rand       10
@@ -66,3 +65,8 @@ Template:
 32  - muro l                  10
 33  - muro r                  10
 34  - 4 sottostanze rand      15
+35  - 3 sottostanze rand vert 15
+36  - 3 sottostanze rand oriz 15
+37  - boss stalker            1
+38  - boss drunk              1
+39  - croce                   6

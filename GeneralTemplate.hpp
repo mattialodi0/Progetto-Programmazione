@@ -142,49 +142,21 @@ public:
     }
 };
 
-//verical line
+//top-right subroom
 class Template_3 : public General_template {
 public:
-    Template_3(int n,Board &game_board) : General_template(7,16,rand() % (max_n_enemies+1),1)
+    Template_3(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
     {
-        drawVerticalLine(7, 1, (BOARD_ROWS/3+2)*2, 0);
+        int i = 0;
+        i = drawHorizontalLine(BOARD_COLS/3,(BOARD_ROWS/3)*2,(BOARD_COLS/3)*2,i);
+        i = drawVerticalLine(BOARD_ROWS/3,(BOARD_ROWS/3)*2,(BOARD_COLS/3)*2,i);
+
+        doors[16] = Door((BOARD_ROWS/3)*2,(BOARD_COLS/3)*2+4);
+        doors[17] = Door((BOARD_ROWS/3)*2,(BOARD_COLS/3)*2+3);
+        doors[18] = Door((BOARD_ROWS/3)*2,(BOARD_COLS/3)*2+2);
 
         drawDoors();
-                int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        //chosen_enemies={}
-        //x_chosen={}
-        //y_chosen={}
-        for(int i=0;i<this->enemies_num;i++){   
-        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
 
-        int chosen_artifact[artifact_num];
-        int x_chosen_artifact[artifact_num];
-        int y_chosen_artifact[artifact_num];
-        for(int i=0;i<artifact_num;i++){
-            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-        }
-        //chosen_artifact={}
-        //x_chosen_artifact={}
-        //y_chosen_artifact={}
-        for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-        }    }
-};
-
-//filled square
-class Template_4 : public General_template {
-public:
-    Template_4(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1),1)
-    {
-        drawFilledSquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
-
-        drawDoors();
         int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
         int y_chosen[enemies_num];
@@ -212,15 +184,22 @@ public:
         }    }
 };
 
-//empty square
-class Template_4i : public General_template {
+//bottom-right subroom
+class Template_4 : public General_template {
 public:
-    Template_4i(int n,Board &game_board) : General_template(12,16,rand() % (max_n_enemies+1),1)
+    Template_4(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
     {
-        drawEmptySquare(HALF_ROWS-1, HALF_COLS-2, 3, 5, 0);
+        int i = 0;
+        i = drawHorizontalLine(BOARD_COLS/3,BOARD_ROWS/3,(BOARD_COLS/3)*2,i);
+        i = drawVerticalLine(BOARD_ROWS/3,1,(BOARD_COLS/3)*2,i);
+
+        doors[16] = Door(BOARD_ROWS/3,(BOARD_COLS/3)*2+4);
+        doors[17] = Door(BOARD_ROWS/3,(BOARD_COLS/3)*2+3);
+        doors[18] = Door(BOARD_ROWS/3,(BOARD_COLS/3)*2+2);
 
         drawDoors();
-                int chosen_enemies[enemies_num];
+
+        int chosen_enemies[enemies_num];
         int x_chosen[enemies_num];
         int y_chosen[enemies_num];
         for(int i=0;i<enemies_num;i++){
@@ -247,13 +226,18 @@ public:
         }    }
 };
 
-//ortogonal cross
+//top-left cross
 class Template_5 : public General_template {
 public:
-    Template_5(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1),1)
+    Template_5(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
     {
-        
-        drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
+        int i = 0;
+        i = drawHorizontalLine(BOARD_COLS/3, BOARD_ROWS/3,1,i);
+        i = drawVerticalLine(BOARD_ROWS/3, 1,BOARD_COLS/3,i);
+
+        doors[16] = Door(BOARD_ROWS/3,BOARD_COLS/3-4);
+        doors[17] = Door(BOARD_ROWS/3,BOARD_COLS/3-3);
+        doors[18] = Door(BOARD_ROWS/3,BOARD_COLS/3-2);
 
         drawDoors();
                 int chosen_enemies[enemies_num];
@@ -283,10 +267,10 @@ public:
         }    }
 };
 
-//left-bottom center subroom
+//bottom-left center subroom
 class Template_6 : public General_template {
 public:
-    Template_6(int n,Board &game_board) : General_template(30,18,rand() % (max_n_enemies+1),1)
+    Template_6(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
     {
         
         int i = 0;
@@ -295,6 +279,7 @@ public:
         
         doors[16] = Door((BOARD_ROWS/3)*2,BOARD_COLS/3-4);
         doors[17] = Door((BOARD_ROWS/3)*2,BOARD_COLS/3-3);
+        doors[18] = Door((BOARD_ROWS/3)*2,BOARD_COLS/3-2);
 
         drawDoors();
                 int chosen_enemies[enemies_num];
@@ -1849,4 +1834,38 @@ public:
         }    }
 };
 
+//ortogonal cross
+class Template_39 : public General_template {
+public:
+    Template_39(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1),1)
+    {
+        
+        drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
+        drawDoors();
+                int chosen_enemies[enemies_num];
+        int x_chosen[enemies_num];
+        int y_chosen[enemies_num];
+        for(int i=0;i<enemies_num;i++){
+            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+        }
+        //chosen_enemies={}
+        //x_chosen={}
+        //y_chosen={}
+        for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+        }
+
+        int chosen_artifact[artifact_num];
+        int x_chosen_artifact[artifact_num];
+        int y_chosen_artifact[artifact_num];
+        for(int i=0;i<artifact_num;i++){
+            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+        }
+        //chosen_artifact={}
+        //x_chosen_artifact={}
+        //y_chosen_artifact={}
+        for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        }    }
+};

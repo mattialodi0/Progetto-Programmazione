@@ -16,7 +16,7 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(2,0,game_board);
+    initializeRoomTemplate(0,0,game_board);
 }
 
 /*
@@ -123,8 +123,8 @@ void Room::decideIfDoors() {
 
 /* Genera il numero di un template, in base alla loro rarità */
 int Room::randomRoomNumber() {
-    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38},    //numero del tempate
-                                    {0, 1, 0, 0, 6, 0, 8,10,10, 8, 3, 2, 6, 4, 4, 7,10,10, 7, 8,10, 5, 0, 0, 0, 0, 1, 8, 6,10,10,10,10,15,15,15, 1, 1}};   //rarità (5 comune, 1 rara)
+    int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39},    //numero del tempate
+                                    {0, 1, 8, 8, 8, 8, 8,10,10, 8, 3, 2, 6, 4, 4, 7,10,10, 7, 8,10, 5, 0, 0, 0, 0, 1, 8, 6,10,10,10,10,15,15,15, 1, 1, 6}};   //rarità (5 comune, 1 rara)
     int parts = 0;
     for(int i=0; i < NUMBER_OF_ROOMS; i++) {
         parts += prob[1][i];
@@ -258,6 +258,9 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
         break;
     case 38:
         this->room_template = new Template_38(room_pos,game_board);
+        break;
+    case 39:
+        this->room_template = new Template_39(room_pos,game_board);
         break;
     default:
         this->room_template = new Template_0(room_pos,game_board);
