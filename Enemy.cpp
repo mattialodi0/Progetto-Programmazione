@@ -9,7 +9,7 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch
         difficulty=diff;
 
 
-
+        isBoss=false;
          enemy_reload=9-difficulty;
          enemy_memory=7;
          enemy_range=15+(2*difficulty);
@@ -29,6 +29,17 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch
 }    
 bool Enemy::inSight(int distancex,int distancey){
     return int(abs(sqrt(pow(distancex/2.5,2)+pow(distancey,2))))<this->sight_range;
+}
+
+void Enemy::makeBoss(int hp_multiplier,int range_multiplier, int dmg_multiplier){
+    this->isBoss=true;
+    this->hp=this->hp*hp_multiplier;
+    this->range=this->range*range_multiplier;
+    this->dmg=this->dmg*dmg_multiplier;
+}
+
+bool Enemy::checkBoss(){
+    return this->isBoss;
 }
 
 bool Enemy::hasLos(Board &board_win, Hero &hero)

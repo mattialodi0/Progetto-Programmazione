@@ -201,8 +201,9 @@ int General_template::checkHeroProjectile(Board &board_win,Hero &hero){
                         if(this->enemies[j]->getHp()<=0){
                             //erase
                            /* 
-                           if((rand()%drop_chance) ==0){
+
                            if(this->enemies[j]->getIcon()=='K'){
+                            if((rand()%drop_chance) ==0){
                                 int k=0;
                                 while(this->artifact[k].getIcon()!=NULL){
                                     k++;
@@ -210,6 +211,14 @@ int General_template::checkHeroProjectile(Board &board_win,Hero &hero){
                                 k++;
                                 this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
                             }
+                            }
+                            if(this->enemies[j]->getBoss()){
+                                int k=0;
+                                while(this->artifact[k].getIcon()!=NULL){
+                                    k++;
+                                }
+                                k++;
+                                this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
                             }
                             */
                             killed++;

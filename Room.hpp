@@ -53,7 +53,7 @@ public:
 
     bool isClear();
 
-    void unlockDoor(int y, int x);
+    void unlockDoor(int y, int x, Board &game_board);
 
     void removeArtifact(int pos);
 

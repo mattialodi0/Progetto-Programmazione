@@ -369,7 +369,7 @@ bool Room::isClear() {
 }
 
 /* Sblocca la porta nella direzione in cui si punta*/
-void Room::unlockDoor(int y, int x)
+void Room::unlockDoor(int y, int x,Board &game_board)
 {
     int j = 0;
     bool f = true;
@@ -386,6 +386,7 @@ void Room::unlockDoor(int y, int x)
                 {
                     f = true;
                     room_template->doors[i] = Door(ty,tx);
+                    game_board.addAt(ty,tx,'O');
                 }
             }
         }

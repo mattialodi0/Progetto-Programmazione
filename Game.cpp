@@ -221,7 +221,7 @@ void Game::manageHeroMovement()
 		break;
 	case 'Q':
 		if(hero.useKey()) {
-			current_room->unlockDoor(hero.gety() + offsety, hero.getx() + offsetx);			
+			current_room->unlockDoor(hero.gety() + offsety, hero.getx() + offsetx, game_board);			
 		}
 		break;
 	default:

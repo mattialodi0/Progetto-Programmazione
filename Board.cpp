@@ -67,9 +67,9 @@ void Board::add(Drawable &drawable)
 */
 void Board::add_A(Drawable &drawable) 
 {
-	wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+	//wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
     addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
-	wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+	//wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
 }
 
 /* 
@@ -102,6 +102,8 @@ void Board::addAt(int y, int x, chtype ch)
 {	
 	switch(ch){
 		case ' ':
+		case '-':
+		case '|':
 		case 'O':
 		case 'o':
 		case 'R':
