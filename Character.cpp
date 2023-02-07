@@ -109,8 +109,6 @@ bool Character::checkCollision(Board &board_win)
 	case 'R':
 	case 'J':
 	case 'O':
-	case '-':
-	case '|':
 	case 'o':
 		return true;
 		break;
@@ -141,6 +139,7 @@ bool Character::checkFlyerCollision(Board &board_win)
 	case ' ':
 	case 'X':
 	case 'O':
+	case 'Q':
 		return true;
 		break;
 	default:

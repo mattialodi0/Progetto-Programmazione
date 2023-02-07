@@ -182,6 +182,14 @@ void General_template::createArtifact(bool is_random_artifact,bool is_random_coo
                        
                     }
 }
+
+
+void General_template::removeEnemy(int pos) {
+    pEn temp = this->enemies[pos];
+    this->enemies[pos] = this->enemies[this->enemies_num-1];
+    this->enemies[this->enemies_num-1] = temp;
+    this->enemies_num--;
+}
                 
 int General_template::checkHeroProjectile(Board &board_win,Hero &hero){
     int killed=0;
@@ -199,7 +207,10 @@ int General_template::checkHeroProjectile(Board &board_win,Hero &hero){
                     if(hero.projectile[i]->getx()==this->enemies[j]->getx() && hero.projectile[i]->gety()==this->enemies[j]->gety()){
                         this->enemies[j]->reduceHealthEnemy(hero.getDmg());
                         if(this->enemies[j]->getHp()<=0){
-                            //erase
+                           board_win.addAt(this->enemies[j]->gety(),this->enemies[j]->getx(),' ');
+                           removeEnemy(j);
+                           //this->enemies[this->enemies_num-1]->~Enemy();
+                           this->enemies[this->enemies_num-1]=NULL;
                            /* 
 
                            if(this->enemies[j]->getIcon()=='K'){

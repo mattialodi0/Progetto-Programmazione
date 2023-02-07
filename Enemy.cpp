@@ -2,8 +2,6 @@
 #include "Board.hpp"
 #include <cmath>
 
-const int herodamage = 3;
-
 Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch)
 {   
         difficulty=diff;
@@ -27,6 +25,12 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch
 
 
 }    
+
+Enemy::~Enemy()
+{
+}
+
+
 bool Enemy::inSight(int distancex,int distancey){
     return int(abs(sqrt(pow(distancex/2.5,2)+pow(distancey,2))))<this->sight_range;
 }
@@ -150,6 +154,6 @@ void Enemy:: setisFlyer(bool set){
 
 void Enemy::reduceHealthEnemy(int heroDamage)
 {
-    hp = hp - herodamage;
+    hp = hp - this->dmg;
 }
 

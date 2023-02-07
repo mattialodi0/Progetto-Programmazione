@@ -62,6 +62,7 @@ public:
     int drawFilledSquareLockedDoor(int start_y, int start_x, int height, int width, int i);
     int drawFilledSquareNoDoor(int start_y, int start_x, int height, int width, int i);
     int checkHeroProjectile(Board &board_win, Hero &hero);
+    void removeEnemy(int pos);
 };
 
 
