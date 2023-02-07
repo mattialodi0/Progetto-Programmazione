@@ -29,7 +29,7 @@ protected:
     int dmg=5;
 public:
     std::vector<Projectile*> projectile;
-    Enemy(Direction dir, int y, int x ,chtype ch,int diff);
+    Enemy(Direction dir, int y, int x ,chtype ch,int difficulty);
     ~Enemy();
     virtual void createProjectile(Board &board_win, Hero &hero, Direction dir) {}
     virtual void checkProjectile(Board &board_win, Hero &hero) {}

@@ -11,6 +11,7 @@
 const int BOARD_DIM = 25;					//prima era 17
 const int BOARD_ROWS = BOARD_DIM;
 const int BOARD_COLS = BOARD_DIM * 2.7;//2.5;
+const int difficultyRate=40;
 
 
 class Board
@@ -38,6 +39,7 @@ public:
 	void print(const char* str);
 	int getDifficulty();
 	void setDifficulty(int diff);
+	void refreshDifficulty(int score);
 
 
     chtype getInput();

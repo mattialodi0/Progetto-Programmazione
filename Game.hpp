@@ -32,6 +32,7 @@ protected:
     int artifactDmg=5;
     int artifactRange=5;
     int artifactHp=10;
+    int difficulty;
 public:
 	Game(int height, int width, int speed);
 	~Game();
@@ -41,6 +42,7 @@ public:
     void updateState();
     void updateScreen();
     void addScore();
+
 private:
     void redraw();
     void manageHeroMovement();

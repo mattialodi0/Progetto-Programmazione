@@ -107,7 +107,9 @@ void Game::processInput()
 		break;
 	case 'p':
 		game_board.setTimeout(-1);
-		menu_playing.menu();
+		if (menu_playing.menu()){
+			this->game_over = true;
+		}
 		game_board.setTimeout(old_timeout);
 	default:
 		hero.setDirection(def); // per non forzare movimento
@@ -145,9 +147,11 @@ void Game::updateState()
 
 void Game::updateScreen()
 {
-	//game_board.clear();
+	//game_board.clear();ù
+	menu_playing.refreshStat(hero,this->score);
 	redraw();
 	game_board.refreshBoard();
+	
 }
 
 void Game::redraw() // riaggiunge
@@ -230,9 +234,12 @@ void Game::manageHeroMovement()
 	}
 }
 
+
 void Game::manageDoor() {
+	game_board.refreshDifficulty(this->score);
 	if(current_room->isClear()) 
 	{
+		//updateDifficulty();
 		game_board.addAt(hero.gety(),hero.getx(),' ');
 		game_board.clearTaken();
 		game_board.clear();

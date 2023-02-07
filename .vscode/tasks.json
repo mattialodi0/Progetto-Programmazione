@@ -33,6 +33,7 @@
                 "Artifact.cpp",
                 "Turret.cpp",
                 "menu.cpp",
+                "Templates.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"
