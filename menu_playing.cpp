@@ -67,6 +67,13 @@ bool Menu_playing::menu(){
 
 }
 
+void Menu_playing::refreshStat(Hero &hero,int score){
+    //dmg=hero->dmg;
+    //range=hero->range;
+    //hp=hero->hp;
+    //score=score;
+}
+
 void Menu_playing::commands(){
 
     initscr();

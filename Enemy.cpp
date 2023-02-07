@@ -2,11 +2,8 @@
 #include "Board.hpp"
 #include <cmath>
 
-Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int diff):Character(dir,x,y,ch)
+Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int difficulty):Character(dir,x,y,ch)
 {   
-        difficulty=diff;
-
-
         isBoss=false;
          enemy_reload=9-difficulty;
          enemy_memory=7;
