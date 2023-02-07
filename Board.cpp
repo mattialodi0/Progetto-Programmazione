@@ -68,7 +68,7 @@ void Board::add(Drawable &drawable)
 void Board::add_A(Drawable &drawable) 
 {
 	//wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
-    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());		//mvwaddstr(board_win, drawable.gety(), drawable.getx(), "\u265E");
 	//wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
 }
 
