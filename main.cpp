@@ -1,6 +1,9 @@
 #include "Game.hpp"
 #include "menu.hpp"
 #include <iostream>
+#include <stdlib.h>
+#include <unistd.h>
+#include <locale.h>
 #include <ncurses.h>
 
 
@@ -8,6 +11,7 @@ const int refreshspeed = 100;   //velocità di refresh dello schermo
 
 int main()
 {
+    setlocale(LC_ALL, "");	//per stampare caratteri unicode
     // funzioni init di ncurses
 	initscr();
 	noecho();
