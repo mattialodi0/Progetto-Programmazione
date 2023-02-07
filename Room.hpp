@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "GeneralTemplate.hpp"  //room_templates/
+#include "Templates.hpp"  
 #include <cstdlib>
 #include <vector>
 
@@ -33,10 +33,10 @@ private:
 
     //funzioni per i nemici
     
+    void removeEnemy(int pos);
     void addEnemy(pEn enemy);
     //void damageEnemy(int damage);
     //void healEnemy(int healing);
-
 public:
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
@@ -56,6 +56,8 @@ public:
     void unlockDoor(int y, int x, Board &game_board);
 
     void removeArtifact(int pos);
+
+    int checkHeroProjectile(Board &board_win,Hero &hero);
 
 }; typedef Room* prm;
 

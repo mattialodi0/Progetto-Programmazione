@@ -1,4 +1,4 @@
-binaries = main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o Coward.o Boom.o Shooter.o Flyer.o Stalker.o Turret.o GeneralTemplate.o menu.o menu_playing.o
+binaries = main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Character.o Board.o Artifact.o Drunk.o Chaser.o Coward.o Boom.o Shooter.o Flyer.o Stalker.o Turret.o GeneralTemplate.o Templates.o menu.o menu_playing.o
 
 
 game: $(binaries)
@@ -63,6 +63,9 @@ Turret.o: Turret.cpp Turret.hpp
 
 GeneralTemplate.o: GeneralTemplate.cpp GeneralTemplate.hpp 
 	g++ -Iroom_objects -c GeneralTemplate.cpp
+
+Templates.o: Templates.cpp Templates.hpp 
+	g++ -Iroom_objects -c Templates.cpp
 
 menu.o: menu.cpp menu.hpp
 	g++ -c menu.cpp

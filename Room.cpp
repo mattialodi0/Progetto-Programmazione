@@ -469,12 +469,12 @@ void Room::drawDoors(Board &board) {
     }
 }
 
-/*void Room::removeEnemy(int pos) {
+void Room::removeEnemy(int pos) {
     pEn temp = room_template->enemies[pos];
     room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
     room_template->enemies[room_template->enemies_num-1] = temp;
     room_template->enemies_num--;
-}*/
+}
 
 
 void Room::addEnemy(pEn enemy) {
@@ -488,3 +488,68 @@ void Room::removeArtifact(int pos) {
     room_template->artifact[room_template->artifact_num-1] = temp;
     room_template->artifact_num--;
 }
+
+int Room::checkHeroProjectile(Board &board_win,Hero &hero){
+    int killed=0;
+    for (int i = 0; i < hero.projectile.size(); i++)
+	{   
+        
+		if (hero.projectile[i] != NULL){
+            hero.projectile[i]->setUptime(hero.projectile[i]->getUptime()+1);
+            if(!hero.projectile[i]->checkCollision(board_win)||hero.projectile[i]->getUptime()>hero.getRange()){
+                hero.projectile[i]->moveCharacter(board_win);
+                bool found=false;
+                int j=0;
+                while(j < this->room_template->enemies_num && !found ){
+                    if(this->room_template->enemies[j]!=NULL){
+                    if(hero.projectile[i]->getx()==this->room_template->enemies[j]->getx() && hero.projectile[i]->gety()==this->room_template->enemies[j]->gety()){
+                        this->room_template->enemies[j]->reduceHealthEnemy(hero.getDmg());
+                        if(this->room_template->enemies[j]->getHp()<=0){
+                           board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
+                           removeEnemy(j);
+                           //this->enemies[this->enemies_num-1]->~Enemy();
+                           this->room_template->enemies[this->room_template->enemies_num-1]=NULL;
+                           /* 
+
+                           if(this->enemies[j]->getIcon()=='K'){
+                            if((rand()%drop_chance) ==0){
+                                int k=0;
+                                while(this->artifact[k].getIcon()!=NULL){
+                                    k++;
+                                }
+                                k++;
+                                this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
+                            }
+                            }
+                            if(this->enemies[j]->getBoss()){
+                                int k=0;
+                                while(this->artifact[k].getIcon()!=NULL){
+                                    k++;
+                                }
+                                k++;
+                                this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
+                            }
+                            */
+                            killed++;
+                        }
+                        hero.projectile.erase(hero.projectile.begin()+i);
+                        found=true;
+                    }
+                    
+                    }
+                    j++;
+                }
+                if(!found){
+                    board_win.addAt(hero.projectile[i]->gety(),hero.projectile[i]->getx(),' ');
+                    hero.projectile.erase(hero.projectile.begin()+i);
+                    
+                }
+            }
+            else{  
+                        hero.projectile[i]->moveCharacter(board_win);
+                    
+                }
+            }
+        }
+        return killed;
+    }

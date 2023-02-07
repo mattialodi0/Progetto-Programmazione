@@ -127,7 +127,7 @@ void Game::updateState()
 	manageHeroMovement();
 	hero.setDirection(def);
 	int killed=0;
-	killed=current_room->room_template->checkHeroProjectile(game_board, hero);					//--> da mettere dentro a hero
+	killed=current_room->checkHeroProjectile(game_board, hero);					//--> da mettere dentro a hero
 
 	for(int i=0;i<killed;i++){
 		addScore();
