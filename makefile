@@ -2,16 +2,16 @@ binaries = main.o Time.o Room.o Projectile.o Hero.o Game.o Enemy.o Drawable.o Ch
 
 
 game: $(binaries)
-	g++ -o game $(binaries) -lncurses
+	g++ -o game $(binaries) -lncursesw
 
 main.o: main.cpp Game.hpp
-	g++ -c main.cpp -lncurses
+	g++ -c main.cpp -lncursesw
 
 Game.o: Game.cpp Game.hpp 
-	g++ -c Game.cpp -lncurses
+	g++ -c Game.cpp -lncursesw
 
 Room.o: Room.cpp Room.hpp Hero.hpp 
-	g++ -c Room.cpp -lncurses
+	g++ -c Room.cpp -lncursesw
 
 Time.o: Time.cpp Time.hpp
 	g++ -c Time.cpp
@@ -23,13 +23,13 @@ Hero.o: Hero.cpp Hero.hpp Character.hpp
 	g++ -c Hero.cpp -lncurses
 
 Drawable.o: Drawable.cpp Drawable.hpp 
-	g++ -c Drawable.cpp -lncurses
+	g++ -c Drawable.cpp -lncursesw
 
 Character.o: Character.cpp Character.hpp 
-	g++ -c Character.cpp -lncurses
+	g++ -c Character.cpp -lncursesw
 
 Board.o: Board.cpp Board.hpp 
-	g++ -c Board.cpp -lncurses
+	g++ -c Board.cpp -lncursesw
 
 Enemy.o: Enemy.cpp Enemy.hpp Hero.hpp
 	g++ -c Enemy.cpp 

@@ -421,7 +421,7 @@ void Room::drawEnemies(Board &board) {
 
 void Room::drawArtifact(Board &board) {
     for(int i = 0; i < room_template->artifact_num; i++) {
-        board.add_A(room_template->artifact[i]);
+        board.add(room_template->artifact[i]);
     }
 }
 
@@ -469,7 +469,12 @@ void Room::drawDoors(Board &board) {
     }
 }
 
-
+/*void Room::removeEnemy(int pos) {
+    pEn temp = room_template->enemies[pos];
+    room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
+    room_template->enemies[room_template->enemies_num-1] = temp;
+    room_template->enemies_num--;
+}*/
 
 
 void Room::addEnemy(pEn enemy) {
