@@ -6,7 +6,6 @@ using namespace std;
 class Menu_playing{
 
     public:
-        void menu();
-        void settings();
+        bool menu();
         void commands();
 };
