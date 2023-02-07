@@ -151,6 +151,10 @@ void Game::updateScreen()
 	menu_playing.refreshStat(hero,this->score);
 	redraw();
 	game_board.refreshBoard();
+	stat_board.refreshBoard();
+	stat_board.addBorder();
+	score_board.refreshBoard();
+	score_board.addBorder();
 	
 }
 
