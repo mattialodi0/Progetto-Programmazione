@@ -161,7 +161,7 @@ void Game::redraw() // riaggiunge
 }
 
 void Game::addScore(){
-	this->score=this->score + 10;
+	this->score=this->score + addedScore;
 }
 
 void Game::manageHeroMovement()

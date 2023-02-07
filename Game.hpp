@@ -10,6 +10,7 @@
 using namespace std;
 
 const int GameSpeed=2;
+const int addedScore=10;
 
 class Game
 {
