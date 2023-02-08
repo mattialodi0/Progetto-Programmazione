@@ -12,8 +12,6 @@ istruzioni d'installazione e uso;
 
 -caratteri unicode:    
 \u26BF chiave
-\uD83D\uDC89 siringa
-\uD83D\uDCA3 bomba
 \u26E8 scudo
 
 
@@ -74,3 +72,4 @@ Template:
 37  - boss stalker            1
 38  - boss drunk              1
 39  - croce                   6
+40  - labirinto               3

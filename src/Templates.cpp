@@ -1444,9 +1444,22 @@ Template_39::Template_39(int n,Board &game_board) : General_template(19,16,rand(
     }    
 }
 
-Template_40::Template_40(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1),1)
+Template_40::Template_40(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1),1)
 {
-    drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
+    int i = 0;
+    i = drawEmptySquare(HALF_ROWS-2, HALF_COLS-4, 5, 9, i);
+    i = drawHorizontalLine(8, 19, 35, i);
+    /*i = drawVerticalLine(3, 7, 41, i);
+    i = drawHorizontalLine(4, 5, 23, i);
+    i = drawVerticalLine(6, 3, 6, i);
+    i = drawHorizontalLine(10, 22, 7, i);
+    i = drawVerticalLine(2, 17, 36, i);
+    i = drawHorizontalLine(8, 18, 23, i);
+    i = drawVerticalLine(3, 13, 48, i);
+    i = drawHorizontalLine(5, 22, 7, i);
+    i = drawVerticalLine(5, 13, 53, i);
+    i = drawHorizontalLine(4, 6, 26, i);*/
+
 
     drawDoors();
     
