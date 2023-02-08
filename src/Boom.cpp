@@ -28,20 +28,25 @@ void Boom::createProjectile(Board &board_win, Hero &hero,Direction dir)
 
 void Boom::checkProjectile(Board &board_win, Hero &hero)
 {
+    bool existed=false;
     for (int i = 0; i < projectile.size(); i++)
 	{
 		if (projectile[i] != NULL){
+            existed=true;
             projectile[i]->setUptime((projectile[i]->getUptime())+1); 
             if( projectile[i]->getUptime()>getRange()||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon()&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' ')){
-                
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
                     hero.reduceHealthHero(getDmg());
                 }  
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
             }
+        
         }
     }
+    if(projectile.size()==0&&existed){
+            setHp(0);
+        }
 }
 
 void Boom::chooseDirection(Board &board_win, Hero &hero)
