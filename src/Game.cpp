@@ -230,7 +230,6 @@ void Game::manageHeroMovement()
 			}
 			break;
 		case 'Q':
-		    stat_board.print("Locked");
 			if(hero.useKey()) {
 				current_room->unlockDoor(hero.gety() + offsety, hero.getx() + offsetx, game_board);			
 			}
