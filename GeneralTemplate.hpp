@@ -10,8 +10,8 @@
 #include "Flyer.hpp"
 #include "Stalker.hpp"
 #include "Turret.hpp"
-#include "room_objects/Door.hpp"
-#include "room_objects/Wall.hpp"
+#include "Door.hpp"
+#include "Wall.hpp"
 
 #include <cstdlib>
 
@@ -62,5 +62,4 @@ public:
     int drawFilledSquareLockedDoor(int start_y, int start_x, int height, int width, int i);
     int drawFilledSquareNoDoor(int start_y, int start_x, int height, int width, int i);
     int checkHeroProjectile(Board &board_win, Hero &hero);
-    void removeEnemy(int pos);
 };

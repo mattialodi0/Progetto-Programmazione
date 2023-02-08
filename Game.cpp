@@ -350,7 +350,7 @@ void Game::updateIndex(prm room) {
 			room_index[i]->west = room;		
 	}
 }
-
+/*
 bool Game::searchIndexNorth(prm room) {
     //bool f = false;
     for(int i = 0; i < room_index.size(); i++)
@@ -391,4 +391,4 @@ bool Game::searchIndexEst(prm room) {
             f  = true;
 	}
     return f;
-}
+}*/

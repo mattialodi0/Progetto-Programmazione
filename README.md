@@ -16,7 +16,8 @@ nemico che lascia delle piccole bombe
 -stanze:  
 *suggerite nuovi template che ho finito le idee*  
 rimettere la condizione per cambiare stanza    
-#non vanno le chiavi
+### non vanno le chiavi    
+### cosa ci fa my_xp nei template
 
 -menu:  
 chiusura corretta delle finestre    

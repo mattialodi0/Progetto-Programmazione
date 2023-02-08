@@ -1,4 +1,4 @@
-#include "../Drawable.hpp"
+#include "Drawable.hpp"
 
 class Wall : public Drawable {
 public:

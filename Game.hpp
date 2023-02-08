@@ -61,10 +61,10 @@ private:
     void makeEstRoom();
 
 // funzioni per l'indice
-	bool searchIndexNorth(prm room);
+	/*bool searchIndexNorth(prm room);
 	bool searchIndexSouth(prm room);
 	bool searchIndexWest(prm room);
-	bool searchIndexEst(prm room);
+	bool searchIndexEst(prm room);*/
 
     void addRoomToIndex(prm room);
     void updateIndex(prm room);

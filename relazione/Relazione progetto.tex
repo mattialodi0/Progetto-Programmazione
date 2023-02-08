@@ -26,18 +26,21 @@
     \item Menu principale
     \item Menu di pausa
 \end{itemize}
+File: Menu, Menu\_playing
  
 \subsection*{Elia}
 \begin{itemize}
     \item Personaggio 
     \item Nemici
 \end{itemize}
+File: Boom, Character, Chaser, Coward, Drunk, Enemy, Flyer, Hero, Projectile, Shooter, Stalker, Time, Turret
 
 \subsection*{Matteo}
 \begin{itemize}
     \item Artefatti
     \item Sistema di combattimento
 \end{itemize}
+File: Artifact, 
 
 \subsection*{Mattia}
 \begin{itemize}
@@ -45,6 +48,7 @@
     \item Strutture dati per la loro memorizzazione
     \item Grafica
 \end{itemize}
+File: Board, Templates, GeneralTemplate, Room, Door, Wall
 
 \newpage
 \section*{Scelte implementative}
@@ -53,8 +57,18 @@ La classe Menu gestisce il menù principale, mentre la classe Game si occupa di 
 % brutto come è scritto
 Game comprende 3 finestre (per la grafica delle stanze, delle staistiche del personaggio e per il punteggio), il personaggio (Hero), l'indice delle stanze e un puntatore alla stanza corrente.
 
-\subsection*{Il Personaggio}
 \subsection*{Le Stanze}
+Ogni stanza contiene un puntatore alle stanze con cui confina che sono già state esplorate, in modo da potersi muovere in una di queste senza visitare l'indice; delle coordinate x e y per identificarla univocamente all'interno della mappa, dei flag per gestire lo stato di ogni porta (aperta/chiusa presente/non presente), e un template. Il template contiene i muri, le porte, i nemici e gli artefatti.
+Le stanze sono memorizzate in una struttura dati di tipo vettore, chiamata indice, in modo da potere essere aggiunte gradualmente esplorando la mappa; l'indice viene usato solo quando si crea una nuova stanza per avere delle porte coerenti con il resto della mappa.
+In questo modo il cambio di stanza quando si torna in una stanza già visitata è molto rapido, mentre è necessariamente più lento quando se ne visita una nuova. 
+
+\subsection*{I Tempalte}
+Per il contenuto delle stanze si usa una classe che memorizza il contenuto della stanza, detta template, ce ne sono 39, di diverse rarità e ogni volta che si crea una nuova stanza, gliene ne viene asseganto uno.
+Per potere essere interscambiabili i template sono tutti sottoclassi di GeneralTemplate e sono memorizzati all'interno della stanza come puntatori.
+I muri, le porte, i nemici e gli artefatti sono tutti memorizzati in array dinamici in modo da potere variare in numero e contenuto per ogni stanza, anche tra quelle con lo stesso template.
+Il file GeneralTemplate.cpp contiene delle funzioni per aggiungere alle stanze, insiemi di muri o porte in modo che abbiano una certa forma.
+
+\subsection*{Il Personaggio}
 \subsection*{I Nemici}
 \subsection*{Gli artefatti}
 \subsection*{Il sistema di combattimento}
