@@ -10,9 +10,9 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
     //per creare proiettili
      void Stalker::createProjectile(Board &board_win, Hero &hero, Direction dir)
      {
-                 if(this->reload<=0){
-    this->reload=enemy_reload;
-    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+                 if(getReload()<=0){
+    setReload(getMaxReload());
+    Projectile *new_proj = new Projectile(dir,getx(),gety(), 'o');
     projectile.push_back(new_proj);
     switch(dir){
     case up:
@@ -29,9 +29,6 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
     break;
     }
     }
-    else{
-        this->reload--;
-    }
      }
      //per movimento proiettili e check di colpito o out of range
           void Stalker::checkProjectile(Board &board_win, Hero &hero){
@@ -39,10 +36,10 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
 		{
 			if (projectile[i] != NULL){
                 projectile[i]->setUptime(projectile[i]->getUptime()+1);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range){
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>getRange()){
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            hero.reduceHealthHero(this->dmg);
+            hero.reduceHealthHero(getDmg());
             projectile.erase(projectile.begin()+i);
         } 
         else{
@@ -53,7 +50,7 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
         else{
             
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealthHero(this->dmg);
+                    hero.reduceHealthHero(getDmg());
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
                     }
@@ -70,60 +67,60 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
     {
         setDirection(def);
         
-    if(this->reload<=0){
+    if(getReload()<=0){
          int distancex, distancey;
-        distancex = this->x - hero.getx();
-        distancey = this->y - hero.gety();
+        distancex = getx() - hero.getx();
+        distancey = gety() - hero.gety();
          if(hasLos(board_win, hero) && inSight(distancex,distancey)){
             this->mem=enemy_memory;
             }
             else{
-                this->setIcon('Z');
+                setIcon('Z');
             }
         if (this->mem>0)
         {
         if(distancey==0){
             if(distancex>0){
-              if(abs(distancex)<enemy_range){
-                    this->setIcon('Z');
+              if(abs(distancex)<getRange()){
+                    setIcon('Z');
                     createProjectile(board_win,hero,sx);
                     }
                     else{
                         setDirection(sx);
-                        this->setIcon(' ');
+                        setIcon(' ');
                     }
             }
             else{
-               if(abs(distancex)<enemy_range){
-                    this->setIcon('Z');
+               if(abs(distancex)<getRange()){
+                    setIcon('Z');
                     createProjectile(board_win,hero,dx);
                     }
                     else{
                         setDirection(dx);
-                        this->setIcon(' ');
+                        setIcon(' ');
                     }
             }
         }
         else{
             if(distancex==0){
                 if(distancey>0){
-                    if(abs(distancey)<enemy_range){
-                        this->setIcon('Z');
+                    if(abs(distancey)<getRange()){
+                        setIcon('Z');
                     createProjectile(board_win,hero,up);
                     }
                     else{
                         setDirection(up);
-                        this->setIcon(' ');
+                        setIcon(' ');
                     }
                 }
                 else{
-                    if(abs(distancey)<enemy_range){
-                        this->setIcon('Z');
+                    if(abs(distancey)<getRange()){
+                        setIcon('Z');
                     createProjectile(board_win,hero,down);
                     }
                     else{
                         setDirection(down);
-                        this->setIcon(' ');
+                        setIcon(' ');
                     }
                 }
             }
@@ -134,13 +131,13 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
                 if (distancex < 0)
                 {
                     setDirection(dx);
-                    this->setIcon(' ');
+                    setIcon(' ');
                 }
                 else
                 {
                     if(distancex>0){
                     setDirection(sx);
-                    this->setIcon(' ');
+                    setIcon(' ');
                     }
                 }
             }
@@ -151,13 +148,13 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
                     if (distancey < 0)
                     {
                         setDirection(down);
-                        this->setIcon(' ');
+                        setIcon(' ');
                     }
                     else
                     {
                         if(distancey>0){
                         setDirection(up);
-                        this->setIcon(' ');
+                        setIcon(' ');
                         }
                     }
                 }
@@ -167,8 +164,8 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
             }
         }
         else{
-            this->reload--;
-            this->setIcon('Z');
+            dimReload();
+            setIcon('Z');
             setDirection(def);
             }
 

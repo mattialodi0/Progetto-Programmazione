@@ -340,6 +340,41 @@ void Room::lockEstDoor() {
     this->room_template->doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
 }
 
+int Room::checkEnemiesHp(Board &board_win){
+    int killed=0;
+
+for(int j=0;j<room_template->enemies_num;j++){
+if(this->room_template->enemies[j]->getHp()<=0){
+     board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
+
+                            if(this->room_template->enemies[j]->checkBoss()){
+                                int k=0;
+                                while(this->room_template->artifact[k].getIcon()!=NULL){
+                                    k++;
+                                }
+                                k++;
+                                this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
+                            }
+                            else{
+                           if(this->room_template->enemies[j]->getIcon()=='K'){
+                            if((rand()%drop_chance) ==0){
+                                int k=0;
+                                while(this->room_template->artifact[k].getIcon()!=NULL){
+                                    k++;
+                                }
+                                k++;
+                                this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
+                            }
+                            }
+                            }
+                            
+                           removeEnemy(j);
+                            killed++;
+}
+                        }
+return killed;
+}
+
 /* Muove i nemici */
 void Room::moveEnemies(Board &board, Hero &hero) {
     for(int i = 0; i < room_template->enemies_num; i++) {   
@@ -473,6 +508,7 @@ void Room::removeEnemy(int pos) {
     pEn temp = room_template->enemies[pos];
     room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
     room_template->enemies[room_template->enemies_num-1] = temp;
+
     room_template->enemies_num--;
 }
 
@@ -489,8 +525,7 @@ void Room::removeArtifact(int pos) {
     room_template->artifact_num--;
 }
 
-int Room::checkHeroProjectile(Board &board_win,Hero &hero){
-    int killed=0;
+void Room::checkHeroProjectile(Board &board_win,Hero &hero){
     for (int i = 0; i < hero.projectile.size(); i++)
 	{   
         
@@ -503,35 +538,7 @@ int Room::checkHeroProjectile(Board &board_win,Hero &hero){
                 while(j < this->room_template->enemies_num && !found ){
                     if(this->room_template->enemies[j]!=NULL){
                     if(hero.projectile[i]->getx()==this->room_template->enemies[j]->getx() && hero.projectile[i]->gety()==this->room_template->enemies[j]->gety()){
-                        this->room_template->enemies[j]->reduceHealthEnemy(hero.getDmg());
-                        if(this->room_template->enemies[j]->getHp()<=0){
-                           board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
-                           removeEnemy(j);
-                           //this->enemies[this->enemies_num-1]->~Enemy();
-                           this->room_template->enemies[this->room_template->enemies_num-1]=NULL;
-                           /* 
-
-                           if(this->enemies[j]->getIcon()=='K'){
-                            if((rand()%drop_chance) ==0){
-                                int k=0;
-                                while(this->artifact[k].getIcon()!=NULL){
-                                    k++;
-                                }
-                                k++;
-                                this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
-                            }
-                            }
-                            if(this->enemies[j]->getBoss()){
-                                int k=0;
-                                while(this->artifact[k].getIcon()!=NULL){
-                                    k++;
-                                }
-                                k++;
-                                this->artifact[k]=Artifact(this->enemies[j]->gety(),this->enemies[j]->getx());
-                            }
-                            */
-                            killed++;
-                        }
+                        this->room_template->enemies[j]->reduceHealth(hero.getDmg());
                         hero.projectile.erase(hero.projectile.begin()+i);
                         found=true;
                     }
@@ -551,5 +558,4 @@ int Room::checkHeroProjectile(Board &board_win,Hero &hero){
                 }
             }
         }
-        return killed;
     }

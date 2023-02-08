@@ -2,16 +2,20 @@
 
 Coward::Coward():Enemy(def,11,11,'K',0)
 {
+    setMaxReload(5);
+    setRange(3);
 }
 Coward::Coward(int y, int x,int diff):Enemy(def,y,x,'K',diff)
 {
+     setMaxReload(5);
+     setRange(3);
 }
 
 
 void Coward::createProjectile(Board &board_win, Hero &hero, Direction dir) 
 {
     if(dir!=def){
-    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+    Projectile *new_proj = new Projectile(dir,getx(),gety(), 'o');
     projectile.push_back(new_proj);
     switch(dir){
     case down:
@@ -48,13 +52,13 @@ void Coward::checkProjectile(Board &board_win, Hero &hero)
 	{
 		if (projectile[i] != NULL){
             projectile[i]->setUptime((projectile[i]->getUptime())+1);            
-            if( projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon()&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' ')){
+            if( projectile[i]->getUptime()>getRange()||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon()&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' ')){
                 
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealthHero(this->dmg);
+                    hero.reduceHealthHero(getDmg());
                 }  
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
-                if(projectile[i]->getUptime()>melee_range && projectile[i]->getDirection()!=def){
+                if(projectile[i]->getUptime()>getRange() && projectile[i]->getDirection()!=def){
                   createProjectile(board_win,hero,def); 
                 }  
                 projectile.erase(projectile.begin()+i);
@@ -65,8 +69,8 @@ void Coward::checkProjectile(Board &board_win, Hero &hero)
 void Coward::chooseDirection(Board &board_win, Hero &hero)
 {       int i = 0;
         int distancex, distancey;
-        distancex = this->x - hero.getx();
-        distancey = this->y - hero.gety();
+        distancex = getx() - hero.getx();
+        distancey = gety() - hero.gety();
             if(hasLos(board_win, hero) && inSight(distancex,distancey)){
             this->mem=enemy_memory;
             }
@@ -90,13 +94,13 @@ void Coward::chooseDirection(Board &board_win, Hero &hero)
                     }
                 }
             }
-            if(this->ammo>0&&this->reload<=0){
-                this->reload=bomb_reload;
+            if(this->ammo>0&&getReload()<=0){
+                setReload(getMaxReload());
                 this->ammo--;
-                createProjectile(board_win,hero,this->getDirection());
+                createProjectile(board_win,hero,getDirection());
 
             }
         }
         this->mem--;
-        this->reload--;
+        dimReload();
 }

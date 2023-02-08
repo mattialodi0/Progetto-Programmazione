@@ -46,7 +46,7 @@ void Game::setGameOver() {
 }
 
 void Game::processInput()
-{	hero.minusReload();
+{	hero.dimReload();
 	chtype input = game_board.getInput();
 	int old_timeout = game_board.getTimeout();
 	switch (input)
@@ -103,12 +103,12 @@ void Game::processInput()
 		hero.useAbility(); 	//abilità speciale della classe
 		break;
 	case 'o':
-		this->game_over = true;
+		setGameOver();
 		break;
 	case 'p':
 		game_board.setTimeout(-1);
 		if (menu_playing.menu()){
-			this->game_over = true;
+			setGameOver();
 		}
 		game_board.setTimeout(old_timeout);
 	default:
@@ -123,13 +123,14 @@ void Game::updateState()
 	//game_board.remove(hero);
 	
 	if(hero.death()){
-		this->game_over = true;
+		setGameOver();
 	}
 
 	manageHeroMovement();
 	hero.setDirection(def);
 	int killed=0;
-	killed=current_room->checkHeroProjectile(game_board, hero);					//--> da mettere dentro a hero
+	current_room->checkHeroProjectile(game_board, hero);					//--> da mettere dentro a hero
+	killed=current_room->checkEnemiesHp(game_board);
 
 	for(int i=0;i<killed;i++){
 		addScore();
@@ -148,7 +149,7 @@ void Game::updateState()
 void Game::updateScreen()
 {
 	//game_board.clear();ù
-	menu_playing.refreshStat(hero,this->score);
+	menu_playing.refreshStat(hero,getScore());
 	redraw();
 	game_board.refreshBoard();
 	stat_board.refreshBoard();
@@ -162,6 +163,10 @@ void Game::redraw() // riaggiunge
 {
 	current_room->drawRoom(game_board);
 	game_board.add(hero);
+}
+
+int Game::getScore(){
+	return this->score;
 }
 
 void Game::addScore(){
@@ -213,7 +218,7 @@ void Game::manageHeroMovement()
 		break;	
 	case 'J':
 		hero.moveCharacter(game_board);
-		hero.addKey();
+		hero.addKey(1);
 		hero.heal(artifactHeal);
 		current_room->removeArtifact(0);
 		break;	
@@ -240,7 +245,7 @@ void Game::manageHeroMovement()
 
 
 void Game::manageDoor() {
-	game_board.refreshDifficulty(this->score);
+	game_board.refreshDifficulty(getScore());
 	if(current_room->isClear()) 
 	{
 		//updateDifficulty();

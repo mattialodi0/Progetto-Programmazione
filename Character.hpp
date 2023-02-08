@@ -12,11 +12,14 @@ protected:
 	int ac;
 	int dmg;
 	int speed;
-	int reload_time;
+	int reload;
+	int maxReload;
 	int range;
 	int difficulty;
-public:
 	int hp;
+	int maxHp;
+public:
+	
 	Character();
 	Character(Direction dir, int x, int y, chtype ch);
 
@@ -26,4 +29,18 @@ public:
 	Direction getRandomDirection();
 	bool checkCollision(Board &board_win);
 	bool checkFlyerCollision(Board &board_win);
+	void reduceHealth(int Damage);
+	void setHp (int hp);
+    int getHp ();
+	void setRange (int hp);
+    int getRange ();
+	void setDmg (int hp);
+    int getDmg ();
+	void setMaxHp (int maxHp);
+    int getMaxHp ();
+	void setReload (int reload);
+	void dimReload();
+    int getReload ();
+	void setMaxReload (int reload);
+    int getMaxReload ();
 };

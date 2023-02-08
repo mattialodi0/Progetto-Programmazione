@@ -5,20 +5,18 @@
 Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int difficulty):Character(dir,x,y,ch)
 {   
         isBoss=false;
-         enemy_reload=9-difficulty;
-         enemy_memory=7;
-         enemy_range=15+(2*difficulty);
-         melee_range=3;
-         melee_enemy_reload=9-difficulty;
+         setMaxReload(9-difficulty);
+         setReload(0);
+         setRange(10+(2*difficulty));
          sight_range= 20+difficulty;
+         boom_range=2  +int(difficulty/2);
          default_coord_x= 10;
          default_coord_y=10;
-         boom_range=2  +int(difficulty/2);
          mem=0;
-         reload=0;
+         enemy_memory=7;
          timer=7-int(difficulty/2);
-         hp=30+(10*difficulty);
-         dmg=5+difficulty;
+         setHp(30+(10*difficulty));
+         setDmg(5+difficulty);
 
 
 }    
@@ -34,9 +32,10 @@ bool Enemy::inSight(int distancex,int distancey){
 
 void Enemy::makeBoss(int hp_multiplier,int range_multiplier, int dmg_multiplier){
     this->isBoss=true;
-    this->hp=this->hp*hp_multiplier;
-    this->range=this->range*range_multiplier;
-    this->dmg=this->dmg*dmg_multiplier;
+    setMaxHp(getMaxHp()*hp_multiplier);
+    setHp(getHp()*hp_multiplier);
+    setRange(getRange()*range_multiplier);
+    setDmg(getDmg()*dmg_multiplier);
 }
 
 bool Enemy::checkBoss(){
@@ -48,8 +47,8 @@ bool Enemy::hasLos(Board &board_win, Hero &hero)
     
     int i=0,k=0, maxiter=0;
     int distancex, distancey;
-    distancex = this->x - hero.getx();
-    distancey = this->y - hero.gety();
+    distancex = getx() - hero.getx();
+    distancey = gety() - hero.gety();
 
     do{ 
         maxiter++;
@@ -81,26 +80,24 @@ bool Enemy::hasLos(Board &board_win, Hero &hero)
             }
         }
 }
-    while((board_win.getCharAt(this->y+i,this->x+k)==' '||board_win.getCharAt(this->y+i,this->x+k)=='O')&& maxiter<sight_range+1);
+    while((board_win.getCharAt(gety()+i,getx()+k)==' '||board_win.getCharAt(gety()+i,getx()+k)=='O')&& maxiter<sight_range+1);
 
        
-if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
+if(board_win.getCharAt(gety()+i,getx()+k)==hero.getIcon()){
     return true;
 }
         return false;
 }
 
-int Enemy::getHp(){
-    return this->hp;
-}
+
 
 bool Enemy::flyerHasLos(Board &board_win, Hero &hero)
 {
     
     int i=0,k=0, maxiter=0;
     int distancex, distancey;
-    distancex = this->x - hero.getx();
-    distancey = this->y - hero.gety();
+    distancex = getx() - hero.getx();
+    distancey = gety() - hero.gety();
 
     do{ 
         maxiter++;
@@ -132,10 +129,10 @@ bool Enemy::flyerHasLos(Board &board_win, Hero &hero)
             }
         }
 }
-    while((board_win.getCharAt(this->y+i,this->x+k)==' '||board_win.getCharAt(this->y+i,this->x+k)=='O'||board_win.getCharAt(this->y+i,this->x+k)=='X')&& maxiter<sight_range+1);
+    while((board_win.getCharAt(gety()+i,getx()+k)==' '||board_win.getCharAt(gety()+i,getx()+k)=='O'||board_win.getCharAt(gety()+i,getx()+k)=='X')&& maxiter<sight_range+1);
 
        
-if(board_win.getCharAt(this->y+i,this->x+k)==hero.getIcon()){
+if(board_win.getCharAt(gety()+i,getx()+k)==hero.getIcon()){
     return true;
 }
 
@@ -147,10 +144,5 @@ bool Enemy:: getisFlyer(){
 }
 void Enemy:: setisFlyer(bool set){
     this->isFlyer=set;
-}
-
-void Enemy::reduceHealthEnemy(int heroDamage)
-{
-    hp = hp - this->dmg;
 }
 

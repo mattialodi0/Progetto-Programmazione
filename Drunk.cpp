@@ -2,19 +2,20 @@
 
 Drunk::Drunk():Enemy(def,13,13,'D',0)
 {
-	
+	setRange(3);
 }
 Drunk::Drunk(int y, int x,int diff):Enemy(def,y,x,'D',diff)
 {
+    setRange(3);
 }
 
 
 void Drunk::createProjectile(Board &board_win, Hero &hero, Direction dir) 
 {
     
-    if(this->reload<=0){
-    this->reload=enemy_reload;
-    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+    if(getReload()<=0){
+    setReload(getMaxReload());
+    Projectile *new_proj = new Projectile(dir,getx(),gety(), 'o');
     projectile.push_back(new_proj); 
     switch(dir){
     case up:
@@ -32,7 +33,7 @@ void Drunk::createProjectile(Board &board_win, Hero &hero, Direction dir)
     }
     }
     else{
-        this->reload--;
+        dimReload();
     }
 }
 
@@ -43,10 +44,10 @@ void Drunk::checkProjectile(Board &board_win, Hero &hero)
 		if (projectile[i] != NULL){
             projectile[i]->setUptime((projectile[i]->getUptime())+1);
             
-            if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
+            if(!projectile[i]->checkCollision(board_win)|| projectile[i]->getUptime()>getRange()||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' '&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon())){
                 projectile[i]->moveCharacter(board_win);
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealthHero(this->dmg);
+                    hero.reduceHealthHero(getDmg());
                 }    
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                  projectile.erase(projectile.begin()+i);

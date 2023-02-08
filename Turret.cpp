@@ -10,8 +10,8 @@ Turret::Turret():Enemy(def,25,25,'T',0)
     //per creare proiettili
      void Turret::createProjectile(Board &board_win, Hero &hero, Direction dir)
      {
-        if(this->reload+5<=0){
-    this->reload=enemy_reload;
+        if(getReload()+5<=0){
+    setReload(getMaxReload());
     for(int i=0;i<4;i++){
         switch(i){
     case 0:
@@ -27,7 +27,7 @@ Turret::Turret():Enemy(def,25,25,'T',0)
     dir=sx;
     break;   
         }
-    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+    Projectile *new_proj = new Projectile(dir,getx(),gety(), 'o');
     projectile.push_back(new_proj);
     switch(dir){
     case up:
@@ -46,7 +46,7 @@ Turret::Turret():Enemy(def,25,25,'T',0)
     }
     }
     else{
-        this->reload--;
+        dimReload();
     }
      }
      //per movimento proiettili e check di colpito o out of range
@@ -55,10 +55,10 @@ Turret::Turret():Enemy(def,25,25,'T',0)
 		{
 			if (projectile[i] != NULL){
                 projectile[i]->setUptime(projectile[i]->getUptime()+1);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range){
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>getRange()){
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            hero.reduceHealthHero(this->dmg);
+            hero.reduceHealthHero(getDmg());
             projectile.erase(projectile.begin()+i);
         } 
         else{
@@ -69,7 +69,7 @@ Turret::Turret():Enemy(def,25,25,'T',0)
         else{
             
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealthHero(this->dmg);
+                    hero.reduceHealthHero(getDmg());
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
                     }

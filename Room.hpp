@@ -32,7 +32,6 @@ private:
     void drawDoors(Board &board);
 
     //funzioni per i nemici
-    
     void removeEnemy(int pos);
     void addEnemy(pEn enemy);
     //void damageEnemy(int damage);
@@ -51,13 +50,15 @@ public:
 
     void moveEnemies(Board &board, Hero &hero);
 
+    int checkEnemiesHp(Board &board_win);
+
     bool isClear();
 
     void unlockDoor(int y, int x, Board &game_board);
 
     void removeArtifact(int pos);
 
-    int checkHeroProjectile(Board &board_win,Hero &hero);
+    void checkHeroProjectile(Board &board_win,Hero &hero);
 
 }; typedef Room* prm;
 

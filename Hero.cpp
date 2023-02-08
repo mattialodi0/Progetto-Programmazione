@@ -11,7 +11,7 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     this->key = 1;
     this->maxHp=30;
     this->hp = this->maxHp;
-    this->hero_reload_time = 8;
+    this->maxReload = 8;
     this->range = 15;
     this->speed = 1;
     this->dmg = 15;
@@ -24,7 +24,8 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     this->key = 1;
     this->maxHp=30;
     this->hp = this->maxHp;
-    this->hero_reload_time = 8;
+    this->maxReload=8;
+    this->reload=maxReload;
     this->range = 15;
     this->speed = 1;
     this->dmg = 15;
@@ -45,7 +46,8 @@ void Hero::tankClass()
     this->ac = 3;
     this->dmg = 2;
     this->speed = 1;
-    this->reload_time=3;
+    this->maxReload=3;
+    this->reload=maxReload;
     this->range = 2;
 }
 
@@ -56,7 +58,8 @@ void Hero::rogueClass()
     this->ac = 2;
     this->dmg = 3;
     this->speed = 4;
-    this->reload_time=2;
+    this->maxReload=2;
+    this->reload=maxReload;
     this->range = 2;
 }
 
@@ -67,7 +70,8 @@ void Hero::rangerClass()
     this->ac = 1;
     this->dmg = 1;
     this->speed = 3;
-    this->reload_time=1;
+    this->maxReload=1;
+    this->reload=maxReload;
     this->range = 10;
 }
 
@@ -78,7 +82,8 @@ void Hero::mageClass()
     this->ac = 1;
     this->dmg = 3;
     this->speed = 2;
-    this->reload_time=4;
+    this->maxReload=4;
+    this->reload=maxReload;
     this->range = 8;
 }
 
@@ -88,9 +93,9 @@ void Hero::useAbility()
 
 void Hero::attack(Board &board_win, Direction dir) 
 {
-    if(this->reload<=0){
-        this->reload=hero_reload_time;
-        Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+    if(getReload()<=0){
+        setReload(getMaxReload());
+        Projectile *new_proj = new Projectile(dir,getx(),gety(), 'o');
         projectile.push_back(new_proj); 
         switch(dir){
             case up:
@@ -109,97 +114,89 @@ void Hero::attack(Board &board_win, Direction dir)
     }
 }
 
-int Hero::getReload(){
-    return this->reload;
-}
-void Hero::minusReload(){
-    this->reload--;
-
-}
 //per movimento proiettili e check di colpito o out of range
 
 
 void Hero::centerHero(Direction dir) {
 	switch(dir){
     case(sx):
-        this->x=BOARD_COLS-2;
-        this->y=BOARD_ROWS/2;
+        setx(BOARD_COLS-2);
+        sety(BOARD_ROWS/2);
         break;
     case (dx):
-        this->x=1;
-        this->y=BOARD_ROWS/2;
+        setx(1);
+        sety(BOARD_ROWS/2);
         break;
     case (up):
-        this->x=herostartx;
-        this->y=BOARD_ROWS-2;
+        setx(herostartx);
+        sety(BOARD_ROWS-2);
         break;
     case (down):
-        this->x=herostartx;
-    	this->y=1;
+        setx(herostartx);
+    	sety(1);
         break;
     default:
-        this->x=herostartx;
-    	this->y=herostarty;
+        setx(herostartx);
+    	sety(herostarty);
         break;
     }
 }
 
 bool Hero::useKey()
 {
-    if(this->key >= 1)
+    if(getKey() >= 1)
     {
-        this->key--;
+        addKey(-1);
         return true;
     }
     else return false;
 }
 
-void Hero::addKey(){
-    this->key++;
+void Hero::setKey(int key){
+    this->key=key;
 }
 
-int Hero::getRange()
-{
-    return this->range;
+int Hero::getKey(){
+    return this->key;
 }
 
-int Hero::getDmg()
-{
-    return this->dmg;
+void Hero::addKey(int key){
+    setKey(getKey()+key);
 }
+
 
 void Hero::heal(int artifactHp){
-    if(this->hp+artifactHp<=this->maxHp){
-    this->hp=this->hp+artifactHp;
+    if(getHp()+artifactHp<=getMaxHp()){
+    setHp(getHp()+artifactHp);
     }
     else{
-        this->hp=this->maxHp;
+        setHp(getMaxHp());
         }
 }
 
 void Hero::increaseHealth(int artifactHp)
 {
-    this->maxHp = this->maxHp + artifactHp;
+    setMaxHp(getMaxHp()+artifactHp);
 }
 
 void Hero::increaseDamage(int artifactDmg)
 {
-    this->dmg = this->dmg + artifactDmg;
+    setDmg(getDmg()+artifactDmg);
 }
 
 void Hero::increaseRange(int artifactRange)
 {
-    this->range = this->range + artifactRange;
+    setRange(getRange()+artifactRange);
 }
 
 void Hero::reduceHealthHero(int enemiesDamage)
 {
-    this->hp = this->hp -enemiesDamage;
+    setHp(getHp()-enemiesDamage);
 }
 
 bool Hero::death()
 {
-    if(this->hp <= 0){
+    if(getHp() <= 0){
         return true;
     }
     return false;

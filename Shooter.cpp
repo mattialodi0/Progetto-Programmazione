@@ -10,9 +10,9 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
     //per creare proiettili
      void Shooter::createProjectile(Board &board_win, Hero &hero, Direction dir)
      {
-        if(this->reload<=0){
-    this->reload=enemy_reload;
-    Projectile *new_proj = new Projectile(dir,this->getx(),this->gety(), 'o');
+        if(getReload()<=0){
+    setReload(getMaxReload());
+    Projectile *new_proj = new Projectile(dir,getx(),gety(), 'o');
     projectile.push_back(new_proj);
     switch(dir){
     case up:
@@ -29,9 +29,6 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
     break;
     }
     }
-    else{
-        this->reload--;
-    }
      }
      //per movimento proiettili e check di colpito o out of range
      void Shooter::checkProjectile(Board &board_win, Hero &hero){
@@ -39,10 +36,10 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
 		{
 			if (projectile[i] != NULL){
                 projectile[i]->setUptime(projectile[i]->getUptime()+1);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>enemy_range){
+        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>getRange()){
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-            hero.reduceHealthHero(this->dmg);
+            hero.reduceHealthHero(getDmg());
             projectile.erase(projectile.begin()+i);
         } 
         else{
@@ -53,7 +50,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         else{
             
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealthHero(this->dmg);
+                    hero.reduceHealthHero(getDmg());
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
                     }
@@ -70,10 +67,10 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
     {
         setDirection(def);
         
-    if(this->reload<=0){
+    if(getReload()<=0){
          int distancex, distancey;
-        distancex = this->x - hero.getx();
-        distancey = this->y - hero.gety();
+        distancex = getx() - hero.getx();
+        distancey = gety() - hero.gety();
          if(hasLos(board_win, hero) && inSight(distancex,distancey)){
             this->mem=enemy_memory;
             }
@@ -81,7 +78,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         {
         if(distancey==0){
             if(distancex>0){
-              if(abs(distancex)<enemy_range){
+              if(abs(distancex)<getRange()){
                     setDirection(def);
                     createProjectile(board_win,hero,sx);
                     }
@@ -90,7 +87,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
                     }
             }
             else{
-               if(abs(distancex)<enemy_range){
+               if(abs(distancex)<getRange()){
                 setDirection(def);
                     createProjectile(board_win,hero,dx);
                     }
@@ -102,7 +99,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
         else{
             if(distancex==0){
                 if(distancey>0){
-                    if(abs(distancey)<enemy_range){
+                    if(abs(distancey)<getRange()){
                         setDirection(def);
                     createProjectile(board_win,hero,up);
                     }
@@ -111,7 +108,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
                     }
                 }
                 else{
-                    if(abs(distancey)<enemy_range){
+                    if(abs(distancey)<getRange()){
                         setDirection(def);
                     createProjectile(board_win,hero,down);
                     }
@@ -156,7 +153,7 @@ Shooter::Shooter():Enemy(def,18,18,'S',0)
             }
         }
         else{
-            this->reload--;
+            dimReload();
             setDirection(def);
             }
 

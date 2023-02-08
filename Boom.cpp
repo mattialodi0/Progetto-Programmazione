@@ -2,21 +2,23 @@
 
 Boom::Boom():Enemy(def,17,17,'B',0)
 {
+    setRange(3);
 }
 
 Boom::Boom(int y, int x,int diff):Enemy(def,y,x,'B',diff)
 {
+    setRange(3);
 }
 
 void Boom::createProjectile(Board &board_win, Hero &hero,Direction dir)
 {
-        this->setIcon(' ');
-        board_win.addAt(this->y,this->x,' ');
+        setIcon(' ');
+        board_win.addAt(gety(),getx(),' ');
  for(int j=0;j<boom_range*2;j++){
         for(int i=0;i<boom_range*5;i++){
-            if(board_win.getCharAt(this->gety()+j-(boom_range), this->getx()+i-((boom_range*2.5))+1)==' '|| board_win.getCharAt(this->gety()+j-(boom_range), this->getx()+i-((boom_range*2.5))+1)==hero.getIcon()){
+            if(board_win.getCharAt(gety()+j-(boom_range), getx()+i-((boom_range*2.5))+1)==' '|| board_win.getCharAt(gety()+j-(boom_range), getx()+i-((boom_range*2.5))+1)==hero.getIcon()){
                
-                Projectile *new_proj = new Projectile(dir,this->getx()+i-((boom_range*2.5))+1,this->gety()+j-(boom_range), 'o');
+                Projectile *new_proj = new Projectile(dir,getx()+i-((boom_range*2.5))+1,gety()+j-(boom_range), 'o');
                 projectile.push_back(new_proj); 
         }
     }
@@ -29,12 +31,12 @@ void Boom::checkProjectile(Board &board_win, Hero &hero)
     for (int i = 0; i < projectile.size(); i++)
 	{
 		if (projectile[i] != NULL){
-            projectile[i]->setUptime((projectile[i]->getUptime())+1);            
-            if( projectile[i]->getUptime()>melee_range||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon()&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' ')){
+            projectile[i]->setUptime((projectile[i]->getUptime())+1); 
+            if( projectile[i]->getUptime()>getRange()||(board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=projectile[i]->getIcon()&&board_win.getCharAt(projectile[i]->gety(),projectile[i]->getx())!=' ')){
                 
                 if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
-                    hero.reduceHealthHero(this->dmg);
-                }    
+                    hero.reduceHealthHero(getDmg());
+                }  
                 board_win.addAt(projectile[i]->gety(),projectile[i]->getx(),' ');
                 projectile.erase(projectile.begin()+i);
             }
@@ -45,10 +47,10 @@ void Boom::checkProjectile(Board &board_win, Hero &hero)
 void Boom::chooseDirection(Board &board_win, Hero &hero)
 {
     if(!timeractivated&& !die){
-    if(this->reload<=0){
+    if(getReload()<=0){
         int distancex, distancey;
-        distancex = this->x - hero.getx();
-        distancey = this->y - hero.gety();
+        distancex = getx() - hero.getx();
+        distancey = gety() - hero.gety();
         //se sei vicino
         if(hasLos(board_win, hero) &&  inSight(distancex,distancey))
         {
@@ -94,7 +96,7 @@ void Boom::chooseDirection(Board &board_win, Hero &hero)
         }
     }
      else{
-            this->reload--;
+            dimReload();
             setDirection(def);
             }
     this->mem--; 

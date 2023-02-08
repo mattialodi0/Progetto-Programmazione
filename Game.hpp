@@ -43,6 +43,7 @@ public:
     void updateState();
     void updateScreen();
     void addScore();
+    int getScore();
 
 private:
     void redraw();
