@@ -1444,6 +1444,32 @@ Template_39::Template_39(int n,Board &game_board) : General_template(19,16,rand(
     }    
 }
 
+Template_40::Template_40(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1),1)
+{
+    drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
+
+    drawDoors();
+    
+    int chosen_enemies[enemies_num];
+    int x_chosen[enemies_num];
+    int y_chosen[enemies_num];
+    for(int i=0;i<enemies_num;i++){
+        chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+    }
+    for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+    }
+    int chosen_artifact[artifact_num];
+    int x_chosen_artifact[artifact_num];
+    int y_chosen_artifact[artifact_num];
+    for(int i=0;i<artifact_num;i++){
+        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+    }
+    for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+    }    
+}
+
 
 
 

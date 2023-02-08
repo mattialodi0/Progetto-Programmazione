@@ -10,6 +10,7 @@ Board::Board():Board(0, 0, 300)
 	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
+	init_pair(DOOR_PAIR, COLOR_YELLOW, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int speed)
@@ -30,6 +31,7 @@ Board::Board(int height, int width, int speed)
 	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
+	init_pair(DOOR_PAIR, COLOR_YELLOW, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int starty, int startx, int speed)
@@ -49,6 +51,7 @@ Board::Board(int height, int width, int starty, int startx, int speed)
 	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
+	init_pair(DOOR_PAIR, COLOR_YELLOW, COLOR_BLACK);
 }
 
 void Board::initialize() 
@@ -62,9 +65,7 @@ void Board::add(Drawable &drawable)
     addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
 }
 
-/*
-*	usata per aggiungere gli artefatti, disegnati in blu
-*/
+/* usata per aggiungere gli artefatti, disegnati in blu */
 void Board::add_A(Drawable &drawable) 
 {
 	//wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
@@ -72,9 +73,7 @@ void Board::add_A(Drawable &drawable)
 	//wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
 }
 
-/* 
-*	usata per aggiungere i nemici, disegnati in rosso
-*/
+/* usata per aggiungere i nemici, disegnati in rosso */
 void Board::add_E(Drawable &drawable) 
 {
 	wattron(board_win,COLOR_PAIR(ENEMY_PAIR));
@@ -82,9 +81,7 @@ void Board::add_E(Drawable &drawable)
 	wattroff(board_win,COLOR_PAIR(ENEMY_PAIR));
 }
 
-/* 
-*	usata per aggiungere i boss, disegnati in viola
-*/
+/* usata per aggiungere i boss, disegnati in viola */
 void Board::add_B(Drawable &drawable) 
 {
 	wattron(board_win,COLOR_PAIR(BOSS_PAIR));
@@ -92,6 +89,13 @@ void Board::add_B(Drawable &drawable)
 	wattroff(board_win,COLOR_PAIR(BOSS_PAIR));
 }
 
+/* usata per aggiungere le porte, disegnate in giallo */
+void Board::add_D(Drawable &drawable) 
+{
+	wattron(board_win,COLOR_PAIR(DOOR_PAIR));
+    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	wattroff(board_win,COLOR_PAIR(DOOR_PAIR));
+}
 
 void Board::remove(Drawable &drawable) 
 {

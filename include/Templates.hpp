@@ -239,3 +239,9 @@ class Template_39 : public General_template {
 public:
     Template_39(int n,Board &game_board);
 };
+
+//ortogonal cross
+class Template_40 : public General_template {
+public:
+    Template_40(int n,Board &game_board);
+};

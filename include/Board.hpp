@@ -8,6 +8,7 @@
 #define BOSS_PAIR 1
 #define ENEMY_PAIR 2
 #define ARTIFACT_PAIR 3
+#define DOOR_PAIR 4
 const int BOARD_DIM = 25;					//prima era 17
 const int BOARD_ROWS = BOARD_DIM;
 const int BOARD_COLS = BOARD_DIM * 2.7;//2.5;
@@ -34,6 +35,7 @@ public:
     void add_A(Drawable &drawable);
     void add_E(Drawable &drawable);
 	void add_B(Drawable &drawable);
+	void add_D(Drawable &drawable);
 	void remove(Drawable &drawable);
 	void addAt(int y, int x, chtype ch);	
 	void print(const char* str);

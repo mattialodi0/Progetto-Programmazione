@@ -10,13 +10,11 @@ istruzioni d'installazione e uso;
 
 ## cose da fare:
 
--nuovi nemici:
-nemico volante che può passare sui muri  
-nemico talpa che si "teletrasporta" entro un certo raggio   
-nemico ape  che ti colpisce e muore  
-nemico che spara più forte con =,"  
-nemico che spara frecce <,>,^,v  
-nemico che lascia delle piccole bombe  
+-caratteri unicode:    
+\u26BF chiave
+\uD83D\uDC89 siringa
+\uD83D\uDCA3 bomba
+\u26E8 scudo
 
 
 -stanze:  
