@@ -341,7 +341,7 @@ for(int j=0;j<room_template->enemies_num;j++){
 if(this->room_template->enemies[j]->getHp()<=0){
      board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
 
-                            if(this->room_template->enemies[j]->checkBoss()){
+                            if(this->room_template->enemies[j]->isBoss()){
                                 int k=0;
                                 while(this->room_template->artifact[k].getIcon()!=NULL){
                                     k++;
@@ -434,24 +434,25 @@ for(int j = 0; j < room_template->enemies_num; j++) {
 		{
             board.add(*room_template->enemies[j]->projectile[i]);
         }
-        }
+    }
 }
 
 void Room::drawEnemies(Board &board) {
     for(int i = 0; i < room_template->enemies_num; i++) {   
         if(room_template->enemies[i]!=NULL){
-        //if(*room_template->enemies[i].isBoss())
-        //    board.add_B(*room_template->enemies[i]);
-        //else 
-            board.add_E(*room_template->enemies[i]);
-        //board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->getx(), room_template->enemies[i]->getIcon());
+            if(room_template->enemies[i]->isBoss())
+                board.add_B(*room_template->enemies[i]);
+            else 
+                board.add_E(*room_template->enemies[i]);
+            board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->getx(), room_template->enemies[i]->getIcon());
         }
     }
 }
 
 void Room::drawArtifact(Board &board) {
     for(int i = 0; i < room_template->artifact_num; i++) {
-        board.add(room_template->artifact[i]);
+        if(room_template->enemies[i] != NULL)
+            board.add(room_template->artifact[i]);
     }
 }
 

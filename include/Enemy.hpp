@@ -6,7 +6,7 @@
 
 class Enemy : public Character {
 protected: 
-    bool isBoss=false;
+    bool is_boss=false;
     bool isFlyer=false;
     int MaxReload=5;
     int reload=0;
@@ -32,7 +32,7 @@ public:
     // metodo astratto per scelta automatica di direzione dei nemici
 	virtual void chooseDirection(Board &board_win, Hero &hero) {}
 
-    bool checkBoss();
+    bool isBoss();
     void makeBoss(int hp_multiplier,int range_multiplier, int dmg_multiplier);
     bool getisFlyer();
     void setisFlyer(bool set);

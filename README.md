@@ -8,7 +8,7 @@ i requisiti dell'ambiente di sviluppo per l'integrazione,
 istruzioni d'installazione e uso;
 
 
-##cose da fare:
+## cose da fare:
 
 -nuovi nemici:
 nemico volante che può passare sui muri  
@@ -24,6 +24,7 @@ nemico che lascia delle piccole bombe
 rimettere la condizione per cambiare stanza    
 ### non vanno le chiavi    
 ### cosa ci fa my_xp nei template
+
 
 -menu:  
 chiusura corretta delle finestre    

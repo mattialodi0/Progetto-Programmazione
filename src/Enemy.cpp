@@ -4,7 +4,7 @@
 
 Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int difficulty):Character(dir,x,y,ch)
 {   
-        isBoss=false;
+        is_boss=false;
          setMaxReload(9-difficulty);
          setReload(0);
          setRange(10+(2*difficulty));
@@ -31,15 +31,15 @@ bool Enemy::inSight(int distancex,int distancey){
 }
 
 void Enemy::makeBoss(int hp_multiplier,int range_multiplier, int dmg_multiplier){
-    this->isBoss=true;
+    this->is_boss=true;
     setMaxHp(getMaxHp()*hp_multiplier);
     setHp(getHp()*hp_multiplier);
     setRange(getRange()*range_multiplier);
     setDmg(getDmg()*dmg_multiplier);
 }
 
-bool Enemy::checkBoss(){
-    return this->isBoss;
+bool Enemy::isBoss(){
+    return this->is_boss;
 }
 
 bool Enemy::hasLos(Board &board_win, Hero &hero)
