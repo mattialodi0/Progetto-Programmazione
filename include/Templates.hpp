@@ -18,13 +18,13 @@ public:
     Template_2(int n,Board &game_board);
 };
 
-//top-right subroom
+//bottom-right subroom
 class Template_3 : public General_template {
 public:
     Template_3(int n,Board &game_board);
 };
 
-//bottom-right subroom
+//top-right subroom
 class Template_4 : public General_template {
 public:
     Template_4(int n,Board &game_board);
@@ -132,7 +132,7 @@ public:
     Template_21(int n,Board &game_board);
 };
 
-//pacman, i nemici dovrebbero  essere tutti chaser
+//pacman
 class Template_22 : public General_template {
 public:
     Template_22(int n,Board &game_board);

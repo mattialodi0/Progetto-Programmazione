@@ -2,9 +2,7 @@
 
 int locked_door_num=0;
 
-/*
-*   Costruttore di default, usato solo per la stanza di partenza
-*/
+/* Costruttore di default, usato solo per la stanza di partenza */
 Room::Room(Board &game_board) {
     this->y = 0; this->x = 0;
     this->has_north_door = true; 
@@ -16,13 +14,11 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(13,0,game_board);
+    initializeRoomTemplate(0,0,game_board);
 }
 
-/*
-*   Costruttore per le stanze, inizializza il template, le porte chiuse tra quelle presenti
-*   e la collega a quelle vicine
-*/
+/* Costruttore per le stanze, inizializza il template, le porte chiuse tra quelle presenti
+*  e la collega a quelle vicine */
 Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {
     this->y = y; this->x = x;
     int num = randomRoomNumber();
@@ -36,9 +32,7 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
     lockDoor(room_index.size());
 }
 
-/*
-*   Funzione usata per trovare le stanze da collegare a quella corrente, in base alle porte disponibili
-*/
+/* Funzione usata per trovare le stanze da collegare a quella corrente, in base alle porte disponibili */
 Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     int n = -1;
 	for(int i = 0; i < room_index.size(); i++)
