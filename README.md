@@ -1,6 +1,12 @@
 # Progetto
 progetto di programmazione 2022
 
+Cosa dovrebbe contenere un file readme?
+una descrizione generale del sistema o progetto;
+lo stato del progetto, importante soprattutto quando quest'ultimo si trova ancora nella fase di sviluppo. ...
+i requisiti dell'ambiente di sviluppo per l'integrazione,
+istruzioni d'installazione e uso;
+
 
 ##cose da fare:
 

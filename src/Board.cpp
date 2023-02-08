@@ -128,6 +128,10 @@ void Board::print(const char* str)
 {
 	wprintw(board_win, str);
 }
+void Board::print(chtype c) 
+{
+	mvwaddch(board_win, 1, 1, c);
+}
 
 
 chtype Board::getInput()                   //*******************

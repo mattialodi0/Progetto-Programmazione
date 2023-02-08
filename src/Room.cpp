@@ -16,7 +16,7 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(0,0,game_board);
+    initializeRoomTemplate(13,0,game_board);
 }
 
 /*
@@ -426,6 +426,7 @@ void Room::unlockDoor(int y, int x,Board &game_board)
                     game_board.addAt(ty,tx,'O');
                 }
             }
+            room_template->doors[i] = Door(ty,tx);
         }
         j++;
     }

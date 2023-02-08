@@ -37,6 +37,7 @@ public:
 	void remove(Drawable &drawable);
 	void addAt(int y, int x, chtype ch);	
 	void print(const char* str);
+	void print(chtype str);
 	int getDifficulty();
 	void setDifficulty(int diff);
 	void refreshDifficulty(int score);

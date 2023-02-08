@@ -32,11 +32,12 @@ private:
     void drawDoors(Board &board);
 
     //funzioni per i nemici
-    void removeEnemy(int pos);
+    
     void addEnemy(pEn enemy);
     //void damageEnemy(int damage);
     //void healEnemy(int healing);
 public:
+void removeEnemy(int pos);
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
 

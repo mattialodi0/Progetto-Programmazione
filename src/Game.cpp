@@ -31,10 +31,6 @@ Game::Game(int height, int width, int speed)
 	canMove = 0;
 }
 
-Game::~Game()
-{
-	//delete [] room_index;
-}
 
 bool Game::isNotOver()
 {
@@ -148,7 +144,7 @@ void Game::updateState()
 
 void Game::updateScreen()
 {
-	//game_board.clear();ù
+	//game_board.clear();
 	menu_playing.refreshStat(hero,getScore());
 	redraw();
 	game_board.refreshBoard();
@@ -189,58 +185,60 @@ void Game::manageHeroMovement()
 			offsetx = hero.getDirection();
 		}
 	}
-	if(!game_board.getTaken(hero.getx()+offsetx,hero.gety()+offsety)){
-	switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
-	{
-	case ' ':
-	case 'o':
-	case '-':
-	case '|':
-		hero.moveCharacter(game_board);
-		break;
-	case 'E':
-		hero.moveCharacter(game_board);
-		hero.heal(artifactHeal);
-		hero.increaseDamage(artifactDmg);
-		current_room->removeArtifact(0);
-		break;
-	case 'H':
-		hero.moveCharacter(game_board);
-		hero.increaseHealth(artifactHp);
-		hero.heal(artifactHeal);
-		current_room->removeArtifact(0);
-		break;
-	case 'R':
-		hero.moveCharacter(game_board);
-		hero.increaseRange(artifactRange);
-		hero.heal(artifactHeal);
-		current_room->removeArtifact(0);
-		break;	
-	case 'J':
-		hero.moveCharacter(game_board);
-		hero.addKey(1);
-		hero.heal(artifactHeal);
-		current_room->removeArtifact(0);
-		break;	
-	case 'O':		//cambia stanza
-		if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-2 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
+	//if(!game_board.getTaken(hero.getx()+offsetx,hero.gety()+offsety)){
+		stat_board.print(game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx));
+		switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
+		{
+		case ' ':
+		case 'o':
+		case '-':
+		case '|':
 			hero.moveCharacter(game_board);
-		else{
-			while(hero.projectile.size()>0){
-    		hero.projectile.erase(hero.projectile.begin());
+			break;
+		case 'E':
+			hero.moveCharacter(game_board);
+			hero.heal(artifactHeal);
+			hero.increaseDamage(artifactDmg);
+			current_room->removeArtifact(0);
+			break;
+		case 'H':
+			hero.moveCharacter(game_board);
+			hero.increaseHealth(artifactHp);
+			hero.heal(artifactHeal);
+			current_room->removeArtifact(0);
+			break;
+		case 'R':
+			hero.moveCharacter(game_board);
+			hero.increaseRange(artifactRange);
+			hero.heal(artifactHeal);
+			current_room->removeArtifact(0);
+			break;	
+		case 'J':
+			hero.moveCharacter(game_board);
+			hero.addKey(1);
+			hero.heal(artifactHeal);
+			current_room->removeArtifact(0);
+			break;	
+		case 'O':		//cambia stanza
+			if(hero.gety() > 1 && hero.gety() < BOARD_ROWS-2 && hero.getx() > 1 && hero.getx() < BOARD_COLS-2) 
+				hero.moveCharacter(game_board);
+			else{
+				while(hero.projectile.size()>0){
+    				hero.projectile.erase(hero.projectile.begin());
+				}
+				manageDoor();
 			}
-			manageDoor();
+			break;
+		case 'Q':
+		    stat_board.print("Locked");
+			if(hero.useKey()) {
+				current_room->unlockDoor(hero.gety() + offsety, hero.getx() + offsetx, game_board);			
+			}
+			break;
+		default:
+			break;
 		}
-		break;
-	case 'Q':
-		if(hero.useKey()) {
-			current_room->unlockDoor(hero.gety() + offsety, hero.getx() + offsetx, game_board);			
-		}
-		break;
-	default:
-		break;
-	}
-	}
+	//}
 }
 
 
@@ -355,45 +353,3 @@ void Game::updateIndex(prm room) {
 			room_index[i]->west = room;		
 	}
 }
-/*
-bool Game::searchIndexNorth(prm room) {
-    //bool f = false;
-    for(int i = 0; i < room_index.size(); i++)
-	{
-		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
-            //f  = true;
-            return true;
-	}
-    return false;
-}
-
-bool Game::searchIndexSouth(prm room) {
-    //bool f = false;
-    for(int i = 0; i < room_index.size(); i++)
-	{
-		if(room_index[i]->y == room->y-1 && room_index[i]->x == room->x)
-            //f  = true;
-            return true;
-	}
-    return false;
-}
-
-bool Game::searchIndexWest(prm room) {
-    bool f = false;
-    for(int i = 0; i < room_index.size(); i++)
-	{
-		if(room_index[i]->y == room->y && room_index[i]->x == room->x-1)
-            f  = true;
-	}
-    return f;
-}
-
-bool Game::searchIndexEst(prm room) {
-    bool f = false;
-    for(int i = 0; i < room_index.size(); i++)
-	{
-		if(room_index[i]->y == room->y && room_index[i]->x == room->x+1)
-            f  = true;
-	}
-    return f;
-}*/
