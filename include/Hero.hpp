@@ -13,6 +13,8 @@ protected:
 	int key=1;	//numero di chiavi trovate
     int ac = 3;
     int speed = 1;
+	int ability;
+	int shot = 0;
 public:	
 	
 	Artifact artifact;

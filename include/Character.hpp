@@ -10,10 +10,12 @@ class Character : public Drawable
 protected:
 	Direction cur_direction;
 	int ac;
+	int standardDmg;
 	int dmg;
 	int speed;
 	int reload;
 	int maxReload;
+	int standardRange;
 	int range;
 	int difficulty;
 	int hp;
