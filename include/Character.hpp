@@ -12,7 +12,6 @@ protected:
 	int ac;
 	int standardDmg;
 	int dmg;
-	int speed;
 	int reload;
 	int maxReload;
 	int standardRange;

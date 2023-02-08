@@ -7,14 +7,12 @@ const int artifactrange = 2;
 
 Hero::Hero() : Character(def, herostarty, herostartx,'P')
 {	
-    artifact = Artifact (y, x,'H');
     this->key = 1;
     this->maxHp=30;
     this->hp = this->maxHp;
     this->maxReload = 8;
     this->standardRange = 5;
     this->range = standardRange;
-    this->speed = 1;
     this->standardDmg = 5;
     this->dmg = standardDmg;
     this->reload = 0;
@@ -23,7 +21,6 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
 
 Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
 {   
-    artifact = Artifact (y, x,'H');
     this->key = 1;
     this->maxHp=30;
     this->hp = this->maxHp;
@@ -31,7 +28,6 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     this->reload=maxReload;
     this->standardRange = 5;
     this->range = standardRange;
-    this->speed = 1;
     this->standardDmg = 5;
     this->dmg = standardDmg;
     this->reload = 0;
@@ -52,7 +48,6 @@ void Hero::tankClass()
     this->ac = 3;
     this->standardDmg = 3;
     this->dmg = standardDmg;
-    this->speed = 1;
     this->maxReload=3;
     this->reload=maxReload;
     this->standardRange = 3;
@@ -67,7 +62,6 @@ void Hero::rogueClass()
     this->ac = 2;
     this->standardDmg = 5;
     this->dmg = standardDmg;
-    this->speed = 4;
     this->maxReload=2;
     this->reload=maxReload;
     this->standardRange = 3;
@@ -82,7 +76,6 @@ void Hero::rangerClass()
     this->ac = 1;
     this->standardDmg = 1;
     this->dmg = standardDmg;
-    this->speed = 3;
     this->maxReload=1;
     this->reload=maxReload;
     this->standardRange = 9;
@@ -97,7 +90,6 @@ void Hero::mageClass()
     this->ac = 1;
     this->standardDmg = 3;
     this->dmg = standardDmg;
-    this->speed = 2;
     this->maxReload=4;
     this->reload=maxReload;
     this->standardRange = 7;
