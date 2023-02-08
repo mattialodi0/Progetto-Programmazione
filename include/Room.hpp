@@ -37,7 +37,7 @@ private:
     //void damageEnemy(int damage);
     //void healEnemy(int healing);
 public:
-void removeEnemy(int pos);
+void removeEnemy(int pos,Board &board_win);
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
 

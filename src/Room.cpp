@@ -365,7 +365,7 @@ if(this->room_template->enemies[j]->getHp()<=0){
                             }
                             }
                             
-                           removeEnemy(j);
+                           removeEnemy(j,board_win);
                             killed++;
 }
                         }
@@ -503,7 +503,11 @@ void Room::drawDoors(Board &board) {
     }
 }
 
-void Room::removeEnemy(int pos) {
+void Room::removeEnemy(int pos,Board &board_win) {
+    for(int i=0;i<room_template->enemies[pos]->projectile.size();i++){
+        board_win.addAt(room_template->enemies[pos]->projectile[i]->gety(),room_template->enemies[pos]->projectile[i]->getx(),' ');
+        room_template->enemies[pos]->projectile.erase(room_template->enemies[pos]->projectile.begin()+i);
+    }
     pEn temp = room_template->enemies[pos];
     room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
     room_template->enemies[room_template->enemies_num-1] = temp;
