@@ -534,7 +534,7 @@ void Room::checkHeroProjectile(Board &board_win,Hero &hero){
         
 		if (hero.projectile[i] != NULL){
             hero.projectile[i]->setUptime(hero.projectile[i]->getUptime()+1);
-            if(!hero.projectile[i]->checkCollision(board_win)||hero.projectile[i]->getUptime()>hero.getRange()){
+            if(!hero.projectile[i]->checkProjectileCollision(board_win)||hero.projectile[i]->getUptime()>hero.getRange()){
                 hero.projectile[i]->moveCharacter(board_win);
                 bool found=false;
                 int j=0;

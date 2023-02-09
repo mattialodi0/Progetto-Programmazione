@@ -36,7 +36,7 @@ Stalker::Stalker():Enemy(def,20,20,'Z',0)
 		{
 			if (projectile[i] != NULL){
                 projectile[i]->setUptime(projectile[i]->getUptime()+1);
-        if(!projectile[i]->checkCollision(board_win)||projectile[i]->getUptime()>getRange()){
+        if(!projectile[i]->checkProjectileCollision(board_win)||projectile[i]->getUptime()>getRange()){
         projectile[i]->moveCharacter(board_win);
         if(projectile[i]->getx()==hero.getx() && projectile[i]->gety()==hero.gety()){
             hero.reduceHealthHero(getDmg());

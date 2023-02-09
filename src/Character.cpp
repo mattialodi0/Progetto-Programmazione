@@ -106,8 +106,6 @@ bool Character::checkCollision(Board &board_win)
 	case 'H':
 	case 'R':
 	case 'J':
-	case 'O':
-	case 'o':
 		return true;
 		break;
 	default:
@@ -136,8 +134,11 @@ bool Character::checkFlyerCollision(Board &board_win)
 	{
 	case ' ':
 	case 'X':
-	case 'O':
 	case 'Q':
+	case 'E':
+	case 'H':
+	case 'R':
+	case 'J':
 		return true;
 		break;
 	default:
@@ -146,6 +147,78 @@ bool Character::checkFlyerCollision(Board &board_win)
 	}
 	return false;
 }
+bool Character::checkProjectileCollision(Board &board_win)
+{
+	int offsety = 0, offsetx = 0;
+	if (cur_direction == up || cur_direction == down)
+	{
+		// offset per row e col per collisione
+		offsety = cur_direction / 2;
+	}
+	else
+	{
+		if (cur_direction == dx || cur_direction == sx)
+		{
+			offsetx = cur_direction;
+		}
+	}
+	if(!board_win.getTaken(x+offsetx,y+offsety)){
+	switch (board_win.getCharAt(y + offsety, x + offsetx))
+	{
+	case ' ':
+	case 'E':
+	case 'H':
+	case 'R':
+	case 'J':
+	case 'o':
+	case '-':
+	case '|':
+		return true;
+		break;
+	default:
+		return false;
+		break;
+	}}
+	return false;
+}
+
+bool Character::checkProjectileFlyerCollision(Board &board_win)
+{
+	int offsety = 0, offsetx = 0;
+	if (cur_direction == up || cur_direction == down)
+	{
+		// offset per row e col per collisione
+		offsety = cur_direction / 2;
+	}
+	else
+	{
+		if (cur_direction == dx || cur_direction == sx)
+		{
+			offsetx = cur_direction;
+		}
+	}
+	if(!board_win.getTaken(x+offsetx,y+offsety)){
+	switch (board_win.getCharAt(y + offsety, x + offsetx))
+	{
+	case ' ':
+	case 'E':
+	case 'H':
+	case 'R':
+	case 'J':
+	case 'X':
+	case 'Q':
+	case 'o':
+	case '-':
+	case '|':
+		return true;
+		break;
+	default:
+		return false;
+		break;
+	}}
+	return false;
+}
+
 void Character::reduceHealth(int Damage)
 {
     hp = hp - Damage;

@@ -29,7 +29,9 @@ public:
 	void moveCharacter(Board &game_board);
 	Direction getRandomDirection();
 	bool checkCollision(Board &board_win);
+	bool checkProjectileCollision(Board &board_win);
 	bool checkFlyerCollision(Board &board_win);
+	bool checkProjectileFlyerCollision(Board &board_win);
 	void reduceHealth(int Damage);
 	void setHp (int hp);
     int getHp ();

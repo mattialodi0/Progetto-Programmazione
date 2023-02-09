@@ -191,8 +191,6 @@ void Game::manageHeroMovement()
 		{
 		case ' ':
 		case 'o':
-		case '-':
-		case '|':
 			hero.moveCharacter(game_board);
 			break;
 		case 'E':

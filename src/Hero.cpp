@@ -11,9 +11,9 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     this->maxHp=30;
     this->hp = this->maxHp;
     this->maxReload = 8;
-    this->standardRange = 5;
+    this->standardRange = 8;
     this->range = standardRange;
-    this->standardDmg = 5;
+    this->standardDmg = 8;
     this->dmg = standardDmg;
     this->reload = 0;
     this->ability = 3;
@@ -26,9 +26,9 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     this->hp = this->maxHp;
     this->maxReload=8;
     this->reload=maxReload;
-    this->standardRange = 5;
+    this->standardRange = 8;
     this->range = standardRange;
-    this->standardDmg = 5;
+    this->standardDmg = 8;
     this->dmg = standardDmg;
     this->reload = 0;
     this->ability = 3;
