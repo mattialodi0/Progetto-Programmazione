@@ -1,20 +1,18 @@
-# Progetto
-progetto di programmazione 2022
+# Progetto di programmazione 2022
 
-Cosa dovrebbe contenere un file readme?
-una descrizione generale del sistema o progetto;
-lo stato del progetto, importante soprattutto quando quest'ultimo si trova ancora nella fase di sviluppo. ...
-i requisiti dell'ambiente di sviluppo per l'integrazione,
-istruzioni d'installazione e uso;
+L'obiettivo del progetto era sviluppare un gioco rogue-like in C++, utilizzando solo ncurses.h come libreria per la grafica.    
+All'interno del gioco è possibile muoversi tra le stanze, combattere i nemici, raccogliere artefatti e usare abilità speciali.   
+Le stanze vengono generate all'infinito e non c'è una fine o uno scopo se non fare il punteggio maggiore possibile.   
 
+Il progetto è stato sviluppato in ambiente unix, perché lo richiede la libreria ncurses.h, disponibile solo per linux.
 
-## cose da fare:
+Per lanciare il gioco basta scaricare la cartella ed eseguore il comando make da terminale.  
 
+## cose da fare:   
 commenti nel codice (in particolare cosa fanno gli artefatti e i nemici)  
-non c'è più niente di colorato    
 modificare le icon con alcuni unicode   
 non va la creazione di artefatti   
-boss   
+rimuovere i warning
 
 -caratteri unicode:    
 \u265E cavallo
@@ -25,8 +23,6 @@ boss
 
 -stanze:  
 rimettere la condizione per cambiare stanza    
-### non vanno le chiavi    
-### cosa ci fa my_xp nei template
 
 
 -menu:  
@@ -37,8 +33,13 @@ controllo che la finestra del terminale sia abbastanza grande per il gioco prima
 scoreboard con il prunteggio(esperienza)
 statboard con statitiche,chivi,artefatti, poteri
 
+Legenda dei colori:  
+- rosso nemici
+- viola boss nemici
+- blu artefatti  
+- grigio porte  
 
-Template:        
+Numero  Stanza              Rarità        
 0   - stanza vuota      solo all'inizio        
 1   - muri rand               0        
 2   - stanza artefatti        1        
