@@ -10,7 +10,7 @@
 using namespace std;
 
 const int GameSpeed=2;
-const int addedScore=10;
+
 
 class Game
 {
@@ -27,13 +27,14 @@ private:
 
     Menu_playing menu_playing;
 protected:
+    int addedScore=10;
     int score=0;
     int canMove=0;
     int artifactHeal=10;
     int artifactDmg=5;
     int artifactRange=5;
     int artifactHp=10;
-    int difficulty;
+    int difficulty=game_board.getDifficulty();
 public:
 	Game(int height, int width, int speed);
     bool isNotOver();
