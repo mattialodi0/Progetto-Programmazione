@@ -124,8 +124,9 @@ void Board::addAt(int y, int x, chtype ch)
 }
 
 
-void Board::refreshDifficulty(int score){
+int Board::refreshDifficulty(int score){
 	setDifficulty(score/difficultyRate);
+	return score/difficultyRate;
 }
 
 void Board::print(const char* str) 
@@ -171,6 +172,9 @@ int Board::getDifficulty(){
 }
 void Board::setDifficulty(int diff){
 	this->difficulty=diff;
+}
+void Board::setDifficultyRate(int diff){
+	this->difficultyRate=diff;
 }
 
 

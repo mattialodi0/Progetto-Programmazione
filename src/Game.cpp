@@ -241,7 +241,7 @@ void Game::manageHeroMovement()
 
 
 void Game::manageDoor() {
-	game_board.refreshDifficulty(getScore());
+	this->difficulty=game_board.refreshDifficulty(getScore());
 	if(current_room->isClear()) 
 	{
 		//updateDifficulty();

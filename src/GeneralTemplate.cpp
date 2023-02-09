@@ -114,7 +114,7 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
 
 void General_template::createArtifact(bool is_random_artifact,bool is_random_coords,int x, int y,int chosen,Board &game_board,int room_pos,Drawable* artifact){
     if(is_random_artifact){
-                chosen=(rand()%(n_artifact)+1);
+                chosen=(rand()%(n_artifact));
             }
             if(is_random_coords)
             {

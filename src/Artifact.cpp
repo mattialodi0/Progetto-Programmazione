@@ -17,17 +17,15 @@ Artifact::Artifact(int y, int x): Drawable(y,x,RandomArtifact())
 chtype Artifact::RandomArtifact()
 {
     srand(time(NULL));
-    int i = (rand() % (3));
-    if(i==1)
-    {
+    int i = (rand() % (4));
+    switch(i){
+        case '0':
         return 'R';
-    }
-    else if(i==2)
-    {
+        case '1':
         return 'E';
-    }
-    else
-    {
+        case '2':
         return 'H';
-    }
+        case '3':
+        return 'J';
+            };
 }
