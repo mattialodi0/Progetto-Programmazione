@@ -1,19 +1,32 @@
 #include <ncurses.h>
-#include <string>
 using namespace std;
 
 class Menu{
+    protected:
+        int hero_class;
+        int diff=3;
+        int diff_rate=40;
+        bool game=true;
 
-    public:
-        void menu();
-        void play();
-        void settings();
         void character_class();
         void class_tank();
         void class_rogue();
         void class_ranger();
         void class_mage();
         void commands();
+        void difficulty();
+
+        void setDiff(int diff);
+        void setDiff_rate(int diff_rate);
+        void setHero_class(int hero_class);
+        void setGameOver();
+
+    public:
+        void menu();
+        int getDiff();
+        int getDiff_rate();
+        int getHero_class();
+        bool getGame();
 
 };
 

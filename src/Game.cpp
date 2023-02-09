@@ -4,6 +4,8 @@ Game::Game(int height, int width, int speed)
 {
 	srand(time(0));
 
+	game_over = false;
+
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
 	
@@ -20,10 +22,15 @@ Game::Game(int height, int width, int speed)
 	stat_board.print("StatBoard");
 	stat_board.refreshBoard();
 	
-	hero = Hero(herostarty, herostartx);
+	menu.menu();
+
+	hero = Hero(menu.getHero_class(), herostarty, herostartx);
 	hero.centerHero(def);
 
-	game_over = false;
+	game_board.setDifficulty(menu.getDiff());
+	//game_board.setDifficultyRate(menu.getDiff_rate());
+
+	checkGameOver(menu.getGame());
 
 	current_room  = new Room(game_board);
 	room_index.emplace_back(current_room);
@@ -39,6 +46,13 @@ bool Game::isNotOver()
 
 void Game::setGameOver() {
 	this->game_over = true;
+}
+
+void Game::checkGameOver(bool menu) {
+	
+	if (menu==false){
+	setGameOver();
+	}
 }
 
 void Game::processInput()
@@ -145,12 +159,13 @@ void Game::updateState()
 void Game::updateScreen()
 {
 	//game_board.clear();
-	menu_playing.refreshStat(hero,getScore());
+	//menu_playing.refreshStat(hero,getScore());
 	redraw();
 	game_board.refreshBoard();
-	refreshStat(hero, getScore());
+	refreshStat(hero);
 	stat_board.refreshBoard();
 	stat_board.addBorder();
+	refreshScore(hero);
 	score_board.refreshBoard();
 	score_board.addBorder();
 	
@@ -352,18 +367,44 @@ void Game::updateIndex(prm room) {
 	}
 }
 
-void Game::refreshStat(Hero &hero,int score){
+void Game::refreshStat(Hero &hero){
 	int dmg=hero.getDmg();
-	char* str_dmg="Damage = ";
-	stat_board.printStats(str_dmg, 2, dmg);
+	//char* str_dmg="Damage = ";
+	stat_board.printWin("Damage = ", 2, dmg);
     int hp=hero.getHp();
-	char* str_hp="Health = ";
-	stat_board.printStats(str_hp, 3, hp);
+	//char* str_hp="Health = ";
+	stat_board.printWin("Health = ", 3, hp);
 	int reload=hero.getReload();
-	char* str_rld="Reload = ";
-	//stat_board.printStats(str_rld, 4, reload);
+	//char* str_rld="Reload = ";
+	stat_board.printWin("Reload = ", 4, reload);
 	int range=hero.getRange();
-	char* str_rng="Range = ";
-	stat_board.printStats(str_rng, 5, range);
+	//char* str_rng="Range = ";
+	stat_board.printWin("Range = ", 5, range);
     int score_=score;
 }
+
+void Game::refreshScore(Hero &hero){
+	//int diff = game_board.getDifficulty();
+	score_board.printWin("Score = ", 2, getScore());
+	score_board.printWin("Difficulty = ", 3, game_board.getDifficulty());
+	score_board.printWin("Keys =", 4, hero.getKey());
+	
+}
+
+/*
+void Game::start_menu(Hero &hero){
+	int buffer=menu.menu();
+
+	if (buffer==1){
+		hero.tankClass();
+	}else if (buffer==2){
+		hero.rogueClass();
+	}else if (buffer==3){
+		hero.rangerClass();
+	}else if (buffer==4){
+		hero.mageClass();
+	}
+
+
+}
+*/

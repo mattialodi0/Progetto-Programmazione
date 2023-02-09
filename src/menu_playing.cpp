@@ -1,8 +1,5 @@
-#include <iostream>
 #include <ncurses.h>
-#include <string>
 #include "menu_playing.hpp"
-//#include "Game.hpp"
 using namespace std;
 
 
@@ -23,7 +20,7 @@ bool Menu_playing::menu(){
     wrefresh(menuwin);
     keypad(menuwin, true);      //makes arrows keys usable
     
-    string choices[3] = {"Resume", "Commands", "exit"};
+    char* choices[3] = {"Resume", "Commands", "exit"};
     int choice;
     int highlight = 0;
 
@@ -31,7 +28,7 @@ bool Menu_playing::menu(){
        for(int i = 0; i < 3; i++) {
             if(i == highlight) 
                 wattron(menuwin, A_REVERSE);
-            mvwprintw(menuwin, i+1, 1, choices[i].c_str());
+            mvwprintw(menuwin, i+1, 1, choices[i]);
             wattroff(menuwin, A_REVERSE);
         }
         choice = wgetch(menuwin);
@@ -59,6 +56,7 @@ bool Menu_playing::menu(){
     }
     if (highlight==1){
         commands();
+        return false;
     }
     if (highlight==2){
         return true;
@@ -67,12 +65,6 @@ bool Menu_playing::menu(){
 
 }
 
-void Menu_playing::refreshStat(Hero &hero,int score){
-    //dmg=hero->dmg;
-    //range=hero->range;
-    //hp=hero->hp;
-    //score=score;
-}
 
 void Menu_playing::commands(){
 
@@ -94,40 +86,40 @@ void Menu_playing::commands(){
     int iy = (yMax/2)-10;
     int ix = (xMax/2)-20;
 
-    string comln = " Keybindings :";
-    mvwprintw(menuwin, iy, ix, comln.c_str());
+    //char* comln = " Keybindings :";
+    mvwprintw(menuwin, iy, ix, " Keybindings :");
 
-    string comln1 = " W-A-S-D = Movement ";
-    mvwprintw(menuwin, iy+2, ix, comln1.c_str());
+    //char* comln1 = " W-A-S-D = Movement ";
+    mvwprintw(menuwin, iy+2, ix, " W-A-S-D = Movement ");
 
-    string comln2 = " Arrow keys = Attack in choosen direction ";
-    mvwprintw(menuwin, iy+3, ix, comln2.c_str());
+    //char* comln2 = " Arrow keys = Attack in choosen direction ";
+    mvwprintw(menuwin, iy+3, ix, " Arrow keys = Attack in choosen direction ");
 
-    string comln3 = " F = Use special ability ";
-    mvwprintw(menuwin, iy+4, ix, comln3.c_str());
+    //char* comln3 = " F = Use special ability ";
+    mvwprintw(menuwin, iy+4, ix, " F = Use special ability ");
 
-    string comln4 = " O = Quit the game";
-    mvwprintw(menuwin, iy+5, ix, comln4.c_str());
+    //char* comln4 = " O = Quit the game";
+    //mvwprintw(menuwin, iy+5, ix, " O = Quit the game");
 
-    string comln5 = " P = Pause the game ";
-    mvwprintw(menuwin, iy+6, ix, comln5.c_str());
+    //char* comln5 = " P = Pause the game ";
+    mvwprintw(menuwin, iy+5, ix, " P = Pause the game ");
 
-    string comln6 = " E = Increase damage";
-    mvwprintw(menuwin, iy+7, ix, comln6.c_str());
+    //char* comln6 = " E = Increase damage";
+    //mvwprintw(menuwin, iy+7, ix, " E = Increase damage");
 
-    string comln7 = " H = Increase healt";
-    mvwprintw(menuwin, iy+8, ix, comln7.c_str());
+    //char* comln7 = " H = Increase healt";
+    //mvwprintw(menuwin, iy+8, ix, " H = Increase healt");
 
-    string comln8 = " R = Increase range";
-    mvwprintw(menuwin, iy+9, ix, comln8.c_str());
+    //char* comln8 = " R = Increase range";
+    //mvwprintw(menuwin, iy+9, ix, " R = Increase range");
 
-    string comln9 = " 0 = Change room";
-    mvwprintw(menuwin, iy+10, ix, comln9.c_str());
+    //char* comln9 = " 0 = Change room";
+    //mvwprintw(menuwin, iy+10, ix, " 0 = Change room");
 
-    string comln10 = " Q = Open door";
-    mvwprintw(menuwin, iy+11, ix, comln10.c_str());
+    //char* comln10 = " Q = Open door";
+    //mvwprintw(menuwin, iy+11, ix, " Q = Open door");
 
-    string choices[1] = {"Back"};
+    char* choices[1] = {"Back"};
     int choice;
     int highlight = 0;
 
@@ -137,7 +129,7 @@ void Menu_playing::commands(){
        for(int i = 0; i < 1; i++) {
             if(i == highlight) 
                 wattron(menuwin, A_REVERSE);
-            mvwprintw(menuwin, i+1, 1, choices[i].c_str());
+            mvwprintw(menuwin, i+1, 1, choices[i]);
             wattroff(menuwin, A_REVERSE);
         }
         choice = wgetch(menuwin);
@@ -168,4 +160,5 @@ void Menu_playing::commands(){
 
 
 }
+
 

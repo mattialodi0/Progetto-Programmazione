@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
+#include "menu.hpp"
 #include "menu_playing.hpp"
 using namespace std;
 
@@ -25,6 +26,7 @@ private:
 	Room* current_room;
    	vector<Room*> room_index;
 
+    Menu menu;
     Menu_playing menu_playing;
 protected:
     int addedScore=10;
@@ -39,12 +41,14 @@ public:
 	Game(int height, int width, int speed);
     bool isNotOver();
     void setGameOver();
+    void checkGameOver(bool menu);
     void processInput();
     void updateState();
     void updateScreen();
     void addScore();
     int getScore();
-    void refreshStat(Hero &hero,int score);
+    void refreshStat(Hero &hero);
+    void refreshScore(Hero &hero);
 
 private:
     void redraw();
@@ -65,6 +69,9 @@ private:
 // funzioni per l'indice
     void addRoomToIndex(prm room);
     void updateIndex(prm room);
+
+// funzioni per il menu
+    //void start_menu(Hero &hero);
 
 };
 

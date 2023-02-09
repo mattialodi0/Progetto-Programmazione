@@ -19,7 +19,7 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     this->ability = 3;
 }
 
-Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
+Hero::Hero(int c, int y=0, int x=0) : Character(def, y, x,'P')
 {   
     this->key = 1;
     this->maxHp=30;
@@ -32,6 +32,7 @@ Hero::Hero(int y=0, int x=0) : Character(def, y, x,'P')
     this->dmg = standardDmg;
     this->reload = 0;
     this->ability = 3;
+    initclass(c);
 }
 
 /*
@@ -240,4 +241,17 @@ bool Hero::death()
         return true;
     }
     return false;
+}
+
+void Hero::initclass(int c){
+    if (c==1){
+        tankClass();
+    }else if (c==2){
+        rogueClass();
+    }else if (c==3){
+        rangerClass();
+    }else if (c==4){
+        mageClass();
+    }
+    
 }

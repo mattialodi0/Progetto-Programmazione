@@ -229,10 +229,15 @@ chtype Board::getCharAt(int y, int x)
 	return (unsigned char)mvwinch(board_win, y, x);
 }
 
-void Board::printStats(char* str, int y, int stat)
+void Board::printWin(char* str, int y, int stat)
 {
 	char* buffer = (char *)malloc(3 * sizeof(char));
 	sprintf(buffer, "%d", stat);
 	mvwprintw(board_win, y, 2, str);
+<<<<<<< Updated upstream
 	mvwprintw(board_win, y, 10, buffer);
 }   
+=======
+	mvwprintw(board_win, y, 15, buffer);
+}   
+>>>>>>> Stashed changes

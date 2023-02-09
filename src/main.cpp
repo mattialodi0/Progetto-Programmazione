@@ -1,6 +1,10 @@
 #include "Game.hpp"
+<<<<<<< Updated upstream
 
 #include "menu.hpp"
+=======
+//#include "menu.hpp"
+>>>>>>> Stashed changes
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
@@ -23,12 +27,13 @@ int main()
 	
 	//ci andrebbe un controllo sulle dimensioni dello schermo
 
-	Menu menu;
+	//Menu menu;
     
 	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
     
-    menu.menu();
+    //menu.menu();
 	
+
 	while (game.isNotOver())
 	{
 		// input

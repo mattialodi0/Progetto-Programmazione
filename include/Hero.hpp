@@ -18,7 +18,7 @@ public:
 	
 	Artifact artifact;
     Hero();
-	Hero(int y, int x);
+	Hero(int c, int y, int x);
 	//void Const(int y, int x);
     std::vector<Projectile*> projectile;
 
@@ -27,6 +27,7 @@ public:
 	void rogueClass();	//melee, hp, ac, dmg++, speed++, reload+
 	void rangerClass();	//ranged+, hp-, ac-, dmg, speed+, reload++
 	void mageClass();	//ranged, hp-, ac-, dmg++, speed, reload-
+	void initclass(int n);
 	//da aggiungere le abilità al bilanciamento
 	void useAbility();
 	void centerHero(Direction dir);
