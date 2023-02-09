@@ -17,7 +17,7 @@ non va la creazione di artefatti
 boss   
 
 -caratteri unicode:    
-\u265E cuore
+\u265E cavallo
 ♡      cuore vuoto
 \u26BF chiave
 \u26E8 scudo
