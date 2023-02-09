@@ -21,7 +21,7 @@ Room::Room(Board &game_board) {
 *  e la collega a quelle vicine */
 Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board) {
     this->y = y; this->x = x;
-    int num = 40;//randomRoomNumber();
+    int num = randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num,room_pos,game_board);
     decideIfDoors();
