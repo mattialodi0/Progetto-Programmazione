@@ -43,6 +43,7 @@ public:
     void updateScreen();
     void addScore();
     int getScore();
+    void refreshStat(Hero &hero,int score);
 
 private:
     void redraw();
@@ -63,5 +64,6 @@ private:
 // funzioni per l'indice
     void addRoomToIndex(prm room);
     void updateIndex(prm room);
+
 };
 

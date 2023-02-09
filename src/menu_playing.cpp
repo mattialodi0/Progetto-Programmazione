@@ -17,7 +17,7 @@ bool Menu_playing::menu(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -85,7 +85,7 @@ void Menu_playing::commands(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);

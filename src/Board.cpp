@@ -221,3 +221,11 @@ chtype Board::getCharAt(int y, int x)
 {
 	return mvwinch(board_win, y, x);
 }
+
+void Board::printStats(char* str, int y, int stat)
+{
+	char* buffer = (char *)malloc(3 * sizeof(char));
+	sprintf(buffer, "%d", stat);
+	mvwprintw(board_win, y, 2, str);
+	mvwprintw(board_win, y, 10, buffer);
+}   

@@ -148,6 +148,7 @@ void Game::updateScreen()
 	menu_playing.refreshStat(hero,getScore());
 	redraw();
 	game_board.refreshBoard();
+	refreshStat(hero, getScore());
 	stat_board.refreshBoard();
 	stat_board.addBorder();
 	score_board.refreshBoard();
@@ -186,7 +187,7 @@ void Game::manageHeroMovement()
 		}
 	}
 	//if(!game_board.getTaken(hero.getx()+offsetx,hero.gety()+offsety)){
-		stat_board.print(game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx));
+	//	stat_board.print(game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx));
 		switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
 		{
 		case ' ':
@@ -349,4 +350,20 @@ void Game::updateIndex(prm room) {
 		if(room_index[i]->y == room->y && room_index[i]->x== room->x+1)
 			room_index[i]->west = room;		
 	}
+}
+
+void Game::refreshStat(Hero &hero,int score){
+	int dmg=hero.getDmg();
+	char* str_dmg="Damage = ";
+	stat_board.printStats(str_dmg, 2, dmg);
+    int hp=hero.getHp();
+	char* str_hp="Health = ";
+	stat_board.printStats(str_hp, 3, hp);
+	int reload=hero.getReload();
+	char* str_rld="Reload = ";
+	//stat_board.printStats(str_rld, 4, reload);
+	int range=hero.getRange();
+	char* str_rng="Range = ";
+	stat_board.printStats(str_rng, 5, range);
+    int score_=score;
 }

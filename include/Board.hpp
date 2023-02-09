@@ -40,6 +40,7 @@ public:
 	void addAt(int y, int x, chtype ch);	
 	void print(const char* str);
 	void print(chtype str);
+	void printStats(char* str, int y, int stat);
 	int getDifficulty();
 	void setDifficulty(int diff);
 	void refreshDifficulty(int score);

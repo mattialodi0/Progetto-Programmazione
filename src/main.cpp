@@ -26,7 +26,7 @@ int main()
     
 	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
     
-    //menu.menu();
+    menu.menu();
 	
 	while (game.isNotOver())
 	{

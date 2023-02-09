@@ -17,7 +17,7 @@ void Menu::menu(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -76,7 +76,7 @@ void Menu::play(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -135,7 +135,7 @@ void Menu::settings(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -198,7 +198,7 @@ void Menu::commands(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -292,7 +292,7 @@ void Menu::character_class(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -358,7 +358,7 @@ void Menu::class_tank(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -442,7 +442,7 @@ void Menu::class_rogue(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -526,7 +526,7 @@ void Menu::class_ranger(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
@@ -610,7 +610,7 @@ void Menu::class_mage(){
     getmaxyx(stdscr, yMax, xMax);
 
     //crea una finestra per l'input
-    WINDOW * menuwin = newwin(yMax-6, xMax-8, 3, 4);
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
