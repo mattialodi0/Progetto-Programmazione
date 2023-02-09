@@ -22,6 +22,7 @@ protected:
 	int timeout;
 	bool taken[BOARD_COLS][BOARD_ROWS];
 	int difficultyRate=40;
+	int initialDifficulty=difficulty;
 public:
 	Board();
 	Board(int height, int width, int speed);
@@ -31,6 +32,7 @@ public:
 	void setTaken(int x, int y,bool set);
 	bool getTaken(int x, int y);
 	void clearTaken();
+	void setInitialDifficulty();
     void add(Drawable &drawable);
     void add_A(Drawable &drawable);
     void add_E(Drawable &drawable);

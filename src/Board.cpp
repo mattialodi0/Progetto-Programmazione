@@ -123,10 +123,13 @@ void Board::addAt(int y, int x, chtype ch)
 	mvwaddch(board_win, y, x, ch);
 }
 
+void Board::setInitialDifficulty(){
+	this->initialDifficulty=getDifficulty();
+}
 
 int Board::refreshDifficulty(int score){
-	setDifficulty(score/difficultyRate);
-	return score/difficultyRate;
+	setDifficulty((score/this->difficultyRate)+initialDifficulty);
+	return (score/this.>difficultyRate)+initialDifficulty;
 }
 
 void Board::print(const char* str) 
