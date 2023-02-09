@@ -10,9 +10,9 @@ Per lanciare il gioco basta scaricare la cartella ed eseguore il comando make da
 
 ## cose da fare:   
 commenti nel codice (in particolare cosa fanno gli artefatti e i nemici)  
-modificare le icon con alcuni unicode   
 non va la creazione di artefatti   
-rimuovere i warning
+rimuovere i warning (-w)
+ridurre le stanze senza porte
 
 -caratteri unicode:    
 \u265E cavallo
