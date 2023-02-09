@@ -446,7 +446,7 @@ void Room::drawEnemies(Board &board) {
                 board.add_B(*room_template->enemies[i]);
             else 
                 board.add_E(*room_template->enemies[i]);
-            board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->getx(), room_template->enemies[i]->getIcon());
+            //board.addAt(room_template->enemies[i]->gety(), room_template->enemies[i]->getx(), room_template->enemies[i]->getIcon());
         }
     }
 }
@@ -454,7 +454,7 @@ void Room::drawEnemies(Board &board) {
 void Room::drawArtifact(Board &board) {
     for(int i = 0; i < room_template->artifact_num; i++) {
         if(room_template->enemies[i] != NULL)
-            board.add(room_template->artifact[i]);
+            board.add_A(room_template->artifact[i]);
     }
 }
 
