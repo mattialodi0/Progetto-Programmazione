@@ -5,7 +5,7 @@ Template_0::Template_0(int n,Board &game_board) : General_template(0,16,0,0)
     drawDoors();
 }
 
-Template_1::Template_1(int n,Board &game_board) : General_template(10,16,ENEMIES,1)
+Template_1::Template_1(int n,Board &game_board) : General_template(10,16,ENEMIES,0)
 {
     drawRandom(10, 2, 2,BOARD_ROWS-3, BOARD_COLS-3,0);
 
@@ -20,6 +20,7 @@ Template_1::Template_1(int n,Board &game_board) : General_template(10,16,ENEMIES
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num];
     int y_chosen_artifact[artifact_num];
@@ -56,7 +57,7 @@ Template_2::Template_2(int n,Board &game_board) : General_template(18,16,0,1)
     
     drawDoors();
 
-    artifact[0] = Artifact(HALF_ROWS, HALF_COLS);
+    artifact[0] = Artifact(HALF_ROWS, HALF_COLS,'J');
 }
 
 Template_3::Template_3(int n,Board &game_board) : General_template(30,19,ENEMIES,1)
@@ -87,6 +88,7 @@ Template_3::Template_3(int n,Board &game_board) : General_template(30,19,ENEMIES
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num] = {(HALF_COLS/2)*3};
     int y_chosen_artifact[artifact_num] = {(HALF_ROWS/2)*3};
@@ -126,6 +128,7 @@ Template_4::Template_4(int n,Board &game_board) : General_template(30,19,ENEMIES
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num] = {(HALF_COLS/2)*3};
     int y_chosen_artifact[artifact_num] = {HALF_ROWS/2};
@@ -165,6 +168,7 @@ Template_5::Template_5(int n,Board &game_board) : General_template(30,19,ENEMIES
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num];
     int y_chosen_artifact[artifact_num];
@@ -205,6 +209,7 @@ Template_6::Template_6(int n,Board &game_board) : General_template(30,19,ENEMIES
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num];
     int y_chosen_artifact[artifact_num];
@@ -216,7 +221,7 @@ Template_6::Template_6(int n,Board &game_board) : General_template(30,19,ENEMIES
     }    
 }
 
-Template_7::Template_7(int n,Board &game_board) : General_template(161*4,16,ENEMIES,1)
+Template_7::Template_7(int n,Board &game_board) : General_template(161*4,16,ENEMIES,0)
 {
     need_doors = true;
     has_north_door = true; has_south_door = true; has_west_door = true; has_est_door = true;
@@ -236,15 +241,6 @@ Template_7::Template_7(int n,Board &game_board) : General_template(161*4,16,ENEM
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
     }
 }
 
@@ -279,18 +275,19 @@ Template_8::Template_8(int n,Board &game_board) : General_template(72,32,ENEMIES
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
+    int x_chosen_artifact[artifact_num] = {HALF_COLS};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
     for(int i=0;i<artifact_num;i++){
         chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
     }
     for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        createArtifact(true,false,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
     }   
 }
 
-Template_9::Template_9(int n,Board &game_board) : General_template(36,16,ENEMIES,1)
+Template_9::Template_9(int n,Board &game_board) : General_template(36,16,ENEMIES,0)
 {
     int i = 0;
     int ry = rand()%(BOARD_ROWS-4)+1;
@@ -323,18 +320,9 @@ Template_9::Template_9(int n,Board &game_board) : General_template(36,16,ENEMIES
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }
 }
 
-Template_10::Template_10(int n,Board &game_board) : General_template(15,16,ENEMIES,1)
+Template_10::Template_10(int n,Board &game_board) : General_template(15,16,ENEMIES,0)
 {
     int ry, rx;
     for(int i=0; i < 15; i++)
@@ -354,15 +342,6 @@ Template_10::Template_10(int n,Board &game_board) : General_template(15,16,ENEMI
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
     }
 }
 
@@ -398,9 +377,10 @@ Template_11::Template_11(int n,Board &game_board) : General_template(332,16,ENEM
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
+    int x_chosen_artifact[artifact_num] = {HALF_COLS};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
     for(int i=0;i<artifact_num;i++){
         chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
     }
@@ -410,77 +390,76 @@ Template_11::Template_11(int n,Board &game_board) : General_template(332,16,ENEM
 }
 
 Template_12::Template_12(int n,Board &game_board) : General_template(233,16,ENEMIES,1)
-    {
-        
-        int i = 0;
-        i = drawVerticalLine(21, 1, 7,i);
-        i = drawHorizontalLine(51, BOARD_ROWS-4, 8,i);     
-        i = drawVerticalLine(18, 4, BOARD_COLS-8,i);
-        i = drawHorizontalLine(46, 3,14,i);  
-        i = drawVerticalLine(15, 4, 14,i);
-        i = drawHorizontalLine(38, 18,15,i);
-        i = drawVerticalLine(12, 7, BOARD_COLS-15,i);
-        i = drawHorizontalLine(32, 6, 21,i);
-        
-        drawDoors();
+{
+    
+    int i = 0;
+    i = drawVerticalLine(21, 1, 7,i);
+    i = drawHorizontalLine(51, BOARD_ROWS-4, 8,i);     
+    i = drawVerticalLine(18, 4, BOARD_COLS-8,i);
+    i = drawHorizontalLine(46, 3,14,i);  
+    i = drawVerticalLine(15, 4, 14,i);
+    i = drawHorizontalLine(38, 18,15,i);
+    i = drawVerticalLine(12, 7, BOARD_COLS-15,i);
+    i = drawHorizontalLine(32, 6, 21,i);
+    
+    drawDoors();
+    int chosen_enemies[enemies_num];
+    int x_chosen[enemies_num];
+    int y_chosen[enemies_num];
+    for(int i=0;i<enemies_num;i++){
+        chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+    }
+    for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+    }
 
-        int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        for(int i=0;i<this->enemies_num;i++){   
-            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
-
-        int chosen_artifact[artifact_num];
-        int x_chosen_artifact[artifact_num];
-        int y_chosen_artifact[artifact_num];
-        for(int i=0;i<artifact_num;i++){
-            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-        }
-        for(int i=0;i<this->artifact_num;i++){
-            createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-        }    
+    int chosen_artifact[artifact_num];
+    int x_chosen_artifact[artifact_num] = {HALF_COLS};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
+    for(int i=0;i<artifact_num;i++){
+        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+    }
+    for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+    }    
 }
 
 Template_13::Template_13(int n,Board &game_board) : General_template(60,24,ENEMIES,1)
-    {
-        int i = 0;
-        i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
-        i = drawHorizontalLine(21, HALF_ROWS+5, HALF_COLS-10,i);
-        i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS-10,i);     
-        i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS+10,i);
-        
-        doors[16] = Locked_Door(HALF_ROWS-5, HALF_COLS-1);
-        doors[17] = Locked_Door(HALF_ROWS-5, HALF_COLS);
-        doors[18] = Locked_Door(HALF_ROWS-5, HALF_COLS+1);
-        doors[19] = Locked_Door(HALF_ROWS+5, HALF_COLS-1);
-        doors[20] = Locked_Door(HALF_ROWS+5, HALF_COLS);
-        doors[21] = Locked_Door(HALF_ROWS+5, HALF_COLS+1);
-        doors[22] = Locked_Door(HALF_ROWS, HALF_COLS-10);
-        doors[23] = Locked_Door(HALF_ROWS, HALF_COLS+10);        
-        drawDoors();
+{
+    int i = 0;
+    i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
+    i = drawHorizontalLine(21, HALF_ROWS+5, HALF_COLS-10,i);
+    i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS-10,i);     
+    i = drawVerticalLine(9, HALF_ROWS-4, HALF_COLS+10,i);
+    
+    doors[16] = Locked_Door(HALF_ROWS-5, HALF_COLS-1);
+    doors[17] = Locked_Door(HALF_ROWS-5, HALF_COLS);
+    doors[18] = Locked_Door(HALF_ROWS-5, HALF_COLS+1);
+    doors[19] = Locked_Door(HALF_ROWS+5, HALF_COLS-1);
+    doors[20] = Locked_Door(HALF_ROWS+5, HALF_COLS);
+    doors[21] = Locked_Door(HALF_ROWS+5, HALF_COLS+1);
+    doors[22] = Locked_Door(HALF_ROWS, HALF_COLS-10);
+    doors[23] = Locked_Door(HALF_ROWS, HALF_COLS+10);        
+    drawDoors();
+    int chosen_enemies[enemies_num];
+    int x_chosen[enemies_num];
+    int y_chosen[enemies_num];
+    for(int i=0;i<enemies_num;i++){
+        chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
+    }
+    for(int i=0;i<this->enemies_num;i++){   
+        createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
+    }
 
-        int chosen_enemies[enemies_num];
-        int x_chosen[enemies_num];
-        int y_chosen[enemies_num];
-        for(int i=0;i<enemies_num;i++){
-            chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-        }
-        for(int i=0;i<this->enemies_num;i++){   
-            createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-        }
-        int chosen_artifact[artifact_num];
-        int x_chosen_artifact[artifact_num];
-        int y_chosen_artifact[artifact_num];
-        for(int i=0;i<artifact_num;i++){
-            chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-        }
-        for(int i=0;i<this->artifact_num;i++){
-            createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-        }    
+    int chosen_artifact[artifact_num];
+    int x_chosen_artifact[artifact_num] = {HALF_COLS};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
+    for(int i=0;i<artifact_num;i++){
+        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
+    }
+    for(int i=0;i<this->artifact_num;i++){
+        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+    }    
 }
 
 Template_14::Template_14(int n,Board &game_board) : General_template(100,16,ENEMIES,1)
@@ -511,9 +490,10 @@ Template_14::Template_14(int n,Board &game_board) : General_template(100,16,ENEM
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
+    int x_chosen_artifact[artifact_num] = {HALF_COLS};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
     for(int i=0;i<artifact_num;i++){
         chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
     }
@@ -522,7 +502,7 @@ Template_14::Template_14(int n,Board &game_board) : General_template(100,16,ENEM
     }    
 }
 
-Template_15::Template_15(int n,Board &game_board) : General_template(306,52,ENEMIES,1)
+Template_15::Template_15(int n,Board &game_board) : General_template(306,52,ENEMIES,0)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
@@ -560,18 +540,9 @@ Template_15::Template_15(int n,Board &game_board) : General_template(306,52,ENEM
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
 }
 
-Template_16::Template_16(int n,Board &game_board) : General_template(52,30,ENEMIES,1)
+Template_16::Template_16(int n,Board &game_board) : General_template(52,30,ENEMIES,0)
 {
     int i = 0;
     int a = BOARD_ROWS/3-2;
@@ -627,19 +598,10 @@ Template_16::Template_16(int n,Board &game_board) : General_template(52,30,ENEMI
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    }  
 }
 
-Template_17::Template_17(int n,Board &game_board) : General_template(160,16,ENEMIES,1)
+Template_17::Template_17(int n,Board &game_board) : General_template(160,16,ENEMIES,0)
 {
     int i = 0;
     i = drawFilledSquare(HALF_ROWS/2-1, HALF_COLS/2-4, 4, 10, i);
@@ -655,19 +617,10 @@ Template_17::Template_17(int n,Board &game_board) : General_template(160,16,ENEM
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    } 
 }
 
-Template_18::Template_18(int n,Board &game_board) : General_template(108,16,ENEMIES,1)
+Template_18::Template_18(int n,Board &game_board) : General_template(108,16,ENEMIES,0)
 {
     int i = 0;
     i = drawFilledSquare(HALF_ROWS/2-2, HALF_COLS-4, 3, 9, i);
@@ -684,18 +637,9 @@ Template_18::Template_18(int n,Board &game_board) : General_template(108,16,ENEM
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }
 }
 
-Template_19::Template_19(int n,Board &game_board) : General_template(35,16,ENEMIES,1)
+Template_19::Template_19(int n,Board &game_board) : General_template(35,16,ENEMIES,0)
 {
     int i = 0;
     int ry = rand()%(BOARD_ROWS-8)+3;
@@ -725,18 +669,9 @@ Template_19::Template_19(int n,Board &game_board) : General_template(35,16,ENEMI
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
 }
 
-Template_20::Template_20(int n,Board &game_board) : General_template(85,19,ENEMIES,1)
+Template_20::Template_20(int n,Board &game_board) : General_template(85,19,ENEMIES,0)
 {
     int i = 0;
     i = drawHorizontalLine(20, HALF_ROWS-4, HALF_COLS-20, i);
@@ -760,19 +695,10 @@ Template_20::Template_20(int n,Board &game_board) : General_template(85,19,ENEMI
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    }  
 }
 
-Template_21::Template_21(int n,Board &game_board) : General_template(88,16,ENEMIES,1)
+Template_21::Template_21(int n,Board &game_board) : General_template(88,16,ENEMIES,0)
 {
     int i = 0;
     i = drawHorizontalLine(16, 4, 11, i);
@@ -794,16 +720,7 @@ Template_21::Template_21(int n,Board &game_board) : General_template(88,16,ENEMI
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    } 
 }
 
 Template_22::Template_22(int n,Board &game_board) : General_template(281,16,3,1)
@@ -868,6 +785,7 @@ Template_22::Template_22(int n,Board &game_board) : General_template(281,16,3,1)
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }        
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num];
     int y_chosen_artifact[artifact_num];
@@ -879,7 +797,7 @@ Template_22::Template_22(int n,Board &game_board) : General_template(281,16,3,1)
     }    
 }
 
-Template_23::Template_23(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,ENEMIES,1)
+Template_23::Template_23(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,ENEMIES,0)
 {
     int i = 0;
     i = drawVerticalLine(BOARD_ROWS-2, 1, BOARD_COLS-15, i);
@@ -898,19 +816,10 @@ Template_23::Template_23(int n,Board &game_board) : General_template((BOARD_ROWS
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    }  
 }
 
-Template_24::Template_24(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,ENEMIES,1)
+Template_24::Template_24(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,ENEMIES,0)
 {
     int i = 0;
     i = drawVerticalLine(BOARD_ROWS-2, 1, 14, i);
@@ -930,18 +839,9 @@ Template_24::Template_24(int n,Board &game_board) : General_template((BOARD_ROWS
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }
 }
 
-Template_25::Template_25(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,ENEMIES,1)
+Template_25::Template_25(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,ENEMIES,0)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS-2, 3, 1, i);
@@ -958,18 +858,9 @@ Template_25::Template_25(int n,Board &game_board) : General_template((BOARD_COLS
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
 }
 
-Template_26::Template_26(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,ENEMIES,1)
+Template_26::Template_26(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,ENEMIES,0)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS-2, BOARD_ROWS-5, 1, i);
@@ -986,15 +877,6 @@ Template_26::Template_26(int n,Board &game_board) : General_template((BOARD_COLS
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
 }
 
 Template_27::Template_27(int n,Board &game_board) : General_template(24,16,1,1)
@@ -1014,6 +896,7 @@ Template_27::Template_27(int n,Board &game_board) : General_template(24,16,1,1)
         createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
     enemies[0]->makeBoss(3,3,3);
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num];
     int y_chosen_artifact[artifact_num];
@@ -1025,7 +908,7 @@ Template_27::Template_27(int n,Board &game_board) : General_template(24,16,1,1)
     }    
 }
 
-Template_28::Template_28(int n,Board &game_board) : General_template(0,16,rand() % (max_n_enemies-3) +4,1)
+Template_28::Template_28(int n,Board &game_board) : General_template(0,16,rand() % (max_n_enemies-3) +4,0)
 {
     drawDoors();
 
@@ -1038,15 +921,6 @@ Template_28::Template_28(int n,Board &game_board) : General_template(0,16,rand()
     for(int i=4;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
 }
 
 Template_29::Template_29(int n,Board &game_board) : General_template(0,16,30,0)
@@ -1063,7 +937,7 @@ Template_29::Template_29(int n,Board &game_board) : General_template(0,16,30,0)
     }
 }
 
-Template_30::Template_30(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,ENEMIES,1)
+Template_30::Template_30(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,ENEMIES,0)
 {
     int r = rand() % 5 + 3;
     drawHorizontalLine(BOARD_COLS-2, r, 1, 0);
@@ -1092,19 +966,10 @@ Template_30::Template_30(int n,Board &game_board) : General_template((BOARD_COLS
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    } 
 }
 
-Template_31::Template_31(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,ENEMIES,1)
+Template_31::Template_31(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,ENEMIES,0)
 {
     int r = rand() % 5 + HALF_ROWS+5;
     drawHorizontalLine(BOARD_COLS-2, r, 1, 0);
@@ -1133,19 +998,10 @@ Template_31::Template_31(int n,Board &game_board) : General_template((BOARD_COLS
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    }  
 }
 
-Template_32::Template_32(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,ENEMIES,1)
+Template_32::Template_32(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,ENEMIES,0)
 {
     int r = rand() % 10 + 10;
     drawVerticalLine(BOARD_ROWS-2, 1, r, 0);
@@ -1170,19 +1026,10 @@ Template_32::Template_32(int n,Board &game_board) : General_template((BOARD_COLS
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    }  
 }
 
-Template_33::Template_33(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,ENEMIES,1)
+Template_33::Template_33(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,ENEMIES,0)
 {
     int r = rand() % 10 + BOARD_COLS-20;
     drawVerticalLine(BOARD_ROWS-2, 1, r, 0);
@@ -1207,19 +1054,10 @@ Template_33::Template_33(int n,Board &game_board) : General_template((BOARD_COLS
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
     }    
 }
 
-Template_34::Template_34(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,28,ENEMIES,1)
+Template_34::Template_34(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,28,ENEMIES,0)
 {
     int i = 0;
     int rx1 = (rand() % (HALF_COLS-12)) +5;   //primo muro
@@ -1258,18 +1096,9 @@ Template_34::Template_34(int n,Board &game_board) : General_template(BOARD_COLS+
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
 }
 
-Template_35::Template_35(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,24,ENEMIES,1)
+Template_35::Template_35(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,24,ENEMIES,0)
 { 
     int i = 0;
     int rx1 = (rand() % (HALF_COLS-20)) +10;   //primo muro
@@ -1310,19 +1139,10 @@ Template_35::Template_35(int n,Board &game_board) : General_template(BOARD_COLS+
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    } 
 }
 
-Template_36::Template_36(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,26,ENEMIES,1)
+Template_36::Template_36(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,26,ENEMIES,0)
 {
     int i = 0;
     int ry1 = (rand() % (HALF_ROWS-5)) +3;   //primo muro
@@ -1366,15 +1186,6 @@ Template_36::Template_36(int n,Board &game_board) : General_template(BOARD_COLS+
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
 }
 
 Template_37::Template_37(int n,Board &game_board) : General_template(0,16,5,1)
@@ -1388,6 +1199,7 @@ Template_37::Template_37(int n,Board &game_board) : General_template(0,16,5,1)
         createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
     enemies[0]->makeBoss(3,3,3);
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num];
     int y_chosen_artifact[artifact_num];
@@ -1410,6 +1222,7 @@ Template_38::Template_38(int n,Board &game_board) : General_template(0,16,5,1)
         createEnemies(false,false,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
     enemies[0]->makeBoss(3,3,3);
+
     int chosen_artifact[artifact_num];
     int x_chosen_artifact[artifact_num];
     int y_chosen_artifact[artifact_num];
@@ -1421,7 +1234,7 @@ Template_38::Template_38(int n,Board &game_board) : General_template(0,16,5,1)
     }    
 }
 
-Template_39::Template_39(int n,Board &game_board) : General_template(19,16,ENEMIES,1)
+Template_39::Template_39(int n,Board &game_board) : General_template(19,16,ENEMIES,0)
 {
     drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
@@ -1435,16 +1248,7 @@ Template_39::Template_39(int n,Board &game_board) : General_template(19,16,ENEMI
     }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
-    }
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
-    for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    }   
 }
 
 Template_40::Template_40(int n,Board &game_board) : General_template(216,24,ENEMIES,1)
@@ -1490,18 +1294,13 @@ Template_40::Template_40(int n,Board &game_board) : General_template(216,24,ENEM
     int chosen_enemies[enemies_num];
     int x_chosen[enemies_num];
     int y_chosen[enemies_num];
-    for(int i=0;i<enemies_num;i++){
-        chosen_enemies[i]=x_chosen[i]=y_chosen[i]=0;
-    }
     for(int i=0;i<this->enemies_num;i++){   
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
+
     int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num] = {HALF_COLS};
-    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
-    for(int i=0;i<artifact_num;i++){
-        chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
-    }
+    int x_chosen_artifact[artifact_num] = {HALF_ROWS};
+    int y_chosen_artifact[artifact_num] = {HALF_COLS};
     for(int i=0;i<this->artifact_num;i++){
         createArtifact(true,false,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
     }

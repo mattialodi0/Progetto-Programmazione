@@ -20,12 +20,12 @@ chtype Artifact::RandomArtifact()
     int i = (rand() % (4));
     switch(i){
         case '0':
-        return 'R';
+            return 'R'; //range
         case '1':
-        return 'E';
+            return 'E'; //danno
         case '2':
-        return 'H';
+            return 'H'; //cura
         case '3':
-        return 'J';
-            };
+            return 'J'; //chiave
+     };
 }

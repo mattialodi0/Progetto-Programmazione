@@ -48,7 +48,7 @@ Template:
 6   - sottostanza lb          8        
 7   - croce negativa          8        
 8   - sottostanza c no porte  10        
-9   - blochhi muri rand       10        
+9   - blocchi muri rand       10        
 10  - muri rand               8        
 11  - maze contrentico        3                  
 12  - maze spirale            2        
