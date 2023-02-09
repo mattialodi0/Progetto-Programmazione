@@ -5,7 +5,7 @@ Template_0::Template_0(int n,Board &game_board) : General_template(0,16,0,0)
     drawDoors();
 }
 
-Template_1::Template_1(int n,Board &game_board) : General_template(10,16,rand() % (max_n_enemies+1),1)
+Template_1::Template_1(int n,Board &game_board) : General_template(10,16,ENEMIES,1)
 {
     drawRandom(10, 2, 2,BOARD_ROWS-3, BOARD_COLS-3,0);
 
@@ -59,7 +59,7 @@ Template_2::Template_2(int n,Board &game_board) : General_template(18,16,0,1)
     artifact[0] = Artifact(HALF_ROWS, HALF_COLS);
 }
 
-Template_3::Template_3(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
+Template_3::Template_3(int n,Board &game_board) : General_template(30,19,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS/3,(BOARD_ROWS/3)*2,(BOARD_COLS/3)*2,i);
@@ -98,7 +98,7 @@ Template_3::Template_3(int n,Board &game_board) : General_template(30,19,rand() 
     }    
 }
 
-Template_4::Template_4(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
+Template_4::Template_4(int n,Board &game_board) : General_template(30,19,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS/3,BOARD_ROWS/3,(BOARD_COLS/3)*2,i);
@@ -137,7 +137,7 @@ Template_4::Template_4(int n,Board &game_board) : General_template(30,19,rand() 
     }    
 }
 
-Template_5::Template_5(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
+Template_5::Template_5(int n,Board &game_board) : General_template(30,19,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS/3, BOARD_ROWS/3,1,i);
@@ -176,7 +176,7 @@ Template_5::Template_5(int n,Board &game_board) : General_template(30,19,rand() 
     }
 }
 
-Template_6::Template_6(int n,Board &game_board) : General_template(30,19,rand() % (max_n_enemies+1),1)
+Template_6::Template_6(int n,Board &game_board) : General_template(30,19,ENEMIES,1)
 {
     
     int i = 0;
@@ -216,7 +216,7 @@ Template_6::Template_6(int n,Board &game_board) : General_template(30,19,rand() 
     }    
 }
 
-Template_7::Template_7(int n,Board &game_board) : General_template(161*4,16,rand() % (max_n_enemies+1),1)
+Template_7::Template_7(int n,Board &game_board) : General_template(161*4,16,ENEMIES,1)
 {
     need_doors = true;
     has_north_door = true; has_south_door = true; has_west_door = true; has_est_door = true;
@@ -248,7 +248,7 @@ Template_7::Template_7(int n,Board &game_board) : General_template(161*4,16,rand
     }
 }
 
-Template_8::Template_8(int n,Board &game_board) : General_template(72,32,rand() % (max_n_enemies+1),1)
+Template_8::Template_8(int n,Board &game_board) : General_template(72,32,ENEMIES,1)
 {
     drawEmptySquare(HALF_ROWS-5, HALF_COLS-13, 11, 27, 0);     //72 walls
     
@@ -290,7 +290,7 @@ Template_8::Template_8(int n,Board &game_board) : General_template(72,32,rand() 
     }   
 }
 
-Template_9::Template_9(int n,Board &game_board) : General_template(36,16,rand() % (max_n_enemies+1),1)
+Template_9::Template_9(int n,Board &game_board) : General_template(36,16,ENEMIES,1)
 {
     int i = 0;
     int ry = rand()%(BOARD_ROWS-4)+1;
@@ -334,7 +334,7 @@ Template_9::Template_9(int n,Board &game_board) : General_template(36,16,rand() 
     }
 }
 
-Template_10::Template_10(int n,Board &game_board) : General_template(15,16,rand() % (max_n_enemies+1),1)
+Template_10::Template_10(int n,Board &game_board) : General_template(15,16,ENEMIES,1)
 {
     int ry, rx;
     for(int i=0; i < 15; i++)
@@ -366,7 +366,7 @@ Template_10::Template_10(int n,Board &game_board) : General_template(15,16,rand(
     }
 }
 
-Template_11::Template_11(int n,Board &game_board) : General_template(332,16,rand() % (max_n_enemies+1),1)
+Template_11::Template_11(int n,Board &game_board) : General_template(332,16,ENEMIES,1)
 {
     
     int i = 0;
@@ -409,7 +409,7 @@ Template_11::Template_11(int n,Board &game_board) : General_template(332,16,rand
     }       
 }
 
-Template_12::Template_12(int n,Board &game_board) : General_template(233,16,rand() % (max_n_enemies+1),1)
+Template_12::Template_12(int n,Board &game_board) : General_template(233,16,ENEMIES,1)
     {
         
         int i = 0;
@@ -445,7 +445,7 @@ Template_12::Template_12(int n,Board &game_board) : General_template(233,16,rand
         }    
 }
 
-Template_13::Template_13(int n,Board &game_board) : General_template(60,24,rand() % (max_n_enemies+1),1)
+Template_13::Template_13(int n,Board &game_board) : General_template(60,24,ENEMIES,1)
     {
         int i = 0;
         i = drawHorizontalLine(21, HALF_ROWS-5, HALF_COLS-10,i);
@@ -483,7 +483,7 @@ Template_13::Template_13(int n,Board &game_board) : General_template(60,24,rand(
         }    
 }
 
-Template_14::Template_14(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1),1)
+Template_14::Template_14(int n,Board &game_board) : General_template(100,16,ENEMIES,1)
 {
     need_doors  = true;
     has_north_door = false; has_south_door = false; has_west_door = true; has_est_door = true;
@@ -522,7 +522,7 @@ Template_14::Template_14(int n,Board &game_board) : General_template(100,16,rand
     }    
 }
 
-Template_15::Template_15(int n,Board &game_board) : General_template(306,52,rand() % (max_n_enemies+1),1)
+Template_15::Template_15(int n,Board &game_board) : General_template(306,52,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS-9, 4, 1,i);
@@ -571,7 +571,7 @@ Template_15::Template_15(int n,Board &game_board) : General_template(306,52,rand
     }    
 }
 
-Template_16::Template_16(int n,Board &game_board) : General_template(52,30,rand() % (max_n_enemies+1),1)
+Template_16::Template_16(int n,Board &game_board) : General_template(52,30,ENEMIES,1)
 {
     int i = 0;
     int a = BOARD_ROWS/3-2;
@@ -639,7 +639,7 @@ Template_16::Template_16(int n,Board &game_board) : General_template(52,30,rand(
     }    
 }
 
-Template_17::Template_17(int n,Board &game_board) : General_template(160,16,rand() % (max_n_enemies+1),1)
+Template_17::Template_17(int n,Board &game_board) : General_template(160,16,ENEMIES,1)
 {
     int i = 0;
     i = drawFilledSquare(HALF_ROWS/2-1, HALF_COLS/2-4, 4, 10, i);
@@ -667,7 +667,7 @@ Template_17::Template_17(int n,Board &game_board) : General_template(160,16,rand
     }    
 }
 
-Template_18::Template_18(int n,Board &game_board) : General_template(108,16,rand() % (max_n_enemies+1),1)
+Template_18::Template_18(int n,Board &game_board) : General_template(108,16,ENEMIES,1)
 {
     int i = 0;
     i = drawFilledSquare(HALF_ROWS/2-2, HALF_COLS-4, 3, 9, i);
@@ -695,7 +695,7 @@ Template_18::Template_18(int n,Board &game_board) : General_template(108,16,rand
     }
 }
 
-Template_19::Template_19(int n,Board &game_board) : General_template(35,16,rand() % (max_n_enemies+1),1)
+Template_19::Template_19(int n,Board &game_board) : General_template(35,16,ENEMIES,1)
 {
     int i = 0;
     int ry = rand()%(BOARD_ROWS-8)+3;
@@ -736,7 +736,7 @@ Template_19::Template_19(int n,Board &game_board) : General_template(35,16,rand(
     }    
 }
 
-Template_20::Template_20(int n,Board &game_board) : General_template(85,19,rand() % (max_n_enemies+1),1)
+Template_20::Template_20(int n,Board &game_board) : General_template(85,19,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(20, HALF_ROWS-4, HALF_COLS-20, i);
@@ -772,7 +772,7 @@ Template_20::Template_20(int n,Board &game_board) : General_template(85,19,rand(
     }    
 }
 
-Template_21::Template_21(int n,Board &game_board) : General_template(80,16,rand() % (max_n_enemies+1),1)
+Template_21::Template_21(int n,Board &game_board) : General_template(80,16,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(16, 4, 11, i);
@@ -879,7 +879,7 @@ Template_22::Template_22(int n,Board &game_board) : General_template(281,16,3,1)
     }    
 }
 
-Template_23::Template_23(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,rand() % (max_n_enemies+1),1)
+Template_23::Template_23(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,ENEMIES,1)
 {
     int i = 0;
     i = drawVerticalLine(BOARD_ROWS-2, 1, BOARD_COLS-15, i);
@@ -910,7 +910,7 @@ Template_23::Template_23(int n,Board &game_board) : General_template((BOARD_ROWS
     }    
 }
 
-Template_24::Template_24(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,rand() % (max_n_enemies+1),1)
+Template_24::Template_24(int n,Board &game_board) : General_template((BOARD_ROWS-2)*5,16,ENEMIES,1)
 {
     int i = 0;
     i = drawVerticalLine(BOARD_ROWS-2, 1, 14, i);
@@ -941,7 +941,7 @@ Template_24::Template_24(int n,Board &game_board) : General_template((BOARD_ROWS
     }
 }
 
-Template_25::Template_25(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,rand() % (max_n_enemies+1),1)
+Template_25::Template_25(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS-2, 3, 1, i);
@@ -969,7 +969,7 @@ Template_25::Template_25(int n,Board &game_board) : General_template((BOARD_COLS
     }    
 }
 
-Template_26::Template_26(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,rand() % (max_n_enemies+1),1)
+Template_26::Template_26(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,16,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(BOARD_COLS-2, BOARD_ROWS-5, 1, i);
@@ -1062,7 +1062,7 @@ Template_29::Template_29(int n,Board &game_board) : General_template(0,16,30,0)
     }
 }
 
-Template_30::Template_30(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,rand() % (max_n_enemies+1),1)
+Template_30::Template_30(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,ENEMIES,1)
 {
     int r = rand() % 5 + 3;
     drawHorizontalLine(BOARD_COLS-2, r, 1, 0);
@@ -1103,7 +1103,7 @@ Template_30::Template_30(int n,Board &game_board) : General_template((BOARD_COLS
     }    
 }
 
-Template_31::Template_31(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,rand() % (max_n_enemies+1),1)
+Template_31::Template_31(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,20,ENEMIES,1)
 {
     int r = rand() % 5 + HALF_ROWS+5;
     drawHorizontalLine(BOARD_COLS-2, r, 1, 0);
@@ -1144,7 +1144,7 @@ Template_31::Template_31(int n,Board &game_board) : General_template((BOARD_COLS
     }    
 }
 
-Template_32::Template_32(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,rand() % (max_n_enemies+1),1)
+Template_32::Template_32(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,ENEMIES,1)
 {
     int r = rand() % 10 + 10;
     drawVerticalLine(BOARD_ROWS-2, 1, r, 0);
@@ -1181,7 +1181,7 @@ Template_32::Template_32(int n,Board &game_board) : General_template((BOARD_COLS
     }    
 }
 
-Template_33::Template_33(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,rand() % (max_n_enemies+1),1)
+Template_33::Template_33(int n,Board &game_board) : General_template((BOARD_COLS-2)*2,18,ENEMIES,1)
 {
     int r = rand() % 10 + BOARD_COLS-20;
     drawVerticalLine(BOARD_ROWS-2, 1, r, 0);
@@ -1218,7 +1218,7 @@ Template_33::Template_33(int n,Board &game_board) : General_template((BOARD_COLS
     }    
 }
 
-Template_34::Template_34(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,28,rand() % (max_n_enemies+1),1)
+Template_34::Template_34(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,28,ENEMIES,1)
 {
     int i = 0;
     int rx1 = (rand() % (HALF_COLS-12)) +5;   //primo muro
@@ -1268,7 +1268,7 @@ Template_34::Template_34(int n,Board &game_board) : General_template(BOARD_COLS+
     }    
 }
 
-Template_35::Template_35(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,24,rand() % (max_n_enemies+1),1)
+Template_35::Template_35(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,24,ENEMIES,1)
 { 
     int i = 0;
     int rx1 = (rand() % (HALF_COLS-20)) +10;   //primo muro
@@ -1321,7 +1321,7 @@ Template_35::Template_35(int n,Board &game_board) : General_template(BOARD_COLS+
     }    
 }
 
-Template_36::Template_36(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,26,rand() % (max_n_enemies+1),1)
+Template_36::Template_36(int n,Board &game_board) : General_template(BOARD_COLS+BOARD_ROWS-4,26,ENEMIES,1)
 {
     int i = 0;
     int ry1 = (rand() % (HALF_ROWS-5)) +3;   //primo muro
@@ -1418,7 +1418,7 @@ Template_38::Template_38(int n,Board &game_board) : General_template(0,16,5,1)
     }    
 }
 
-Template_39::Template_39(int n,Board &game_board) : General_template(19,16,rand() % (max_n_enemies+1),1)
+Template_39::Template_39(int n,Board &game_board) : General_template(19,16,ENEMIES,1)
 {
     drawOrtogonalCross(HALF_ROWS,HALF_COLS,3,6,0);     //19 walls      
 
@@ -1444,7 +1444,7 @@ Template_39::Template_39(int n,Board &game_board) : General_template(19,16,rand(
     }    
 }
 
-Template_40::Template_40(int n,Board &game_board) : General_template(216,24,rand() % (max_n_enemies+1),1)
+Template_40::Template_40(int n,Board &game_board) : General_template(216,24,ENEMIES,1)
 {
     int i = 0;
     i = drawEmptySquare(HALF_ROWS-2, HALF_COLS-4, 5, 9, i);
