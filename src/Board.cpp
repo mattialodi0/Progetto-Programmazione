@@ -129,7 +129,7 @@ void Board::setInitialDifficulty(){
 
 int Board::refreshDifficulty(int score){
 	setDifficulty((score/this->difficultyRate)+initialDifficulty);
-	return (score/this.>difficultyRate)+initialDifficulty;
+	return (score/this->difficultyRate)+initialDifficulty;
 }
 
 void Board::print(const char* str) 
