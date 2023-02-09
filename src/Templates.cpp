@@ -772,7 +772,7 @@ Template_20::Template_20(int n,Board &game_board) : General_template(85,19,ENEMI
     }    
 }
 
-Template_21::Template_21(int n,Board &game_board) : General_template(80,16,ENEMIES,1)
+Template_21::Template_21(int n,Board &game_board) : General_template(88,16,ENEMIES,1)
 {
     int i = 0;
     i = drawHorizontalLine(16, 4, 11, i);
