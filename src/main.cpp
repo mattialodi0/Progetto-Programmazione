@@ -1,10 +1,5 @@
 #include "Game.hpp"
-<<<<<<< Updated upstream
-
-#include "menu.hpp"
-=======
 //#include "menu.hpp"
->>>>>>> Stashed changes
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
