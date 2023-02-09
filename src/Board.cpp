@@ -235,4 +235,23 @@ void Board::printWin(char* str, int y, int stat)
 	sprintf(buffer, "%d", stat);
 	mvwprintw(board_win, y, 2, str);
 	mvwprintw(board_win, y, 15, buffer);
+	free(buffer);
 }   
+void Board::printWin(char* str, int y, int stat1, int stat2)
+{
+	char* buffer = (char *)malloc(6 * sizeof(char));
+	sprintf(buffer, "%d %d", stat1, stat2);
+	mvwprintw(board_win, y, 2, str);
+	mvwprintw(board_win, y, 15, buffer);
+	free(buffer);
+}   
+
+void Board::printyxWin(char str[], int y, int x) {
+	mvwaddstr(board_win, y, x, str);
+}
+
+void Board::printyxWin(char str[], int y, int x, int color) {
+	wattron(board_win, COLOR_PAIR(color));
+	mvwaddstr(board_win, y, x, str);
+	wattroff(board_win, COLOR_PAIR(color));
+}

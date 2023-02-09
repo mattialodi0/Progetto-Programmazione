@@ -369,26 +369,31 @@ void Game::updateIndex(prm room) {
 
 void Game::refreshStat(Hero &hero){
 	int dmg=hero.getDmg();
-	//char* str_dmg="Damage = ";
-	stat_board.printWin("Damage = ", 2, dmg);
+	stat_board.printWin("Damage: ", 2, dmg);
     int hp=hero.getHp();
-	//char* str_hp="Health = ";
-	stat_board.printWin("Health = ", 3, hp);
+	int i,j=0;
+	stat_board.printyxWin("Health: ", 3, 2);
+	for(i=1; i*10 <= hp; i++) {		//cuori pieni
+		stat_board.printyxWin("♥", 3, j+14, ENEMY_PAIR);
+		j++;
+	}
+	for(i; i*10 <= hero.getMaxHp(); i++) {		//cuori vuoti
+		stat_board.printyxWin("♡", 3, j+14);
+		j++;
+	}
+	stat_board.printWin("Hp: ", 4, hp);
 	int reload=hero.getReload();
-	//char* str_rld="Reload = ";
-	stat_board.printWin("Reload = ", 4, reload);
+	stat_board.printWin("Reload: ", 5, reload);
 	int range=hero.getRange();
-	//char* str_rng="Range = ";
-	stat_board.printWin("Range = ", 5, range);
-    int score_=score;
+	stat_board.printWin("Range: ", 6, range);
+	stat_board.printWin("Keys: ", 7, hero.getKey());
+	stat_board.printWin("Room (y,x): ", 9, current_room->y, current_room->x);
 }
 
 void Game::refreshScore(Hero &hero){
 	//int diff = game_board.getDifficulty();
-	score_board.printWin("Score = ", 2, getScore());
-	score_board.printWin("Difficulty = ", 3, game_board.getDifficulty());
-	score_board.printWin("Keys =", 4, hero.getKey());
-	
+	score_board.printWin("Score: ", 2, getScore());
+	score_board.printWin("Difficulty: ", 3, game_board.getDifficulty());
 }
 
 /*

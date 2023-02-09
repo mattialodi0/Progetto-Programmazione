@@ -37,7 +37,6 @@ private:
     //void damageEnemy(int damage);
     //void healEnemy(int healing);
 public:
-void removeEnemy(int pos,Board &board_win);
     int y; int x;
     Room* north; Room* south; Room* west; Room* est;
 
@@ -56,7 +55,8 @@ void removeEnemy(int pos,Board &board_win);
     bool isClear();
 
     void unlockDoor(int y, int x, Board &game_board);
-
+    
+    void removeEnemy(int pos,Board &board_win);
     void removeArtifact(int pos);
 
     void checkHeroProjectile(Board &board_win,Hero &hero);

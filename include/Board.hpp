@@ -43,6 +43,10 @@ public:
 	void print(const char* str);
 	void print(chtype str);
 	void printWin(char* str, int y, int stat);
+	void printWin(char* str, int y, int stat1, int stat2);
+	void printyxWin(char str[], int y, int x);
+	void printyxWin(char str[], int y, int x, int color);
+
 	int getDifficulty();
 	void setDifficulty(int diff);
 	void setDifficultyRate(int diff);
