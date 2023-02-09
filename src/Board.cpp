@@ -223,7 +223,7 @@ void Board::addBorder()
 
 chtype Board::getCharAt(int y, int x)
 {
-	return mvwinch(board_win, y, x);
+	return (unsigned char)mvwinch(board_win, y, x);
 }
 
 void Board::printStats(char* str, int y, int stat)
