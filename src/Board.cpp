@@ -10,7 +10,7 @@ Board::Board():Board(0, 0, 300)
 	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
-	init_pair(DOOR_PAIR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(DOOR_PAIR, COLOR_BLACK, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int speed)
@@ -31,7 +31,7 @@ Board::Board(int height, int width, int speed)
 	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
-	init_pair(DOOR_PAIR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(DOOR_PAIR, COLOR_BLACK, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int starty, int startx, int speed)
@@ -51,7 +51,7 @@ Board::Board(int height, int width, int starty, int startx, int speed)
 	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
-	init_pair(DOOR_PAIR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(DOOR_PAIR, COLOR_BLACK, COLOR_BLACK);
 }
 
 void Board::initialize() 

@@ -471,33 +471,33 @@ void Room::drawDoors(Board &board) {
     {
         for(int i = 0; i < 5; i++) 
         {    
-            board.add(room_template->doors[i]);
+            board.add_D(room_template->doors[i]);
         }
     }
     if(has_south_door) 
     {
         for(int i = 5; i < 10; i++) 
         {    
-            board.add(room_template->doors[i]);
+            board.add_D(room_template->doors[i]);
         }
     }
     if(has_west_door) 
     {
         for(int i = 10; i < 13; i++) 
         {    
-            board.add(room_template->doors[i]);
+            board.add_D(room_template->doors[i]);
         }
     }
     if(has_est_door) 
     {
         for(int i = 13; i < 16; i++) 
         {    
-            board.add(room_template->doors[i]);
+            board.add_D(room_template->doors[i]);
         }
     }
     if(room_template->doors_num > 16) {
         for(int i = 16; i < room_template->doors_num; i++) {
-            board.add(room_template->doors[i]);
+            board.add_D(room_template->doors[i]);
         }
     }
 }
