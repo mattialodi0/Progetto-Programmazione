@@ -21,12 +21,12 @@ void Menu::menu(){
     wrefresh(menuwin);
     keypad(menuwin, true);      //makes arrows keys usable
     
-    char* choices[4] = {"Choose class", "Difficulty", "Commands", "Exit"};
+    char* choices[3] = {"Play", "Commands", "Exit"};
     int choice;
     int highlight = 0;
 
     while(1) {
-       for(int i = 0; i < 4; i++) {
+       for(int i = 0; i < 3; i++) {
             if(i == highlight) 
                 wattron(menuwin, A_REVERSE);
             mvwprintw(menuwin, i+1, 1, choices[i]);
@@ -42,8 +42,8 @@ void Menu::menu(){
                 break;
             case KEY_DOWN:
                 highlight++;
-                if(highlight > 3)
-                    highlight = 3;
+                if(highlight > 2)
+                    highlight = 2;
                 break;
             default:
                 break;
@@ -53,16 +53,74 @@ void Menu::menu(){
     }
 
     if (highlight==0){
-        return character_class();
+        play();
+    }
+    if (highlight==1){
+        commands();
+    }
+    if (highlight==2){
+        setGameOver();
+        endwin();
+    }
+
+}
+
+void Menu::play(){
+
+    initscr();
+    cbreak();
+    noecho();
+
+    //prende le dimensioni della finestra
+    int yMax, xMax;
+    getmaxyx(stdscr, yMax, xMax);
+
+    //crea una finestra per l'input
+    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
+    box(menuwin, 0 ,0);
+    refresh();
+    wrefresh(menuwin);
+    keypad(menuwin, true);      //makes arrows keys usable
+    
+    char* choices[3] = {"Choose class", "Difficulty", "-Back-"};
+    int choice;
+    int highlight = 0;
+
+    while(1) {
+       for(int i = 0; i < 3; i++) {
+            if(i == highlight) 
+                wattron(menuwin, A_REVERSE);
+            mvwprintw(menuwin, i+1, 1, choices[i]);
+            wattroff(menuwin, A_REVERSE);
+        }
+        choice = wgetch(menuwin);
+
+        switch(choice) {
+            case KEY_UP:
+                highlight--;
+                if(highlight < 0)
+                    highlight = 0;
+                break;
+            case KEY_DOWN:
+                highlight++;
+                if(highlight > 2)
+                    highlight = 2;
+                break;
+            default:
+                break;
+        }
+        if(choice == 10)
+            break;        
+    }
+
+    if (highlight==0){
+        character_class();
     }
     if (highlight==1){
         difficulty();
     }
     if (highlight==2){
-        commands();
-    }
-    if (highlight==3){
-        endwin();
+        menu();
     }
 
 }
@@ -84,7 +142,7 @@ void Menu::difficulty(){
     wrefresh(menuwin);
     keypad(menuwin, true);      //makes arrows keys usable
     
-    char* choices[4] = {"Set Difficulty Easy", "Set Difficulty Medium", "Set Difficulty Hard", "-Back-"};
+    char* choices[4] = {"Set difficulty easy", "Set difficulty medium", "Set difficulty hard", "-Back-"};
     int choice;
     int highlight = 0;
 
@@ -131,71 +189,10 @@ void Menu::difficulty(){
         menu();
     }
     if (highlight==3){
-        menu();
+        play();
     }
 
 }
-
-/*
-void Menu::play(){
-    initscr();
-    cbreak();
-    noecho();
-
-    //prende le dimensioni della finestra
-    int yMax, xMax;
-    getmaxyx(stdscr, yMax, xMax);
-
-    //crea una finestra per l'input
-    WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
-    box(menuwin, 0 ,0);
-    refresh();
-    wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
-    
-    string choices[3] = {"Start game", "Choose class", "-Back-"};
-    int choice;
-    int highlight = 0;
-
-    while(1) {
-       for(int i = 0; i < 3; i++) {
-            if(i == highlight) 
-                wattron(menuwin, A_REVERSE);
-            mvwprintw(menuwin, i+1, 1, choices[i].c_str());
-            wattroff(menuwin, A_REVERSE);
-        }
-        choice = wgetch(menuwin);
-
-        switch(choice) {
-            case KEY_UP:
-                highlight--;
-                if(highlight < 0)
-                    highlight = 0;
-                break;
-            case KEY_DOWN:
-                highlight++;
-                if(highlight > 2)
-                    highlight = 2;
-                break;
-            default:
-                break;
-        }
-        if(choice == 10)
-            break;        
-    }
-
-    if (highlight==0){
-        // start_game();
-    }
-    if (highlight==1){
-        character_class();
-    }
-    if (highlight==2){
-        menu();
-    }
-
-}
-*/
 
 void Menu::commands(){
 
@@ -340,19 +337,19 @@ void Menu::character_class(){
     }
 
     if (highlight==0){
-        return class_tank();
+        class_tank();
     }
     if (highlight==1){
-        return class_rogue();
+        class_rogue();
     }
     if (highlight==2){
-        return class_ranger();
+        class_ranger();
     }
     if (highlight==3){
-        return class_mage();
+        class_mage();
     }
     if (highlight==4){
-        menu();
+        play();
     }
 
 }
@@ -380,22 +377,22 @@ void Menu::class_tank(){
     mvwprintw(menuwin, iy, ix, " TANK class stats : ");
 
     //char* stats_hp = " Healt Points = 30 ";
-    mvwprintw(menuwin, iy+2, ix, " Healt Points = 30 ");
+    mvwprintw(menuwin, iy+2, ix, " Healt Points = 40 ");
 
     //char* stats_ac = " Defense = 3 ";
-    mvwprintw(menuwin, iy+3, ix, " Defense = 3 ");
+    //mvwprintw(menuwin, iy+3, ix, " Defense = 3 ");
 
     //char* stats_dmg = " Damage = 2 ";
-    mvwprintw(menuwin, iy+4, ix, " Damage = 2 ");
+    mvwprintw(menuwin, iy+3, ix, " Damage = 3 ");
 
     //char* stats_sp = " Speed = 1 ";
-    mvwprintw(menuwin, iy+5, ix, " Speed = 1 ");
+    //mvwprintw(menuwin, iy+5, ix, " Speed = 1 ");
 
     //char* stats_rl = " Reload Time = 3 ";
-    mvwprintw(menuwin, iy+6, ix, " Reload Time = 3 ");
+    mvwprintw(menuwin, iy+4, ix, " Reload Time = 3 ");
 
     //char* stats_rg = " Range = 2 ";
-    mvwprintw(menuwin, iy+7, ix, " Range = 2 ");
+    mvwprintw(menuwin, iy+5, ix, " Range = 3 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
@@ -468,19 +465,19 @@ void Menu::class_rogue(){
     mvwprintw(menuwin, iy+2, ix, " Healt Points = 20 ");
 
     //char* stats_ac = " Defense = 2 ";
-    mvwprintw(menuwin, iy+3, ix, " Defense = 2 ");
+    //mvwprintw(menuwin, iy+3, ix, " Defense = 2 ");
 
     //char* stats_dmg = " Damage = 3 ";
-    mvwprintw(menuwin, iy+4, ix, " Damage = 3 ");
+    mvwprintw(menuwin, iy+3, ix, " Damage = 5 ");
 
     //char* stats_sp = " Speed = 4 ";
-    mvwprintw(menuwin, iy+5, ix, " Speed = 4 ");
+    //mvwprintw(menuwin, iy+5, ix, " Speed = 4 ");
 
     //char* stats_rl = " Reload Time = 2 ";
-    mvwprintw(menuwin, iy+6, ix, " Reload Time = 2 ");
+    mvwprintw(menuwin, iy+4, ix, " Reload Time = 2 ");
 
     //char* stats_rg = " Range = 2 ";
-    mvwprintw(menuwin, iy+7, ix, " Range = 2 ");
+    mvwprintw(menuwin, iy+5, ix, " Range = 3 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
@@ -553,19 +550,19 @@ void Menu::class_ranger(){
     mvwprintw(menuwin, iy+2, ix, " Healt Points = 16 ");
 
     //char* stats_ac = " Defense = 1 ";
-    mvwprintw(menuwin, iy+3, ix, " Defense = 1 ");
+    //mvwprintw(menuwin, iy+3, ix, " Defense = 1 ");
 
     //char* stats_dmg = " Damage = 1 ";
-    mvwprintw(menuwin, iy+4, ix, " Damage = 1 ");
+    mvwprintw(menuwin, iy+3, ix, " Damage = 1 ");
 
     //char* stats_sp = " Speed = 3 ";
-    mvwprintw(menuwin, iy+5, ix, " Speed = 3 ");
+    //mvwprintw(menuwin, iy+5, ix, " Speed = 3 ");
 
     //char* stats_rl = " Reload Time = 1 ";
-    mvwprintw(menuwin, iy+6, ix, " Reload Time = 1 ");
+    mvwprintw(menuwin, iy+4, ix, " Reload Time = 1 ");
 
     //char* stats_rg = " Range = 10 ";
-    mvwprintw(menuwin, iy+7, ix, " Range = 10 ");
+    mvwprintw(menuwin, iy+5, ix, " Range = 9 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
@@ -638,19 +635,19 @@ void Menu::class_mage(){
     mvwprintw(menuwin, iy+2, ix, " Healt Points = 16 ");
 
     //char* stats_ac = " Defense = 1 ";
-    mvwprintw(menuwin, iy+3, ix, " Defense = 1 ");
+    //mvwprintw(menuwin, iy+3, ix, " Defense = 1 ");
 
     //char* stats_dmg = " Damage = 3 ";
-    mvwprintw(menuwin, iy+4, ix, " Damage = 3 ");
+    mvwprintw(menuwin, iy+3, ix, " Damage = 3 ");
 
     //char* stats_sp = " Speed = 2 ";
-    mvwprintw(menuwin, iy+5, ix, " Speed = 2 ");
+    //mvwprintw(menuwin, iy+5, ix, " Speed = 2 ");
 
     //char* stats_rl = " Reload Time = 4 ";
-    mvwprintw(menuwin, iy+6, ix, " Reload Time = 4 ");
+    mvwprintw(menuwin, iy+4, ix, " Reload Time = 4 ");
 
     //char* stats_rg = " Range = 8 ";
-    mvwprintw(menuwin, iy+7, ix, " Range = 7 ");
+    mvwprintw(menuwin, iy+5, ix, " Range = 7 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
