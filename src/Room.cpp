@@ -14,7 +14,7 @@ Room::Room(Board &game_board) {
     this->west = NULL; 
     this->est = NULL; 
     this->room_template_number = 0;
-    initializeRoomTemplate(40,0,game_board);
+    initializeRoomTemplate(0,0,game_board);
 }
 
 /* Costruttore per le stanze, inizializza il template, le porte chiuse tra quelle presenti
