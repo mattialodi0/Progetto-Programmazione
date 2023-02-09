@@ -68,9 +68,9 @@ void Board::add(Drawable &drawable)
 /* usata per aggiungere gli artefatti, disegnati in blu */
 void Board::add_A(Drawable &drawable) 
 {
-	//wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+	wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
     addAt(drawable.gety(), drawable.getx(), drawable.getIcon());		//mvwaddstr(board_win, drawable.gety(), drawable.getx(), "\u265E");
-	//wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+	wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
 }
 
 /* usata per aggiungere i nemici, disegnati in rosso */
@@ -228,6 +228,8 @@ chtype Board::getCharAt(int y, int x)
 
 void Board::printStats(char* str, int y, int stat)
 {
+	char* buffer = (char *)malloc(3 * sizeof(char));
+	sprintf(buffer, "%d", stat);
 	mvwprintw(board_win, y, 2, str);
-	mvwprintw(board_win, y, 10, (char)stat);
+	mvwprintw(board_win, y, 10, buffer);
 }   
