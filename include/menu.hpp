@@ -23,6 +23,7 @@ class Menu{
 
     public:
         void menu();
+        void play();
         int getDiff();
         int getDiff_rate();
         int getHero_class();

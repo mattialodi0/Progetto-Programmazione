@@ -28,7 +28,7 @@ Game::Game(int height, int width, int speed)
 	hero.centerHero(def);
 
 	game_board.setDifficulty(menu.getDiff());
-	//game_board.setDifficultyRate(menu.getDiff_rate());
+	game_board.setDifficultyRate(menu.getDiff_rate());
 
 	checkGameOver(menu.getGame());
 

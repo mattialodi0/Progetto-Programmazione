@@ -1,5 +1,4 @@
 #include "Game.hpp"
-//#include "menu.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
@@ -22,11 +21,11 @@ int main()
 	
 	//ci andrebbe un controllo sulle dimensioni dello schermo
 
-	//Menu menu;
+	
     
 	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
     
-    //menu.menu();
+   
 	
 
 	while (game.isNotOver())
