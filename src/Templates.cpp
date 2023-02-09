@@ -1444,7 +1444,7 @@ Template_39::Template_39(int n,Board &game_board) : General_template(19,16,rand(
     }    
 }
 
-Template_40::Template_40(int n,Board &game_board) : General_template(216,20,0,1)    //rand() % (max_n_enemies+1)
+Template_40::Template_40(int n,Board &game_board) : General_template(216,24,rand() % (max_n_enemies+1),1)
 {
     int i = 0;
     i = drawEmptySquare(HALF_ROWS-2, HALF_COLS-4, 5, 9, i);
@@ -1474,11 +1474,14 @@ Template_40::Template_40(int n,Board &game_board) : General_template(216,20,0,1)
     i = drawVerticalLine(3, 7, 37, i);
     i = drawVerticalLine(3, BOARD_ROWS-4, 56, i);    
     
-
-    doors[16] = No_Door(HALF_COLS, HALF_ROWS-2);
-    doors[17] = No_Door(HALF_COLS, HALF_ROWS+2);
-    doors[18] = No_Door(HALF_COLS-4, HALF_ROWS);
-    doors[19] = No_Door(HALF_COLS+4, HALF_ROWS);
+    doors[16] = Locked_Door(HALF_ROWS-2, HALF_COLS);
+    doors[17] = Locked_Door(HALF_ROWS+2, HALF_COLS);
+    doors[18] = Locked_Door(HALF_ROWS, HALF_COLS-4);
+    doors[19] = Locked_Door(HALF_ROWS, HALF_COLS+4);
+    doors[20] = Locked_Door(HALF_ROWS-2, HALF_COLS-1);
+    doors[21] = Locked_Door(HALF_ROWS-2, HALF_COLS+1);
+    doors[22] = Locked_Door(HALF_ROWS+2, HALF_COLS-1);
+    doors[23] = Locked_Door(HALF_ROWS+2, HALF_COLS+1);
     drawDoors();
     
     int chosen_enemies[enemies_num];
@@ -1498,9 +1501,5 @@ Template_40::Template_40(int n,Board &game_board) : General_template(216,20,0,1)
     }
     for(int i=0;i<this->artifact_num;i++){
         createArtifact(true,false,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
-    }    
+    }
 }
-
-
-
-
