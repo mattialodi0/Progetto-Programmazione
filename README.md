@@ -77,6 +77,6 @@ Template:
 35  - 3 sottostanze rand vert 15        
 36  - 3 sottostanze rand oriz 15        
 37  - boss stalker            1        
-38  - boss drunk              1        
+38  - boss shooter            1        
 39  - croce                   6        
 40  - labirinto               3          
