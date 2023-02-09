@@ -1444,23 +1444,41 @@ Template_39::Template_39(int n,Board &game_board) : General_template(19,16,rand(
     }    
 }
 
-Template_40::Template_40(int n,Board &game_board) : General_template(100,16,rand() % (max_n_enemies+1),1)
+Template_40::Template_40(int n,Board &game_board) : General_template(216,20,0,1)    //rand() % (max_n_enemies+1)
 {
     int i = 0;
     i = drawEmptySquare(HALF_ROWS-2, HALF_COLS-4, 5, 9, i);
-    i = drawHorizontalLine(8, 19, 35, i);
-    /*i = drawVerticalLine(3, 7, 41, i);
-    i = drawHorizontalLine(4, 5, 23, i);
+    i = drawHorizontalLine(15, 19, 35, i);
+    i = drawHorizontalLine(9, 4, 6, i);
+    i = drawHorizontalLine(17, 4, 33, i);
+    i = drawHorizontalLine(4, 3, 23, i);
+    i = drawHorizontalLine(14, 7, 47, i);    
+    i = drawHorizontalLine(20, 21, 7, i);
+    i = drawHorizontalLine(21, 14, 45, i);
+    i = drawHorizontalLine(5, 14, 7, i);
+    i = drawHorizontalLine(5, 18, 1, i);
+    i = drawHorizontalLine(8, 17, 27, i);
+    i = drawHorizontalLine(10, 7, 20, i);
+    i = drawHorizontalLine(4, 8, 7, i);
+    i = drawHorizontalLine(4, 11, 19, i);
+    i = drawVerticalLine(5, 3, 55, i);
+    i = drawVerticalLine(3, 17, 50, i);
+    i = drawVerticalLine(5, 12, 11, i);
+    i = drawVerticalLine(5, 17, 35, i);
     i = drawVerticalLine(6, 3, 6, i);
-    i = drawHorizontalLine(10, 22, 7, i);
-    i = drawVerticalLine(2, 17, 36, i);
-    i = drawHorizontalLine(8, 18, 23, i);
-    i = drawVerticalLine(3, 13, 48, i);
-    i = drawHorizontalLine(5, 22, 7, i);
-    i = drawVerticalLine(5, 13, 53, i);
-    i = drawHorizontalLine(4, 6, 26, i);*/
+    i = drawVerticalLine(5, 7, 46, i);
+    i = drawVerticalLine(10, 11, 18, i);
+    i = drawVerticalLine(4, 10, 54, i);
+    i = drawVerticalLine(4, 14, 58, i);
+    i = drawVerticalLine(3, 4, 24, i);
+    i = drawVerticalLine(3, 7, 37, i);
+    i = drawVerticalLine(3, BOARD_ROWS-4, 56, i);    
+    
 
-
+    doors[16] = No_Door(HALF_COLS, HALF_ROWS-2);
+    doors[17] = No_Door(HALF_COLS, HALF_ROWS+2);
+    doors[18] = No_Door(HALF_COLS-4, HALF_ROWS);
+    doors[19] = No_Door(HALF_COLS+4, HALF_ROWS);
     drawDoors();
     
     int chosen_enemies[enemies_num];
@@ -1473,13 +1491,13 @@ Template_40::Template_40(int n,Board &game_board) : General_template(100,16,rand
         createEnemies(true,true,x_chosen[i],y_chosen[i],chosen_enemies[i],i,n,game_board,enemies);
     }
     int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
+    int x_chosen_artifact[artifact_num] = {HALF_COLS};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
     for(int i=0;i<artifact_num;i++){
         chosen_artifact[i]=x_chosen_artifact[i]=y_chosen_artifact[i]=0;
     }
     for(int i=0;i<this->artifact_num;i++){
-        createArtifact(true,true,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
+        createArtifact(true,false,x_chosen_artifact[i],y_chosen_artifact[i],chosen_artifact[i],game_board,n,artifact);
     }    
 }
 
