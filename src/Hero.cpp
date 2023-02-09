@@ -246,12 +246,20 @@ bool Hero::death()
 void Hero::initclass(int c){
     if (c==1){
         tankClass();
+        class_type = 1;
     }else if (c==2){
         rogueClass();
+        class_type = 2;
     }else if (c==3){
         rangerClass();
+        class_type = 3;
     }else if (c==4){
         mageClass();
+        class_type = 4;
     }
     
+}
+
+int Hero::getClass() {
+    return class_type;
 }

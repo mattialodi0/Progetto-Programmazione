@@ -28,7 +28,7 @@ Game::Game(int height, int width, int speed)
 	hero.centerHero(def);
 
 	game_board.setDifficulty(menu.getDiff());
-	game_board.setDifficultyRate(menu.getDiff_rate());
+	//game_board.setDifficultyRate(menu.getDiff_rate());
 
 	checkGameOver(menu.getGame());
 
@@ -374,16 +374,19 @@ void Game::refreshStat(Hero &hero){
 	int i,j=0;
 	stat_board.printyxWin("Health: ", 3, 2);
 	for(i=1; i*10 <= hp; i++) {		//cuori pieni
-		stat_board.printyxWin("♥", 3, j+14, ENEMY_PAIR);
+		stat_board.printyxWin("♥", 3, j+15, ENEMY_PAIR);
 		j++;
 	}
 	for(i; i*10 <= hero.getMaxHp(); i++) {		//cuori vuoti
-		stat_board.printyxWin("♡", 3, j+14);
+		stat_board.printyxWin("♡", 3, j+15);
 		j++;
 	}
 	stat_board.printWin("Hp: ", 4, hp);
 	int reload=hero.getReload();
-	stat_board.printWin("Reload: ", 5, reload);
+	if(reload < 0)
+		stat_board.printWin("Reload time: ", 5, 0);
+	else
+		stat_board.printWin("Reload time: ", 5, reload);
 	int range=hero.getRange();
 	stat_board.printWin("Range: ", 6, range);
 	stat_board.printWin("Keys: ", 7, hero.getKey());
@@ -391,9 +394,23 @@ void Game::refreshStat(Hero &hero){
 }
 
 void Game::refreshScore(Hero &hero){
-	//int diff = game_board.getDifficulty();
 	score_board.printWin("Score: ", 2, getScore());
-	score_board.printWin("Difficulty: ", 3, game_board.getDifficulty());
+	score_board.printWin("Difficulty: ", 4, game_board.getDifficulty());
+	int c = hero.getClass();
+	switch(c) {
+	case 1:
+		score_board.printyxWin("Class: Tank", 5, 2);
+		break;
+	case 2:
+		score_board.printyxWin("Class: Rogue", 5, 2);
+		break;
+	case 3:
+		score_board.printyxWin("Class: Ranger", 5, 2);
+		break;
+	default:
+		score_board.printyxWin("Class: Mage", 5, 2);
+		break;
+	}
 }
 
 /*

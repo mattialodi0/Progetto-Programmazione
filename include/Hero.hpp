@@ -28,6 +28,7 @@ public:
 	void rangerClass();	//ranged+, hp-, ac-, dmg, speed+, reload++
 	void mageClass();	//ranged, hp-, ac-, dmg++, speed, reload-
 	void initclass(int n);
+	int getClass();
 	//da aggiungere le abilità al bilanciamento
 	void useAbility();
 	void centerHero(Direction dir);
