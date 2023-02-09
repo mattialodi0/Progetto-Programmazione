@@ -1,5 +1,8 @@
 #include "GeneralTemplate.hpp"
 
+#define ENEMIES rand() % (max_n_enemies+1) +1
+
+
 //starting room
 class Template_0 : public General_template {
 public:

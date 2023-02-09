@@ -13,9 +13,12 @@ istruzioni d'installazione e uso;
 commenti nel codice (in particolare cosa fanno gli artefatti e i nemici)  
 non c'è più niente di colorato    
 modificare le icon con alcuni unicode   
-non va la creazionde di artefatti   
+non va la creazione di artefatti   
+boss   
 
 -caratteri unicode:    
+\u265E cuore
+♡      cuore vuoto
 \u26BF chiave
 \u26E8 scudo
 
