@@ -399,16 +399,16 @@ void Game::refreshScore(Hero &hero){
 	int c = hero.getClass();
 	switch(c) {
 	case 1:
-		score_board.printyxWin("Class: Tank", 5, 2);
+		score_board.printyxWin("Class:       Tank", 5, 2);
 		break;
 	case 2:
-		score_board.printyxWin("Class: Rogue", 5, 2);
+		score_board.printyxWin("Class:       Rogue", 5, 2);
 		break;
 	case 3:
-		score_board.printyxWin("Class: Ranger", 5, 2);
+		score_board.printyxWin("Class:       Rogue", 5, 2);
 		break;
 	default:
-		score_board.printyxWin("Class: Mage", 5, 2);
+		score_board.printyxWin("Class:       Mage", 5, 2);
 		break;
 	}
 }
