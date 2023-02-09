@@ -368,8 +368,21 @@ void Game::updateIndex(prm room) {
 }
 
 void Game::refreshStat(Hero &hero){
-	int dmg=hero.getDmg();
-	stat_board.printWin("Damage: ", 2, dmg);
+	int c = hero.getClass();
+	switch(c) {
+	case 1:
+		stat_board.printyxWin("Class:       Tank", 2, 2);
+		break;
+	case 2:
+		stat_board.printyxWin("Class:       Rogue", 2, 2);
+		break;
+	case 3:
+		stat_board.printyxWin("Class:       Rogue", 2, 2);
+		break;
+	default:
+		stat_board.printyxWin("Class:       Mage", 2, 2);
+		break;
+	}
     int hp=hero.getHp();
 	int i,j=0;
 	stat_board.printyxWin("Health: ", 3, 2);
@@ -382,35 +395,22 @@ void Game::refreshStat(Hero &hero){
 		j++;
 	}
 	stat_board.printWin("Hp: ", 4, hp);
+		int dmg=hero.getDmg();
+	stat_board.printWin("Damage: ", 5, dmg);
 	int reload=hero.getReload();
 	if(reload < 0)
-		stat_board.printWin("Reload time: ", 5, 0);
+		stat_board.printWin("Reload time: ", 6, 0);
 	else
-		stat_board.printWin("Reload time: ", 5, reload);
+		stat_board.printWin("Reload time: ", 6, reload);
 	int range=hero.getRange();
-	stat_board.printWin("Range: ", 6, range);
-	stat_board.printWin("Keys: ", 7, hero.getKey());
-	stat_board.printWin("Room (y,x): ", 9, current_room->y, current_room->x);
+	stat_board.printWin("Range: ", 7, range);
+	stat_board.printWin("Keys: ", 8, hero.getKey());
+	stat_board.printWin("Room (y,x): ", 10, current_room->y, current_room->x);
 }
 
 void Game::refreshScore(Hero &hero){
 	score_board.printWin("Score: ", 2, getScore());
-	score_board.printWin("Difficulty: ", 4, game_board.getDifficulty());
-	int c = hero.getClass();
-	switch(c) {
-	case 1:
-		score_board.printyxWin("Class:       Tank", 5, 2);
-		break;
-	case 2:
-		score_board.printyxWin("Class:       Rogue", 5, 2);
-		break;
-	case 3:
-		score_board.printyxWin("Class:       Rogue", 5, 2);
-		break;
-	default:
-		score_board.printyxWin("Class:       Mage", 5, 2);
-		break;
-	}
+	score_board.printWin("Difficulty: ", 5, game_board.getDifficulty());
 }
 
 /*
