@@ -14,6 +14,7 @@ Board::Board() : Board(0, 0, 300)
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 	init_pair(DOOR_PAIR, COLOR_BLACK, COLOR_BLACK);
 	init_pair(ERROR_PAIR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(LIFE_PAIR, COLOR_GREEN, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int speed)
@@ -38,6 +39,7 @@ Board::Board(int height, int width, int speed)
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 	init_pair(DOOR_PAIR, COLOR_BLACK, COLOR_BLACK);
 	init_pair(ERROR_PAIR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(LIFE_PAIR, COLOR_GREEN, COLOR_BLACK);
 }
 
 Board::Board(int height, int width, int starty, int startx, int speed)
@@ -61,6 +63,7 @@ Board::Board(int height, int width, int starty, int startx, int speed)
 	init_pair(ARTIFACT_PAIR, COLOR_BLUE, COLOR_BLACK);
 	init_pair(DOOR_PAIR, COLOR_BLACK, COLOR_BLACK);
 	init_pair(ERROR_PAIR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(LIFE_PAIR, COLOR_GREEN, COLOR_BLACK);
 }
 
 void Board::initialize()

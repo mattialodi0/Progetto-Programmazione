@@ -405,7 +405,7 @@ void Game::refreshStat(Hero &hero)
 		stat_board.printyxWin("Class:       Rogue", 2, 2);
 		break;
 	case 3:
-		stat_board.printyxWin("Class:       Rogue", 2, 2);
+		stat_board.printyxWin("Class:       Ranger", 2, 2);
 		break;
 	default:
 		stat_board.printyxWin("Class:       Mage", 2, 2);
@@ -453,7 +453,22 @@ void Game::refreshScore(Hero &hero)
 	score_board.printWin("Score: ", 2, getScore());
 	score_board.printyxWin("                      ", 4, 2);
 	score_board.printWin("Time: ", 4, getTime());
-	score_board.printWin("Difficulty: ", 6, game_board.getDifficulty());
+	switch (game_board.getDifficulty())
+	{
+	case 1:
+		score_board.printyxWin("Difficulty:", 6, 2);
+		score_board.printyxWin("Easy", 6, 15, LIFE_PAIR);
+		break;
+	case 3:
+		score_board.printyxWin("Difficulty:", 6, 2);
+		score_board.printyxWin("Medium", 6, 15, ERROR_PAIR);
+		break;
+	default:
+		score_board.printyxWin("Difficulty:", 6, 2);
+		score_board.printyxWin("Hard", 6, 15, ENEMY_PAIR);
+		break;
+	}
+	//score_board.printWin("Difficulty: ", 6, game_board.getDifficulty());
 }
 
 void Game::displayError()

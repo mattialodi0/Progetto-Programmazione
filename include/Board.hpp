@@ -10,6 +10,7 @@
 #define ARTIFACT_PAIR 3
 #define DOOR_PAIR 4
 #define ERROR_PAIR 5
+#define LIFE_PAIR 5
 const int BOARD_DIM = 25; // prima era 17
 const int BOARD_ROWS = BOARD_DIM;
 const int BOARD_COLS = BOARD_DIM * 2.7; // 2.5;
