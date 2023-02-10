@@ -49,7 +49,7 @@ public:
     void createEnemies(bool is_random_enemies, bool is_random_coords, int x, int y, int chosen, int ite, int room_pos, Board &game_board, pEn enemies[]);
 
     // in chosen artifact 0=R,1=E,2=H,3=J
-    void createArtifact(bool is_random_artifact, bool is_random_coords, int x, int y, int chosen, Board &game_board, int room_pos, Drawable *artifact);
+    void createArtifact(bool is_random_artifact, bool is_random_coords, int x, int y, int chosen, int ite, Board &game_board, int room_pos, Drawable *artifact);
     int drawRandom(int num, int ya, int xa, int yb, int xb, int i);
     int drawHorizontalLine(int num, int start_y, int start_x, int i);
     int drawVerticalLine(int num, int start_y, int start_x, int i);

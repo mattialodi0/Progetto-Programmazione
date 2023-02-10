@@ -25,7 +25,7 @@ Room::Room(int y, int x, vector<Room *> room_index, int room_pos, Board &game_bo
 {
     this->y = y;
     this->x = x;
-    int num = randomRoomNumber();
+    int num = 2;randomRoomNumber();
     this->room_template_number = num;
     initializeRoomTemplate(num, room_pos, game_board);
     decideIfDoors();
