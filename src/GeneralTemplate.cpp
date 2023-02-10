@@ -180,6 +180,8 @@ void General_template::createArtifact(bool is_random_artifact, bool is_random_co
     case 3:
         artifact[0] = Artifact(y, x, 'J');
         break;
+    case 4:
+        artifact[0] = Artifact(y, x, 'A');
     }
 }
 

@@ -124,6 +124,7 @@ void Board::addAt(int y, int x, chtype ch)
 	case 'J':
 	case 'E':
 	case 'H':
+	case 'A':
 		setTaken(x, y, false);
 		break;
 	default:

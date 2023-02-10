@@ -234,6 +234,9 @@ void Game::manageHeroMovement()
 		hero.heal(artifactHeal);
 		current_room->removeArtifact(0);
 		break;
+	case 'A':
+		//abilità
+		break;
 	case 'O': // cambia stanza
 		if (hero.gety() > 1 && hero.gety() < BOARD_ROWS - 2 && hero.getx() > 1 && hero.getx() < BOARD_COLS - 2)
 			hero.moveCharacter(game_board);
