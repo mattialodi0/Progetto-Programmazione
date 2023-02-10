@@ -396,9 +396,9 @@ void Room::moveEnemies(Board &board, Hero &hero) {
 
 /* Verifica che la stanza non abbia altri nemici */
 bool Room::isClear() {
-    //if(room_template->must_complete)
-    //    return room_template->enemies_num == 0;    //per il testing è disattivata 
-    //else 
+    if(room_template->must_complete)
+        return room_template->enemies_num == 0;    //per il testing è disattivata 
+    else 
         return 1;
 }
 

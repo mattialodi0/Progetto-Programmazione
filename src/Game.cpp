@@ -129,6 +129,7 @@ void Game::processInput()
 
 void Game::updateState()
 {
+	error_type = 0;
 	//hero
 	//game_board.remove(hero);
 	
@@ -247,6 +248,8 @@ void Game::manageHeroMovement()
 			if(hero.useKey()) {
 				current_room->unlockDoor(hero.gety() + offsety, hero.getx() + offsetx, game_board);			
 			}
+			else 
+				error_type = 2;
 			break;
 		default:
 			break;
@@ -292,6 +295,8 @@ void Game::manageDoor() {
 				makeEstRoom();
 		}
 	}
+	else
+		error_type = 1;
 }
 
 //funzioni per cambiare stanza
@@ -406,27 +411,25 @@ void Game::refreshStat(Hero &hero){
 	stat_board.printWin("Range: ", 7, range);
 	stat_board.printWin("Keys: ", 8, hero.getKey());
 	stat_board.printWin("Room (y,x): ", 10, current_room->y, current_room->x);
+	displayError();
 }
 
-void Game::refreshScore(Hero &hero){
+void Game::refreshScore(Hero &hero) {
 	score_board.printWin("Score: ", 2, getScore());
 	score_board.printWin("Difficulty: ", 5, game_board.getDifficulty());
 }
 
-/*
-void Game::start_menu(Hero &hero){
-	int buffer=menu.menu();
-
-	if (buffer==1){
-		hero.tankClass();
-	}else if (buffer==2){
-		hero.rogueClass();
-	}else if (buffer==3){
-		hero.rangerClass();
-	}else if (buffer==4){
-		hero.mageClass();
+void Game::displayError() {
+	switch (error_type)
+	{
+	case 1:
+		stat_board.printyxWin("There are enemies left", 15, 2, ERROR_PAIR);
+		break;
+	case 2:
+		stat_board.printyxWin("You have no more keys", 15, 2, ERROR_PAIR);
+		break;
+	default:
+		stat_board.printyxWin("                      ", 15, 2, ERROR_PAIR);
+		break;
 	}
-
-
 }
-*/
