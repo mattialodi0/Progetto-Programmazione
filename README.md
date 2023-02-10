@@ -8,30 +8,8 @@ Il progetto è stato sviluppato in ambiente unix, perché lo richiede la libreri
 
 Per lanciare il gioco basta scaricare la cartella ed eseguore il comando make da terminale.  
 
-## cose da fare:   
-commenti nel codice (in particolare cosa fanno gli artefatti e i nemici)  
-non va la creazione di artefatti   
-rimuovere i warning (-w)
-ridurre le stanze senza porte
-
--caratteri unicode:    
-\u265E cavallo
-♡      cuore vuoto
-\u26BF chiave
-\u26E8 scudo
 
 
--stanze:  
-rimettere la condizione per cambiare stanza    
-
-
--menu:  
-chiusura corretta delle finestre    
-controllo che la finestra del terminale sia abbastanza grande per il gioco prima di iniziare   
-
--statistiche  
-scoreboard con il prunteggio(esperienza)
-statboard con statitiche,chivi,artefatti, poteri
 
 Legenda dei colori:  
 - rosso nemici
