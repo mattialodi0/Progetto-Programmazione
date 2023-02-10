@@ -91,7 +91,7 @@ void Room::decideIfDoors() {
         this->has_west_door = true; 
         this->has_est_door = true;
 
-        int r = rand() % 7 - 3;    //minore è il primo numero maggiore è la possibilità di non avere porte, il secondo è il primo -4
+        int r = rand() % 9 - 5;    //minore è il primo numero maggiore è la possibilità di non avere porte, il secondo è il primo -4
         for(int i = 0; i < r; i++) 
         {
             switch (rand()%4)
@@ -340,36 +340,34 @@ void Room::lockEstDoor() {
 int Room::checkEnemiesHp(Board &board_win){
     int killed=0;
 
-for(int j=0;j<room_template->enemies_num;j++){
-if(this->room_template->enemies[j]->getHp()<=0){
-     board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
-
-                            if(this->room_template->enemies[j]->isBoss()){
-                                int k=0;
-                                while(this->room_template->artifact[k].getIcon()!=NULL){
-                                    k++;
-                                }
-                                k++;
-                                this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
-                            }
-                            else{
-                           if(this->room_template->enemies[j]->getIcon()=='K'){
-                            if((rand()%drop_chance) ==0){
-                                int k=0;
-                                while(this->room_template->artifact[k].getIcon()!=NULL){
-                                    k++;
-                                }
-                                k++;
-                                this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
-                            }
-                            }
-                            }
-                            
-                           removeEnemy(j,board_win);
-                            killed++;
-}
+    for(int j=0;j<room_template->enemies_num;j++){
+        if(this->room_template->enemies[j]->getHp()<=0){
+                board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
+            if(this->room_template->enemies[j]->isBoss()){
+                int k=0;
+                while(this->room_template->artifact[k].getIcon()!=NULL){
+                    k++;
+                }
+                k++;
+                this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
+            }
+            else{
+                if(this->room_template->enemies[j]->getIcon()=='K'){
+                    if((rand()%drop_chance) ==0){
+                        int k=0;
+                        while(this->room_template->artifact[k].getIcon()!=NULL){
+                            k++;
                         }
-return killed;
+                        k++;
+                        this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
+                    }
+                }
+            }
+            removeEnemy(j,board_win);
+            killed++;
+        }   
+    }
+    return killed;
 }
 
 /* Muove i nemici */
