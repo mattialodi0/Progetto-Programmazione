@@ -2,9 +2,28 @@
 #include "menu.hpp"
 using namespace std;
 
+bool Menu::checkTerminal(){
+    initscr();
+    cbreak();
+    noecho();
 
+    bool check=true;
+    //prende le dimensioni della finestra
+    int yMax, xMax;
+    getmaxyx(stdscr, yMax, xMax);
+/*
+    if (yMax < 25 || xMax < 100){
+        setGameOver();
+        endwin();
+        cout << "Please increase terminal dimensions !";
+        check=false;
+    }*/
+    return check;
+}
 
 void Menu::menu(){
+
+   
 
     initscr();
     cbreak();
@@ -14,6 +33,7 @@ void Menu::menu(){
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
+
     //crea una finestra per l'input
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
@@ -21,6 +41,11 @@ void Menu::menu(){
     wrefresh(menuwin);
     keypad(menuwin, true);      //makes arrows keys usable
     
+     if (!checkTerminal()){
+        setGameOver();
+        endwin();
+    }
+
     char* choices[3] = {"Play", "Commands", "Exit"};
     int choice;
     int highlight = 0;

@@ -404,10 +404,10 @@ void Game::refreshStat(Hero &hero){
 	stat_board.printWin("Hp: ", 4, hp);
 		int dmg=hero.getDmg();
 	stat_board.printWin("Damage: ", 5, dmg);
-	int reload=hero.getReload();
-	if(reload < 0)
-		stat_board.printWin("Reload time: ", 6, 0);
-	else
+	int reload=hero.getMaxReload();
+	//if(reload < 0)
+	//	stat_board.printWin("Reload time: ", 6, 0);
+	//else
 		stat_board.printWin("Reload time: ", 6, reload);
 	int range=hero.getRange();
 	stat_board.printWin("Range: ", 7, range);
