@@ -19,7 +19,7 @@ int main()
 	curs_set(0);
 	start_color();
 	
-	//ci andrebbe un controllo sulle dimensioni dello schermo
+	// controllo sulle dimensioni dello schermo
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
 
@@ -27,9 +27,9 @@ int main()
 		return 0;
 	}
     
+	
 	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
     
-   
 	
 
 	while (game.isNotOver())

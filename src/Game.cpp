@@ -161,14 +161,15 @@ void Game::updateState()
 
 void Game::updateScreen()
 {
-	//game_board.clear();
-	//menu_playing.refreshStat(hero,getScore());
+	
 	redraw();
 	game_board.refreshBoard();
-	refreshStat(hero);
+
+	refreshStat(hero); 		//funzione che stampa le statistiche nella finestra dedicata
 	stat_board.refreshBoard();
 	stat_board.addBorder();
-	refreshScore(hero);
+
+	refreshScore(hero);		//funzione che stampa lo score nella finestra dedicata
 	score_board.refreshBoard();
 	score_board.addBorder();
 	
@@ -404,20 +405,22 @@ void Game::refreshStat(Hero &hero){
 	}
 	stat_board.printyxWin("                      ", 4, 2);
 	stat_board.printWin("Hp: ", 4, hp);
-		int dmg=hero.getDmg();
+
+	int dmg=hero.getDmg();
 	stat_board.printyxWin("                      ", 5, 2);
 	stat_board.printWin("Damage: ", 5, dmg);
+
 	int reload=hero.getMaxReload();
-	//if(reload < 0)
-	//	stat_board.printWin("Reload time: ", 6, 0);
-	//else
 	stat_board.printyxWin("                      ", 6, 2);
 		stat_board.printWin("Reload time: ", 6, reload);
+
 	int range=hero.getRange();
 	stat_board.printyxWin("                      ", 7, 2);
 	stat_board.printWin("Range: ", 7, range);
+
 	stat_board.printyxWin("                      ", 8, 2);
 	stat_board.printWin("Keys: ", 8, hero.getKey());
+	
 	stat_board.printyxWin("                      ", 10, 2);
 	stat_board.printWin("Room (y,x): ", 10, current_room->y, current_room->x);
 	displayError();

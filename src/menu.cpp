@@ -1,29 +1,8 @@
-#include <ncurses.h>
 #include "menu.hpp"
-using namespace std;
 
-bool Menu::checkTerminal(){
-    initscr();
-    cbreak();
-    noecho();
-
-    bool check=true;
-    //prende le dimensioni della finestra
-    int yMax, xMax;
-    getmaxyx(stdscr, yMax, xMax);
-/*
-    if (yMax < 25 || xMax < 100){
-        setGameOver();
-        endwin();
-        cout << "Please increase terminal dimensions !";
-        check=false;
-    }*/
-    return check;
-}
 
 void Menu::menu(){
 
-   
 
     initscr();
     cbreak();
@@ -39,17 +18,14 @@ void Menu::menu(){
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
-    
-     if (!checkTerminal()){
-        setGameOver();
-        endwin();
-    }
+    keypad(menuwin, true);      //rende usabili gli arrow keys
+
 
     char* choices[3] = {"Play", "Commands", "Exit"};
     int choice;
     int highlight = 0;
 
+    //ciclo che stampa le diverse opzioni selezionabili nella finestra
     while(1) {
        for(int i = 0; i < 3; i++) {
             if(i == highlight) 
@@ -77,6 +53,7 @@ void Menu::menu(){
             break;        
     }
 
+    // specifica cosa fare per ogni opzione della finestra
     if (highlight==0){
         play();
     }
@@ -96,16 +73,16 @@ void Menu::play(){
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+    
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+    
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);      
     
     char* choices[3] = {"Choose class", "Difficulty", "-Back-"};
     int choice;
@@ -156,16 +133,16 @@ void Menu::difficulty(){
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+    
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+    
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);      
     
     char* choices[4] = {"Set difficulty easy", "Set difficulty medium", "Set difficulty hard", "-Back-"};
     int choice;
@@ -225,52 +202,30 @@ void Menu::commands(){
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+    
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+    
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);      
     
     int iy = (yMax/2)-18;
     int ix = (xMax/2)-70;
 
-    char* comln = " Keybindings :";
-    mvwprintw(menuwin, iy, ix, comln);
+    mvwprintw(menuwin, iy, ix, "Keybindings :");
 
-    //char* comln1 = " W-A-S-D = Movement ";
     mvwprintw(menuwin, iy+2, ix, " W-A-S-D = Movement ");
 
-    //char* comln2 = " Arrow keys = Attack in choosen direction ";
     mvwprintw(menuwin, iy+3, ix, " Arrow keys = Attack in choosen direction ");
 
-    //char* comln3 = " F = Use special ability ";
     mvwprintw(menuwin, iy+4, ix, " F = Use special ability ");
 
-    //char* comln4 = " O = Quit the game";
-    //mvwprintw(menuwin, iy+5, ix, " O = Quit the game ");
-
-    //char* comln5 = " P = Pause the game ";
     mvwprintw(menuwin, iy+5, ix, " P = Pause the game ");
 
-    //char* comln6 = " E = Increase damage";
-    //mvwprintw(menuwin, iy+7, ix, " E = Increase damage");
-
-    //char* comln7 = " H = Increase healt";
-    //mvwprintw(menuwin, iy+8, ix, " H = Increase healt");
-
-    //char* comln8 = " R = Increase range";
-    //mvwprintw(menuwin, iy+9, ix, " R = Increase range");
-
-    //char* comln9 = " 0 = Change room";
-    //mvwprintw(menuwin, iy+10, ix, " 0 = Change room");
-
-    //char* comln10 = " Q = Open door";
-    //mvwprintw(menuwin, iy+11, ix, " Q = Open door");
 
     char* choices[1] = {"Back"};
     int choice;
@@ -295,8 +250,8 @@ void Menu::commands(){
                 break;
             case KEY_DOWN:
                 highlight++;
-                if(highlight > 1)
-                    highlight = 1;
+                if(highlight > 0)
+                    highlight = 0;
                 break;
             default:
                 break;
@@ -315,20 +270,20 @@ void Menu::commands(){
 
 void Menu::character_class(){
 
-        initscr();
+    initscr();
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+  
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);      
     
     char* choices[5] = {"Tank", "Rogue", "Ranger", "Mage", "-Back-"};
     int choice;
@@ -385,38 +340,28 @@ void Menu::class_tank(){
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+    
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+    
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);      
     
     int iy = (yMax/2)-18;
     int ix = (xMax/2)-70;
-    //char* stats_name = " TANK class stats : ";
+ 
     mvwprintw(menuwin, iy, ix, " TANK class stats : ");
 
-    //char* stats_hp = " Healt Points = 30 ";
     mvwprintw(menuwin, iy+2, ix, " Healt Points = 40 ");
 
-    //char* stats_ac = " Defense = 3 ";
-    //mvwprintw(menuwin, iy+3, ix, " Defense = 3 ");
-
-    //char* stats_dmg = " Damage = 2 ";
     mvwprintw(menuwin, iy+3, ix, " Damage = 3 ");
 
-    //char* stats_sp = " Speed = 1 ";
-    //mvwprintw(menuwin, iy+5, ix, " Speed = 1 ");
-
-    //char* stats_rl = " Reload Time = 3 ";
     mvwprintw(menuwin, iy+4, ix, " Reload Time = 3 ");
 
-    //char* stats_rg = " Range = 2 ";
     mvwprintw(menuwin, iy+5, ix, " Range = 3 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
@@ -455,7 +400,6 @@ void Menu::class_tank(){
 
 
     if (highlight==0){
-        // start_game with Tank
         setHero_class(1);
     }
     if (highlight==1){
@@ -470,38 +414,29 @@ void Menu::class_rogue(){
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+  
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);      
     
     int iy = (yMax/2)-18;
     int ix = (xMax/2)-70;
-    //char* stats_name = " ROGUE class stats : ";
+   
     mvwprintw(menuwin, iy, ix, " ROGUE class stats : ");
 
-    //char* stats_hp = " Healt Points = 20 ";
+    
     mvwprintw(menuwin, iy+2, ix, " Healt Points = 20 ");
 
-    //char* stats_ac = " Defense = 2 ";
-    //mvwprintw(menuwin, iy+3, ix, " Defense = 2 ");
-
-    //char* stats_dmg = " Damage = 3 ";
     mvwprintw(menuwin, iy+3, ix, " Damage = 5 ");
 
-    //char* stats_sp = " Speed = 4 ";
-    //mvwprintw(menuwin, iy+5, ix, " Speed = 4 ");
-
-    //char* stats_rl = " Reload Time = 2 ";
     mvwprintw(menuwin, iy+4, ix, " Reload Time = 2 ");
 
-    //char* stats_rg = " Range = 2 ";
     mvwprintw(menuwin, iy+5, ix, " Range = 3 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
@@ -540,7 +475,6 @@ void Menu::class_rogue(){
 
 
     if (highlight==0){
-        // start_game with Rogue
         setHero_class(2);
     }
     if (highlight==1){
@@ -555,38 +489,28 @@ void Menu::class_ranger(){
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);      
     
     int iy = (yMax/2)-18;
     int ix = (xMax/2)-70;
-    //char* stats_name = " RANGER class stats : ";
+    
     mvwprintw(menuwin, iy, ix, " RANGER class stats : ");
 
-    //char* stats_hp = " Healt Points = 16 ";
     mvwprintw(menuwin, iy+2, ix, " Healt Points = 16 ");
 
-    //char* stats_ac = " Defense = 1 ";
-    //mvwprintw(menuwin, iy+3, ix, " Defense = 1 ");
-
-    //char* stats_dmg = " Damage = 1 ";
     mvwprintw(menuwin, iy+3, ix, " Damage = 1 ");
 
-    //char* stats_sp = " Speed = 3 ";
-    //mvwprintw(menuwin, iy+5, ix, " Speed = 3 ");
-
-    //char* stats_rl = " Reload Time = 1 ";
     mvwprintw(menuwin, iy+4, ix, " Reload Time = 1 ");
 
-    //char* stats_rg = " Range = 10 ";
     mvwprintw(menuwin, iy+5, ix, " Range = 9 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
@@ -625,7 +549,6 @@ void Menu::class_ranger(){
 
 
     if (highlight==0){
-        // start_game with Ranger
         setHero_class(3);
     }
     if (highlight==1){
@@ -640,38 +563,28 @@ void Menu::class_mage(){
     cbreak();
     noecho();
 
-    //prende le dimensioni della finestra
+
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    //crea una finestra per l'input
+
     WINDOW * menuwin = newwin(25, 67+(67/2), (yMax-24)/2, (xMax-100)/2);
     box(menuwin, 0 ,0);
     refresh();
     wrefresh(menuwin);
-    keypad(menuwin, true);      //makes arrows keys usable
+    keypad(menuwin, true);    
     
     int iy = (yMax/2)-18;
     int ix = (xMax/2)-70;
-    //char* stats_name = " MAGE class stats : ";
+
     mvwprintw(menuwin, iy, ix, " MAGE class stats : ");
 
-    //char* stats_hp = " Healt Points = 16 ";
     mvwprintw(menuwin, iy+2, ix, " Healt Points = 16 ");
 
-    //char* stats_ac = " Defense = 1 ";
-    //mvwprintw(menuwin, iy+3, ix, " Defense = 1 ");
-
-    //char* stats_dmg = " Damage = 3 ";
     mvwprintw(menuwin, iy+3, ix, " Damage = 3 ");
 
-    //char* stats_sp = " Speed = 2 ";
-    //mvwprintw(menuwin, iy+5, ix, " Speed = 2 ");
-
-    //char* stats_rl = " Reload Time = 4 ";
     mvwprintw(menuwin, iy+4, ix, " Reload Time = 4 ");
 
-    //char* stats_rg = " Range = 8 ";
     mvwprintw(menuwin, iy+5, ix, " Range = 7 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
@@ -710,7 +623,6 @@ void Menu::class_mage(){
 
 
     if (highlight==0){
-        // start_game with Mage
         setHero_class(4);
     }
     if (highlight==1){
