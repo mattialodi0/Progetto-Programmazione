@@ -20,8 +20,12 @@ int main()
 	start_color();
 	
 	//ci andrebbe un controllo sulle dimensioni dello schermo
+	int yMax, xMax;
+	getmaxyx(stdscr, yMax, xMax);
 
-	
+	if (yMax < 25 || xMax < 100){
+		return 0;
+	}
     
 	Game game = Game(BOARD_ROWS, BOARD_COLS, refreshspeed);
     
