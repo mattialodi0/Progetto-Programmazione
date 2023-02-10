@@ -1,8 +1,10 @@
 #include "Templates.hpp"
 
-Template_0::Template_0(int n, Board &game_board) : General_template(0, 16, 0, 0)
+Template_0::Template_0(int n, Board &game_board) : General_template(0, 16, 0, 1)
 {
     drawDoors();
+
+    artifact[0] = Artifact(HALF_ROWS-2, HALF_COLS, 'J');
 }
 
 Template_1::Template_1(int n, Board &game_board) : General_template(10, 16, ENEMIES, 0)

@@ -7,7 +7,7 @@ const int artifactrange = 2;
 
 Hero::Hero() : Character(def, herostarty, herostartx, 'P')
 {
-    this->key = 1;
+    this->key = 0;
     this->maxHp = 30;
     this->hp = this->maxHp;
     this->maxReload = 8;
@@ -22,7 +22,7 @@ Hero::Hero() : Character(def, herostarty, herostartx, 'P')
 
 Hero::Hero(int c, int y = 0, int x = 0) : Character(def, y, x, 'P')
 {
-    this->key = 1;
+    this->key = 0;
     this->maxHp = 30;
     this->hp = this->maxHp;
     this->maxReload = 8;

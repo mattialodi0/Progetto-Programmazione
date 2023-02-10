@@ -10,7 +10,7 @@ class Hero : public Character
 {
 protected:
 	int class_type;
-	int key = 1; // numero di chiavi trovate
+	int key = 0; // numero di chiavi trovate
 	int ability;
 	int power;
 	int shot = 0;
