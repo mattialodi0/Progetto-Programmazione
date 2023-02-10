@@ -47,11 +47,11 @@ void Hero::tankClass()
     this->maxHp=40;
     this->hp = this->maxHp;
     this->ac = 3;
-    this->standardDmg = 3;
+    this->standardDmg = 5;
     this->dmg = standardDmg;
     this->maxReload=3;
     this->reload=maxReload;
-    this->standardRange = 3;
+    this->standardRange = 4;
     this->range = standardRange;
     this->ability = 1;
 }
@@ -61,11 +61,11 @@ void Hero::rogueClass()
     this->maxHp=20;
     this->hp = this->maxHp;
     this->ac = 2;
-    this->standardDmg = 5;
+    this->standardDmg = 7;
     this->dmg = standardDmg;
     this->maxReload=2;
     this->reload=maxReload;
-    this->standardRange = 3;
+    this->standardRange = 5;
     this->range = standardRange;
     this->ability = 2;
 }
@@ -75,11 +75,11 @@ void Hero::rangerClass()
     this->maxHp=16;
     this->hp = this->maxHp;
     this->ac = 1;
-    this->standardDmg = 1;
+    this->standardDmg = 3;
     this->dmg = standardDmg;
-    this->maxReload=1;
+    this->maxReload=2;
     this->reload=maxReload;
-    this->standardRange = 9;
+    this->standardRange = 14;
     this->range = standardRange;
     this->ability = 3;
 }
@@ -89,7 +89,7 @@ void Hero::mageClass()
     this->maxHp=16;
     this->hp = this->maxHp;
     this->ac = 1;
-    this->standardDmg = 3;
+    this->standardDmg = 6;
     this->dmg = standardDmg;
     this->maxReload=4;
     this->reload=maxReload;

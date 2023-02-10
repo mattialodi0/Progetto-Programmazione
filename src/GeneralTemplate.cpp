@@ -36,14 +36,8 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
             {
                 bool acceptable=false;
             do{
-                if(room_pos!=0){
             game_board.getEmptyCoordinates(y,x);
             
-                }
-                else{
-                    x=30;
-                    y=5+(2*ite);
-                }
 
                 if(!game_board.getTaken(x,y)){
             switch(room_pos){
@@ -79,7 +73,7 @@ void General_template::createEnemies(bool is_random_enemies,bool is_random_coord
             }
 }
             }
-            while(!acceptable&&room_pos!=0);
+            while(!acceptable);
             }
             game_board.setTaken(x,y,true);
                     switch(chosen)
@@ -120,14 +114,8 @@ void General_template::createArtifact(bool is_random_artifact,bool is_random_coo
             {
                 bool acceptable=false;
             do{
-                if(room_pos!=0){
+                
             game_board.getEmptyCoordinates(y,x);
-            
-                }
-                else{
-                    x=6;
-                    y=6;
-                }
 
                 if(!game_board.getTaken(x,y)){
             switch(room_pos){
@@ -163,7 +151,7 @@ void General_template::createArtifact(bool is_random_artifact,bool is_random_coo
             }
 }
             }
-            while(!acceptable&&room_pos!=0);
+            while(!acceptable);
             }
             switch(chosen)
                     {

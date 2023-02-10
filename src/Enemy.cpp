@@ -15,7 +15,7 @@ Enemy::Enemy(Direction dir,int y,int x ,chtype ch,int difficulty):Character(dir,
          mem=0;
          enemy_memory=7;
          timer=7-int(difficulty/2);
-         setHp(30+(10*difficulty));
+         setHp(12+(3*difficulty));
          setDmg(5+difficulty);
 
 
