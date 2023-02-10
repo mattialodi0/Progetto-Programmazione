@@ -12,6 +12,7 @@ protected:
 	int class_type;
 	int key = 1; // numero di chiavi trovate
 	int ability;
+	int power;
 	int shot = 0;
 
 public:
@@ -40,6 +41,7 @@ public:
 	void heal(int artifactHp);
 	void increaseDamage(int artifactDmg);
 	void increaseRange(int artifactRange);
+	void rechargeAbility();
 
 	// void reduceHealth();
 	void attack(Board &board_win, Direction dir);

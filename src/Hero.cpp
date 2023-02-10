@@ -17,6 +17,7 @@ Hero::Hero() : Character(def, herostarty, herostartx, 'P')
     this->dmg = standardDmg;
     this->reload = 0;
     this->ability = 0;
+    this->power = 1;
 }
 
 Hero::Hero(int c, int y = 0, int x = 0) : Character(def, y, x, 'P')
@@ -32,6 +33,7 @@ Hero::Hero(int c, int y = 0, int x = 0) : Character(def, y, x, 'P')
     this->dmg = standardDmg;
     this->reload = 0;
     this->ability = 0;
+    this->power = 1;
     initclass(c);
 }
 
@@ -53,6 +55,7 @@ void Hero::tankClass()
     this->standardRange = 4;
     this->range = standardRange;
     this->ability = 1;
+    this->power = 1;
 }
 
 void Hero::rogueClass()
@@ -66,6 +69,7 @@ void Hero::rogueClass()
     this->standardRange = 5;
     this->range = standardRange;
     this->ability = 2;
+    this->power = 1;
 }
 
 void Hero::rangerClass()
@@ -79,6 +83,7 @@ void Hero::rangerClass()
     this->standardRange = 14;
     this->range = standardRange;
     this->ability = 3;
+    this->power = 1;
 }
 
 void Hero::mageClass()
@@ -92,32 +97,35 @@ void Hero::mageClass()
     this->standardRange = 7;
     this->range = standardRange;
     this->ability = 4;
+    this->power = 1;
 }
 
 void Hero::useAbility()
 {
-    if (this->ability == 1)
-    { // tank
-        this->hp = this->maxHp;
-        this->ability = 0;
+    if(this->power == 1){
+        if (this->ability == 1)
+        { // tank
+            this->hp = this->maxHp;
+            this->ability = 0;
+        }
+        else if (this->ability == 2)
+        { // rougue
+            this->dmg = 100;
+            this->ability = 0;
+        }
+        else if (this->ability == 3)
+        { // ranger
+            this->range = 100;
+            this->ability = 0;
+        }
+        else if (this->ability == 4)
+        { // mage
+            this->range = 100;
+            this->ability = 0;
+        }
     }
-    else if (this->ability == 2)
-    { // rougue
-        this->dmg = 100;
-        this->ability = 0;
-    }
-    else if (this->ability == 3)
-    { // ranger
-        this->range = 100;
-        this->ability = 0;
-    }
-    else if (this->ability == 4)
-    { // mage
-        this->range = 100;
-        this->ability = 0;
-    }
+    this->power = 0;
 }
-
 void Hero::attack(Board &board_win, Direction dir)
 {
     if (getReload() <= 0)
@@ -246,6 +254,10 @@ void Hero::increaseRange(int artifactRange)
 void Hero::reduceHealthHero(int enemiesDamage)
 {
     setHp(getHp() - enemiesDamage);
+}
+
+void Hero::rechargeAbility(){
+    this->power = 1;
 }
 
 bool Hero::death()

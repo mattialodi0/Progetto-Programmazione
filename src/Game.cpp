@@ -235,7 +235,9 @@ void Game::manageHeroMovement()
 		current_room->removeArtifact(0);
 		break;
 	case 'A':
-		//abilità
+		hero.moveCharacter(game_board);
+		hero.rechargeAbility();
+		current_room->removeArtifact(0);
 		break;
 	case 'O': // cambia stanza
 		if (hero.gety() > 1 && hero.gety() < BOARD_ROWS - 2 && hero.getx() > 1 && hero.getx() < BOARD_COLS - 2)
