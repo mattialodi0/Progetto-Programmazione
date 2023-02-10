@@ -9,7 +9,6 @@ class Character : public Drawable
 {	
 protected:
 	Direction cur_direction;
-	int ac;
 	int standardDmg;
 	int dmg;
 	int reload;
