@@ -91,13 +91,13 @@ void Menu_playing::commands(){
 
     mvwprintw(menuwin, iy, ix, " Keybindings :");
 
-    mvwprintw(menuwin, iy+2, ix, " W-A-S-D = Movement ");
+    mvwprintw(menuwin, iy+2, ix+1, " W-A-S-D = Movement ");
 
-    mvwprintw(menuwin, iy+3, ix, " Arrow keys = Attack in choosen direction ");
+    mvwprintw(menuwin, iy+3, ix+1, " Arrow keys = Attack in choosen direction ");
 
-    mvwprintw(menuwin, iy+4, ix, " F = Use special ability ");
+    mvwprintw(menuwin, iy+4, ix+1, " F = Use special ability ");
 
-    mvwprintw(menuwin, iy+5, ix, " P = Pause the game ");
+    mvwprintw(menuwin, iy+5, ix+1, " P = Pause the game ");
 
 
     char* choices[1] = {"Back"};
