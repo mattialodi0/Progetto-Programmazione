@@ -106,22 +106,18 @@ void Hero::useAbility()
         if (this->ability == 1)
         { // tank
             this->hp = this->maxHp;
-            this->ability = 0;
         }
         else if (this->ability == 2)
         { // rougue
             this->dmg = 100;
-            this->ability = 0;
         }
         else if (this->ability == 3)
         { // ranger
             this->range = 100;
-            this->ability = 0;
         }
         else if (this->ability == 4)
         { // mage
             this->range = 100;
-            this->ability = 0;
         }
     }
     this->power = 0;
