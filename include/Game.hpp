@@ -33,8 +33,8 @@ protected:
     int score=0;
     int canMove=0;
     int artifactHeal=10;
-    int artifactDmg=5;
-    int artifactRange=5;
+    int artifactDmg=2;
+    int artifactRange=2;
     int artifactHp=10;
     int difficulty=game_board.getDifficulty();
 public:
