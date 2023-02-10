@@ -43,6 +43,7 @@ public:
     Game(int height, int width, int speed);
     bool isNotOver();
     void setGameOver();
+    void gameOver();
     void checkGameOver(bool menu);
     void processInput();
     void updateState();

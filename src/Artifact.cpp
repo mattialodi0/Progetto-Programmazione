@@ -14,7 +14,7 @@ Artifact::Artifact(int y, int x) : Drawable(y, x, RandomArtifact())
 chtype Artifact::RandomArtifact()
 {
     srand(time(NULL));
-    int i = (rand() % (2));
+    int i = (rand() % (6));
     switch (i)
     {
     case 0:

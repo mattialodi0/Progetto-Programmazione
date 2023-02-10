@@ -40,6 +40,7 @@ int main()
 		// refresh
 		game.updateScreen();
 	}
+	game.gameOver();
 
 	endwin();
 	std::cout << "game over\n";
