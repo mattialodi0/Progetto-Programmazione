@@ -32,11 +32,11 @@ Template_1::Template_1(int n, Board &game_board) : General_template(10, 16, ENEM
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
-Template_2::Template_2(int n, Board &game_board) : General_template(18, 16, 0, 1)
+Template_2::Template_2(int n, Board &game_board) : General_template(18, 16, 0, 2)
 {
     need_doors = true;
     has_north_door = false;
@@ -83,7 +83,13 @@ Template_2::Template_2(int n, Board &game_board) : General_template(18, 16, 0, 1
 
     drawDoors();
 
-    artifact[0] = Artifact(HALF_ROWS, HALF_COLS, 'J');
+    int chosen_artifact[artifact_num] = {};
+    int x_chosen_artifact[artifact_num] = {HALF_COLS-1,HALF_COLS+1};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS, HALF_ROWS};
+    for (int i = 0; i < this->artifact_num; i++)
+    {
+        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
+    }
 }
 
 Template_3::Template_3(int n, Board &game_board) : General_template(30, 19, ENEMIES, 1)
@@ -128,7 +134,7 @@ Template_3::Template_3(int n, Board &game_board) : General_template(30, 19, ENEM
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -174,7 +180,7 @@ Template_4::Template_4(int n, Board &game_board) : General_template(30, 19, ENEM
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -220,7 +226,7 @@ Template_5::Template_5(int n, Board &game_board) : General_template(30, 19, ENEM
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -267,7 +273,7 @@ Template_6::Template_6(int n, Board &game_board) : General_template(30, 19, ENEM
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -342,7 +348,7 @@ Template_8::Template_8(int n, Board &game_board) : General_template(72, 32, ENEM
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -452,7 +458,7 @@ Template_11::Template_11(int n, Board &game_board) : General_template(332, 16, E
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -491,7 +497,7 @@ Template_12::Template_12(int n, Board &game_board) : General_template(233, 16, E
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -533,7 +539,7 @@ Template_13::Template_13(int n, Board &game_board) : General_template(60, 24, EN
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -580,7 +586,7 @@ Template_14::Template_14(int n, Board &game_board) : General_template(100, 16, E
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -921,7 +927,7 @@ Template_22::Template_22(int n, Board &game_board) : General_template(281, 16, 3
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -1043,7 +1049,7 @@ Template_27::Template_27(int n, Board &game_board) : General_template(24, 16, 1,
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -1380,7 +1386,7 @@ Template_37::Template_37(int n, Board &game_board) : General_template(0, 16, 5, 
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -1406,7 +1412,7 @@ Template_38::Template_38(int n, Board &game_board) : General_template(0, 16, 5, 
     }
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }
 
@@ -1477,11 +1483,11 @@ Template_40::Template_40(int n, Board &game_board) : General_template(216, 24, E
         createEnemies(true, true, x_chosen[i], y_chosen[i], chosen_enemies[i], i, n, game_board, enemies);
     }
 
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num] = {HALF_ROWS};
-    int y_chosen_artifact[artifact_num] = {HALF_COLS};
+    int chosen_artifact[artifact_num] = {};
+    int x_chosen_artifact[artifact_num] = {HALF_COLS};
+    int y_chosen_artifact[artifact_num] = {HALF_ROWS};
     for (int i = 0; i < this->artifact_num; i++)
     {
-        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], game_board, n, artifact);
+        createArtifact(true, false, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
     }
 }

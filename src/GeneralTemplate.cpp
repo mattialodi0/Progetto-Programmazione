@@ -111,18 +111,17 @@ void General_template::createEnemies(bool is_random_enemies, bool is_random_coor
     }
 }
 
-void General_template::createArtifact(bool is_random_artifact, bool is_random_coords, int x, int y, int chosen, Board &game_board, int room_pos, Drawable *artifact)
+void General_template::createArtifact(bool is_random_artifact, bool is_random_coords, int x, int y, int chosen, int ite, Board &game_board, int room_pos, Drawable *artifact)
 {
     if (is_random_artifact)
     {
-        chosen = (rand() % (n_artifact));
+        chosen = (rand() % (n_artifact+2));     //+2 per aumentare la probabilità delle chiavi
     }
     if (is_random_coords)
     {
         bool acceptable = false;
         do
         {
-
             game_board.getEmptyCoordinates(y, x);
 
             if (!game_board.getTaken(x, y))
@@ -169,18 +168,19 @@ void General_template::createArtifact(bool is_random_artifact, bool is_random_co
     switch (chosen)
     {
     case 0:
-        artifact[0] = Artifact(y, x, 'R');
+        artifact[ite] = Artifact(y, x, 'R');
         break;
     case 1:
-        artifact[0] = Artifact(y, x, 'E');
+        artifact[ite] = Artifact(y, x, 'E');
         break;
     case 2:
-        artifact[0] = Artifact(y, x, 'H');
+        artifact[ite] = Artifact(y, x, 'H');
         break;
-    case 3:
-        artifact[0] = Artifact(y, x, 'J');
+    default:
+        artifact[ite] = Artifact(y, x, 'J');
         break;
     }
+
 }
 
 void General_template::drawDoors()
