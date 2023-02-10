@@ -57,8 +57,13 @@ File: Door, GeneralTemplate, Room, Templates, Wall
 
 \newpage
 \section{Scelte implementative}
+\subsection{Il Menu}
+La classe Menu creà l'interfaccia con cui va a interagire l'utente all'avvio. Menu utilizza dei setter per salvare le impostazioni
+scelte dall'utente in variabili protette. Quando il menu si chiude si utilizzano dei getter per passare le impostazioni selezionate
+al Game in fase di creazione.
+
 \subsection{Il Gioco}
-La classe Menu gestisce il menu principale, mentre la classe Game si occupa di gestire tutto ciò che riguarda il gioco.
+La classe Game si occupa di gestire tutto ciò che riguarda il gioco.
 Game comprende 3 finestre (per la grafica delle stanze, delle statistiche del personaggio e per il punteggio), 
 il personaggio (Hero), l'indice delle stanze e un puntatore alla stanza corrente.
 
