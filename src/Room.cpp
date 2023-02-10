@@ -345,7 +345,7 @@ int Room::checkEnemiesHp(Board &board_win){
                 board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
             if(this->room_template->enemies[j]->isBoss()){
                 int k=0;
-                while(this->room_template->artifact[k].getIcon()!=NULL){
+                while(this->room_template->artifact[k].getIcon()!=0){
                     k++;
                 }
                 k++;
@@ -355,7 +355,7 @@ int Room::checkEnemiesHp(Board &board_win){
                 if(this->room_template->enemies[j]->getIcon()=='K'){
                     if((rand()%drop_chance) ==0){
                         int k=0;
-                        while(this->room_template->artifact[k].getIcon()!=NULL){
+                        while(this->room_template->artifact[k].getIcon()!=0){
                             k++;
                         }
                         k++;
