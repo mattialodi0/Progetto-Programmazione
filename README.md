@@ -48,7 +48,7 @@ Per lanciare il gioco basta scaricare la cartella ed eseguore il comando make da
 26  - muro bloccante b        0        
 27  - boss turret             1        
 28  - 4 turret                8        
-29  - 16 turret (passaggio)   6        
+29  - 16 turret (passaggio)   0        
 30  - muro t                  10        
 31  - muro b                  10        
 32  - muro l                  10        
