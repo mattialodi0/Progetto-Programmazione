@@ -41,6 +41,7 @@ int main()
 		game.updateScreen();
 	}
 	game.gameOver();
+	getch();
 
 	endwin();
 	std::cout << "game over\n";

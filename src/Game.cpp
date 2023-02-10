@@ -57,7 +57,6 @@ void Game::gameOver()
 	game_board.clear();
 	game_board.printyxWin("Game Over", HALF_ROWS, HALF_COLS-4, ENEMY_PAIR);
 	game_board.refreshBoard();
-	getch();
 }
 
 void Game::checkGameOver(bool menu)
