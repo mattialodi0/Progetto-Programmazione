@@ -7,7 +7,7 @@ class Artifact : public Drawable
 {
 public:
     Artifact();
-    Artifact(int y, int x,chtype ch);
+    Artifact(int y, int x, chtype ch);
     Artifact(int y, int x);
-    chtype RandomArtifact(); 
+    chtype RandomArtifact();
 };

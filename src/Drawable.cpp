@@ -29,15 +29,15 @@ chtype Drawable::getIcon()
 }
 void Drawable::sety(int y)
 {
-	 this->y=y;
+	this->y = y;
 }
 
 void Drawable::setx(int x)
 {
-	this->x=x;
+	this->x = x;
 }
 
 void Drawable::setIcon(chtype icon)
 {
-	this->icon=icon;
+	this->icon = icon;
 }

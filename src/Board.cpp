@@ -1,11 +1,13 @@
 #include "Board.hpp"
 
-Board::Board():Board(0, 0, 300)
+Board::Board() : Board(0, 0, 300)
 {
-	for(int i=0;i<BOARD_COLS;i++){
-	for(int j=0;j<BOARD_ROWS;j++){
-	taken[i][j]=false;	
-	}	
+	for (int i = 0; i < BOARD_COLS; i++)
+	{
+		for (int j = 0; j < BOARD_ROWS; j++)
+		{
+			taken[i][j] = false;
+		}
 	}
 	init_pair(BOSS_PAIR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(ENEMY_PAIR, COLOR_RED, COLOR_BLACK);
@@ -16,11 +18,13 @@ Board::Board():Board(0, 0, 300)
 
 Board::Board(int height, int width, int speed)
 {
-	difficulty=0;
-	for(int i=0;i<BOARD_COLS;i++){
-	for(int j=0;j<BOARD_ROWS;j++){
-	taken[i][j]=false;	
-	}	
+	difficulty = 0;
+	for (int i = 0; i < BOARD_COLS; i++)
+	{
+		for (int j = 0; j < BOARD_ROWS; j++)
+		{
+			taken[i][j] = false;
+		}
 	}
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
@@ -38,11 +42,13 @@ Board::Board(int height, int width, int speed)
 
 Board::Board(int height, int width, int starty, int startx, int speed)
 {
-	difficulty=0;
-	for(int i=0;i<BOARD_COLS;i++){
-	for(int j=0;j<BOARD_ROWS;j++){
-	taken[i][j]=false;	
-	}	
+	difficulty = 0;
+	for (int i = 0; i < BOARD_COLS; i++)
+	{
+		for (int j = 0; j < BOARD_ROWS; j++)
+		{
+			taken[i][j] = false;
+		}
 	}
 	int yMax, xMax;
 	getmaxyx(stdscr, yMax, xMax);
@@ -57,95 +63,97 @@ Board::Board(int height, int width, int starty, int startx, int speed)
 	init_pair(ERROR_PAIR, COLOR_YELLOW, COLOR_BLACK);
 }
 
-void Board::initialize() 
+void Board::initialize()
 {
-    clear();
+	clear();
 	wrefresh(board_win);
 }
 
-void Board::add(Drawable &drawable) 
+void Board::add(Drawable &drawable)
 {
-    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
 }
 
 /* usata per aggiungere gli artefatti, disegnati in blu */
-void Board::add_A(Drawable &drawable) 
+void Board::add_A(Drawable &drawable)
 {
-	wattron(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+	wattron(board_win, COLOR_PAIR(ARTIFACT_PAIR));
 	addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
-	wattroff(board_win,COLOR_PAIR(ARTIFACT_PAIR));
+	wattroff(board_win, COLOR_PAIR(ARTIFACT_PAIR));
 }
 
 /* usata per aggiungere i nemici, disegnati in rosso */
-void Board::add_E(Drawable &drawable) 
+void Board::add_E(Drawable &drawable)
 {
-	wattron(board_win,COLOR_PAIR(ENEMY_PAIR));
-    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
-	wattroff(board_win,COLOR_PAIR(ENEMY_PAIR));
+	wattron(board_win, COLOR_PAIR(ENEMY_PAIR));
+	addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	wattroff(board_win, COLOR_PAIR(ENEMY_PAIR));
 }
 
 /* usata per aggiungere i boss, disegnati in viola */
-void Board::add_B(Drawable &drawable) 
+void Board::add_B(Drawable &drawable)
 {
-	wattron(board_win,COLOR_PAIR(BOSS_PAIR));
-    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
-	wattroff(board_win,COLOR_PAIR(BOSS_PAIR));
+	wattron(board_win, COLOR_PAIR(BOSS_PAIR));
+	addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	wattroff(board_win, COLOR_PAIR(BOSS_PAIR));
 }
 
 /* usata per aggiungere le porte, disegnate in giallo */
-void Board::add_D(Drawable &drawable) 
+void Board::add_D(Drawable &drawable)
 {
-	wattron(board_win,COLOR_PAIR(DOOR_PAIR));
-    addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
-	wattroff(board_win,COLOR_PAIR(DOOR_PAIR));
+	wattron(board_win, COLOR_PAIR(DOOR_PAIR));
+	addAt(drawable.gety(), drawable.getx(), drawable.getIcon());
+	wattroff(board_win, COLOR_PAIR(DOOR_PAIR));
 }
 
-void Board::remove(Drawable &drawable) 
+void Board::remove(Drawable &drawable)
 {
-    addAt(drawable.gety(), drawable.getx(), ' ');
+	addAt(drawable.gety(), drawable.getx(), ' ');
 }
-   
-void Board::addAt(int y, int x, chtype ch) 
-{	
-	switch(ch){
-		case ' ':
-		case '-':
-		case '|':
-		case 'O':
-		case 'o':
-		case 'R':
-		case 'J':
-		case 'E':
-		case 'H':
-		setTaken(x,y,false);
+
+void Board::addAt(int y, int x, chtype ch)
+{
+	switch (ch)
+	{
+	case ' ':
+	case '-':
+	case '|':
+	case 'O':
+	case 'o':
+	case 'R':
+	case 'J':
+	case 'E':
+	case 'H':
+		setTaken(x, y, false);
 		break;
-	 default:
-	setTaken(x,y,true);
-	break;
+	default:
+		setTaken(x, y, true);
+		break;
 	}
 	mvwaddch(board_win, y, x, ch);
 }
 
-void Board::setInitialDifficulty(){
-	this->initialDifficulty=getDifficulty();
+void Board::setInitialDifficulty()
+{
+	this->initialDifficulty = getDifficulty();
 }
 
-int Board::refreshDifficulty(int score){
-	setDifficulty((score/this->difficultyRate)+initialDifficulty);
-	return (score/this->difficultyRate)+initialDifficulty;
+int Board::refreshDifficulty(int score)
+{
+	setDifficulty((score / this->difficultyRate) + initialDifficulty);
+	return (score / this->difficultyRate) + initialDifficulty;
 }
 
-void Board::print(const char* str) 
+void Board::print(const char *str)
 {
 	wprintw(board_win, str);
 }
-void Board::print(chtype c) 
+void Board::print(chtype c)
 {
 	mvwaddch(board_win, 1, 1, c);
 }
 
-
-chtype Board::getInput()                   //*******************
+chtype Board::getInput() //*******************
 {
 	time_t time_last_input = Time::milliseconds();
 	chtype input = wgetch(board_win);
@@ -162,48 +170,54 @@ chtype Board::getInput()                   //*******************
 	};
 	return input;
 }
-    
-void Board::getEmptyCoordinates(int &y, int &x) 
+
+void Board::getEmptyCoordinates(int &y, int &x)
 {
-    srand(time(NULL));
-	do{
+	srand(time(NULL));
+	do
+	{
 		x = rand() % BOARD_COLS;
 		y = rand() % BOARD_ROWS;
-	}
-	while ((mvwinch(board_win,y,x)) != ' '||this->getTaken(x,y)) ;     //************
+	} while ((mvwinch(board_win, y, x)) != ' ' || this->getTaken(x, y)); //************
 }
 
-int Board::getDifficulty(){
+int Board::getDifficulty()
+{
 	return this->difficulty;
 }
-void Board::setDifficulty(int diff){
-	this->difficulty=diff;
+void Board::setDifficulty(int diff)
+{
+	this->difficulty = diff;
 }
-void Board::setDifficultyRate(int diff){
-	this->difficultyRate=diff;
+void Board::setDifficultyRate(int diff)
+{
+	this->difficultyRate = diff;
 }
-
 
 void Board::setTimeout(int timeout)
 {
 	wtimeout(board_win, timeout);
 }
 
-void Board::setTaken(int x, int y,bool set){
-this->taken[x][y]=set;
-
+void Board::setTaken(int x, int y, bool set)
+{
+	this->taken[x][y] = set;
 }
-bool Board::getTaken(int x, int y){
+bool Board::getTaken(int x, int y)
+{
 
 	return this->taken[x][y];
 }
 
-void Board::clearTaken(){
-	for(int x=0;x<BOARD_COLS;x++){
-        for(int y=0;y<BOARD_ROWS;y++){
-         setTaken(x,y,false);
-		 }
-    }
+void Board::clearTaken()
+{
+	for (int x = 0; x < BOARD_COLS; x++)
+	{
+		for (int y = 0; y < BOARD_ROWS; y++)
+		{
+			setTaken(x, y, false);
+		}
+	}
 }
 
 int Board::getTimeout()
@@ -211,7 +225,7 @@ int Board::getTimeout()
 	return this->timeout;
 }
 
-void Board::clear () 
+void Board::clear()
 {
 	wclear(board_win);
 	addBorder();
@@ -232,28 +246,30 @@ chtype Board::getCharAt(int y, int x)
 	return (unsigned char)mvwinch(board_win, y, x);
 }
 
-void Board::printWin(char* str, int y, int stat)
+void Board::printWin(char *str, int y, int stat)
 {
-	char* buffer = (char *)malloc(3 * sizeof(char));
+	char *buffer = (char *)malloc(3 * sizeof(char));
 	sprintf(buffer, "%d", stat);
 	mvwprintw(board_win, y, 2, str);
 	mvwprintw(board_win, y, 15, buffer);
 	free(buffer);
-}   
-void Board::printWin(char* str, int y, int stat1, int stat2)
+}
+void Board::printWin(char *str, int y, int stat1, int stat2)
 {
-	char* buffer = (char *)malloc(6 * sizeof(char));
+	char *buffer = (char *)malloc(6 * sizeof(char));
 	sprintf(buffer, "%d %d", stat1, stat2);
 	mvwprintw(board_win, y, 2, str);
 	mvwprintw(board_win, y, 15, buffer);
 	free(buffer);
-}   
+}
 
-void Board::printyxWin(char str[], int y, int x) {
+void Board::printyxWin(char str[], int y, int x)
+{
 	mvwaddstr(board_win, y, x, str);
 }
 
-void Board::printyxWin(char str[], int y, int x, int color) {
+void Board::printyxWin(char str[], int y, int x, int color)
+{
 	wattron(board_win, COLOR_PAIR(color));
 	mvwaddstr(board_win, y, x, str);
 	wattroff(board_win, COLOR_PAIR(color));

@@ -1,14 +1,13 @@
 #include "Character.hpp"
 
-
 Character::Character()
 {
 	setDirection(def);
 }
 
-Character::Character(Direction dir, int x, int y, chtype ch) : Drawable(y,x,ch)
+Character::Character(Direction dir, int x, int y, chtype ch) : Drawable(y, x, ch)
 {
-	//Drawable(y,x,ch);
+	// Drawable(y,x,ch);
 	setDirection(dir);
 }
 
@@ -19,69 +18,67 @@ void Character::setDirection(Direction newdir)
 
 Direction Character::getDirection()
 {
-    return cur_direction;
+	return cur_direction;
 }
 
 void Character::moveCharacter(Board &game_board)
 {
 	switch (cur_direction)
 	{
-	case down:	
-		game_board.setTaken(x,y,false);
-		game_board.addAt(this->y,this->x,' ');
+	case down:
+		game_board.setTaken(x, y, false);
+		game_board.addAt(this->y, this->x, ' ');
 		this->y++;
-		game_board.setTaken(x,y,true);
-		game_board.addAt(this->y,this->x,this->icon);
+		game_board.setTaken(x, y, true);
+		game_board.addAt(this->y, this->x, this->icon);
 		break;
 	case up:
-		game_board.setTaken(x,y,false);
-		game_board.addAt(this->y,this->x,' ');
+		game_board.setTaken(x, y, false);
+		game_board.addAt(this->y, this->x, ' ');
 		this->y--;
-		game_board.setTaken(x,y,true);
-		game_board.addAt(this->y,this->x,this->icon);
+		game_board.setTaken(x, y, true);
+		game_board.addAt(this->y, this->x, this->icon);
 		break;
 	case sx:
-		game_board.setTaken(x,y,false);
-		game_board.addAt(this->y,this->x,' ');
+		game_board.setTaken(x, y, false);
+		game_board.addAt(this->y, this->x, ' ');
 		this->x--;
-		game_board.setTaken(x,y,true);
-		game_board.addAt(this->y,this->x,this->icon);
+		game_board.setTaken(x, y, true);
+		game_board.addAt(this->y, this->x, this->icon);
 		break;
 	case dx:
-		game_board.setTaken(x,y,false);
-		game_board.addAt(this->y,this->x,' ');
+		game_board.setTaken(x, y, false);
+		game_board.addAt(this->y, this->x, ' ');
 		this->x++;
-		game_board.setTaken(x,y,true);
-		game_board.addAt(this->y,this->x,this->icon);
+		game_board.setTaken(x, y, true);
+		game_board.addAt(this->y, this->x, this->icon);
 		break;
 	default:
 		break;
 	}
 }
-Direction Character::getRandomDirection(){
+Direction Character::getRandomDirection()
+{
 	int n = (rand() % 5) - 2;
-		switch (n)
-		{
-		case -2:
-			return up;
-			break;
-		case 2:
-			return down;
-			break;
-		case -1:
-			return sx;
-			break;
-		case 1:
-			return dx;
-			break;
-		default:
+	switch (n)
+	{
+	case -2:
+		return up;
+		break;
+	case 2:
+		return down;
+		break;
+	case -1:
+		return sx;
+		break;
+	case 1:
+		return dx;
+		break;
+	default:
 		return def;
-			break;
-		}
-
+		break;
+	}
 }
-
-
 
 bool Character::checkCollision(Board &board_win)
 {
@@ -98,20 +95,22 @@ bool Character::checkCollision(Board &board_win)
 			offsetx = cur_direction;
 		}
 	}
-	if(!board_win.getTaken(x+offsetx,y+offsety)){
-	switch (board_win.getCharAt(y + offsety, x + offsetx))
+	if (!board_win.getTaken(x + offsetx, y + offsety))
 	{
-	case ' ':
-	case 'E':
-	case 'H':
-	case 'R':
-	case 'J':
-		return true;
-		break;
-	default:
-		return false;
-		break;
-	}}
+		switch (board_win.getCharAt(y + offsety, x + offsetx))
+		{
+		case ' ':
+		case 'E':
+		case 'H':
+		case 'R':
+		case 'J':
+			return true;
+			break;
+		default:
+			return false;
+			break;
+		}
+	}
 	return false;
 }
 bool Character::checkFlyerCollision(Board &board_win)
@@ -129,7 +128,7 @@ bool Character::checkFlyerCollision(Board &board_win)
 			offsetx = cur_direction;
 		}
 	}
-	
+
 	switch (board_win.getCharAt(y + offsety, x + offsetx))
 	{
 	case ' ':
@@ -162,23 +161,25 @@ bool Character::checkProjectileCollision(Board &board_win)
 			offsetx = cur_direction;
 		}
 	}
-	if(!board_win.getTaken(x+offsetx,y+offsety)){
-	switch (board_win.getCharAt(y + offsety, x + offsetx))
+	if (!board_win.getTaken(x + offsetx, y + offsety))
 	{
-	case ' ':
-	case 'E':
-	case 'H':
-	case 'R':
-	case 'J':
-	case 'o':
-	case '-':
-	case '|':
-		return true;
-		break;
-	default:
-		return false;
-		break;
-	}}
+		switch (board_win.getCharAt(y + offsety, x + offsetx))
+		{
+		case ' ':
+		case 'E':
+		case 'H':
+		case 'R':
+		case 'J':
+		case 'o':
+		case '-':
+		case '|':
+			return true;
+			break;
+		default:
+			return false;
+			break;
+		}
+	}
 	return false;
 }
 
@@ -197,70 +198,85 @@ bool Character::checkProjectileFlyerCollision(Board &board_win)
 			offsetx = cur_direction;
 		}
 	}
-	if(!board_win.getTaken(x+offsetx,y+offsety)){
-	switch (board_win.getCharAt(y + offsety, x + offsetx))
+	if (!board_win.getTaken(x + offsetx, y + offsety))
 	{
-	case ' ':
-	case 'E':
-	case 'H':
-	case 'R':
-	case 'J':
-	case 'X':
-	case 'Q':
-	case 'o':
-	case '-':
-	case '|':
-		return true;
-		break;
-	default:
-		return false;
-		break;
-	}}
+		switch (board_win.getCharAt(y + offsety, x + offsetx))
+		{
+		case ' ':
+		case 'E':
+		case 'H':
+		case 'R':
+		case 'J':
+		case 'X':
+		case 'Q':
+		case 'o':
+		case '-':
+		case '|':
+			return true;
+			break;
+		default:
+			return false;
+			break;
+		}
+	}
 	return false;
 }
 
 void Character::reduceHealth(int Damage)
 {
-    hp = hp - Damage;
+	hp = hp - Damage;
 }
-int Character::getReload(){
-    return this->reload;
+int Character::getReload()
+{
+	return this->reload;
 }
-void Character ::setReload(int reload){
-    this->reload=reload;
+void Character ::setReload(int reload)
+{
+	this->reload = reload;
 }
-int Character::getMaxReload(){
-    return this->maxReload;
+int Character::getMaxReload()
+{
+	return this->maxReload;
 }
-void Character ::setMaxReload(int maxReload){
-    this->maxReload=maxReload;
-}
-
-int Character::getHp(){
-    return this->hp;
-}
-void Character ::setHp(int hp){
-    this->hp=hp;
-}
-int Character::getMaxHp(){
-    return this->maxHp;
-}
-void Character ::setMaxHp(int maxHp){
-    this->maxHp=maxHp;
+void Character ::setMaxReload(int maxReload)
+{
+	this->maxReload = maxReload;
 }
 
-int Character::getRange(){
-    return this->range;
+int Character::getHp()
+{
+	return this->hp;
 }
-void Character ::setRange(int range){
-    this->range=range;
+void Character ::setHp(int hp)
+{
+	this->hp = hp;
 }
-int Character::getDmg(){
-    return this->dmg;
+int Character::getMaxHp()
+{
+	return this->maxHp;
 }
-void Character ::setDmg(int dmg){
-    this->dmg=dmg;
+void Character ::setMaxHp(int maxHp)
+{
+	this->maxHp = maxHp;
 }
-void Character ::dimReload(){
-    setReload(getReload()-1);
+
+int Character::getRange()
+{
+	return this->range;
+}
+void Character ::setRange(int range)
+{
+	this->range = range;
+}
+int Character::getDmg()
+{
+	return this->dmg;
+}
+void Character ::setDmg(int dmg)
+{
+	this->dmg = dmg;
+}
+void Character ::dimReload()
+{
+	setReload(getReload() - 1);
 }
