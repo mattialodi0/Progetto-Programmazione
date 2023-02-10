@@ -327,12 +327,14 @@ void Game::makeSouthRoom() {
 }
 void Game::makeWestRoom() {
     prm p = new Room(current_room->gety(), current_room->getx()-1, room_index,-2,game_board);
+	current_room->setWest(p);
     updateIndex(current_room->getWest());
     addRoomToIndex(current_room->getWest());
     moveToWestRoom();
 }
 void Game::makeEstRoom() {
     prm p = new Room(current_room->gety(), current_room->getx()+1, room_index,2,game_board);
+	current_room->setEst(p);
     updateIndex(current_room->getEst());
     addRoomToIndex(current_room->getEst());
     moveToEstRoom();
@@ -340,9 +342,6 @@ void Game::makeEstRoom() {
 
 
 void Game::addRoomToIndex(prm room) {
-    //this->index_dim += 1;
-    //this->room_index[current_index] = room;
-    //this->current_index += 1;
 	this->room_index.emplace_back(room);
 }
 
