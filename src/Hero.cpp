@@ -16,7 +16,7 @@ Hero::Hero() : Character(def, herostarty, herostartx,'P')
     this->standardDmg = 8;
     this->dmg = standardDmg;
     this->reload = 0;
-    this->ability = 3;
+    this->ability = 0;
 }
 
 Hero::Hero(int c, int y=0, int x=0) : Character(def, y, x,'P')
@@ -31,7 +31,7 @@ Hero::Hero(int c, int y=0, int x=0) : Character(def, y, x,'P')
     this->standardDmg = 8;
     this->dmg = standardDmg;
     this->reload = 0;
-    this->ability = 3;
+    this->ability = 0;
     initclass(c);
 }
 
@@ -46,7 +46,6 @@ void Hero::tankClass()
 {
     this->maxHp=40;
     this->hp = this->maxHp;
-    this->ac = 3;
     this->standardDmg = 5;
     this->dmg = standardDmg;
     this->maxReload=3;
@@ -60,7 +59,6 @@ void Hero::rogueClass()
 {
     this->maxHp=20;
     this->hp = this->maxHp;
-    this->ac = 2;
     this->standardDmg = 7;
     this->dmg = standardDmg;
     this->maxReload=2;
@@ -74,7 +72,6 @@ void Hero::rangerClass()
 {
     this->maxHp=16;
     this->hp = this->maxHp;
-    this->ac = 1;
     this->standardDmg = 3;
     this->dmg = standardDmg;
     this->maxReload=2;
@@ -88,7 +85,6 @@ void Hero::mageClass()
 {
     this->maxHp=16;
     this->hp = this->maxHp;
-    this->ac = 1;
     this->standardDmg = 6;
     this->dmg = standardDmg;
     this->maxReload=4;
@@ -105,15 +101,15 @@ void Hero::useAbility()
         this->ability = 0;
     }
     else if(this->ability == 2){    //rougue
-        this->dmg = 16;
+        this->dmg = 100;
         this->ability = 0;
     }
     else if(this->ability == 3){    //ranger
-        this->range = 16;
+        this->range = 100;
         this->ability = 0;
     }
     else if(this->ability == 4){    //mage
-        this->range = 16;
+        this->range = 100;
         this->ability = 0;
     }
 }
@@ -138,14 +134,14 @@ void Hero::attack(Board &board_win, Direction dir)
                 new_proj->setIcon('-');
                 break;
         }
-        if(this->range == 16){
+        if(this->range == 100){
             if(shot>=5){
                 this->range = this->standardRange;
                 shot=0;
             }
             shot++;
         }
-        if(this->dmg == 16){
+        if(this->dmg == 100){
             if(shot>=5){
                 this->dmg = this->standardDmg;
                 shot=0;

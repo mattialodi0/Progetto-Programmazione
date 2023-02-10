@@ -11,7 +11,6 @@ class Hero : public Character
 protected:
 	int class_type;
 	int key=1;	//numero di chiavi trovate
-    int ac = 3;
 	int ability;
 	int shot = 0;
 public:	
