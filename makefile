@@ -1,7 +1,7 @@
 all: main run clean
 
 main: 
-	g++ ./src/*.cpp -lncursesw -lm -I./include/ -o main.out
+	g++ -w ./src/*.cpp -lncursesw -lm -I./include/ -o main.out
 
 run:
 	./main.out

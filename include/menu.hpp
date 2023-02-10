@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <iostream>
 using namespace std;
 
 class Menu{
@@ -20,6 +21,7 @@ class Menu{
         void setDiff_rate(int diff_rate);
         void setHero_class(int hero_class);
         void setGameOver();
+        bool checkTerminal();
 
     public:
         void menu();
