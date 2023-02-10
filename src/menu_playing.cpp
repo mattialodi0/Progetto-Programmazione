@@ -86,8 +86,8 @@ void Menu_playing::commands(){
     wrefresh(menuwin);
     keypad(menuwin, true);      
     
-    int iy = (yMax/2)-18;
-    int ix = (xMax/2)-70;
+    int iy = 10;
+    int ix = 35;
 
     mvwprintw(menuwin, iy, ix, " Keybindings :");
 

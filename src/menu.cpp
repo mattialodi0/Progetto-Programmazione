@@ -213,8 +213,8 @@ void Menu::commands(){
     wrefresh(menuwin);
     keypad(menuwin, true);      
     
-    int iy = (yMax/2)-18;
-    int ix = (xMax/2)-70;
+    int iy = 10;
+    int ix = 35;
 
     mvwprintw(menuwin, iy, ix, "Keybindings :");
 
@@ -351,18 +351,18 @@ void Menu::class_tank(){
     wrefresh(menuwin);
     keypad(menuwin, true);      
     
-    int iy = (yMax/2)-18;
-    int ix = (xMax/2)-70;
+    int iy = 10;
+    int ix = 40;
  
     mvwprintw(menuwin, iy, ix, " TANK class stats : ");
 
-    mvwprintw(menuwin, iy+2, ix, " Healt Points = 40 ");
+    mvwprintw(menuwin, iy+2, ix+1, " Healt Points = 40 ");
 
-    mvwprintw(menuwin, iy+3, ix, " Damage = 5 ");
+    mvwprintw(menuwin, iy+3, ix+1, " Damage = 5 ");
 
-    mvwprintw(menuwin, iy+4, ix, " Reload Time = 3 ");
+    mvwprintw(menuwin, iy+4, ix+1, " Reload Time = 3 ");
 
-    mvwprintw(menuwin, iy+5, ix, " Range = 4 ");
+    mvwprintw(menuwin, iy+5, ix+1, " Range = 4 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
@@ -425,8 +425,8 @@ void Menu::class_rogue(){
     wrefresh(menuwin);
     keypad(menuwin, true);      
     
-    int iy = (yMax/2)-18;
-    int ix = (xMax/2)-70;
+    int iy = 10;
+    int ix = 40;
    
     mvwprintw(menuwin, iy, ix, " ROGUE class stats : ");
 
@@ -500,8 +500,8 @@ void Menu::class_ranger(){
     wrefresh(menuwin);
     keypad(menuwin, true);      
     
-    int iy = (yMax/2)-18;
-    int ix = (xMax/2)-70;
+    int iy = 10;
+    int ix = 40;
     
     mvwprintw(menuwin, iy, ix, " RANGER class stats : ");
 
@@ -574,8 +574,8 @@ void Menu::class_mage(){
     wrefresh(menuwin);
     keypad(menuwin, true);    
     
-    int iy = (yMax/2)-18;
-    int ix = (xMax/2)-70;
+    int iy = 10;
+    int ix = 40;
 
     mvwprintw(menuwin, iy, ix, " MAGE class stats : ");
 
