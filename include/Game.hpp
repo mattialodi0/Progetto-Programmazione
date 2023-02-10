@@ -38,7 +38,7 @@ protected:
     int artifactHp = 10;
     int difficulty = game_board.getDifficulty();
     int error_type = 0;
-
+    int start_time;
 public:
     Game(int height, int width, int speed);
     bool isNotOver();
@@ -56,6 +56,8 @@ private:
     void redraw();
     void manageHeroMovement();
     void displayError();
+    int getTime();
+
     // funzioni per le stanze
     void manageDoor();
 

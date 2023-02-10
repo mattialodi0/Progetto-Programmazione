@@ -23,7 +23,6 @@ protected:
 	bool taken[BOARD_COLS][BOARD_ROWS];
 	int difficultyRate = 40;
 	int initialDifficulty = difficulty;
-
 public:
 	Board();
 	Board(int height, int width, int speed);

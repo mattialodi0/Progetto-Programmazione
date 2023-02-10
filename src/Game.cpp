@@ -38,6 +38,8 @@ Game::Game(int height, int width, int speed)
 	room_index.emplace_back(current_room);
 
 	canMove = 0;
+
+	start_time = time(0);
 }
 
 bool Game::isNotOver()
@@ -157,8 +159,6 @@ void Game::updateState()
 
 void Game::updateScreen()
 {
-	// game_board.clear();
-	// menu_playing.refreshStat(hero,getScore());
 	redraw();
 	game_board.refreshBoard();
 
@@ -204,7 +204,6 @@ void Game::manageHeroMovement()
 		}
 	}
 	// if(!game_board.getTaken(hero.getx()+offsetx,hero.gety()+offsety)){
-	//	stat_board.print(game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx));
 	switch (game_board.getCharAt(hero.gety() + offsety, hero.getx() + offsetx))
 	{
 	case ' ':
@@ -441,8 +440,9 @@ void Game::refreshStat(Hero &hero)
 void Game::refreshScore(Hero &hero)
 {
 	score_board.printWin("Score: ", 2, getScore());
-	score_board.printyxWin("                      ", 5, 2);
-	score_board.printWin("Difficulty: ", 5, game_board.getDifficulty());
+	score_board.printyxWin("                      ", 4, 2);
+	score_board.printWin("Time: ", 4, getTime());
+	score_board.printWin("Difficulty: ", 6, game_board.getDifficulty());
 }
 
 void Game::displayError()
@@ -459,4 +459,9 @@ void Game::displayError()
 		stat_board.printyxWin("                      ", 15, 2, ERROR_PAIR);
 		break;
 	}
+}
+
+int Game::getTime() 
+{
+	return time(0) - start_time;
 }
