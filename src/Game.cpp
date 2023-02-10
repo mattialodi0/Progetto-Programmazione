@@ -79,37 +79,21 @@ void Game::processInput()
 	if(hero.getReload()<=0){
 		hero.attack(game_board, up);
 	}
-		/*if(current_room->north != NULL)		//per il testing
-				moveToNorthRoom();
-			else	
-				makeNorthRoom();*/
 		break;
 	case KEY_DOWN:
 	if(hero.getReload()<=0){
 		hero.attack(game_board, down);
 	}
-		/*if(current_room->south != NULL)		//per il testing
-				moveToSouthRoom();
-			else	
-				makeSouthRoom();*/
 		break;
 	case KEY_RIGHT:
 	if(hero.getReload()<=0){
 		hero.attack(game_board, dx);
 	}
-		/*if(current_room->west != NULL)		//per il testing
-				moveToWestRoom();
-			else	
-				makeWestRoom();*/
 		break;
 	case KEY_LEFT:
 	if(hero.getReload()<=0){
 		hero.attack(game_board, sx);
 	}
-		/*if(current_room->est != NULL)		//per il testing
-				moveToEstRoom();
-			else	
-				makeEstRoom();*/
 		break;
 	case 'f':
 		hero.useAbility(); 	//abilità speciale della classe
@@ -161,8 +145,6 @@ void Game::updateState()
 
 void Game::updateScreen()
 {
-	//game_board.clear();
-	//menu_playing.refreshStat(hero,getScore());
 	redraw();
 	game_board.refreshBoard();
 	refreshStat(hero);
@@ -270,28 +252,28 @@ void Game::manageDoor() {
 		game_board.clear();
 		if(hero.gety() <= 1) 
 		{
-			if(current_room->north != NULL)		//searchIndexNorth(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->getNorth() != NULL) 		//se non la stanza non è ancora stata generata
 				moveToNorthRoom();
 			else	
 				makeNorthRoom();
 		}
 		else if(hero.gety() >= BOARD_ROWS-2) 
 		{
-			if(current_room->south != NULL)		//searchIndexSouth(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->getSouth() != NULL) 		//se non la stanza non è ancora stata generata
 				moveToSouthRoom();
 			else	
 				makeSouthRoom();
 		}
 		else if(hero.getx() <= 1) 
 		{
-			if(current_room->west != NULL)		//searchIndexWest(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->getWest() != NULL) 		//se non la stanza non è ancora stata generata
 				moveToWestRoom();
 			else	
 				makeWestRoom();
 		}
 		else if(hero.getx() >= BOARD_COLS-2) 
 		{
-			if(current_room->est != NULL)		//searchIndexEst(current_room)) 		//se non la stanza non è ancora stata generata
+			if(current_room->getEst() != NULL) 			//se non la stanza non è ancora stata generata
 				moveToEstRoom();
 			else	
 				makeEstRoom();
@@ -303,50 +285,52 @@ void Game::manageDoor() {
 
 //funzioni per cambiare stanza
 void Game::moveToNorthRoom() {
-    current_room = current_room->north;
+    current_room = current_room->getNorth();
     //posiziona il giocatore in basso 
     hero.centerHero(hero.getDirection());
 }
 void Game::moveToSouthRoom() {
-    current_room = current_room->south;
+    current_room = current_room->getSouth();
     //posiziona il giocatore in alto 
     hero.centerHero(hero.getDirection());
 }
 void Game::moveToWestRoom() {
-    current_room = current_room->west;
+    current_room = current_room->getWest();
     //posiziona il giocatore a destra
     hero.centerHero(hero.getDirection());
 }
 void Game::moveToEstRoom() {
-    current_room = current_room->est;
+    current_room = current_room->getEst();
     //posiziona il giocatore a sinistra
     hero.centerHero(hero.getDirection());
 }
 
 //funzioni per creare nuove stanze
 void Game::makeNorthRoom() {
-    current_room->north = new Room(current_room->y+1, current_room->x, room_index,1,game_board);
-    updateIndex(current_room->north);
-    addRoomToIndex(current_room->north);       //******************
+    prm p = new Room(current_room->gety()+1, current_room->getx(), room_index,1,game_board);
+	current_room->setNorth(p);
+    updateIndex(current_room->getNorth());
+    addRoomToIndex(current_room->getNorth());
     moveToNorthRoom();
 
 }
 void Game::makeSouthRoom() {
-    current_room->south = new Room(current_room->y-1, current_room->x, room_index,-1,game_board);
-    updateIndex(current_room->south);
-    addRoomToIndex(current_room->south);       //******************
+    prm p = new Room(current_room->gety()-1, current_room->getx(), room_index,-1,game_board);
+	current_room->setSouth(p);
+    updateIndex(current_room->getSouth());
+    addRoomToIndex(current_room->getSouth());
     moveToSouthRoom();  
 }
 void Game::makeWestRoom() {
-    current_room->west = new Room(current_room->y, current_room->x-1, room_index, -2,game_board);
-    updateIndex(current_room->west);
-    addRoomToIndex(current_room->west);       //******************
+    prm p = new Room(current_room->gety(), current_room->getx()-1, room_index,-2,game_board);
+    updateIndex(current_room->getWest());
+    addRoomToIndex(current_room->getWest());
     moveToWestRoom();
 }
 void Game::makeEstRoom() {
-    current_room->est = new Room(current_room->y, current_room->x+1, room_index,2,game_board);
-    updateIndex(current_room->est);
-    addRoomToIndex(current_room->est);       //******************
+    prm p = new Room(current_room->gety(), current_room->getx()+1, room_index,2,game_board);
+    updateIndex(current_room->getEst());
+    addRoomToIndex(current_room->getEst());
     moveToEstRoom();
 }
 
@@ -363,14 +347,14 @@ void Game::addRoomToIndex(prm room) {
 void Game::updateIndex(prm room) {
     for(int i = 0; i < room_index.size(); i++)
 	{
-		if(room_index[i]->y == room->y+1 && room_index[i]->x == room->x)
-			room_index[i]->south = room;
-		if(room_index[i]->y == room->y-1 && room_index[i]->x == room->x)
-			room_index[i]->north = room;
-		if(room_index[i]->y == room->y && room_index[i]->x == room->x-1)
-			room_index[i]->est = room;
-		if(room_index[i]->y == room->y && room_index[i]->x== room->x+1)
-			room_index[i]->west = room;		
+		if(room_index[i]->gety() == room->gety()+1 && room_index[i]->getx() == room->getx())
+			room_index[i]->setSouth(room);
+		if(room_index[i]->gety() == room->gety()-1 && room_index[i]->getx() == room->getx())
+			room_index[i]->setNorth(room);
+		if(room_index[i]->gety() == room->gety() && room_index[i]->getx() == room->getx()-1)
+			room_index[i]->setEst(room);
+		if(room_index[i]->gety() == room->gety() && room_index[i]->getx()== room->getx()+1)
+			room_index[i]->setWest(room);		
 	}
 }
 
@@ -419,7 +403,7 @@ void Game::refreshStat(Hero &hero){
 	stat_board.printyxWin("                      ", 8, 2);
 	stat_board.printWin("Keys: ", 8, hero.getKey());
 	stat_board.printyxWin("                      ", 10, 2);
-	stat_board.printWin("Room (y,x): ", 10, current_room->y, current_room->x);
+	stat_board.printWin("Room (y,x): ", 10, current_room->gety(), current_room->getx());
 	displayError();
 }
 

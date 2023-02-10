@@ -32,6 +32,214 @@ Room::Room(int y, int x, vector<Room*> room_index,int room_pos,Board &game_board
     lockDoor(room_index.size());
 }
 
+/* Aggiunge le componenti della stanza allo schermo */
+void Room::drawRoom(Board &board) {
+    drawArtifact(board);
+    drawProjectiles(board);
+    board.addBorder();
+    drawWalls(board);
+    drawDoors(board);
+    drawEnemies(board);
+}
+
+/* Muove i nemici */
+void Room::moveEnemies(Board &board, Hero &hero) {
+    for(int i = 0; i < room_template->enemies_num; i++) {   
+        if(room_template->enemies[i]!=NULL){ 
+          this->room_template->enemies[i]->chooseDirection(board, hero);
+         this->room_template->enemies[i]->checkProjectile(board, hero);
+         if(this->room_template->enemies[i]->getisFlyer()){
+            if(this->room_template->enemies[i]->checkFlyerCollision(board)) {
+            this->room_template->enemies[i]->moveCharacter(board);
+            
+        }
+         }
+         else{
+       if(this->room_template->enemies[i]->checkCollision(board)) {
+            this->room_template->enemies[i]->moveCharacter(board);
+            
+        }
+     }
+    }
+    }
+}
+
+int Room::checkEnemiesHp(Board &board_win){
+    int killed=0;
+
+    for(int j=0;j<room_template->enemies_num;j++){
+        if(this->room_template->enemies[j]->getHp()<=0){
+                board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
+            if(this->room_template->enemies[j]->isBoss()){
+                int k=0;
+                while(this->room_template->artifact[k].getIcon()!=0){
+                    k++;
+                }
+                k++;
+                this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
+            }
+            else{
+                if(this->room_template->enemies[j]->getIcon()=='K'){
+                    if((rand()%drop_chance) ==0){
+                        int k=0;
+                        while(this->room_template->artifact[k].getIcon()!=0){
+                            k++;
+                        }
+                        k++;
+                        this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
+                    }
+                }
+            }
+            removeEnemy(j,board_win);
+            killed++;
+        }   
+    }
+    return killed;
+}
+
+void Room::checkHeroProjectile(Board &board_win,Hero &hero){
+    for (int i = 0; i < hero.projectile.size(); i++)
+	{   
+        
+		if (hero.projectile[i] != NULL){
+            hero.projectile[i]->setUptime(hero.projectile[i]->getUptime()+1);
+            if(!hero.projectile[i]->checkProjectileCollision(board_win)||hero.projectile[i]->getUptime()>hero.getRange()){
+                hero.projectile[i]->moveCharacter(board_win);
+                bool found=false;
+                int j=0;
+                while(j < this->room_template->enemies_num && !found ){
+                    if(this->room_template->enemies[j]!=NULL){
+                    if(hero.projectile[i]->getx()==this->room_template->enemies[j]->getx() && hero.projectile[i]->gety()==this->room_template->enemies[j]->gety()){
+                        this->room_template->enemies[j]->reduceHealth(hero.getDmg());
+                        hero.projectile.erase(hero.projectile.begin()+i);
+                        found=true;
+                    }
+                    
+                    }
+                    j++;
+                }
+                if(!found){
+                    board_win.addAt(hero.projectile[i]->gety(),hero.projectile[i]->getx(),' ');
+                    hero.projectile.erase(hero.projectile.begin()+i);
+                    
+                }
+            }
+            else{  
+                        hero.projectile[i]->moveCharacter(board_win);
+                    
+                }
+            }
+        }
+    }
+
+
+
+/* Verifica che la stanza non abbia altri nemici */
+bool Room::isClear() {
+    if(room_template->must_complete)
+        return room_template->enemies_num == 0;    //per il testing è disattivata 
+    else 
+        return 1;
+}
+
+/* Sblocca la porta nella direzione in cui si punta */
+void Room::unlockDoor(int y, int x,Board &game_board)
+{
+    int j = 0;
+    bool f = true;
+    while(f)
+    {
+        f = false;
+        for(int i=0; i < room_template->doors_num; i++)
+        {
+            int ty = room_template->doors[i].gety();
+            int tx = room_template->doors[i].getx();
+            if((ty == y-j || ty == y+j || ty == y) && (tx == x-j || tx == x+j || tx == x))
+            {
+                if(room_template->doors[i].getIcon() == 'Q')
+                {
+                    f = true;
+                    room_template->doors[i] = Door(ty,tx);
+                    game_board.addAt(ty,tx,'O');
+                }
+            }
+        }
+        j++;
+    }
+}
+
+
+/* rimove il nemico in posizione i*/
+void Room::removeEnemy(int pos,Board &board_win) {
+    for(int i=0;i<room_template->enemies[pos]->projectile.size();i++){
+        board_win.addAt(room_template->enemies[pos]->projectile[i]->gety(),room_template->enemies[pos]->projectile[i]->getx(),' ');
+        room_template->enemies[pos]->projectile.erase(room_template->enemies[pos]->projectile.begin()+i);
+    }
+    pEn temp = room_template->enemies[pos];
+    room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
+    room_template->enemies[room_template->enemies_num-1] = temp;
+
+    room_template->enemies_num--;
+}
+
+/* rimove l'artefatto in posizione i*/
+void Room::removeArtifact(int pos) {
+    Drawable temp = room_template->artifact[pos];
+    room_template->artifact[pos] = room_template->artifact[room_template->artifact_num-1];
+    room_template->artifact[room_template->artifact_num-1] = temp;
+    room_template->artifact_num--;
+}
+
+
+/* ritorna la coordinata y della stanza*/
+int Room::gety() {
+    return this->y;
+}
+/* ritorna la coordinata y della stanza*/
+int Room::getx() {
+    return this->x;
+}
+
+/* ritorna il puntatore alla stanza a nord*/
+prm Room::getNorth() {
+    return this->north;
+}
+/* ritorna il puntatore alla stanza a sud*/
+prm Room::getSouth() {
+    return this->south;
+}
+/* ritorna il puntatore alla stanza a ovest*/
+prm Room::getWest() {
+    return this->west;
+}
+/* ritorna il puntatore alla stanza a est*/
+prm Room::getEst() {
+    return this->est;
+}
+
+/* modifica il puntatore alla stanza a nord*/
+void Room::setNorth(prm p) {
+    this->north = p;
+}
+/* modifica il puntatore alla stanza a sud*/
+void Room::setSouth(prm p) {
+    this->south = p;
+}
+/* modifica il puntatore alla stanza a ovest*/
+void Room::setWest(prm p) {
+    this->west = p;
+}
+/* modifica il puntatore alla stanza a est*/
+void Room::setEst(prm p) {
+    this->est = p;
+}
+
+
+
+//funzioni private
+
+
+
 /* Funzione usata per trovare le stanze da collegare a quella corrente, in base alle porte disponibili */
 Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     int n = -1;
@@ -77,43 +285,6 @@ Room* Room::findRoom(vector<Room*> room_index, int y, int x, Direction dir) {
     }
 }
 
-/* Sceglie quali porte tenere/togliere, anche in base al template */
-void Room::decideIfDoors() {
-    if(room_template->need_doors) {
-        this->has_north_door = room_template->has_north_door; 
-        this->has_south_door = room_template->has_south_door;
-        this->has_west_door = room_template->has_west_door; 
-        this->has_est_door = room_template->has_est_door;
-    }
-    else {
-        this->has_north_door = true; 
-        this->has_south_door = true;
-        this->has_west_door = true; 
-        this->has_est_door = true;
-
-        int r = rand() % 9 - 5;    //minore è il primo numero maggiore è la possibilità di non avere porte, il secondo è il primo -4
-        for(int i = 0; i < r; i++) 
-        {
-            switch (rand()%4)
-            {
-            case 0:
-                this->has_north_door = false;
-                break;
-            case 1:
-                this->has_south_door = false;
-                break;
-            case 2:
-                this->has_west_door = false;
-                break;
-            case 3:
-                this->has_est_door = false;
-                break;
-            default:
-                break;
-            }
-        }
-    }
-}
 
 /* Genera il numero di un template, in base alla loro rarità */
 int Room::randomRoomNumber() {
@@ -265,14 +436,43 @@ void Room::initializeRoomTemplate(int template_num,int room_pos,Board &game_boar
     }
 }
 
-/* Aggiunge le componenti della stanza allo schermo */
-void Room::drawRoom(Board &board) {
-    drawArtifact(board);
-    drawProjectiles(board);
-    board.addBorder();
-    drawWalls(board);
-    drawDoors(board);
-    drawEnemies(board);
+
+/* Sceglie quali porte tenere/togliere, anche in base al template */
+void Room::decideIfDoors() {
+    if(room_template->need_doors) {
+        this->has_north_door = room_template->has_north_door; 
+        this->has_south_door = room_template->has_south_door;
+        this->has_west_door = room_template->has_west_door; 
+        this->has_est_door = room_template->has_est_door;
+    }
+    else {
+        this->has_north_door = true; 
+        this->has_south_door = true;
+        this->has_west_door = true; 
+        this->has_est_door = true;
+
+        int r = rand() % 9 - 5;    //minore è il primo numero maggiore è la possibilità di non avere porte, il secondo è il primo -4
+        for(int i = 0; i < r; i++) 
+        {
+            switch (rand()%4)
+            {
+            case 0:
+                this->has_north_door = false;
+                break;
+            case 1:
+                this->has_south_door = false;
+                break;
+            case 2:
+                this->has_west_door = false;
+                break;
+            case 3:
+                this->has_est_door = false;
+                break;
+            default:
+                break;
+            }
+        }
+    }
 }
 
 /* Sceglie quali porte bloccare, facendo in modo che non siano troppe da intrappolare il giocatore */
@@ -335,95 +535,6 @@ void Room::lockEstDoor() {
     this->room_template->doors[13] = Locked_Door(HALF_ROWS-1,BOARD_COLS-1);
     this->room_template->doors[14] = Locked_Door(HALF_ROWS,BOARD_COLS-1);
     this->room_template->doors[15] = Locked_Door(HALF_ROWS+1,BOARD_COLS-1);
-}
-
-int Room::checkEnemiesHp(Board &board_win){
-    int killed=0;
-
-    for(int j=0;j<room_template->enemies_num;j++){
-        if(this->room_template->enemies[j]->getHp()<=0){
-                board_win.addAt(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx(),' ');
-            if(this->room_template->enemies[j]->isBoss()){
-                int k=0;
-                while(this->room_template->artifact[k].getIcon()!=0){
-                    k++;
-                }
-                k++;
-                this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
-            }
-            else{
-                if(this->room_template->enemies[j]->getIcon()=='K'){
-                    if((rand()%drop_chance) ==0){
-                        int k=0;
-                        while(this->room_template->artifact[k].getIcon()!=0){
-                            k++;
-                        }
-                        k++;
-                        this->room_template->artifact[k]=Artifact(this->room_template->enemies[j]->gety(),this->room_template->enemies[j]->getx());
-                    }
-                }
-            }
-            removeEnemy(j,board_win);
-            killed++;
-        }   
-    }
-    return killed;
-}
-
-/* Muove i nemici */
-void Room::moveEnemies(Board &board, Hero &hero) {
-    for(int i = 0; i < room_template->enemies_num; i++) {   
-        if(room_template->enemies[i]!=NULL){ 
-          this->room_template->enemies[i]->chooseDirection(board, hero);
-         this->room_template->enemies[i]->checkProjectile(board, hero);
-         if(this->room_template->enemies[i]->getisFlyer()){
-            if(this->room_template->enemies[i]->checkFlyerCollision(board)) {
-            this->room_template->enemies[i]->moveCharacter(board);
-            
-        }
-         }
-         else{
-       if(this->room_template->enemies[i]->checkCollision(board)) {
-            this->room_template->enemies[i]->moveCharacter(board);
-            
-        }
-     }
-    }
-    }
-}
-
-/* Verifica che la stanza non abbia altri nemici */
-bool Room::isClear() {
-    if(room_template->must_complete)
-        return room_template->enemies_num == 0;    //per il testing è disattivata 
-    else 
-        return 1;
-}
-
-/* Sblocca la porta nella direzione in cui si punta */
-void Room::unlockDoor(int y, int x,Board &game_board)
-{
-    int j = 0;
-    bool f = true;
-    while(f)
-    {
-        f = false;
-        for(int i=0; i < room_template->doors_num; i++)
-        {
-            int ty = room_template->doors[i].gety();
-            int tx = room_template->doors[i].getx();
-            if((ty == y-j || ty == y+j || ty == y) && (tx == x-j || tx == x+j || tx == x))
-            {
-                if(room_template->doors[i].getIcon() == 'Q')
-                {
-                    f = true;
-                    room_template->doors[i] = Door(ty,tx);
-                    game_board.addAt(ty,tx,'O');
-                }
-            }
-        }
-        j++;
-    }
 }
 
 // funzioni private
@@ -498,62 +609,9 @@ void Room::drawDoors(Board &board) {
     }
 }
 
-void Room::removeEnemy(int pos,Board &board_win) {
-    for(int i=0;i<room_template->enemies[pos]->projectile.size();i++){
-        board_win.addAt(room_template->enemies[pos]->projectile[i]->gety(),room_template->enemies[pos]->projectile[i]->getx(),' ');
-        room_template->enemies[pos]->projectile.erase(room_template->enemies[pos]->projectile.begin()+i);
-    }
-    pEn temp = room_template->enemies[pos];
-    room_template->enemies[pos] = room_template->enemies[room_template->enemies_num-1];
-    room_template->enemies[room_template->enemies_num-1] = temp;
-
-    room_template->enemies_num--;
-}
-
-
+/* aggiunge un nemico in ultima posizione */
 void Room::addEnemy(pEn enemy) {
     room_template->enemies_num++;
     room_template->enemies[room_template->enemies_num-1] = enemy;
 }
 
-void Room::removeArtifact(int pos) {
-    Drawable temp = room_template->artifact[pos];
-    room_template->artifact[pos] = room_template->artifact[room_template->artifact_num-1];
-    room_template->artifact[room_template->artifact_num-1] = temp;
-    room_template->artifact_num--;
-}
-
-void Room::checkHeroProjectile(Board &board_win,Hero &hero){
-    for (int i = 0; i < hero.projectile.size(); i++)
-	{   
-        
-		if (hero.projectile[i] != NULL){
-            hero.projectile[i]->setUptime(hero.projectile[i]->getUptime()+1);
-            if(!hero.projectile[i]->checkProjectileCollision(board_win)||hero.projectile[i]->getUptime()>hero.getRange()){
-                hero.projectile[i]->moveCharacter(board_win);
-                bool found=false;
-                int j=0;
-                while(j < this->room_template->enemies_num && !found ){
-                    if(this->room_template->enemies[j]!=NULL){
-                    if(hero.projectile[i]->getx()==this->room_template->enemies[j]->getx() && hero.projectile[i]->gety()==this->room_template->enemies[j]->gety()){
-                        this->room_template->enemies[j]->reduceHealth(hero.getDmg());
-                        hero.projectile.erase(hero.projectile.begin()+i);
-                        found=true;
-                    }
-                    
-                    }
-                    j++;
-                }
-                if(!found){
-                    board_win.addAt(hero.projectile[i]->gety(),hero.projectile[i]->getx(),' ');
-                    hero.projectile.erase(hero.projectile.begin()+i);
-                    
-                }
-            }
-            else{  
-                        hero.projectile[i]->moveCharacter(board_win);
-                    
-                }
-            }
-        }
-    }
