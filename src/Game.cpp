@@ -392,6 +392,7 @@ void Game::refreshStat(Hero &hero){
 	}
     int hp=hero.getHp();
 	int i,j=0;
+	stat_board.printyxWin("                      ", 3, 2);
 	stat_board.printyxWin("Health: ", 3, 2);
 	for(i=1; i*10 <= hp; i++) {		//cuori pieni
 		stat_board.printyxWin("♥", 3, j+15, ENEMY_PAIR);
@@ -401,23 +402,30 @@ void Game::refreshStat(Hero &hero){
 		stat_board.printyxWin("♡", 3, j+15);
 		j++;
 	}
+	stat_board.printyxWin("                      ", 4, 2);
 	stat_board.printWin("Hp: ", 4, hp);
 		int dmg=hero.getDmg();
+	stat_board.printyxWin("                      ", 5, 2);
 	stat_board.printWin("Damage: ", 5, dmg);
 	int reload=hero.getMaxReload();
 	//if(reload < 0)
 	//	stat_board.printWin("Reload time: ", 6, 0);
 	//else
+	stat_board.printyxWin("                      ", 6, 2);
 		stat_board.printWin("Reload time: ", 6, reload);
 	int range=hero.getRange();
+	stat_board.printyxWin("                      ", 7, 2);
 	stat_board.printWin("Range: ", 7, range);
+	stat_board.printyxWin("                      ", 8, 2);
 	stat_board.printWin("Keys: ", 8, hero.getKey());
+	stat_board.printyxWin("                      ", 10, 2);
 	stat_board.printWin("Room (y,x): ", 10, current_room->y, current_room->x);
 	displayError();
 }
 
 void Game::refreshScore(Hero &hero) {
 	score_board.printWin("Score: ", 2, getScore());
+	score_board.printyxWin("                      ", 5, 2);
 	score_board.printWin("Difficulty: ", 5, game_board.getDifficulty());
 }
 
