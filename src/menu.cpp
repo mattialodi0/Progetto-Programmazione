@@ -431,13 +431,13 @@ void Menu::class_rogue(){
     mvwprintw(menuwin, iy, ix, " ROGUE class stats : ");
 
     
-    mvwprintw(menuwin, iy+2, ix, " Healt Points = 20 ");
+    mvwprintw(menuwin, iy+2, ix+1, " Healt Points = 20 ");
 
-    mvwprintw(menuwin, iy+3, ix, " Damage = 7 ");
+    mvwprintw(menuwin, iy+3, ix+1, " Damage = 7 ");
 
-    mvwprintw(menuwin, iy+4, ix, " Reload Time = 2 ");
+    mvwprintw(menuwin, iy+4, ix+1, " Reload Time = 2 ");
 
-    mvwprintw(menuwin, iy+5, ix, " Range = 5 ");
+    mvwprintw(menuwin, iy+5, ix+1, " Range = 5 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
@@ -505,13 +505,13 @@ void Menu::class_ranger(){
     
     mvwprintw(menuwin, iy, ix, " RANGER class stats : ");
 
-    mvwprintw(menuwin, iy+2, ix, " Healt Points = 16 ");
+    mvwprintw(menuwin, iy+2, ix+1, " Healt Points = 16 ");
 
-    mvwprintw(menuwin, iy+3, ix, " Damage = 3 ");
+    mvwprintw(menuwin, iy+3, ix+1, " Damage = 3 ");
 
-    mvwprintw(menuwin, iy+4, ix, " Reload Time = 2 ");
+    mvwprintw(menuwin, iy+4, ix+1, " Reload Time = 2 ");
 
-    mvwprintw(menuwin, iy+5, ix, " Range = 14 ");
+    mvwprintw(menuwin, iy+5, ix+1, " Range = 14 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
@@ -579,13 +579,13 @@ void Menu::class_mage(){
 
     mvwprintw(menuwin, iy, ix, " MAGE class stats : ");
 
-    mvwprintw(menuwin, iy+2, ix, " Healt Points = 16 ");
+    mvwprintw(menuwin, iy+2, ix+1, " Healt Points = 16 ");
 
-    mvwprintw(menuwin, iy+3, ix, " Damage = 6 ");
+    mvwprintw(menuwin, iy+3, ix+1, " Damage = 6 ");
 
-    mvwprintw(menuwin, iy+4, ix, " Reload Time = 4 ");
+    mvwprintw(menuwin, iy+4, ix+1, " Reload Time = 4 ");
 
-    mvwprintw(menuwin, iy+5, ix, " Range = 7 ");
+    mvwprintw(menuwin, iy+5, ix+1, " Range = 7 ");
 
     char* choices[2] = {"Start Game", "-Back-"};
     int choice;
