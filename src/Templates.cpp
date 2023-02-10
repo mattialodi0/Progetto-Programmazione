@@ -22,18 +22,6 @@ Template_1::Template_1(int n, Board &game_board) : General_template(10, 16, ENEM
     {
         createEnemies(true, true, x_chosen[i], y_chosen[i], chosen_enemies[i], i, n, game_board, enemies);
     }
-
-    int chosen_artifact[artifact_num];
-    int x_chosen_artifact[artifact_num];
-    int y_chosen_artifact[artifact_num];
-    for (int i = 0; i < artifact_num; i++)
-    {
-        chosen_artifact[i] = x_chosen_artifact[i] = y_chosen_artifact[i] = 0;
-    }
-    for (int i = 0; i < this->artifact_num; i++)
-    {
-        createArtifact(true, true, x_chosen_artifact[i], y_chosen_artifact[i], chosen_artifact[i], i, game_board, n, artifact);
-    }
 }
 
 Template_2::Template_2(int n, Board &game_board) : General_template(18, 16, 0, 2)
@@ -83,7 +71,7 @@ Template_2::Template_2(int n, Board &game_board) : General_template(18, 16, 0, 2
 
     drawDoors();
 
-    int chosen_artifact[artifact_num] = {};
+    int chosen_artifact[artifact_num] = {4,4};
     int x_chosen_artifact[artifact_num] = {HALF_COLS-1,HALF_COLS+1};
     int y_chosen_artifact[artifact_num] = {HALF_ROWS, HALF_ROWS};
     for (int i = 0; i < this->artifact_num; i++)

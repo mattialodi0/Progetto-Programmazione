@@ -176,8 +176,8 @@ void General_template::createArtifact(bool is_random_artifact, bool is_random_co
     case 2:
         artifact[ite] = Artifact(y, x, 'H');
         break;
-    case 4:
-        artifact[0] = Artifact(y, x, 'A');
+    case 3:
+        artifact[ite] = Artifact(y, x, 'A');
         break;
     default:
         artifact[ite] = Artifact(y, x, 'J');
