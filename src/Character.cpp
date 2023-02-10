@@ -102,6 +102,7 @@ bool Character::checkCollision(Board &board_win)
 		case ' ':
 		case 'E':
 		case 'H':
+		case 'A':
 		case 'R':
 		case 'J':
 			return true;
@@ -135,6 +136,7 @@ bool Character::checkFlyerCollision(Board &board_win)
 	case 'X':
 	case 'Q':
 	case 'E':
+	case 'A':
 	case 'H':
 	case 'R':
 	case 'J':
@@ -173,6 +175,7 @@ bool Character::checkProjectileCollision(Board &board_win)
 		case 'o':
 		case '-':
 		case '|':
+		case 'A':
 			return true;
 			break;
 		default:
@@ -212,6 +215,7 @@ bool Character::checkProjectileFlyerCollision(Board &board_win)
 		case 'o':
 		case '-':
 		case '|':
+		case 'A':
 			return true;
 			break;
 		default:

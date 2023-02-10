@@ -3,43 +3,22 @@
 L'obiettivo del progetto era sviluppare un gioco rogue-like in C++, utilizzando solo ncurses.h come libreria per la grafica.    
 All'interno del gioco è possibile muoversi tra le stanze, combattere i nemici, raccogliere artefatti e usare abilità speciali.   
 Le stanze vengono generate all'infinito e non c'è una fine o uno scopo se non fare il punteggio maggiore possibile.   
-
 Il progetto è stato sviluppato in ambiente unix, perché lo richiede la libreria ncurses.h, disponibile solo per linux.
-
 Per lanciare il gioco basta scaricare la cartella ed eseguore il comando make da terminale.  
 
-## cose da fare:   
-commenti nel codice (in particolare cosa fanno gli artefatti e i nemici)  
-non va la creazione di artefatti   
-rimuovere i warning (-w)
-ridurre le stanze senza porte
-
--caratteri unicode:    
-\u265E cavallo
-♡      cuore vuoto
-\u26BF chiave
-\u26E8 scudo
 
 
--stanze:  
-rimettere la condizione per cambiare stanza    
-
-
--menu:  
-chiusura corretta delle finestre    
-controllo che la finestra del terminale sia abbastanza grande per il gioco prima di iniziare   
-
--statistiche  
-scoreboard con il prunteggio(esperienza)
-statboard con statitiche,chivi,artefatti, poteri
-
-Legenda dei colori:  
+    
+  
+   
+  
+### Legenda dei colori:  
 - rosso nemici
 - viola boss nemici
 - blu artefatti  
 - grigio porte  
 
-Numero  Stanza              Rarità        
+### Numero  Stanza              Rarità        
 0   - stanza vuota      solo all'inizio        
 1   - muri rand               0        
 2   - stanza artefatti        1        

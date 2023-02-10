@@ -23,6 +23,8 @@ chtype Artifact::RandomArtifact()
         return 'E'; // danno
     case 2:
         return 'H'; // cura
+    case 3:
+        return 'A'; //abilità
     default:
         return 'J'; // chiave
     };
