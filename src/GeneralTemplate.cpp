@@ -31,7 +31,7 @@ void General_template::createEnemies(bool is_random_enemies, bool is_random_coor
 
     if (is_random_enemies)
     {
-        chosen = (rand() % (n_enemies) + 1);
+        chosen = (rand() % (max_n_enemies) + 1);
     }
     if (is_random_coords)
     {
