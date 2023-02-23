@@ -453,20 +453,20 @@ void Game::refreshScore(Hero &hero)
 	score_board.printWin("Score: ", 2, getScore());
 	score_board.printyxWin("                      ", 4, 2);
 	score_board.printWin("Time: ", 4, getTime());
-	switch (game_board.getDifficulty())
+	if(game_board.getDifficulty()<3)
 	{
-	case 5:
-		score_board.printyxWin("Difficulty:", 6, 2);
-		score_board.printyxWin("Hard", 6, 15, ENEMY_PAIR);
-		break;
-	case 3:
-		score_board.printyxWin("Difficulty:", 6, 2);
-		score_board.printyxWin("Medium", 6, 15, ERROR_PAIR);
-		break;
-	default:
 		score_board.printyxWin("Difficulty:", 6, 2);
 		score_board.printyxWin("Easy", 6, 15, LIFE_PAIR);
-		break;
+	}
+	else{
+		if(game_board.getDifficulty()>7){
+		score_board.printyxWin("Difficulty:", 6, 2);
+		score_board.printyxWin("Hard", 6, 15, ENEMY_PAIR);
+		}
+		else{
+		score_board.printyxWin("Difficulty:", 6, 2);
+		score_board.printyxWin("Medium", 6, 15, ERROR_PAIR);
+		}
 	}
 	//score_board.printWin("Difficulty: ", 6, game_board.getDifficulty());
 }

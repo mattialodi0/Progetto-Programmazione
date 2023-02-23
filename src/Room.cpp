@@ -321,7 +321,7 @@ Room *Room::findRoom(vector<Room *> room_index, int y, int x, Direction dir)
 int Room::randomRoomNumber()
 {
     int prob[2][NUMBER_OF_ROOMS] = {{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40}, // numero del tempate
-                                    {0, 1, 8, 8, 8, 8, 8, 10,10, 8,  3,  2,  6,  4,  4,  7, 0 ,  0,  7,  8, 10,  5,  0,  0,  0,  0,  1,  8,  0, 10, 10, 10, 10, 10, 10, 10,  1,  1,  6,  3}};                   // rarità (5 comune, 1 rara)
+                                    {0, 1, 8, 8, 8, 8, 8, 10,10, 8,  3,  2,  6,  4,  4,  7, 0 ,  0,  7,  8, 0,  5,  0,  0,  0,  0,  1,  8,  0, 10, 10, 10, 10, 10, 10, 10,  1,  1,  6,  3}};                   // rarità (5 comune, 1 rara)
     int parts = 0;
     for (int i = 0; i < NUMBER_OF_ROOMS; i++)
     {

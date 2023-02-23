@@ -36,11 +36,11 @@ Per lanciare il gioco basta scaricare la cartella ed eseguore il comando make da
 14  - tempio                  4        
 15  - sottostanze chrome      4        
 16  - sottostanza esagonale   7        
-17  - quadrati pieni  x       10        
-18  - quadrati pieni  +       10        
+17  - quadrati pieni  x       0        
+18  - quadrati pieni  +       0        
 19  - croci casuali           7        
 20  - s orizzontale           8        
-21  - 4 angoli                10        
+21  - 4 angoli                0        
 22  - pacman                  5        
 23  - muro bloccante r        0        
 24  - muro bloccante l        0        
